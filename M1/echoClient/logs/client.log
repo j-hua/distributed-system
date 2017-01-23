@@ -1,0 +1,18 @@
+2017-01-09 10:40:00,749 INFO  [main] root: Connection established
+2017-01-09 10:40:00,752 INFO  [Thread-0] root: Receive message:	 'Connection to MSRG Echo server established: /127.0.0.1 / 23456'
+2017-01-09 10:40:06,349 INFO  [main] root: Send message:	 'foo'
+2017-01-09 10:40:06,349 INFO  [Thread-0] root: Receive message:	 'foo'
+2017-01-09 10:40:20,188 INFO  [main] root: try to close connection ...
+2017-01-09 10:40:20,188 INFO  [main] root: tearing down the connection ...
+2017-01-09 10:40:20,189 INFO  [main] root: connection closed!
+2017-01-20 22:21:24,593 INFO  [main] root: Send message:	 'hello workd'
+2017-01-20 22:21:24,593 INFO  [Thread-0] root: Receive message:	 'hello workd'
+2017-01-20 22:21:34,252 INFO  [main] root: Send message:	 'hello world'
+2017-01-20 22:21:34,253 INFO  [Thread-0] root: Receive message:	 ''
+2017-01-20 22:21:34,254 INFO  [Thread-0] root: Receive message:	 'hello world'
+2017-01-20 22:22:05,788 INFO  [main] root: Send message:	 'hello world'
+2017-01-20 22:22:05,789 INFO  [Thread-0] root: Receive message:	 ''
+2017-01-20 22:22:05,790 INFO  [Thread-0] root: Receive message:	 'hello world'
+2017-01-20 22:39:06,890 INFO  [main] root: try to close connection ...
+2017-01-20 22:39:06,890 INFO  [main] root: tearing down the connection ...
+2017-01-20 22:39:06,890 INFO  [main] root: connection closed!
