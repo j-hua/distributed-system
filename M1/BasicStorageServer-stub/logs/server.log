@@ -1,0 +1,12 @@
+2017-01-24 10:38:52,417 INFO  [Thread-0] root: Initialize server ...
+2017-01-24 10:38:52,420 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-24 10:41:28,375 INFO  [Thread-1] root: SEND 	<127.0.0.1:38240>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-01-24 10:41:28,377 INFO  [Thread-0] root: Connected to localhost on port 38240
+2017-01-24 10:42:03,475 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:38240>: 'hello world'
+2017-01-24 10:42:03,476 INFO  [Thread-1] root: SEND 	<127.0.0.1:38240>: 'hello world
+'
+2017-01-24 10:42:23,594 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:38240>: ''
+2017-01-24 10:42:23,594 INFO  [Thread-1] root: SEND 	<127.0.0.1:38240>: '
+'
+2017-01-24 10:42:23,594 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:38240>: ''
+2017-01-24 10:42:23,595 ERROR [Thread-1] root: Error! Connection lost!
