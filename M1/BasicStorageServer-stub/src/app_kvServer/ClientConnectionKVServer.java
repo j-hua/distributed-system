@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +28,7 @@ public class ClientConnectionKVServer implements Runnable {
 	private Socket clientSocket;
 	private InputStream input;
 	private OutputStream output;
+	public KVServerListener kvServerListener;
 	
 	/**
 	 * Constructs a new CientConnection object for a given TCP socket.
@@ -35,7 +38,15 @@ public class ClientConnectionKVServer implements Runnable {
 		this.clientSocket = clientSocket;
 		this.isOpen = true;
 	}
-	
+
+	/**
+	 * set the listener to tell te KVServer the parsed message
+	 * @param kvServerListener
+	 */
+	public void setKVServerListener(KVServerListener kvServerListener){
+		this.kvServerListener = kvServerListener;
+	}
+
 	/**
 	 * Initializes and starts the client connection. 
 	 * Loops until the connection is closed or aborted by the client.
@@ -157,13 +168,34 @@ public class ClientConnectionKVServer implements Runnable {
 		
 		/* build final String */
 		TextMessageKVServer msg = new TextMessageKVServer(msgBytes);
-		logger.info("RECEIVE \t<" 
-				+ clientSocket.getInetAddress().getHostAddress() + ":" 
-				+ clientSocket.getPort() + ">: '" 
+		String[] messageArray = msg.getMsg().split(",");
+		if (messageArray.length>2){
+			logger.error("There were more than one commas sent. send error message back");
+		}else{
+			String actionAndKey = messageArray[0];
+			String value = messageArray[1];
+			String[] splitActionAndKey = actionAndKey.split(" ");
+			String action = splitActionAndKey[0];
+			String key = splitActionAndKey[1];
+			try {
+				kvServerListener.parsedMessage(action,key,value);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		/* 0 and 1 hold the action and the key*/
+		logger.info("RECEIVE \t<"
+				+ clientSocket.getInetAddress().getHostAddress() + ":"
+				+ clientSocket.getPort() + ">: '"
 				+ msg.getMsg().trim() + "'");
 		return msg;
     }
-	
+
+    public interface KVServerListener{
+		void parsedMessage(String action, String key, String value) throws Exception;
+	}
 
 	
 }

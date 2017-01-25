@@ -12,13 +12,15 @@ import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class KVServer extends Thread implements KVCommInterface {
+public class KVServer extends Thread implements KVCommInterface, ClientConnectionKVServer.KVServerListener {
 
     public static final String FIFO = "fifo";
     public static final String LRU = "lru";
     public static final String LFU = "lfu";
     public static int DEFAULT_CACHE_SIZE = 100;
 
+    public static final String GET = "get";
+    public static final String PUT = "put";
     private static Logger logger = Logger.getRootLogger();
 
     private int port;
@@ -37,6 +39,7 @@ public class KVServer extends Thread implements KVCommInterface {
 	public KVServer(int port, int cacheSize, String strategy) {
         // TODO: 1/24/17 initialize the port cache size and the strategy later
         this.port = port;
+
 	}
 
 	/**
@@ -71,6 +74,7 @@ public class KVServer extends Thread implements KVCommInterface {
                 try {
                     Socket client = serverSocket.accept();
                    ClientConnectionKVServer connection = new ClientConnectionKVServer(client);
+                   connection.setKVServerListener(this);
                     new Thread(connection).start();
 
                     logger.info("Connected to "
@@ -157,6 +161,16 @@ public class KVServer extends Thread implements KVCommInterface {
 			System.out.println("Error! Invalid argument <port>! Not a number!");
 			System.out.println("Usage: Server <port>!");
 			System.exit(1);
+		}
+	}
+
+	@Override
+	public void parsedMessage(String action, String key, String value) throws Exception {
+		logger.info("operation being excuted: "+action + key + value);
+		if (action.equals(GET)){
+			KVMessage getMessage = get(key);
+		}else if (action.equals(PUT)){
+			KVMessage putMessage = put(key, value);
 		}
 	}
 }
