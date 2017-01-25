@@ -10,15 +10,16 @@ import org.apache.log4j.Logger;
 
 import logger.LogSetup;
 
-//import client.Client;
+
+import client.Client;
 //import client.ClientSocketListener;
-//import client.TextMessage;
+import client.TextMessage;
 
 public class KVClient {
     private static Logger logger = Logger.getRootLogger();
 	private static final String PROMPT = "KVClient> ";
 	private BufferedReader stdin;
-//	private Client client = null;
+	private Client client = null;
 	private boolean stop = false;
 	
 	private String serverAddress;
@@ -39,11 +40,6 @@ public class KVClient {
 		}
 	}
 
-
-    
-	
-
-
 	private void handleCommand(String cmdLine) {
 		String[] tokens = cmdLine.split("\\s+");
 
@@ -57,16 +53,16 @@ public class KVClient {
 				try{
 					serverAddress = tokens[1];
 					serverPort = Integer.parseInt(tokens[2]);
-				//	connect(serverAddress, serverPort);
+					connect(serverAddress, serverPort);
                     System.out.println("connect " + serverAddress + " " + serverPort );
 				} catch(NumberFormatException nfe) {
 					printError("No valid address. Port must be a number!");
 					logger.info("Unable to parse argument <port>", nfe);
-			//	} catch (UnknownHostException e) {
-			//		printError("Unknown Host!");
+				} catch (UnknownHostException e) {
+					printError("Unknown Host!");
 			//		logger.info("Unknown Host!", e);
-			//	} catch (IOException e) {
-			//		printError("Could not establish connection!");
+				} catch (IOException e) {
+					printError("Could not establish connection!");
 			//		logger.warn("Could not establish connection!", e);
 				}
 			} else {
@@ -74,10 +70,32 @@ public class KVClient {
 			}
 			
 		} else  if (tokens[0].equals("put")) {
-                System.out.println("put");
+            if(tokens.length >= 2) {
+				String[] newtokens = cmdLine.split("\\s+",2);
+				String[] kvPair = newtokens[1].split(",");
+				//kvPair = [key][value]
+				if(kvPair.length == 2){	
+					System.out.println("KEY: " + kvPair[0].trim());
+					System.out.println("VALUE: " + kvPair[1].trim());
+
+					if(client != null && client.isRunning()){
+						StringBuilder msg = new StringBuilder();
+						msg.append(tokens[0]+" ");
+						msg.append(kvPair[0].trim()+",");
+						msg.append(kvPair[1].trim());
+						sendMessage(msg.toString());
+					} else {
+						printError("Not connected!");
+					}
+				}else{
+					printError("Invalid number of parameters!");
+				}
+			} else {
+				printError("No message was passed");
+			}
 			
 		} else if(tokens[0].equals("disconnect")) {
-                System.out.println("disconnect");
+                	System.out.println("disconnect");
 
 		} else if(tokens[0].equals("logLevel")) {
 			if(tokens.length == 2) {
@@ -102,6 +120,21 @@ public class KVClient {
 	}
 
 
+	private void connect(String address, int port) 
+		throws UnknownHostException, IOException {
+		client = new Client(address, port);
+		//client.addListener(this);
+		client.start();
+	}
+
+	private void sendMessage(String msg){
+		try {
+			client.sendMessage(new TextMessage(msg));
+		} catch (IOException e) {
+			printError("Unable to send message!");
+//			disconnect();
+		}
+	}
 
 
 	private void printPossibleLogLevels() {
@@ -166,6 +199,8 @@ public class KVClient {
 	private void printError(String error){
 		System.out.println(PROMPT + "Error! " +  error);
 	}
+	
+	
 
     /**
      * Main entry point for the echo server application. 
