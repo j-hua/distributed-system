@@ -168,34 +168,39 @@ public class ClientConnectionKVServer implements Runnable {
 		
 		/* build final String */
 		TextMessageKVServer msg = new TextMessageKVServer(msgBytes);
+		TextMessageKVServer errorMessage;
 		String[] messageArray = msg.getMsg().split(",");
-		if (messageArray.length>2){
-			logger.error("There were more than one commas sent. send error message back");
-		}else{
+		if (messageArray.length==2){
 			String actionAndKey = messageArray[0];
 			String value = messageArray[1];
 			String[] splitActionAndKey = actionAndKey.split(" ");
-			String action = splitActionAndKey[0];
-			String key = splitActionAndKey[1];
-			try {
-				kvServerListener.parsedMessage(action,key,value);
-			} catch (Exception e) {
-				e.printStackTrace();
+			if (splitActionAndKey.length==2){
+				String action = splitActionAndKey[0];
+				String key = splitActionAndKey[1];
+				try {
+					kvServerListener.parsedMessage(action,key,value);
+				/* 0 and 1 hold the action and the key*/
+					logger.info("RECEIVE \t<"
+							+ clientSocket.getInetAddress().getHostAddress() + ":"
+							+ clientSocket.getPort() + ">: '"
+							+ msg.getMsg().trim() + "'");
+					return msg;
+				} catch (Exception e) {
+					errorMessage = new TextMessageKVServer(e.getMessage().getBytes());
+					e.printStackTrace();
+					return errorMessage;
+				}
+			}else{
+				String error = "Format not correct. Please try again.";
+				errorMessage = new TextMessageKVServer(error.getBytes());
+				return errorMessage;
 			}
 
+		}else{
+			String error = "Format not correct. Please try again.";
+			errorMessage = new TextMessageKVServer(error.getBytes());
+			return errorMessage;
 		}
-
-		/* 0 and 1 hold the action and the key*/
-		logger.info("RECEIVE \t<"
-				+ clientSocket.getInetAddress().getHostAddress() + ":"
-				+ clientSocket.getPort() + ">: '"
-				+ msg.getMsg().trim() + "'");
-		return msg;
     }
 
-    public interface KVServerListener{
-		void parsedMessage(String action, String key, String value) throws Exception;
-	}
-
-	
 }

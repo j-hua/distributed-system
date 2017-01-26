@@ -18,3 +18,60 @@
 2017-01-25 16:31:32,771 INFO  [Thread-1] root: SEND 	<127.0.0.1:49344>: 'put hello,world
 '
 2017-01-25 16:31:50,206 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-26 11:33:32,552 INFO  [Thread-0] root: Initialize server ...
+2017-01-26 11:33:32,557 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-26 11:34:06,414 INFO  [Thread-1] root: SEND 	<127.0.0.1:44866>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-01-26 11:34:06,416 INFO  [Thread-0] root: Connected to localhost on port 44866
+2017-01-26 11:34:25,451 INFO  [Thread-1] root: operation being excuted: putkey value action
+
+2017-01-26 11:34:25,451 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:44866>: 'put key, value action'
+2017-01-26 11:34:25,451 INFO  [Thread-1] root: SEND 	<127.0.0.1:44866>: 'put key, value action
+'
+2017-01-26 11:35:16,577 INFO  [Thread-2] root: SEND 	<127.0.0.1:44867>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-01-26 11:35:16,578 INFO  [Thread-0] root: Connected to localhost on port 44867
+2017-01-26 11:35:31,515 INFO  [Thread-2] root: operation being excuted: putkey value haque
+
+2017-01-26 11:35:31,516 INFO  [Thread-2] root: RECEIVE 	<127.0.0.1:44867>: 'put key, value haque'
+2017-01-26 11:35:31,516 INFO  [Thread-2] root: SEND 	<127.0.0.1:44867>: 'put key, value haque
+'
+2017-01-26 11:36:11,885 INFO  [Thread-1] root: operation being excuted: putkey waref haqeee
+
+2017-01-26 11:36:11,886 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:44866>: 'put key, waref haqeee'
+2017-01-26 11:36:11,887 INFO  [Thread-1] root: SEND 	<127.0.0.1:44866>: 'put key, waref haqeee
+'
+2017-01-26 11:38:45,390 INFO  [Thread-2] root: operation being excuted: putkey haquwre asdfa
+
+2017-01-26 11:38:45,390 INFO  [Thread-2] root: RECEIVE 	<127.0.0.1:44867>: 'put key, haquwre asdfa'
+2017-01-26 11:38:45,391 INFO  [Thread-2] root: SEND 	<127.0.0.1:44867>: 'put key, haquwre asdfa
+'
+2017-01-26 11:39:52,023 INFO  [Thread-2] root: operation being excuted: putkey waref hawur
+
+2017-01-26 11:39:52,023 INFO  [Thread-2] root: RECEIVE 	<127.0.0.1:44867>: 'put key, waref hawur'
+2017-01-26 11:39:52,023 INFO  [Thread-2] root: SEND 	<127.0.0.1:44867>: 'put key, waref hawur
+'
+2017-01-26 11:39:52,551 INFO  [Thread-1] root: operation being excuted: putkey hauqe asd
+
+2017-01-26 11:39:52,551 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:44866>: 'put key, hauqe asd'
+2017-01-26 11:39:52,551 INFO  [Thread-1] root: SEND 	<127.0.0.1:44866>: 'put key, hauqe asd
+'
+2017-01-26 12:07:07,416 INFO  [Thread-0] root: Initialize server ...
+2017-01-26 12:07:07,419 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-26 12:07:18,731 INFO  [Thread-0] root: Initialize server ...
+2017-01-26 12:07:18,734 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-26 12:08:06,283 INFO  [Thread-0] root: Initialize server ...
+2017-01-26 12:08:06,286 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-26 12:08:28,065 INFO  [Thread-1] root: SEND 	<127.0.0.1:44963>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-01-26 12:08:28,067 INFO  [Thread-0] root: Connected to localhost on port 44963
+2017-01-26 12:08:43,246 INFO  [Thread-1] root: SEND 	<127.0.0.1:44963>: 'Format not correct. Please try again.
+'
+2017-01-26 12:12:54,238 INFO  [Thread-0] root: Initialize server ...
+2017-01-26 12:12:54,241 INFO  [Thread-0] root: Server listening on port: 3000
+2017-01-26 12:13:06,884 INFO  [Thread-1] root: SEND 	<127.0.0.1:44967>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-01-26 12:13:06,886 INFO  [Thread-0] root: Connected to localhost on port 44967
+2017-01-26 12:13:15,425 INFO  [Thread-1] root: SEND 	<127.0.0.1:44967>: 'Format not correct. Please try again.
+'
+2017-01-26 12:13:30,585 INFO  [Thread-1] root: SEND 	<127.0.0.1:44967>: 'Format not correct. Please try again.
+'
+2017-01-26 12:13:40,580 INFO  [Thread-1] root: SEND 	<127.0.0.1:44967>: 'Format not correct. Please try again.
+'
+2017-01-26 12:13:40,581 ERROR [Thread-1] root: Error! Connection lost!
