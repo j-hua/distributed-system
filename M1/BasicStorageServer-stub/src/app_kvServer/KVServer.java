@@ -17,6 +17,8 @@ public class KVServer extends Thread implements KVServerListener {
     public static final String FIFO = "fifo";
     public static final String LRU = "lru";
     public static final String LFU = "lfu";
+    public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
     public static int DEFAULT_CACHE_SIZE = 100;
 
     public static final String GET = "get";
@@ -145,12 +147,15 @@ public class KVServer extends Thread implements KVServerListener {
 	}
 
 	@Override
-	public void parsedMessage(String action, String key, String value) throws Exception {
-		logger.info("operation being excuted: "+action + key + value);
-		if (action.equals(GET)){
-			KVMessage getMessage = get(key);
-		}else if (action.equals(PUT)){
-			KVMessage putMessage = put(key, value);
-		}
+	public void putMessage( String key, String value) throws Exception {
+		logger.info("Putting  "+ " "+ "key: " + key + " "+"value: " + value);
+		KVMessage putMessage = put(key, value);
+
+	}
+
+	@Override
+	public void getMessage(String key) throws Exception{
+		logger.info("Getting "+"key: " +key);
+		KVMessage getMessage  = get(key);
 	}
 }
