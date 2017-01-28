@@ -179,12 +179,13 @@ public class ClientConnectionKVServer implements Runnable {
 
     public String processMessage(String message){
 		String[] messageArray = message.split(" ");
+		String status = "";
 		/**
 		 * length <=12 means:
 		 * the server will only allow 10 space delimited value strings.
 		 * In other words 10 columns of data per row or per object saved.
 		 */
-		if (messageArray.length>=2 && messageArray.length<=12){
+		if (messageArray.length>=2){
 			try {
 				//determining the action type based on the length of the message
 				//this is under the assumption that the key will not have spaces
@@ -194,21 +195,28 @@ public class ClientConnectionKVServer implements Runnable {
 
 				if (messageArray.length>2){
 
-					String[] value = new String[10];
-					System.arraycopy(messageArray, 2,value, 0, messageArray.length-2 );
-
 					StringBuilder sb = new StringBuilder("");
-					for (String aValue : value) {
-						if (aValue != null) {
-							sb.append(aValue).append(" ");
-						}
+					for (int i = 2; i< messageArray.length; i++) {
+
+						sb.append(messageArray[i]).append(" ");
 					}
 
-					kvServerListener.putMessage(key, sb.toString() );
+					KVMessage kvMessage =kvServerListener.put(key, sb.toString().trim() );
+					status = String.valueOf(kvMessage.getStatus());
 
-				}else if (messageArray.length==2 && action.equals(KVServer.GET)){
+
+				}else if (messageArray.length==2){
 					//must be a get
-					kvServerListener.getMessage(key);
+					if (action.equals(KVServer.GET)){
+						KVMessage kvMessage = kvServerListener.get(key);
+						status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getValue();
+
+					}else{
+						//
+						KVMessage kvMessage = kvServerListener.put(key, null);
+						status = String.valueOf(kvMessage.getStatus());
+
+					}
 				}else{
 					logger.error("message array length not greater than or equal to 2 (inner if).");
 					return FORMAT_ERROR;
@@ -221,10 +229,11 @@ public class ClientConnectionKVServer implements Runnable {
 						+ clientSocket.getPort() + ">: '"
 						+ message.trim() + "'");
 				//must be success here
-				return "Success: "+ message.trim();
+				return status;
 			} catch (Exception e) {
 				// TODO: 1/27/17 (Talk to ALI) make sure this returns all of the errors from PUT_ERROR, GET_ERROR etc.
-				return "Error: " + e.toString();
+				logger.error(e.getMessage());
+				return e.getMessage();
 			}
 
 		}else{

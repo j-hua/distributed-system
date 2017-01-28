@@ -1,4 +1,4 @@
-one 54
+one 52
 two 52
 three 52
 four 52
