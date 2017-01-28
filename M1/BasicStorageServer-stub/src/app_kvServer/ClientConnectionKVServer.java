@@ -1,11 +1,14 @@
 package app_kvServer;
 
+import common.messages.KVMessage;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,7 +29,9 @@ public class ClientConnectionKVServer implements Runnable {
 	private Socket clientSocket;
 	private InputStream input;
 	private OutputStream output;
-	
+	public KVServerListener kvServerListener;
+	public static final String FORMAT_ERROR = "Error: The format you entered is incorrect. Type 'help' to see possible options";
+
 	/**
 	 * Constructs a new CientConnection object for a given TCP socket.
 	 * @param clientSocket the Socket object for the client connection.
@@ -35,7 +40,15 @@ public class ClientConnectionKVServer implements Runnable {
 		this.clientSocket = clientSocket;
 		this.isOpen = true;
 	}
-	
+
+	/**
+	 * set the listener to tell te KVServer the parsed message
+	 * @param kvServerListener
+	 */
+	public void setKVServerListener(KVServerListener kvServerListener){
+		this.kvServerListener = kvServerListener;
+	}
+
 	/**
 	 * Initializes and starts the client connection. 
 	 * Loops until the connection is closed or aborted by the client.
@@ -157,13 +170,66 @@ public class ClientConnectionKVServer implements Runnable {
 		
 		/* build final String */
 		TextMessageKVServer msg = new TextMessageKVServer(msgBytes);
-		logger.info("RECEIVE \t<" 
-				+ clientSocket.getInetAddress().getHostAddress() + ":" 
-				+ clientSocket.getPort() + ">: '" 
-				+ msg.getMsg().trim() + "'");
-		return msg;
-    }
-	
 
-	
+		TextMessageKVServer response = new TextMessageKVServer(processMessage(msg.getMsg()).getBytes());
+
+		return response;
+
+    }
+
+    public String processMessage(String message){
+		String[] messageArray = message.split(" ");
+		/**
+		 * length <=12 means:
+		 * the server will only allow 10 space delimited value strings.
+		 * In other words 10 columns of data per row or per object saved.
+		 */
+		if (messageArray.length>=2 && messageArray.length<=12){
+			try {
+				//determining the action type based on the length of the message
+				//this is under the assumption that the key will not have spaces
+				String action = messageArray[0].trim();
+				logger.info("ACTION: " + action);
+				String key= messageArray[1];
+
+				if (messageArray.length>2){
+
+					String[] value = new String[10];
+					System.arraycopy(messageArray, 2,value, 0, messageArray.length-2 );
+
+					StringBuilder sb = new StringBuilder("");
+					for (String aValue : value) {
+						if (aValue != null) {
+							sb.append(aValue).append(" ");
+						}
+					}
+
+					kvServerListener.putMessage(key, sb.toString() );
+
+				}else if (messageArray.length==2 && action.equals(KVServer.GET)){
+					//must be a get
+					kvServerListener.getMessage(key);
+				}else{
+					logger.error("message array length not greater than or equal to 2 (inner if).");
+					return FORMAT_ERROR;
+				}
+
+
+				/* 0 and 1 hold the action and the key*/
+				logger.info("RECEIVE \t<"
+						+ clientSocket.getInetAddress().getHostAddress() + ":"
+						+ clientSocket.getPort() + ">: '"
+						+ message.trim() + "'");
+				//must be success here
+				return "Success: "+ message.trim();
+			} catch (Exception e) {
+				// TODO: 1/27/17 (Talk to ALI) make sure this returns all of the errors from PUT_ERROR, GET_ERROR etc.
+				return "Error: " + e.toString();
+			}
+
+		}else{
+			logger.error("message array length not greater than or equal to 2 OR greater than 12 (outer if)");
+			return  FORMAT_ERROR;
+		}}
+
 }
