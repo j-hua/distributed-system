@@ -16,22 +16,18 @@ public class Client extends Thread{
 
 	//private Set<ClientSocketListener> listeners;
 	private boolean running;
+	private KVStore kvStore;
 
-	private Socket clientSocket;
-	private OutputStream output;
-	private InputStream input;
+
 	
 	private static final int BUFFER_SIZE = 1024;
 	private static final int DROP_SIZE = 1024*BUFFER_SIZE;
 
 	public Client(String address, int port) throws UnknownHostException, IOException {
 		
-		clientSocket = new Socket(address, port);
+		kvStore = new KVStore(address, port);
 		System.out.println("Client created");
-		setRunning(true);
-		//listeners = new HashSet<ClientSocketListener>();
-	//	setRunning(true);
-	//	logger.info("Connection established");
+		setRunning(false);
 	}
 
 	/**
@@ -39,10 +35,14 @@ public class Client extends Thread{
 	 * Loops until the connection is closed or aborted by the client.
 	 */
 	public void run() {
-		System.out.println("Thread starts running");
+		System.out.println("Client thread starts running");
+		setRunning(true);
+
 		try {
-			output = clientSocket.getOutputStream();
-			input = clientSocket.getInputStream();
+			kvStore.connect();
+		//	output = kvStore.getSocket().getOutputStream();
+		//	input = kvStore.getSocket().getInputStream();
+
 
 			
 /*
@@ -70,6 +70,8 @@ public class Client extends Thread{
 		} catch (IOException ioe) {
 		//	logger.error("Connection could not be established!");
 			
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			//if(isRunning()) {
 			//	closeConnection();
@@ -89,13 +91,10 @@ public class Client extends Thread{
 	/**
 	 * Method sends a TextMessage using this socket.
 	 * @param msg the message that is to be sent.
-	 * @throws IOException some I/O error regarding the output stream 
+	 * @throws IOException some I/O error regarding the output stream
 	 */
-	public void sendMessage(TextMessage msg) throws IOException {
-		byte[] msgBytes = msg.getMsgBytes();
-		output.write(msgBytes, 0, msgBytes.length);
-		output.flush();
-	//	logger.info("Send message:\t '" + msg.getMsg() + "'");
+	public void putMessage(String key, String value) throws Exception {
+		kvStore.put(key,value);
     }
 
 }

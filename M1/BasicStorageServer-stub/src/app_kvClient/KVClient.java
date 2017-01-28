@@ -11,9 +11,9 @@ import org.apache.log4j.Logger;
 import logger.LogSetup;
 
 
-import client.Client;
+import client.*;
 //import client.ClientSocketListener;
-import client.TextMessage;
+
 
 public class KVClient {
     private static Logger logger = Logger.getRootLogger();
@@ -70,20 +70,19 @@ public class KVClient {
 			}
 			
 		} else  if (tokens[0].equals("put")) {
-            if(tokens.length >= 2) {
-				String[] newtokens = cmdLine.split("\\s+",2);
-				String[] kvPair = newtokens[1].split(",");
-				//kvPair = [key][value]
-				if(kvPair.length == 2){	
-					System.out.println("KEY: " + kvPair[0].trim());
-					System.out.println("VALUE: " + kvPair[1].trim());
+			System.out.println(tokens[0] + tokens[1]);
+			if(tokens.length >= 2) {
+				String[] kvPair = cmdLine.split("\\s+", 3);
+				System.out.println(kvPair[0] + kvPair[1] + kvPair[2]);
+				//kvPair = [put][key][value]
+				if(kvPair.length == 3){
+					System.out.println("KEY: " + kvPair[1].trim());
+					System.out.println("VALUE: " + kvPair[2].trim());
 
 					if(client != null && client.isRunning()){
-						StringBuilder msg = new StringBuilder();
-						msg.append(tokens[0]+" ");
-						msg.append(kvPair[0].trim()+",");
-						msg.append(kvPair[1].trim());
-						sendMessage(msg.toString());
+
+						putMessage(kvPair[1].trim(),kvPair[2].trim());
+
 					} else {
 						printError("Not connected!");
 					}
@@ -127,12 +126,13 @@ public class KVClient {
 		client.start();
 	}
 
-	private void sendMessage(String msg){
+	private void putMessage(String key, String value){
 		try {
-			client.sendMessage(new TextMessage(msg));
-		} catch (IOException e) {
+			client.putMessage(key,value);
+			//client.putMessage(new TextMessage(msg));
+		} catch (Exception e) {
 			printError("Unable to send message!");
-//			disconnect();
+			e.printStackTrace();
 		}
 	}
 
