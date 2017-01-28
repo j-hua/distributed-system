@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.BindException;
+import java.net.InterfaceAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,8 +20,8 @@ public class KVServer extends Thread implements KVServerListener {
     public static final String LFU = "lfu";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
-    public static int DEFAULT_CACHE_SIZE = 100;
-
+    public static int limit = 0;
+	public static  String replacementPolicy = null;
     public static final String GET = "get";
     public static final String PUT = "put";
     private static Logger logger = Logger.getRootLogger();
@@ -41,7 +42,8 @@ public class KVServer extends Thread implements KVServerListener {
 	public KVServer(int port, int cacheSize, String strategy) {
         // TODO: 1/24/17 initialize the port cache size and the strategy later
         this.port = port;
-
+        replacementPolicy = strategy;
+        limit = cacheSize;
 	}
 
     /**
@@ -127,13 +129,14 @@ public class KVServer extends Thread implements KVServerListener {
 	public static void main(String[] args) {
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
-			if(args.length != 2) {
+			if(args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port> <cache_type>!");
 			} else {
 				int port = Integer.parseInt(args[0]);
 				String cacheStrategy = args[1];
-				new KVServer(port, DEFAULT_CACHE_SIZE, cacheStrategy).start();
+				int cache_size = Integer.parseInt(args[2]);
+				new KVServer(port, cache_size, cacheStrategy).start();
 			}
 		} catch (IOException e) {
 			System.out.println("Error! Unable to initialize logger!");
