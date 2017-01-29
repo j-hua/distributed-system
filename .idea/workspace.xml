@@ -16,19 +16,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KVServer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="101" column="36" lean-forward="false" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KVCommInterface.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KVCommInterface.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/client/KVCommInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
@@ -41,8 +29,8 @@
       <file leaf-file-name="ClientConnectionKVServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/ClientConnectionKVServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="217" column="0" lean-forward="true" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
+            <state relative-caret-position="837">
+              <caret line="229" column="39" lean-forward="true" selection-start-line="229" selection-start-column="39" selection-end-line="229" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,7 +41,7 @@
       <file leaf-file-name="storageServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/storageServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1044">
+            <state relative-caret-position="720">
               <caret line="271" column="51" lean-forward="true" selection-start-line="271" selection-start-column="51" selection-end-line="271" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -504,7 +492,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1152" extended-state="1" />
+    <frame x="0" y="24" width="1920" height="1152" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -518,7 +506,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31681243" sideWeight="0.49165797" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6443149" sideWeight="0.49165797" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1881663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -948,14 +936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/client/KVCommInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVMessageStorage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -971,9 +951,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="121" column="60" lean-forward="false" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/ClientConnectionKVServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="837">
+          <caret line="229" column="39" lean-forward="true" selection-start-line="229" selection-start-column="39" selection-end-line="229" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/storageServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
+        <state relative-caret-position="720">
           <caret line="271" column="51" lean-forward="true" selection-start-line="271" selection-start-column="51" selection-end-line="271" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -983,23 +983,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/ClientConnectionKVServer.java">
+    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/client/KVCommInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="217" column="0" lean-forward="true" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="101" column="36" lean-forward="false" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
