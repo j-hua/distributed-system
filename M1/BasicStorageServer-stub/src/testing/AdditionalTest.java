@@ -23,14 +23,19 @@ public class AdditionalTest extends TestCase {
 	int PORT = 3000;
 
 	/**
-	 * Clear the DB before perming tests to avoid
-	 * previous data hampering tests
+	 * Clear the DB before each test.
+	 * that is what clearFile does
 	 */
 	@Test
 	public void testStub() {
 
 		assertTrue(true);
 	}
+
+	/**
+	 * Tests whether you can retrieve a value from
+	 * persistent storage after putting it there
+	 */
 
 	@Test
 	public void testGetCheck(){
@@ -60,6 +65,10 @@ public class AdditionalTest extends TestCase {
 		assertTrue(getEx == null && getMessage.getStatus() == KVMessage.StatusType.GET_SUCCESS);
 
 	}
+
+	/**
+	 * Tests for when you are getting a key is not there
+	 */
 	@Test
 	public void testGetError(){
 		clearFile();
@@ -77,7 +86,10 @@ public class AdditionalTest extends TestCase {
 
 	}
 
-
+	/**
+	 * Does two puts and the latter one should say
+	 * PUT_UPDATE instead of creating a new entry
+	 */
 
 	@Test
 	public void testUpdateCheck(){
@@ -103,6 +115,11 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(updateMessage.getStatus()== KVMessage.StatusType.PUT_UPDATE && updateMessage.getValue().equals("55"));
 	}
+
+	/**
+	 * Checking if a delete is successful by putting a value
+	 * and then deleting it
+	 */
 
 	@Test
 	public void testDeleteCheck(){
@@ -130,6 +147,10 @@ public class AdditionalTest extends TestCase {
 		assertTrue( deleteMessage.getStatus() == KVMessage.StatusType.DELETE_SUCCESS);
 	}
 
+	/**
+	 * Check if an invalid delete fails by trying to
+	 * delete a key that does not exist
+	 */
 	@Test
 	public  void testDeleteError(){
 		clearFile();
@@ -177,6 +198,10 @@ public class AdditionalTest extends TestCase {
 		assertTrue(keys.get(0).equals("one") && values.get(0).equals("45"));
 	}
 
+	/**
+	 * This checks if fifo works. Put 6 values. The 6th value
+	 * kicks out the first value from the cache
+	 */
 	@Test
 	public void testCheckFifo(){
 		clearFile();
