@@ -3446,3 +3446,134 @@
 =======
 >>>>>>> 1a087cc0e89a064e4ce390224d6d7ba3208980b8
 >>>>>>> b9054784e9a95b09f2baa9835ddb80397a31b0c0
+2017-01-29 16:56:31,790 ERROR [main] root: LENGTH 3
+2017-01-29 16:56:31,791 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 16:56:31,815 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 16:57:00,842 INFO  [Thread-1] root: SEND 	<127.0.0.1:50768>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 16:57:00,844 INFO  [Thread-0] root: Connected to localhost on port 50768
+2017-01-29 16:57:07,324 INFO  [Thread-1] root: ACTION: put
+2017-01-29 16:57:07,324 INFO  [Thread-1] root: Putting   key: foo value: bar
+2017-01-29 16:57:07,324 INFO  [Thread-1] root: Putting   key: foo value: bar
+2017-01-29 16:57:07,386 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:50768>: 'put foo bar'
+2017-01-29 16:57:07,386 INFO  [Thread-1] root: SEND 	<127.0.0.1:50768>: 'PUT_UPDATE foo bar
+'
+2017-01-29 17:16:34,658 INFO  [Thread-1] root: SEND 	<127.0.0.1:50768>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 17:16:34,658 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 17:24:59,139 ERROR [main] root: LENGTH 3
+2017-01-29 17:24:59,140 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 17:24:59,148 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 17:28:08,321 ERROR [main] root: LENGTH 3
+2017-01-29 17:28:08,322 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 17:28:08,336 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 17:28:20,203 INFO  [Thread-1] root: SEND 	<127.0.0.1:52124>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 17:28:20,205 INFO  [Thread-0] root: Connected to localhost on port 52124
+2017-01-29 17:28:37,566 INFO  [Thread-1] root: ACTION: put
+2017-01-29 17:28:37,569 INFO  [Thread-1] root: Putting   key: one value: two
+2017-01-29 17:28:37,569 INFO  [Thread-1] root: Putting   key: one value: two
+2017-01-29 17:28:37,626 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:52124>: 'put one two'
+2017-01-29 17:28:37,626 INFO  [Thread-1] root: SEND 	<127.0.0.1:52124>: 'PUT_SUCCESS one two
+'
+2017-01-29 17:28:43,098 INFO  [Thread-1] root: SEND 	<127.0.0.1:52124>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 17:28:43,102 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 18:00:03,467 ERROR [main] root: LENGTH 3
+2017-01-29 18:00:03,468 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 18:00:03,472 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 18:00:33,042 INFO  [Thread-1] root: SEND 	<127.0.0.1:52994>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:00:33,044 INFO  [Thread-0] root: Connected to localhost on port 52994
+2017-01-29 18:00:43,195 INFO  [Thread-1] root: ACTION: put
+2017-01-29 18:00:43,196 INFO  [Thread-1] root: Putting   key: longkey value: longvalue
+2017-01-29 18:00:43,196 INFO  [Thread-1] root: Putting   key: longkey value: longvalue
+2017-01-29 18:00:43,243 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:52994>: 'put longkey longvalue'
+2017-01-29 18:00:43,243 INFO  [Thread-1] root: SEND 	<127.0.0.1:52994>: 'PUT_SUCCESS longkey longvalue
+'
+2017-01-29 18:03:03,047 INFO  [Thread-1] root: SEND 	<127.0.0.1:52994>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:03:03,047 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 18:03:21,895 INFO  [Thread-2] root: SEND 	<127.0.0.1:53012>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:03:21,898 INFO  [Thread-0] root: Connected to localhost on port 53012
+2017-01-29 18:03:30,069 INFO  [Thread-2] root: ACTION: put
+2017-01-29 18:03:30,071 INFO  [Thread-2] root: Putting   key:  value: long
+2017-01-29 18:03:30,071 INFO  [Thread-2] root: Putting   key:  value: long
+2017-01-29 18:03:30,128 INFO  [Thread-2] root: RECEIVE 	<127.0.0.1:53012>: 'put  long'
+2017-01-29 18:03:30,128 INFO  [Thread-2] root: SEND 	<127.0.0.1:53012>: 'PUT_SUCCESS  long
+'
+2017-01-29 18:07:11,345 INFO  [Thread-2] root: SEND 	<127.0.0.1:53012>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:07:11,345 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 18:07:35,524 INFO  [Thread-3] root: SEND 	<127.0.0.1:53036>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:07:35,526 INFO  [Thread-0] root: Connected to localhost on port 53036
+2017-01-29 18:07:54,911 INFO  [Thread-3] root: ACTION: get
+2017-01-29 18:07:54,911 INFO  [Thread-3] root: Getting key: longlonglonglonglong
+
+2017-01-29 18:07:54,911 INFO  [Thread-3] root: Getting key: longlonglonglonglong
+2017-01-29 18:07:54,921 INFO  [Thread-3] root: RECEIVE 	<127.0.0.1:53036>: 'get longlonglonglonglong'
+2017-01-29 18:07:54,923 INFO  [Thread-3] root: SEND 	<127.0.0.1:53036>: 'GET_ERROR longlonglonglonglong null
+'
+2017-01-29 18:09:11,325 ERROR [main] root: LENGTH 3
+2017-01-29 18:09:11,327 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 18:09:11,339 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 18:09:24,167 INFO  [Thread-1] root: SEND 	<127.0.0.1:53041>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:09:24,169 INFO  [Thread-0] root: Connected to localhost on port 53041
+2017-01-29 18:09:29,992 INFO  [Thread-1] root: ACTION: get
+2017-01-29 18:09:29,992 INFO  [Thread-1] root: Getting key: looooooonnnnngggg
+
+2017-01-29 18:09:29,992 INFO  [Thread-1] root: Getting key: looooooonnnnngggg
+2017-01-29 18:09:29,994 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:53041>: 'get looooooonnnnngggg'
+2017-01-29 18:09:30,003 INFO  [Thread-1] root: SEND 	<127.0.0.1:53041>: 'GET_ERROR looooooonnnnngggg null
+'
+2017-01-29 18:13:27,262 INFO  [Thread-1] root: SEND 	<127.0.0.1:53041>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:13:27,262 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 18:13:46,480 INFO  [Thread-2] root: SEND 	<127.0.0.1:53056>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:13:46,482 INFO  [Thread-0] root: Connected to localhost on port 53056
+2017-01-29 18:13:51,899 INFO  [Thread-2] root: ACTION: get
+2017-01-29 18:13:51,899 INFO  [Thread-2] root: Getting key: LONGLONGLONG
+
+2017-01-29 18:13:51,899 INFO  [Thread-2] root: Getting key: LONGLONGLONG
+2017-01-29 18:13:51,900 INFO  [Thread-2] root: RECEIVE 	<127.0.0.1:53056>: 'get LONGLONGLONG'
+2017-01-29 18:13:51,918 INFO  [Thread-2] root: SEND 	<127.0.0.1:53056>: 'GET_ERROR LONGLONGLONG null
+'
+2017-01-29 18:14:14,413 INFO  [Thread-2] root: SEND 	<127.0.0.1:53056>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:14:14,413 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 18:14:30,169 INFO  [Thread-3] root: SEND 	<127.0.0.1:53061>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:14:30,171 INFO  [Thread-0] root: Connected to localhost on port 53061
+2017-01-29 18:14:53,094 INFO  [Thread-3] root: SEND 	<127.0.0.1:53061>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:14:53,095 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 18:17:51,922 INFO  [Thread-4] root: SEND 	<127.0.0.1:53082>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:17:51,926 INFO  [Thread-0] root: Connected to localhost on port 53082
+2017-01-29 18:18:13,864 INFO  [Thread-4] root: SEND 	<127.0.0.1:53082>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:18:13,868 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 18:18:22,379 INFO  [Thread-5] root: SEND 	<127.0.0.1:53084>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:18:22,380 INFO  [Thread-0] root: Connected to localhost on port 53084
+2017-01-29 18:20:10,025 INFO  [Thread-5] root: SEND 	<127.0.0.1:53084>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:20:10,025 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 18:20:15,740 INFO  [Thread-6] root: SEND 	<127.0.0.1:53117>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:20:15,741 INFO  [Thread-0] root: Connected to localhost on port 53117
+2017-01-29 18:20:18,535 INFO  [Thread-6] root: ACTION: get
+2017-01-29 18:20:18,535 INFO  [Thread-6] root: Getting key: ll
+
+2017-01-29 18:20:18,535 INFO  [Thread-6] root: Getting key: ll
+2017-01-29 18:20:18,535 INFO  [Thread-6] root: RECEIVE 	<127.0.0.1:53117>: 'get ll'
+2017-01-29 18:20:18,538 INFO  [Thread-6] root: SEND 	<127.0.0.1:53117>: 'GET_ERROR ll null
+'
+2017-01-29 18:21:21,147 INFO  [Thread-6] root: SEND 	<127.0.0.1:53117>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:21:21,152 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 18:21:33,149 INFO  [Thread-7] root: SEND 	<127.0.0.1:53126>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:21:33,151 INFO  [Thread-0] root: Connected to localhost on port 53126
+2017-01-29 18:21:37,599 INFO  [Thread-7] root: ACTION: get
+2017-01-29 18:21:37,600 INFO  [Thread-7] root: Getting key: Llll
+
+2017-01-29 18:21:37,600 INFO  [Thread-7] root: Getting key: Llll
+2017-01-29 18:21:37,601 INFO  [Thread-7] root: RECEIVE 	<127.0.0.1:53126>: 'get Llll'
+2017-01-29 18:21:37,607 INFO  [Thread-7] root: SEND 	<127.0.0.1:53126>: 'GET_ERROR Llll null
+'
+2017-01-29 18:21:49,370 INFO  [Thread-7] root: SEND 	<127.0.0.1:53126>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:21:49,371 ERROR [Thread-7] root: Error! Connection lost!

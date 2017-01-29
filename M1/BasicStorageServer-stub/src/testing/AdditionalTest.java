@@ -50,7 +50,7 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(putEx == null && kvMessage.getStatus()== KVMessage.StatusType.PUT_SUCCESS);
 		try {
-			getMessage = kvServer.get("sdfasdfas");
+			getMessage = kvServer.get("one");
 		} catch (Exception e) {
 			e.printStackTrace();
 			getEx = e;
@@ -76,7 +76,7 @@ public class AdditionalTest extends TestCase {
 
 	}
 
-	public void clearFile(){
+	public static void clearFile(){
 	PrintWriter pw = null;
 		try {
 			pw = new PrintWriter("./storage.txt");
@@ -85,5 +85,5 @@ public class AdditionalTest extends TestCase {
 			e.printStackTrace();
 		}
 
-}
+	}
 }

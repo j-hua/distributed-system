@@ -41,3 +41,61 @@
 2017-01-29 16:04:02,943 ERROR [Thread-6] root: Error! Connection lost!
 2017-01-29 16:04:03,034 ERROR [Thread-7] root: Error! Connection lost!
 >>>>>>> b9054784e9a95b09f2baa9835ddb80397a31b0c0
+2017-01-29 16:15:00,084 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 16:15:00,093 ERROR [Thread-0] root: Port 50000 is already bound!
+2017-01-29 16:15:20,957 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 16:15:20,959 ERROR [Thread-0] root: Port 50000 is already bound!
+2017-01-29 16:18:26,139 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 16:18:26,262 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 16:18:26,334 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 16:18:26,345 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 16:18:26,363 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 16:18:26,387 ERROR [Thread-8] root: Error! Connection lost!
+2017-01-29 16:43:19,512 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 16:43:19,523 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 16:43:19,547 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 16:43:19,548 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 16:43:19,595 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 16:43:19,624 ERROR [Thread-8] root: Error! Connection lost!
+2017-01-29 16:55:05,312 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 16:55:05,429 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 16:55:05,565 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 16:55:05,698 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 16:55:05,786 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 16:55:05,860 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 16:56:23,456 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 16:56:23,535 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 16:56:23,536 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 16:56:23,618 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 16:56:23,664 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 16:56:23,705 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 17:28:50,359 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 17:28:50,431 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 17:28:50,486 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 17:28:50,564 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 17:28:50,625 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 17:28:50,670 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 17:46:52,666 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 17:46:52,666 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 17:46:52,731 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 17:46:52,780 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 17:46:52,828 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 17:46:52,862 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 17:47:06,154 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 17:47:06,154 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 17:47:06,281 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 17:47:06,386 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 17:47:06,455 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 17:47:06,515 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 17:48:53,329 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 17:48:53,329 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 17:48:53,406 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 17:48:53,473 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 17:48:53,496 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 17:48:53,529 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 17:49:52,926 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 17:49:52,926 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 17:49:53,073 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 17:49:53,212 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 17:49:53,257 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 17:49:53,259 ERROR [Thread-7] root: Error! Connection lost!
