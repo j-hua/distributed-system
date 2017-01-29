@@ -844,3 +844,6 @@
 2017-01-29 13:59:30,380 INFO  [Thread-0] root: Server listening on port: 3000
 2017-01-29 13:59:57,177 ERROR [main] root: LENGTH 3
 >>>>>>> 58cb8038a6a9cdde38e8e2ee1e1f7bdcbce9afda
+2017-01-29 14:06:29,491 ERROR [main] root: LENGTH 3
+2017-01-29 14:06:29,492 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 14:06:29,504 INFO  [Thread-0] root: Server listening on port: 3000
