@@ -3628,3 +3628,32 @@
 2017-01-29 17:11:06,859 INFO  [Thread-1] root: SEND 	<127.0.0.1:50057>: 'PUT_UPDATE one two
 '
 >>>>>>> 09dc4c13436252f320b7d22a38c02c54769bbcf9
+2017-01-29 18:31:16,126 ERROR [main] root: LENGTH 3
+2017-01-29 18:31:16,128 INFO  [Thread-0] root: Initialize server ...
+2017-01-29 18:31:16,137 INFO  [Thread-0] root: Server listening on port: 50000
+2017-01-29 18:31:40,772 INFO  [Thread-1] root: SEND 	<127.0.0.1:53157>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
+2017-01-29 18:31:40,774 INFO  [Thread-0] root: Connected to localhost on port 53157
+2017-01-29 18:31:50,150 INFO  [Thread-1] root: ACTION: get
+2017-01-29 18:31:50,155 INFO  [Thread-1] root: Getting key: llllllllllllllllllll
+
+2017-01-29 18:31:50,155 INFO  [Thread-1] root: Getting key: llllllllllllllllllll
+2017-01-29 18:31:50,159 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:53157>: 'get llllllllllllllllllll'
+2017-01-29 18:31:50,165 INFO  [Thread-1] root: SEND 	<127.0.0.1:53157>: 'GET_ERROR llllllllllllllllllll null
+'
+2017-01-29 18:31:58,222 INFO  [Thread-1] root: ACTION: get
+2017-01-29 18:31:58,222 INFO  [Thread-1] root: Getting key: 2000000000000
+
+2017-01-29 18:31:58,223 INFO  [Thread-1] root: Getting key: 2000000000000
+2017-01-29 18:31:58,223 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:53157>: 'get 2000000000000'
+2017-01-29 18:31:58,230 INFO  [Thread-1] root: SEND 	<127.0.0.1:53157>: 'GET_ERROR 2000000000000 null
+'
+2017-01-29 18:32:22,854 INFO  [Thread-1] root: ACTION: get
+2017-01-29 18:32:22,856 INFO  [Thread-1] root: Getting key: asdgf
+
+2017-01-29 18:32:22,856 INFO  [Thread-1] root: Getting key: asdgf
+2017-01-29 18:32:22,859 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:53157>: 'get asdgf'
+2017-01-29 18:32:22,859 INFO  [Thread-1] root: SEND 	<127.0.0.1:53157>: 'GET_ERROR asdgf null
+'
+2017-01-29 18:34:21,227 INFO  [Thread-1] root: SEND 	<127.0.0.1:53157>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-01-29 18:34:21,233 ERROR [Thread-1] root: Error! Connection lost!
