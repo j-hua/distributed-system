@@ -1,7 +1,6 @@
 package app_kvServer;
 
 
-import client.KVCommInterface;
 import common.messages.KVMessage;
 import logger.LogSetup;
 import org.apache.log4j.Level;
@@ -11,6 +10,8 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KVServer extends Thread implements KVServerListener {
 
@@ -19,8 +20,6 @@ public class KVServer extends Thread implements KVServerListener {
     public static final String LFU = "lfu";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
-    public static int DEFAULT_CACHE_SIZE = 100;
-
     public static final String GET = "get";
     public static final String PUT = "put";
     private static Logger logger = Logger.getRootLogger();
@@ -28,6 +27,9 @@ public class KVServer extends Thread implements KVServerListener {
     private int port;
     private ServerSocket serverSocket;
     private boolean running;
+
+	private storageServer mStorage = null;
+
 	/**
 	 * Start KV Server at given port
 	 * @param port given port for storage server to operate
@@ -41,7 +43,7 @@ public class KVServer extends Thread implements KVServerListener {
 	public KVServer(int port, int cacheSize, String strategy) {
         // TODO: 1/24/17 initialize the port cache size and the strategy later
         this.port = port;
-
+       	mStorage = new storageServer(strategy.toUpperCase(), cacheSize);
 	}
 
     /**
@@ -86,8 +88,10 @@ public class KVServer extends Thread implements KVServerListener {
      */
 
 	public KVMessage put(String key, String value) throws Exception {
-        // TODO: 1/23/17 Save the tuple to DB here
-        return null;
+		logger.info("Putting  "+ " "+ "key: " + key + " "+"value: " + value);
+
+		// TODO: 1/23/17 Save the tuple to DB here
+        return mStorage.put(key.trim(),value);
 	}
 
     /**
@@ -99,8 +103,9 @@ public class KVServer extends Thread implements KVServerListener {
      */
 
 	public KVMessage get(String key) throws Exception {
-        // TODO: 1/23/17 get the value associated with the key here
-        return null;
+		logger.info("Getting "+"key: " +key);
+
+        return mStorage.get(key.trim());
 	}
 
 	private boolean initializeServer() {
@@ -127,13 +132,16 @@ public class KVServer extends Thread implements KVServerListener {
 	public static void main(String[] args) {
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
-			if(args.length != 2) {
+			logger.error("LENGTH "+ args.length);
+			if(args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port> <cache_type>!");
 			} else {
+				// TODO: 1/28/17 check the port values
 				int port = Integer.parseInt(args[0]);
 				String cacheStrategy = args[1];
-				new KVServer(port, DEFAULT_CACHE_SIZE, cacheStrategy).start();
+				int cache_size = Integer.parseInt(args[2]);
+				new KVServer(port, cache_size, cacheStrategy).start();
 			}
 		} catch (IOException e) {
 			System.out.println("Error! Unable to initialize logger!");
@@ -146,16 +154,4 @@ public class KVServer extends Thread implements KVServerListener {
 		}
 	}
 
-	@Override
-	public void putMessage( String key, String value) throws Exception {
-		logger.info("Putting  "+ " "+ "key: " + key + " "+"value: " + value);
-		KVMessage putMessage = put(key, value);
-
-	}
-
-	@Override
-	public void getMessage(String key) throws Exception{
-		logger.info("Getting "+"key: " +key);
-		KVMessage getMessage  = get(key);
-	}
 }

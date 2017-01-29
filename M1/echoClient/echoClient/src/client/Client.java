@@ -112,17 +112,7 @@ public class Client extends Thread {
 		listeners.add(listener);
 	}
 	
-	/**
-	 * Method sends a TextMessage using this socket.
-	 * @param msg the message that is to be sent.
-	 * @throws IOException some I/O error regarding the output stream 
-	 */
-	public void sendMessage(TextMessage msg) throws IOException {
-		byte[] msgBytes = msg.getMsgBytes();
-		output.write(msgBytes, 0, msgBytes.length);
-		output.flush();
-		logger.info("Send message:\t '" + msg.getMsg() + "'");
-    }
+v
 	
 	
 	private TextMessage receiveMessage() throws IOException {

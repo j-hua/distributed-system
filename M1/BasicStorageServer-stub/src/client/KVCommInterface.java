@@ -2,6 +2,8 @@ package client;
 
 import common.messages.KVMessage;
 
+import java.io.IOException;
+
 public interface KVCommInterface {
 
 	/**
@@ -16,7 +18,7 @@ public interface KVCommInterface {
 	 * disconnects the client from the currently connected server.
 	 */
 	 
-	public void disconnect();
+	public void disconnect() throws IOException;
 
 	/**
 	 * Inserts a key-value pair into the KVServer.

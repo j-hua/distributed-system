@@ -24,11 +24,7 @@ public class storagePractice {
 		System.out.println(test.put("eight","52"));
 		System.out.println(test.put("nine","52"));
 		System.out.println(test.put("ten","52"));
-		System.out.println(test.put("one","54"));
-		System.out.println(test.put("boy", "this is a long value"));
-		System.out.println(test.get("boy"));
-		System.out.println(test.get("two"));
-		System.out.println(test.put("boy", null));
+		System.out.println(test.get("one"));
 	}
 
 	public String put(String key, String value){
