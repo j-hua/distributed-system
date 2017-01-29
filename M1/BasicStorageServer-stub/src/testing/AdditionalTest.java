@@ -8,6 +8,7 @@ import org.apache.log4j.Level;
 import org.junit.Test;
 
 import junit.framework.TestCase;
+//import KVServer.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -41,11 +42,15 @@ public class AdditionalTest extends TestCase {
 		assertTrue(true);
 	}
 
+<<<<<<< HEAD
+/*
+=======
 
 	/**
 	 * Put a value and then get it to see
 	 * if the get recieves the right value from the DB
 	 */
+>>>>>>> 58cb8038a6a9cdde38e8e2ee1e1f7bdcbce9afda
 	@Test
 	public void getCheck(){
 		KVServer kvServer = new KVServer(PORT,CACHE_SIZE,CACHE_STRATEGY);
@@ -69,6 +74,11 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(getEx == null && getMessage.getStatus() == KVMessage.StatusType.GET_SUCCESS);
 
+<<<<<<< HEAD
+	}*/
+}
+
+=======
 	}
 }
 
@@ -100,3 +110,4 @@ public class AdditionalTest extends TestCase {
 
 
 
+>>>>>>> 58cb8038a6a9cdde38e8e2ee1e1f7bdcbce9afda
