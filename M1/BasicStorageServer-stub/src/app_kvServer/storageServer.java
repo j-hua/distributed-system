@@ -9,8 +9,8 @@ import java.util.List;
 
 public class storageServer {
     //this is going to be used for all replacement policies
-    public List<String> keyCache = new ArrayList<String>();
-    public List<String> valueCache = new ArrayList<String>();
+    private List<String> keyCache = new ArrayList<String>();
+    private List<String> valueCache = new ArrayList<String>();
 
     private  String replacementPolicy = null;
     private int limit = 0;
@@ -442,6 +442,14 @@ public class storageServer {
 //            KVMessageStorage kvms = new KVMessageStorage(key, null, status);
 //            return kvms;
         }
+    }
+
+    public List<String> getKeyCache(){
+        return keyCache;
+    }
+
+    public List<String> getValueCache(){
+        return valueCache;
     }
 
 }
