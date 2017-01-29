@@ -849,13 +849,7 @@
 2017-01-29 14:01:43,268 INFO  [Thread-0] root: Server listening on port: 3000
 =======
 >>>>>>> 58cb8038a6a9cdde38e8e2ee1e1f7bdcbce9afda
-<<<<<<< HEAD
-2017-01-29 14:06:29,491 ERROR [main] root: LENGTH 3
-2017-01-29 14:06:29,492 INFO  [Thread-0] root: Initialize server ...
-2017-01-29 14:06:29,504 INFO  [Thread-0] root: Server listening on port: 3000
-=======
 >>>>>>> 1a551fc57a28af53e60e1bf528cee6a80be8a1a7
-<<<<<<< HEAD
 2017-01-29 14:21:53,482 ERROR [main] root: LENGTH 3
 2017-01-29 14:21:53,483 INFO  [Thread-0] root: Initialize server ...
 2017-01-29 14:21:53,486 INFO  [Thread-0] root: Server listening on port: 3000
@@ -1407,6 +1401,3 @@
 2017-01-29 16:03:57,920 INFO  [Thread-1] root: SEND 	<127.0.0.1:34226>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
 '
 2017-01-29 16:03:57,920 ERROR [Thread-1] root: Error! Connection lost!
-=======
->>>>>>> f703ef0d379762918357978e3137dcf2db3adf13
->>>>>>> 1a087cc0e89a064e4ce390224d6d7ba3208980b8
