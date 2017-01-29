@@ -80,19 +80,24 @@ public class ClientConnectionKVServer implements Runnable {
 			logger.error("Error! Connection could not be established!", ioe);
 			
 		} finally {
-			
-			try {
-				if (clientSocket != null) {
-					input.close();
-					output.close();
-					clientSocket.close();
-				}
-			} catch (IOException ioe) {
-				logger.error("Error! Unable to tear down connection!", ioe);
-			}
+			disconnect();
 		}
 	}
-	
+
+	/**
+	 * Disconnect the server and close sockets properly
+	 */
+	public void disconnect(){
+		try {
+			if (clientSocket != null) {
+				input.close();
+				output.close();
+				clientSocket.close();
+			}
+		} catch (IOException ioe) {
+			logger.error("Error! Unable to tear down connection!", ioe);
+		}
+	}
 	/**
 	 * Method sends a TextMessage using this socket.
 	 * @param msg the message that is to be sent.
@@ -180,11 +185,7 @@ public class ClientConnectionKVServer implements Runnable {
     public String processMessage(String message){
 		String[] messageArray = message.split(" ");
 		String status = "";
-		/**
-		 * length <=12 means:
-		 * the server will only allow 10 space delimited value strings.
-		 * In other words 10 columns of data per row or per object saved.
-		 */
+
 		if (messageArray.length>=2){
 			try {
 				//determining the action type based on the length of the message
@@ -202,23 +203,23 @@ public class ClientConnectionKVServer implements Runnable {
 					}
 
 					KVMessage kvMessage =kvServerListener.put(key, sb.toString().trim() );
-					status = String.valueOf(kvMessage.getStatus());
+					status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
 
 
 				}else if (messageArray.length==2){
 					//must be a get
 					if (action.equals(KVServer.GET)){
 						KVMessage kvMessage = kvServerListener.get(key);
-						status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getValue();
+						status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
 
 					}else{
 						//
 						KVMessage kvMessage = kvServerListener.put(key, null);
-						status = String.valueOf(kvMessage.getStatus());
+						status = String.valueOf(kvMessage.getStatus() + " " + kvMessage.getKey());
 
 					}
 				}else{
-					logger.error("message array length not greater than or equal to 2 (inner if).");
+//					logger.error("message array length not greater than or equal to 2.");
 					return FORMAT_ERROR;
 				}
 
@@ -231,13 +232,11 @@ public class ClientConnectionKVServer implements Runnable {
 				//must be success here
 				return status;
 			} catch (Exception e) {
-				// TODO: 1/27/17 (Talk to ALI) make sure this returns all of the errors from PUT_ERROR, GET_ERROR etc.
 				logger.error(e.getMessage());
 				return e.getMessage();
 			}
 
 		}else{
-			logger.error("message array length not greater than or equal to 2 OR greater than 12 (outer if)");
 			return  FORMAT_ERROR;
 		}}
 

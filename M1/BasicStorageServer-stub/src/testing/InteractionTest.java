@@ -1,5 +1,6 @@
 package testing;
 
+import app_kvServer.KVServer;
 import org.junit.Test;
 
 import client.KVStore;
@@ -11,6 +12,9 @@ import common.messages.KVMessage.StatusType;
 public class InteractionTest extends TestCase {
 
 	private KVStore kvClient;
+	int CACHE_SIZE =5;
+	String CACHE_STRATEGY = "FIFO";
+	int PORT = 3000;
 	
 	public void setUp() {
 		kvClient = new KVStore("localhost", 50000);
@@ -128,7 +132,8 @@ public class InteractionTest extends TestCase {
 
 		assertTrue(ex == null && response.getStatus() == StatusType.GET_ERROR);
 	}
-	
+
+
 
 
 }
