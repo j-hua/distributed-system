@@ -180,7 +180,7 @@ public class AdditionalTest extends TestCase {
 		KVServer kvServer = new KVServer(PORT, CACHE_SIZE,CACHE_STRATEGY);
 
 		KVMessage putMessage = null;
-		storageServer  storageServer= null;
+		storageServer  stserver= null;
 
 		try {
 			putMessage = kvServer.put("one", "45");
@@ -190,10 +190,10 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(putMessage.getStatus() == KVMessage.StatusType.PUT_SUCCESS);
 
-		storageServer = kvServer.getStorageServer();
+		stserver = kvServer.getStorageServer();
 
-		List<String> keys = storageServer.keyCache;
-		List<String> values = storageServer.valueCache;
+		List<String> keys = stserver.keyCache;
+		List<String> values = stserver.valueCache;
 
 		assertTrue(keys.get(0).equals("one") && values.get(0).equals("45"));
 	}
