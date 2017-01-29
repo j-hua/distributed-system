@@ -39,7 +39,9 @@ public class KVStore implements KVCommInterface {
 	@Override
 	public void connect() throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("try connecting");
 		this.clientSocket = new Socket(kvAddress,kvPort);
+		System.out.println("connected");
 		input = clientSocket.getInputStream();
 		output = clientSocket.getOutputStream();
 
@@ -68,21 +70,29 @@ public class KVStore implements KVCommInterface {
 	@Override
 	public KVMessage put(String key, String value) throws Exception {
 		// TODO Auto-generated method stub
+		TextMessage msg = null;
+		KVMessageStorage kvms = null;
 		StringBuilder sb = new StringBuilder();
+
 		sb.append("put ");
 		sb.append(key);
-		sb.append(" ");
-		sb.append(value);
-
-		TextMessage msg = new TextMessage(sb.toString());
-		//this.output = clientSocket.getOutputStream();
-		sendMessage(new TextMessage(sb.toString()));
-
-		//	logger.info("Send message:\t '" + msg.getMsg() + "'");
-		//this.input = clientSocket.getInputStream();
-		TextMessage res = receiveMessage();
-
-		KVMessageStorage kvms = new KVMessageStorage(key, value, StatusTypeLookup(res.getMsg()));
+		if(value.equals("null")){
+			msg = new TextMessage(sb.toString());
+			sendMessage(new TextMessage(sb.toString()));
+			//	logger.info("Send message:\t '" + msg.getMsg() + "'");
+			TextMessage res = receiveMessage();
+			String[] tokens = res.getMsg().split("\\s+",2);
+			kvms = new KVMessageStorage(tokens[1], null, StatusTypeLookup(tokens[0]));
+		}else {
+			sb.append(" ");
+			sb.append(value);
+			msg = new TextMessage(sb.toString());
+			sendMessage(new TextMessage(sb.toString()));
+			//	logger.info("Send message:\t '" + msg.getMsg() + "'");
+			TextMessage res = receiveMessage();
+			String[] tokens = res.getMsg().split("\\s+",3);
+			kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
+		}
 
 		return kvms;
 	}
@@ -110,10 +120,10 @@ public class KVStore implements KVCommInterface {
 
 		TextMessage res = receiveMessage();
 
-		String[] tokens = res.getMsg().split("\\s+",2);
+		String[] tokens = res.getMsg().split("\\s+",3);
 
 		//if not length != 2, general error?
-		KVMessageStorage kvms = new KVMessageStorage(key,tokens[1], StatusTypeLookup(tokens[0]));
+		KVMessageStorage kvms = new KVMessageStorage(tokens[1],tokens[2], StatusTypeLookup(tokens[0]));
 
 		return kvms;
 	}

@@ -15,6 +15,7 @@ public class ConnectionTest extends TestCase {
 		Exception ex = null;
 		
 		KVStore kvClient = new KVStore("localhost", 50000);
+		System.out.println("kvClient created");
 		try {
 			kvClient.connect();
 		} catch (Exception e) {

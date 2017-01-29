@@ -50,7 +50,7 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(putEx == null && kvMessage.getStatus()== KVMessage.StatusType.PUT_SUCCESS);
 		try {
-			getMessage = kvServer.get("one");
+			getMessage = kvServer.get("sdfasdfas");
 		} catch (Exception e) {
 			e.printStackTrace();
 			getEx = e;
