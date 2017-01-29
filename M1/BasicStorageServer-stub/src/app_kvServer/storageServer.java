@@ -9,8 +9,8 @@ import java.util.List;
 
 public class storageServer {
     //this is going to be used for all replacement policies
-    List<String> keyCache = new ArrayList<String>();
-    List<String> valueCache = new ArrayList<String>();
+    public List<String> keyCache = new ArrayList<String>();
+    public List<String> valueCache = new ArrayList<String>();
 
     private  String replacementPolicy = null;
     private int limit = 0;
@@ -60,7 +60,7 @@ public class storageServer {
 
                 if(!replaced){
                     //delete temp file
-                    System.out.println("Temp Deletion: " + temp.delete());
+                    logger.info("Temp Deletion: " + temp.delete());
 
                     printWrite.println(key+" "+value);
                     printWrite.close();
@@ -68,8 +68,8 @@ public class storageServer {
                     status = KVMessage.StatusType.PUT_SUCCESS;
                 } else {
                     //delete original storage.txt and rename the temp file
-                    System.out.println("Original Deletion: " + inputFile.delete());
-                    System.out.println("Renaming of Temp: " + temp.renameTo(inputFile));
+                    logger.info("Original Deletion: " + inputFile.delete());
+                    logger.info("Renaming of Temp: " + temp.renameTo(inputFile));
                     status = KVMessage.StatusType.PUT_UPDATE;
                 }
 
@@ -81,20 +81,20 @@ public class storageServer {
                         //check if array is full
                         if(keyCache.size() == limit){
                             //remove the first element by virtue of FIFO
-                            System.out.println("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
+                            logger.info("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
                             keyCache.remove(0);
                             valueCache.remove(0);
                         }
-                        System.out.println("Key: " + key + " Value: " + value + " ADDED TO CACHE");
+                        logger.info("Key: " + key + " Value: " + value + " ADDED TO CACHE");
                         keyCache.add(key);
                         valueCache.add(value);
                     } else if(status.equals(KVMessage.StatusType.PUT_UPDATE)){
-                        System.out.println("PUT UPDATE OCCURRED, MODIFYING CACHE WITH NEW VALUE");
+                        logger.info("PUT UPDATE OCCURRED, MODIFYING CACHE WITH NEW VALUE");
                         int index = valueCache.indexOf(valueCache.get(keyCache.indexOf(key)));
                         valueCache.set(index, value);
 
-                        System.out.println(keyCache.toString());
-                        System.out.println(valueCache.toString());
+                        logger.info(keyCache.toString());
+                        logger.info(valueCache.toString());
                     }
                     //---------------------------------------------------------------------------------------
                 } else if (replacementPolicy.equals("LRU")){
@@ -105,16 +105,16 @@ public class storageServer {
                         //check if array is full
                         if(keyCache.size() == limit){
                             //remove the first element by virtue of LRU (first is the least recently used)
-                            System.out.println("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
+                            logger.info("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
                             keyCache.remove(0);
                             valueCache.remove(0);
                         }
-                        System.out.println("Key: " + key + " Value: " + value + " ADDED TO CACHE");
+                        logger.info("Key: " + key + " Value: " + value + " ADDED TO CACHE");
                         keyCache.add(key);
                         valueCache.add(value);
                     } else {
                         //the key cache contains the key, thus a put update happened, remove key and value from cache
-                        System.out.println("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
+                        logger.info("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
                         valueCache.remove(keyCache.indexOf(key));
                         keyCache.remove(keyCache.indexOf(key));
 
@@ -122,9 +122,9 @@ public class storageServer {
                         keyCache.add(key);
                         valueCache.add(value);
 
-                        System.out.println(key + " " + value + " added to end of list");
-                        System.out.println(keyCache.toString());
-                        System.out.println(valueCache.toString());
+                        logger.info(key + " " + value + " added to end of list");
+                        logger.info(keyCache.toString());
+                        logger.info(valueCache.toString());
                     }
                     //---------------------------------------------------------------------------------------
                 } else if (replacementPolicy.equals("LFU")){
@@ -222,13 +222,13 @@ public class storageServer {
 
                 if(!deleted){
                     //delete temp file
-                    System.out.println("Temp Deletion: " + temp.delete());
+                    logger.error("Temp Deletion: " + temp.delete());
 
                     status = KVMessage.StatusType.DELETE_ERROR;
                 } else {
                     //delete original storage.txt and rename the temp file
-                    System.out.println("Original Deletion: " + inputFile.delete());
-                    System.out.println("Renaming of Temp: " + temp.renameTo(inputFile));
+                    logger.info("Original Deletion: " + inputFile.delete());
+                    logger.info("Renaming of Temp: " + temp.renameTo(inputFile));
                     status = KVMessage.StatusType.DELETE_SUCCESS;
 
 	                //ALL REPLACEMENT POLICIES-------------------------------------------
@@ -242,7 +242,6 @@ public class storageServer {
 	                    System.out.println(valueCache.toString());
 	                }
 	                //-------------------------------------------------------------------
-                    
                 }
                 printTemp.close();
                 printWrite.close();
@@ -252,6 +251,7 @@ public class storageServer {
             KVMessageStorage kvms = new KVMessageStorage(key, value, status);
             return kvms;
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new Exception("PUT_ERROR");
 //            KVMessage.StatusType status = KVMessage.StatusType.PUT_ERROR;
 //            KVMessageStorage kvms = new KVMessageStorage(key, value, status);
@@ -275,7 +275,7 @@ public class storageServer {
                 //FIFO--------------------------------------------------------------------
                 //First check if it is in the cache
                 if(keyCache.contains(key)){
-                    System.out.println("KEY FOUND IN CACHE");
+                    logger.info("KEY FOUND IN CACHE");
                     br.close();
                     status = KVMessage.StatusType.GET_SUCCESS;
                     KVMessageStorage kvms = new KVMessageStorage(key, valueCache.get(keyCache.indexOf(key)), status);
@@ -286,11 +286,11 @@ public class storageServer {
                 //LRU---------------------------------------------------------------------
                 //First check if it is in the cache
                 if(keyCache.contains(key)){
-                    System.out.println("KEY FOUND IN CACHE");
+                    logger.info("KEY FOUND IN CACHE");
                     String value = valueCache.get(keyCache.indexOf(key));
 
                     //the key cache contains the key, thus a put update happened, remove key and value from cache
-                    System.out.println("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
+                    logger.info("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
                     valueCache.remove(keyCache.indexOf(key));
                     keyCache.remove(keyCache.indexOf(key));
 
@@ -298,9 +298,9 @@ public class storageServer {
                     keyCache.add(key);
                     valueCache.add(value);
 
-                    System.out.println(key + " " + value + " added to end of list");
-                    System.out.println(keyCache.toString());
-                    System.out.println(valueCache.toString());
+                    logger.info(key + " " + value + " added to end of list");
+                    logger.info(keyCache.toString());
+                    logger.info(valueCache.toString());
 
                     br.close();
                     status = KVMessage.StatusType.GET_SUCCESS;
@@ -374,11 +374,11 @@ public class storageServer {
                             if(keyCache.size() == limit){
                                 //remove the first element by virtue of FIFO
                                 //or remove by virtue of being the least recently used (LRU)
-                                System.out.println("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
+                                logger.info("Key: " + keyCache.get(0) + " Value: " + valueCache.get(0) + " REMOVED FROM CACHE");
                                 keyCache.remove(0);
                                 valueCache.remove(0);
                             }
-                            System.out.println("Key: " + key + " Value: " + value + " ADDED TO CACHE");
+                            logger.info("Key: " + key + " Value: " + value + " ADDED TO CACHE");
                             keyCache.add(key);
                             valueCache.add(value);
                             //------------------------------------------------------------
@@ -432,9 +432,11 @@ public class storageServer {
             br.close();
 
             status = KVMessage.StatusType.GET_ERROR;
+            logger.error("GET_ERROR");
             KVMessageStorage kvms = new KVMessageStorage(key, null, status);
             return kvms;
         } catch (IOException e) {
+            logger.error("EROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR");
             throw new Exception("GET_ERROR");
 //            KVMessage.StatusType status = KVMessage.StatusType.GET_ERROR;
 //            KVMessageStorage kvms = new KVMessageStorage(key, null, status);

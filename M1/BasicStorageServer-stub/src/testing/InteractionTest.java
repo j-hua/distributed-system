@@ -6,6 +6,15 @@ import client.KVStore;
 import junit.framework.TestCase;
 import common.messages.KVMessage;
 import common.messages.KVMessage.StatusType;
+<<<<<<< HEAD
+=======
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.List;
+
+import app_kvServer.storageServer;
+>>>>>>> 09dc4c13436252f320b7d22a38c02c54769bbcf9
 
 
 public class InteractionTest extends TestCase {
@@ -99,6 +108,7 @@ public class InteractionTest extends TestCase {
 	
 	@Test
 	public void testGet() {
+<<<<<<< HEAD
 		String key = "foo";
 		String value = "bar";
 		KVMessage response = null;
@@ -112,6 +122,21 @@ public class InteractionTest extends TestCase {
 			}
 		
 		assertTrue(ex == null && response.getValue().equals("bar"));
+=======
+		 String key = "foo";
+		 String value = "bar";
+		 KVMessage response = null;
+		 Exception ex = null;
+
+		 	try {
+		 		kvClient.put(key, value);
+		 		response = kvClient.get(key);
+		 	} catch (Exception e) {
+		 		ex = e;
+		 	}
+		
+		 assertTrue(ex == null && response.getValue().equals("bar"));
+>>>>>>> 09dc4c13436252f320b7d22a38c02c54769bbcf9
 	}
 
 	@Test
@@ -128,7 +153,10 @@ public class InteractionTest extends TestCase {
 
 		assertTrue(ex == null && response.getStatus() == StatusType.GET_ERROR);
 	}
+<<<<<<< HEAD
 	
 
 
+=======
+>>>>>>> 09dc4c13436252f320b7d22a38c02c54769bbcf9
 }
