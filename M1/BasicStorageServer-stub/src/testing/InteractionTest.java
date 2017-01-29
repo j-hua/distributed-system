@@ -120,7 +120,7 @@ public class InteractionTest extends TestCase {
 
 	@Test
 	public void testGetUnsetValue() {
-		String key = "an unset value";
+		String key = "anunsetvalue";
 		KVMessage response = null;
 		Exception ex = null;
 
