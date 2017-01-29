@@ -15,7 +15,7 @@ import client.*;
 //import client.ClientSocketListener;
 
 
-public class KVClient {
+public class KVClient implements ClientSocketListener{
     private static Logger logger = Logger.getRootLogger();
 	private static final String PROMPT = "KVClient> ";
 	private BufferedReader stdin;
@@ -70,10 +70,9 @@ public class KVClient {
 			}
 			
 		} else  if (tokens[0].equals("put")) {
-			System.out.println(tokens[0] + tokens[1]);
 			if(tokens.length >= 2) {
 				String[] kvPair = cmdLine.split("\\s+", 3);
-				System.out.println(kvPair[0] + kvPair[1] + kvPair[2]);
+			//	System.out.println(kvPair[0] + kvPair[1] + kvPair[2]);
 				//kvPair = [put][key][value]
 				if(kvPair.length == 3){
 					System.out.println("KEY: " + kvPair[1].trim());
@@ -94,7 +93,11 @@ public class KVClient {
 			}
 			
 		} else if(tokens[0].equals("disconnect")) {
-                	System.out.println("disconnect");
+			try {
+				disconnect();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 		} else if(tokens[0].equals("logLevel")) {
 			if(tokens.length == 2) {
@@ -112,6 +115,16 @@ public class KVClient {
 			
 		} else if(tokens[0].equals("help")) {
 			printHelp();
+		} else if(tokens[0].equals("get")){
+			if(tokens.length == 2){
+				if(client != null && client.isRunning()){
+					getMessage(tokens[1].trim());
+				} else {
+					printError("Not connected!");
+				}
+			} else {
+				printError("Invalid number of parameters");
+			}
 		} else {
 			printError("Unknown command");
 			printHelp();
@@ -126,12 +139,29 @@ public class KVClient {
 		client.start();
 	}
 
+	private void disconnect() throws IOException {
+		if(client != null) {
+			client.disconnect();
+			client = null;
+		}
+	}
+
 	private void putMessage(String key, String value){
 		try {
 			client.putMessage(key,value);
 			//client.putMessage(new TextMessage(msg));
 		} catch (Exception e) {
 			printError("Unable to send message!");
+			e.printStackTrace();
+		}
+	}
+
+	private void getMessage(String key){
+		try {
+			client.getMessage(key);
+			//client.putMessage(new TextMessage(msg));
+		} catch (Exception e) {
+			printError("Unable to get message!");
 			e.printStackTrace();
 		}
 	}
@@ -199,8 +229,29 @@ public class KVClient {
 	private void printError(String error){
 		System.out.println(PROMPT + "Error! " +  error);
 	}
-	
-	
+
+	public void handleNewMessage(TextMessage msg) {
+		if(!stop) {
+			System.out.println(msg.getMsg());
+			System.out.print(PROMPT);
+		}
+	}
+
+	public void handleStatus(ClientSocketListener.SocketStatus status) {
+		if(status == ClientSocketListener.SocketStatus.CONNECTED) {
+
+		} else if (status == ClientSocketListener.SocketStatus.DISCONNECTED) {
+			System.out.print(PROMPT);
+			System.out.println("Connection terminated: "
+					+ serverAddress + " / " + serverPort);
+
+		} else if (status == ClientSocketListener.SocketStatus.CONNECTION_LOST) {
+			System.out.println("Connection lost: "
+					+ serverAddress + " / " + serverPort);
+			System.out.print(PROMPT);
+		}
+
+	}
 
     /**
      * Main entry point for the echo server application. 

@@ -8,7 +8,9 @@ public class KVMessageStorage implements KVMessage{
     private String value;
     private StatusType status;
 
-    KVMessageStorage(String key, String value, StatusType status){
+
+    public KVMessageStorage(String key, String value, StatusType status){
+
         this.key = key;
         this.value = value;
         this.status = status;
@@ -28,4 +30,5 @@ public class KVMessageStorage implements KVMessage{
     public StatusType getStatus() {
         return status;
     }
+
 }
