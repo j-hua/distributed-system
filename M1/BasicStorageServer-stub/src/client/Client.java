@@ -89,7 +89,7 @@ public class Client extends Thread{
 	public void putMessage(String key, String value) throws Exception {
 		KVMessage kvm = kvStore.put(key,value);
 
-			System.out.println(kvm.getStatus().toString());
+		System.out.println(kvm.getStatus().toString());
 
 	}
 
