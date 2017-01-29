@@ -135,12 +135,14 @@ public class KVServer extends Thread implements KVServerListener {
 			logger.error("LENGTH "+ args.length);
 			if(args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");
-				System.out.println("Usage: Server <port> <cache_type>!");
+				System.out.println("Usage: Server <port> <cache_size> <cache_strategy> !");
 			} else {
 				// TODO: 1/28/17 check the port values
+
 				int port = Integer.parseInt(args[0]);
-				String cacheStrategy = args[1];
-				int cache_size = Integer.parseInt(args[2]);
+				int cache_size = Integer.parseInt(args[1]);
+				String cacheStrategy = args[2];
+
 				new KVServer(port, cache_size, cacheStrategy).start();
 			}
 		} catch (IOException e) {
@@ -148,10 +150,14 @@ public class KVServer extends Thread implements KVServerListener {
 			e.printStackTrace();
 			System.exit(1);
 		} catch (NumberFormatException nfe) {
-			System.out.println("Error! Invalid argument <port>! Not a number!");
-			System.out.println("Usage: Server <port>!");
+			System.out.println("Error! Please check whether the <port and <cache_size> are numbers");
+			System.out.println("Usage: Server <port> <cache_size> <cache_strategy> !");
 			System.exit(1);
 		}
+	}
+
+	public storageServer getStorageServer(){
+		return mStorage;
 	}
 
 }

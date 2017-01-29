@@ -1,6 +1,16 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 one 52
-two 52
-three 52
-four 52
-five 52
-6 52
+two 43
+four 56
+nine 75
+five 45
+waref ali sjhg sdjkf sadfg dfjg sdfg adfg df
+updateTestValue updated
+an unset value
+=======
+>>>>>>> 58cb8038a6a9cdde38e8e2ee1e1f7bdcbce9afda
+face face
+foo bar
+>>>>>>> b9054784e9a95b09f2baa9835ddb80397a31b0c0

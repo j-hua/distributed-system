@@ -1,16 +1,24 @@
 package testing;
 
+import app_kvServer.KVServer;
 import org.junit.Test;
 
 import client.KVStore;
 import junit.framework.TestCase;
 import common.messages.KVMessage;
 import common.messages.KVMessage.StatusType;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import app_kvServer.storageServer;
 
 
 public class InteractionTest extends TestCase {
 
 	private KVStore kvClient;
+	int CACHE_SIZE =5;
+	String CACHE_STRATEGY = "FIFO";
+	int PORT = 3000;
 	
 	public void setUp() {
 		kvClient = new KVStore("localhost", 50000);
@@ -99,24 +107,38 @@ public class InteractionTest extends TestCase {
 	
 	@Test
 	public void testGet() {
-		String key = "foo";
-		String value = "bar";
-		KVMessage response = null;
-		Exception ex = null;
+		// String key = "foo";
+		// String value = "bar";
+		// KVMessage response = null;
+		// Exception ex = null;
 
-			try {
-				kvClient.put(key, value);
-				response = kvClient.get(key);
-			} catch (Exception e) {
-				ex = e;
-			}
+		// 	try {
+		// 		kvClient.put(key, value);
+		// 		response = kvClient.get(key);
+		// 	} catch (Exception e) {
+		// 		ex = e;
+		// 	}
 		
-		assertTrue(ex == null && response.getValue().equals("bar"));
+		// assertTrue(ex == null && response.getValue().equals("bar"));
+
+		clearFile();
+
+		KVServer kvServer = new KVServer(PORT,CACHE_SIZE,CACHE_STRATEGY);
+		KVMessage getErrorMessage = null;
+
+		try{
+			getErrorMessage = kvServer.get("nullKey");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		assertTrue(getErrorMessage.getStatus() == KVMessage.StatusType.GET_ERROR);
+
 	}
 
 	@Test
 	public void testGetUnsetValue() {
-		String key = "an unset value";
+		String key = "anunsetvalue";
 		KVMessage response = null;
 		Exception ex = null;
 
@@ -128,7 +150,17 @@ public class InteractionTest extends TestCase {
 
 		assertTrue(ex == null && response.getStatus() == StatusType.GET_ERROR);
 	}
-	
 
+
+public void clearFile(){
+	PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("./storage.txt");
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+}
 
 }
