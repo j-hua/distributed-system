@@ -25,17 +25,6 @@ public class AdditionalTest extends TestCase {
 	 * Clear the DB before perming tests to avoid
 	 * previous data hampering tests
 	 */
-//	static {
-//		PrintWriter pw = null;
-//		try {
-//			pw = new PrintWriter("./storage.txt");
-//			pw.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
-
 	@Test
 	public void testStub() {
 
@@ -44,6 +33,8 @@ public class AdditionalTest extends TestCase {
 
 	@Test
 	public void getCheck(){
+		clearFile();
+
 		KVServer kvServer = new KVServer(PORT,CACHE_SIZE,CACHE_STRATEGY);
 		Exception putEx=null;
 		Exception getEx = null;
@@ -53,17 +44,46 @@ public class AdditionalTest extends TestCase {
 		try {
 			kvMessage = kvServer.put("one","52");
 		} catch (Exception e) {
+			e.printStackTrace();
 			putEx = e;
 		}
 
-		assertTrue(putEx == null && kvMessage.getStatus() == KVMessage.StatusType.PUT_SUCCESS);
+		assertTrue(putEx == null && kvMessage.getStatus()== KVMessage.StatusType.PUT_SUCCESS);
 		try {
 			getMessage = kvServer.get("one");
 		} catch (Exception e) {
+			e.printStackTrace();
 			getEx = e;
 		}
 
 		assertTrue(getEx == null && getMessage.getStatus() == KVMessage.StatusType.GET_SUCCESS);
+
+	}
+	@Test
+	public void getError(){
+		clearFile();
+
+		KVServer kvServer = new KVServer(PORT,CACHE_SIZE,CACHE_STRATEGY);
+		KVMessage getErrorMessage = null;
+
+		try{
+			getErrorMessage = kvServer.get("nullKey");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		assertTrue(getErrorMessage.getStatus() == KVMessage.StatusType.GET_ERROR);
+
+	}
+
+	public void clearFile(){
+	PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("./storage.txt");
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 }
 }

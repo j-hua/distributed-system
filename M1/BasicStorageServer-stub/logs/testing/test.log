@@ -1,0 +1,4 @@
+2017-01-29 15:45:46,931 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 15:45:46,932 ERROR [Thread-0] root: Port 50000 is already bound!
+2017-01-29 15:47:39,844 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 15:47:39,845 ERROR [Thread-0] root: Port 50000 is already bound!
