@@ -1,14 +1,1 @@
-<<<<<<< HEAD
-foo2 bar2
-updateTestValue updated
-foo bar
-longkey longvalue
- long
-=======
-one 45
-two 46
-three 47
-four 48
-five 49
-six 1000000
->>>>>>> 09dc4c13436252f320b7d22a38c02c54769bbcf9
+one 52

@@ -192,8 +192,10 @@ public class AdditionalTest extends TestCase {
 
 		stserver = kvServer.getStorageServer();
 
-		List<String> keys = stserver.keyCache;
-		List<String> values = stserver.valueCache;
+
+		List<String> keys = storageServer.getKeyCache();
+		List<String> values = storageServer.getValueCache();
+
 
 		assertTrue(keys.get(0).equals("one") && values.get(0).equals("45"));
 	}
@@ -272,17 +274,14 @@ public class AdditionalTest extends TestCase {
 		 * Check if the last value was entered in the first slot of the cache
 		 * hence confirming FIFO implementation
 		 */
-		List<String> keys = storageServer.keyCache;
-		List<String> values = storageServer.valueCache;
+		List<String> keys = storageServer.getKeyCache();
+		List<String> values = storageServer.getValueCache();
 
 		assertTrue(!keys.contains("one") && !values.contains("45"));
 	}
 
+	public static void clearFile(){
 
-
-
-
-	public void clearFile(){
 	PrintWriter pw = null;
 		try {
 			pw = new PrintWriter("./storage.txt");
