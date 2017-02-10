@@ -83,7 +83,6 @@ public class Client extends Thread{
 	
 	/**
 	 * Method sends a TextMessage using this socket.
-	 * @param msg the message that is to be sent.
 	 * @throws IOException some I/O error regarding the output stream
 	 */
 	public void putMessage(String key, String value) throws Exception {

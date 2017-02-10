@@ -210,9 +210,11 @@ public class KVClient implements ClientSocketListener{
 		sb.append("::::::::::::::::::::::::::::::::");
 		sb.append("::::::::::::::::::::::::::::::::\n");
 		sb.append(PROMPT).append("connect <host> <port>");
-		sb.append("\t establishes a connection to a server\n");
+		sb.append("\t\t establishes a connection to a server\n");
 		sb.append(PROMPT).append("put <key,value>");
 		sb.append("\t\t sends a <key,value> pair to the server \n");
+		sb.append(PROMPT).append("get <key>");
+		sb.append("\t\t\t sends a <key> to the server and returns a value if key found\n");
 		sb.append(PROMPT).append("disconnect");
 		sb.append("\t\t\t disconnects from the server \n");
 		
@@ -222,7 +224,7 @@ public class KVClient implements ClientSocketListener{
 		sb.append("ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF \n");
 		
 		sb.append(PROMPT).append("quit ");
-		sb.append("\t\t\t exits the program");
+		sb.append("\t\t\t\t exits the program");
 		System.out.println(sb.toString());
 	}
 
