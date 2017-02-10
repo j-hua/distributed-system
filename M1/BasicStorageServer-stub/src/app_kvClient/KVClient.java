@@ -75,8 +75,8 @@ public class KVClient implements ClientSocketListener{
 			//	System.out.println(kvPair[0] + kvPair[1] + kvPair[2]);
 				//kvPair = [put][key][value]
 				if(kvPair.length == 3){
-					System.out.println("KEY: " + kvPair[1].trim());
-					System.out.println("VALUE: " + kvPair[2].trim());
+			//		System.out.println("KEY: " + kvPair[1].trim());
+			//		System.out.println("VALUE: " + kvPair[2].trim());
 
 					if(client != null && client.isRunning()){
 

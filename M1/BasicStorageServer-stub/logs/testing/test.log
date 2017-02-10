@@ -210,3 +210,931 @@
 2017-01-29 18:56:30,052 ERROR [Thread-7] root: Error! Connection lost!
 2017-01-29 18:56:30,061 ERROR [main] root: GET_ERROR
 2017-01-29 18:56:30,320 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:08:55,288 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:08:55,288 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:08:55,421 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:08:55,543 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:08:55,610 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:08:55,611 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:08:55,612 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:08:55,621 ERROR [main] root: GET_ERROR
+2017-01-29 19:08:55,886 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:10:37,171 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:10:37,171 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:10:37,240 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:10:37,325 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:10:37,365 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:10:37,367 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:10:37,368 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:10:37,424 ERROR [main] root: GET_ERROR
+2017-01-29 19:10:37,632 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:15:52,859 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:15:52,859 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:15:52,961 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:15:53,063 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:15:53,124 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:15:53,129 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:15:53,129 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:15:53,149 ERROR [main] root: GET_ERROR
+2017-01-29 19:15:53,553 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:21:57,456 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:21:57,456 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:21:57,525 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:21:57,637 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:21:57,695 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:21:57,700 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:21:57,700 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:21:57,772 ERROR [main] root: GET_ERROR
+2017-01-29 19:21:58,109 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:23:50,130 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:23:50,131 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:23:50,258 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:23:50,387 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:23:50,461 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:23:50,467 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:23:50,467 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:23:50,551 ERROR [main] root: GET_ERROR
+2017-01-29 19:23:50,821 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:24:04,346 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:24:04,346 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:24:04,489 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:24:04,618 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:24:04,691 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:24:04,692 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:24:04,692 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:24:04,748 ERROR [main] root: GET_ERROR
+2017-01-29 19:24:05,090 ERROR [main] root: Temp Deletion: true
+2017-01-29 19:50:27,361 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 19:50:27,361 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 19:50:27,461 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 19:50:27,569 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 19:50:27,629 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 19:50:27,630 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 19:50:27,631 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 19:50:27,685 ERROR [main] root: GET_ERROR
+2017-01-29 19:50:27,906 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:12:16,354 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:12:16,354 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:12:16,477 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:12:16,622 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:12:16,765 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:12:16,770 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:12:16,770 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:12:16,845 ERROR [main] root: GET_ERROR
+2017-01-29 20:12:17,362 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:15:41,021 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:15:41,021 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:15:41,144 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:15:41,264 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:15:41,329 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:15:41,330 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:15:41,331 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:15:41,504 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:15:41,945 ERROR [main] root: GET_ERROR
+2017-01-29 20:16:57,231 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:16:57,231 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:16:57,376 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:16:57,509 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:16:57,566 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:16:57,567 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:16:57,568 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:16:57,793 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:16:58,179 ERROR [main] root: GET_ERROR
+2017-01-29 20:17:23,023 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:17:23,023 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:17:23,099 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:17:23,205 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:17:23,272 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:17:23,273 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:17:23,274 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:17:23,438 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:17:23,698 ERROR [main] root: GET_ERROR
+2017-01-29 20:17:58,236 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:17:58,236 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:17:58,364 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:17:58,506 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:17:58,585 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:17:58,590 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:17:58,590 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:17:59,061 ERROR [main] root: GET_ERROR
+2017-01-29 20:17:59,425 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:20:19,166 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:20:19,166 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:20:19,295 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:20:19,398 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:20:19,462 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:20:19,463 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:20:19,463 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:20:19,510 ERROR [main] root: GET_ERROR
+2017-01-29 20:20:19,813 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:23:25,790 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:23:25,790 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:23:25,874 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:23:25,977 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:23:26,023 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:23:26,025 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:23:26,025 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:23:26,131 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:23:26,376 ERROR [main] root: GET_ERROR
+2017-01-29 20:24:22,728 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:24:22,728 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:24:22,838 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:24:22,962 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:24:23,040 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:24:23,044 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:24:23,044 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:24:23,226 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:24:23,611 ERROR [main] root: GET_ERROR
+2017-01-29 20:24:52,759 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:24:52,759 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:24:52,886 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:24:53,012 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:24:53,068 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:24:53,069 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:24:53,069 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:24:53,438 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:24:53,882 ERROR [main] root: GET_ERROR
+2017-01-29 20:25:20,168 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:25:20,168 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:25:20,265 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:25:20,369 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:25:20,501 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:25:20,502 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:25:20,503 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:25:20,966 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:25:21,605 ERROR [main] root: GET_ERROR
+2017-01-29 20:25:59,042 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:25:59,042 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:25:59,151 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:25:59,236 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:25:59,288 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:25:59,289 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:25:59,289 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:25:59,337 ERROR [main] root: GET_ERROR
+2017-01-29 20:25:59,598 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:26:54,585 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:26:54,585 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:26:54,750 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:26:54,877 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:26:54,929 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:26:54,930 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:26:54,931 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:26:54,968 ERROR [main] root: GET_ERROR
+2017-01-29 20:26:55,160 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:27:13,916 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:27:13,916 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:27:14,083 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:27:14,196 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:27:14,259 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:27:14,260 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:27:14,260 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:27:14,659 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:27:15,100 ERROR [main] root: GET_ERROR
+2017-01-29 20:29:03,810 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:29:03,810 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:29:03,922 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:29:04,008 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:29:04,082 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:29:04,083 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:29:04,084 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:29:04,129 ERROR [main] root: GET_ERROR
+2017-01-29 20:29:04,407 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:29:51,300 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:29:51,300 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:29:51,429 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:29:51,601 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:29:51,682 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:29:51,683 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:29:51,684 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:29:51,734 ERROR [main] root: GET_ERROR
+2017-01-29 20:29:51,968 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:30:03,254 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:30:03,254 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:30:03,373 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:30:03,531 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:30:03,625 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:30:03,630 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:30:03,630 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:30:04,369 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:30:04,531 ERROR [main] root: GET_ERROR
+2017-01-29 20:30:17,869 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:30:17,869 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:30:17,976 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:30:18,061 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:30:18,137 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:30:18,143 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:30:18,143 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:30:18,332 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:30:18,728 ERROR [main] root: GET_ERROR
+2017-01-29 20:31:17,973 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:31:17,973 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:31:18,129 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:31:18,305 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:31:18,389 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:31:18,392 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:31:18,393 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:31:18,470 ERROR [main] root: GET_ERROR
+2017-01-29 20:31:18,862 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:31:37,399 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:31:37,399 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:31:37,559 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:31:37,683 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:31:37,754 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:31:37,757 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:31:37,758 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:31:37,767 ERROR [main] root: GET_ERROR
+2017-01-29 20:31:38,215 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:32:24,055 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:32:24,055 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:32:24,154 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:32:24,251 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:32:24,302 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:32:24,303 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:32:24,304 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:32:24,306 ERROR [main] root: GET_ERROR
+2017-01-29 20:32:24,556 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:33:04,448 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:33:04,448 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:33:05,402 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:33:05,765 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:33:05,837 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:33:05,848 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:33:05,848 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:33:05,896 ERROR [main] root: GET_ERROR
+2017-01-29 20:33:06,136 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:33:11,266 ERROR [Thread-3] root: GET_ERROR
+2017-01-29 20:33:11,266 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:33:11,267 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:33:11,704 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:33:11,704 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:33:12,695 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:33:12,908 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:33:13,023 ERROR [main] root: GET_ERROR
+2017-01-29 20:33:13,420 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:34:07,923 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:34:08,033 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:34:08,140 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:34:08,219 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:34:08,220 ERROR [Thread-6] root: GET_ERROR
+2017-01-29 20:34:08,220 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:34:08,244 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:34:08,453 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:34:08,772 ERROR [main] root: GET_ERROR
+2017-01-29 20:34:46,268 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:34:46,363 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:34:46,364 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:34:46,444 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:34:46,496 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:34:46,497 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:34:46,497 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:34:46,753 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:34:47,132 ERROR [main] root: GET_ERROR
+2017-01-29 20:34:50,842 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:34:50,842 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:34:50,965 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:34:51,080 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:34:51,132 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:34:51,133 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:34:51,134 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:34:51,149 ERROR [main] root: GET_ERROR
+2017-01-29 20:34:51,546 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:35:16,351 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:35:16,351 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:35:16,489 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:35:16,680 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:35:16,749 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:35:16,750 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:35:16,751 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:35:17,043 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:35:17,667 ERROR [main] root: GET_ERROR
+2017-01-29 20:36:41,167 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:36:41,167 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:36:41,252 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:36:41,349 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:36:41,430 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:36:41,434 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:36:41,434 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:36:41,680 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:36:41,953 ERROR [main] root: GET_ERROR
+2017-01-29 20:36:55,906 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:36:55,906 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:36:56,028 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:36:56,132 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:36:56,187 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:36:56,188 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:36:56,189 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:36:56,249 ERROR [main] root: GET_ERROR
+2017-01-29 20:36:56,451 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:37:17,356 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:37:17,446 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:37:17,522 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:37:17,523 ERROR [Thread-5] root: GET_ERROR
+2017-01-29 20:37:17,523 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:37:17,562 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:37:17,656 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:37:17,687 ERROR [main] root: GET_ERROR
+2017-01-29 20:37:17,925 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:37:33,450 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:37:33,450 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:37:33,494 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:37:33,556 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:37:33,604 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:37:33,605 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:37:33,606 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:37:33,657 ERROR [main] root: GET_ERROR
+2017-01-29 20:37:33,850 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:37:46,779 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:37:46,780 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:37:46,865 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:37:46,937 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:37:47,016 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:37:47,019 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:37:47,020 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:37:47,082 ERROR [main] root: GET_ERROR
+2017-01-29 20:37:47,294 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:39:12,231 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:39:12,231 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:39:12,369 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:39:12,483 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:39:12,514 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:39:12,515 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:39:12,515 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:39:12,527 ERROR [main] root: GET_ERROR
+2017-01-29 20:39:12,875 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:39:42,658 ERROR [Thread-2] root: GET_ERROR
+2017-01-29 20:39:42,660 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:39:42,702 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:39:42,703 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:39:42,817 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:39:42,945 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:39:42,986 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:39:43,166 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:39:43,553 ERROR [main] root: GET_ERROR
+2017-01-29 20:39:59,594 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:39:59,652 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:39:59,678 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:39:59,679 ERROR [Thread-5] root: GET_ERROR
+2017-01-29 20:39:59,679 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:39:59,700 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:39:59,701 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:39:59,729 ERROR [main] root: GET_ERROR
+2017-01-29 20:39:59,926 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:41:38,150 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:41:38,260 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:41:38,391 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:41:38,465 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:41:38,469 ERROR [Thread-6] root: GET_ERROR
+2017-01-29 20:41:38,470 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:41:38,529 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:41:38,566 ERROR [main] root: GET_ERROR
+2017-01-29 20:41:38,939 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:42:09,356 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:42:09,399 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:42:09,404 ERROR [Thread-4] root: GET_ERROR
+2017-01-29 20:42:09,404 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:42:09,463 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:42:09,464 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:42:09,583 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:42:09,678 ERROR [main] root: GET_ERROR
+2017-01-29 20:42:10,084 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:42:31,569 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:42:31,569 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:42:31,667 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:42:31,777 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:42:31,840 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:42:31,844 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:42:31,844 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:42:31,859 ERROR [main] root: GET_ERROR
+2017-01-29 20:42:32,278 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:43:05,659 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:43:05,791 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:43:05,837 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:43:05,874 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:43:05,874 ERROR [Thread-6] root: GET_ERROR
+2017-01-29 20:43:05,875 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:43:05,907 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:43:05,936 ERROR [main] root: GET_ERROR
+2017-01-29 20:43:06,023 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:43:21,347 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:43:21,347 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:43:21,459 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:43:21,566 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:43:21,614 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:43:21,615 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:43:21,616 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:43:21,671 ERROR [main] root: GET_ERROR
+2017-01-29 20:43:21,927 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:43:38,814 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:43:38,897 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:43:38,990 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:43:39,071 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:43:39,076 ERROR [Thread-6] root: GET_ERROR
+2017-01-29 20:43:39,077 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:43:39,152 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:43:39,295 ERROR [main] root: GET_ERROR
+2017-01-29 20:43:39,662 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:43:59,750 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:43:59,750 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:43:59,893 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:44:00,052 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:44:00,118 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:44:00,121 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:44:00,121 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:44:00,768 ERROR [main] root: GET_ERROR
+2017-01-29 20:44:01,080 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:44:13,289 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:44:13,289 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:44:13,386 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:44:13,434 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:44:13,473 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:44:13,474 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:44:13,475 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:44:13,524 ERROR [main] root: GET_ERROR
+2017-01-29 20:44:13,861 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:47:36,880 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:47:36,880 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:47:36,944 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:47:37,034 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:47:37,090 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:47:37,091 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:47:37,092 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:47:37,140 ERROR [main] root: GET_ERROR
+2017-01-29 20:47:37,343 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:48:50,608 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:48:50,608 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:48:50,830 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:48:50,897 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:48:50,921 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:48:50,922 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:48:50,923 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:48:51,051 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:48:51,282 ERROR [main] root: GET_ERROR
+2017-01-29 20:50:24,943 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:50:24,943 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:50:25,034 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:50:25,123 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:50:25,175 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:50:25,177 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:50:25,177 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:50:25,186 ERROR [main] root: GET_ERROR
+2017-01-29 20:50:25,349 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:51:29,095 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:51:29,095 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:51:29,203 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:51:29,322 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:51:29,377 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:51:29,380 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:51:29,381 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:51:29,391 ERROR [main] root: GET_ERROR
+2017-01-29 20:51:29,683 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:52:50,816 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:52:50,816 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:52:50,922 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:52:51,039 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:52:51,087 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:52:51,088 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:52:51,089 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:52:51,300 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:52:51,477 ERROR [main] root: GET_ERROR
+2017-01-29 20:53:04,922 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:53:04,922 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:53:05,067 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:53:05,195 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:53:05,314 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:53:05,315 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:53:05,316 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:53:05,323 ERROR [main] root: GET_ERROR
+2017-01-29 20:53:05,544 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:56:02,281 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 20:56:02,281 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 20:56:02,363 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 20:56:02,472 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 20:56:02,512 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 20:56:02,513 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 20:56:02,513 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 20:56:02,824 ERROR [main] root: Temp Deletion: true
+2017-01-29 20:56:02,870 ERROR [main] root: GET_ERROR
+2017-01-29 21:02:49,934 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:02:49,934 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:02:49,975 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:02:50,020 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:02:50,044 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:02:50,045 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:02:50,046 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:02:50,082 ERROR [main] root: GET_ERROR
+2017-01-29 21:02:50,323 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:04:07,606 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:04:07,606 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:04:07,658 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:04:07,721 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:04:07,746 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:04:07,747 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:04:07,748 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:04:08,030 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:04:08,391 ERROR [main] root: GET_ERROR
+2017-01-29 21:04:31,665 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:04:31,754 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:04:31,803 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:04:31,803 ERROR [Thread-5] root: GET_ERROR
+2017-01-29 21:04:31,804 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:04:31,840 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:04:31,841 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:04:31,850 ERROR [main] root: GET_ERROR
+2017-01-29 21:04:32,092 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:05:36,928 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:05:36,928 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:05:37,050 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:05:37,103 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:05:37,129 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:05:37,130 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:05:37,131 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:05:37,138 ERROR [main] root: GET_ERROR
+2017-01-29 21:05:37,374 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:06:13,032 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:06:13,032 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:06:13,120 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:06:13,168 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:06:13,206 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:06:13,209 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:06:13,209 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:06:13,222 ERROR [main] root: GET_ERROR
+2017-01-29 21:06:13,562 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:08:00,873 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:08:00,873 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:08:01,000 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:08:01,118 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:08:01,153 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:08:01,154 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:08:01,155 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:08:01,268 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:08:01,535 ERROR [main] root: GET_ERROR
+2017-01-29 21:08:19,422 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:08:19,422 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:08:19,460 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:08:19,501 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:08:19,520 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:08:19,521 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:08:19,522 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:08:19,529 ERROR [main] root: GET_ERROR
+2017-01-29 21:08:19,605 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:08:22,795 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:08:28,922 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:08:28,922 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:08:28,962 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:08:29,027 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:08:29,052 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:08:29,053 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:08:29,054 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:08:29,089 ERROR [main] root: GET_ERROR
+2017-01-29 21:08:29,259 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:08:38,031 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:08:38,031 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:08:38,191 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:08:38,321 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:08:38,373 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:08:38,374 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:08:38,374 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:08:38,587 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:08:41,682 ERROR [main] root: GET_ERROR
+2017-01-29 21:10:48,430 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:10:48,430 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:10:48,528 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:10:48,614 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:10:48,667 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:10:48,668 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:10:48,669 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:10:48,675 ERROR [main] root: GET_ERROR
+2017-01-29 21:10:48,981 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:17:24,613 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:17:24,613 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:17:24,748 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:17:24,894 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:17:24,933 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:17:24,934 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:17:24,934 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:17:24,967 ERROR [main] root: GET_ERROR
+2017-01-29 21:17:25,099 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:17:29,500 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:17:32,727 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:17:32,727 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:17:32,764 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:17:32,804 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:17:32,828 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:17:32,829 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:17:32,830 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:17:33,210 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:17:33,585 ERROR [main] root: GET_ERROR
+2017-01-29 21:17:54,750 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:17:54,796 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:17:54,801 ERROR [Thread-4] root: GET_ERROR
+2017-01-29 21:17:54,801 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:17:54,858 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:17:54,859 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:17:54,987 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:17:56,983 ERROR [main] root: GET_ERROR
+2017-01-29 21:17:56,996 ERROR [main] root: GET_ERROR
+2017-01-29 21:17:57,274 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:18:10,534 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:18:10,534 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:18:10,629 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:18:10,715 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:18:10,758 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:18:10,759 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:18:10,759 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:18:10,774 ERROR [main] root: GET_ERROR
+2017-01-29 21:18:11,019 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:18:14,611 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:18:14,611 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:18:14,672 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:18:14,781 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:18:14,881 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:18:14,882 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:18:14,882 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:18:16,877 ERROR [main] root: GET_ERROR
+2017-01-29 21:18:16,990 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:21:26,667 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:21:26,667 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:21:26,807 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:21:26,969 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:21:27,047 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:21:27,050 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:21:27,051 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:21:27,124 ERROR [main] root: GET_ERROR
+2017-01-29 21:21:27,366 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:22:24,021 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:22:24,021 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:22:24,105 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:22:24,232 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:22:24,294 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:22:24,298 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:22:24,298 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:22:24,383 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:22:29,662 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:22:30,154 ERROR [main] root: GET_ERROR
+2017-01-29 21:22:41,929 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:22:41,929 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:22:42,003 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:22:42,088 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:22:42,112 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:22:42,113 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:22:42,114 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:22:42,148 ERROR [main] root: GET_ERROR
+2017-01-29 21:22:42,341 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:22:58,910 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:22:58,980 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:22:59,012 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:22:59,013 ERROR [Thread-5] root: GET_ERROR
+2017-01-29 21:22:59,014 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:22:59,040 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:22:59,041 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:22:59,046 ERROR [main] root: GET_ERROR
+2017-01-29 21:22:59,355 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:23:04,300 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:23:38,293 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:23:38,293 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:23:38,367 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:23:38,444 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:23:38,493 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:23:38,494 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:23:38,495 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:23:38,522 ERROR [main] root: GET_ERROR
+2017-01-29 21:23:38,792 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:23:39,809 ERROR [main] root: GET_ERROR
+2017-01-29 21:23:51,024 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:23:51,024 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:23:51,080 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:23:51,171 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:23:51,261 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:23:51,263 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:23:51,263 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:23:51,321 ERROR [main] root: GET_ERROR
+2017-01-29 21:23:51,574 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:23:53,048 ERROR [main] root: GET_ERROR
+2017-01-29 21:24:09,446 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:24:09,446 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:24:09,536 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:24:09,631 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:24:09,670 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:24:09,672 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:24:09,672 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:24:09,806 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:24:14,717 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:24:15,482 ERROR [main] root: GET_ERROR
+2017-01-29 21:24:18,292 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:24:18,292 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:24:18,443 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:24:18,570 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:24:18,650 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:24:18,654 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:24:18,655 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:24:19,317 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:24:19,638 ERROR [main] root: GET_ERROR
+2017-01-29 21:27:41,771 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:27:41,771 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:27:41,881 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:27:41,977 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:27:42,046 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:27:42,052 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:27:42,052 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:27:42,065 ERROR [main] root: GET_ERROR
+2017-01-29 21:27:42,332 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:27:45,605 ERROR [main] root: GET_ERROR
+2017-01-29 21:28:17,774 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:28:17,774 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:28:17,865 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:28:18,151 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:28:18,223 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:28:18,226 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:28:18,226 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:28:18,262 ERROR [main] root: GET_ERROR
+2017-01-29 21:28:18,351 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:28:26,824 ERROR [main] root: GET_ERROR
+2017-01-29 21:29:25,977 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:29:25,977 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:29:26,065 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:29:26,154 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:29:26,190 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:29:26,191 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:29:26,191 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:29:26,239 ERROR [main] root: GET_ERROR
+2017-01-29 21:29:26,386 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:29:33,635 ERROR [main] root: GET_ERROR
+2017-01-29 21:34:04,576 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:34:04,643 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:34:04,643 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:34:04,744 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:34:04,806 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:34:04,807 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:34:04,807 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:34:04,860 ERROR [main] root: GET_ERROR
+2017-01-29 21:34:05,174 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:34:10,514 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:37:49,695 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:37:49,695 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:37:49,739 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:37:49,788 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:37:49,852 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:37:49,855 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:37:49,856 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:37:49,865 ERROR [main] root: GET_ERROR
+2017-01-29 21:37:50,015 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:37:55,790 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:39:29,042 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:39:29,042 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:39:29,127 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:39:29,205 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:39:29,244 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:39:29,245 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:39:29,245 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:39:29,250 ERROR [main] root: GET_ERROR
+2017-01-29 21:39:29,491 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:39:35,585 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:40:20,467 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:40:20,467 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:40:20,597 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:40:20,716 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:40:20,748 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:40:20,750 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:40:20,750 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:40:20,876 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:40:21,279 ERROR [main] root: GET_ERROR
+2017-01-29 21:40:25,900 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:42:15,680 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:42:15,680 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:42:15,752 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:42:15,808 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:42:15,853 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:42:15,858 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:42:15,858 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:42:15,926 ERROR [main] root: GET_ERROR
+2017-01-29 21:42:16,205 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:42:21,015 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:42:57,649 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:42:57,910 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:42:57,914 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:42:58,008 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:42:58,057 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:42:58,058 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:42:58,058 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:42:58,130 ERROR [main] root: GET_ERROR
+2017-01-29 21:42:58,360 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:44:00,873 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:44:00,873 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:44:00,955 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:44:01,005 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:44:01,033 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:44:01,034 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:44:01,034 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:44:01,074 ERROR [main] root: GET_ERROR
+2017-01-29 21:44:01,152 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:44:05,638 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:54:37,823 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:54:37,883 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:54:37,887 ERROR [Thread-4] root: GET_ERROR
+2017-01-29 21:54:37,887 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:54:37,952 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:54:37,953 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:54:38,068 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:54:38,528 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:54:38,969 ERROR [main] root: GET_ERROR
+2017-01-29 21:54:43,388 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:57:04,236 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:57:04,236 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:57:04,347 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:57:04,474 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:57:04,528 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:57:04,532 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:57:04,532 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:57:04,598 ERROR [main] root: GET_ERROR
+2017-01-29 21:57:04,923 ERROR [main] root: Temp Deletion: true
+2017-01-29 21:57:25,707 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 21:58:03,759 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 21:58:03,881 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 21:58:03,882 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 21:58:04,044 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 21:58:04,128 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 21:58:04,133 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 21:58:04,134 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 21:58:04,152 ERROR [main] root: GET_ERROR
+2017-01-29 21:58:04,465 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:21:53,763 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:21:53,763 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:21:53,877 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:21:53,996 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:21:54,067 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:21:54,070 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:21:54,070 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:21:54,329 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:22:16,242 ERROR [main] root: GET_ERROR
+2017-01-29 22:25:06,958 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:25:06,958 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:25:07,070 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:25:07,228 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:25:07,307 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:25:07,310 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:25:07,311 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:25:07,594 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:25:31,327 ERROR [main] root: GET_ERROR
+2017-01-29 22:25:50,196 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:25:50,196 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:25:50,305 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:25:50,411 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:25:50,449 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:25:50,456 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:25:50,457 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:25:50,550 ERROR [main] root: GET_ERROR
+2017-01-29 22:25:50,812 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:26:20,490 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:26:20,490 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:26:20,577 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:26:20,701 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:26:20,750 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:26:20,751 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:26:20,752 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:26:40,820 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:26:41,162 ERROR [main] root: GET_ERROR
+2017-01-29 22:32:40,923 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:32:40,923 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:32:41,026 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:32:41,105 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:32:41,153 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:32:41,154 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:32:41,155 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:32:41,201 ERROR [main] root: GET_ERROR
+2017-01-29 22:32:41,388 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:32:46,012 ERROR [Thread-1] root: Error! Connection lost!
+2017-01-29 22:40:40,700 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:40:40,865 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:40:40,936 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:40:40,939 ERROR [Thread-5] root: GET_ERROR
+2017-01-29 22:40:40,939 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:40:40,990 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:40:41,134 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:40:41,145 ERROR [main] root: GET_ERROR
+2017-01-29 22:40:41,559 ERROR [main] root: Temp Deletion: true
+2017-01-29 22:42:50,828 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 22:42:50,828 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 22:42:50,949 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 22:42:51,072 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 22:42:51,596 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 22:42:51,597 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 22:42:51,597 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 22:42:51,606 ERROR [main] root: GET_ERROR
+2017-01-29 22:42:53,906 ERROR [main] root: Temp Deletion: true
+2017-01-29 23:11:03,662 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 23:11:03,663 ERROR [Thread-0] root: Port 50000 is already bound!
+2017-01-29 23:11:04,090 ERROR [main] root: GET_ERROR
+2017-01-29 23:11:04,443 ERROR [main] root: Temp Deletion: true
+2017-01-29 23:19:53,475 ERROR [Thread-0] root: Error! Cannot open server socket:
+2017-01-29 23:19:53,476 ERROR [Thread-0] root: Port 50000 is already bound!
+2017-01-29 23:19:54,020 ERROR [main] root: GET_ERROR
+2017-01-29 23:19:54,255 ERROR [main] root: Temp Deletion: true
+2017-01-29 23:23:39,922 ERROR [Thread-2] root: Error! Connection lost!
+2017-01-29 23:23:39,922 ERROR [Thread-3] root: Error! Connection lost!
+2017-01-29 23:23:39,972 ERROR [Thread-4] root: Error! Connection lost!
+2017-01-29 23:23:40,018 ERROR [Thread-5] root: Error! Connection lost!
+2017-01-29 23:23:40,068 ERROR [Thread-6] root: Error! Connection lost!
+2017-01-29 23:23:40,069 ERROR [Thread-7] root: GET_ERROR
+2017-01-29 23:23:40,070 ERROR [Thread-7] root: Error! Connection lost!
+2017-01-29 23:23:40,087 ERROR [main] root: GET_ERROR
+2017-01-29 23:23:40,436 ERROR [main] root: Temp Deletion: true

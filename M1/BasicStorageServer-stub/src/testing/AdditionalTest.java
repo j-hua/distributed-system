@@ -2,6 +2,7 @@ package testing;
 
 import app_kvServer.KVServer;
 import app_kvServer.storageServer;
+import client.KVStore;
 import common.messages.KVMessage;
 import logger.LogSetup;
 import org.apache.log4j.Level;
@@ -14,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
 
 public class AdditionalTest extends TestCase {
 	
@@ -21,6 +23,8 @@ public class AdditionalTest extends TestCase {
 	int CACHE_SIZE =5;
 	String CACHE_STRATEGY = "FIFO";
 	int PORT = 3000;
+	int ptLimit = 100;
+
 
 	/**
 	 * Clear the DB before each test.
@@ -277,6 +281,175 @@ public class AdditionalTest extends TestCase {
 
 		assertTrue(!keys.contains("one") && !values.contains("45"));
 	}
+
+	/**
+	 * put <key><value>, <key> has a max length of 20 bytes
+	 * <value> has a max length of 120kBytes
+	 * check if a put-operation with a large key returns error
+	 *
+	 */
+	@Test
+	public void testPutLargeKey() {
+		String key = "averylargekeythatisbiggerthantwentybytes";
+		String value = "ok";
+
+		KVMessage response = null;
+		Exception ex = null;
+
+		try {
+			KVStore kvClient = new KVStore("localhost",50000);
+			response = kvClient.put(key, value);
+
+		} catch (Exception e) {
+			ex = e;
+		}
+
+		assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.PUT_ERROR);
+	}
+
+	/**
+	 * get <key>, <key> has a max length of 20 bytes
+	 * check if a get-operation with a large key returns error
+	 *
+	 */
+	@Test
+	public void testGetLargeKey() {
+		String key = "averylargekeythatisbiggerthantwentybytes";
+		String value = "ok";
+
+		KVMessage response = null;
+		Exception ex = null;
+
+		try {
+			KVStore kvClient = new KVStore("localhost",50000);
+			response = kvClient.get(key);
+
+		} catch (Exception e) {
+			ex = e;
+		}
+
+		assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.GET_ERROR);
+	}
+
+   /*
+    @Test
+    public void testGetDeletedKey() {
+        String key = "atestkey";
+        String value = "atestvalue";
+
+        KVMessage response = null;
+        Exception ex = null;
+
+        try {
+            KVStore kvClient = new KVStore("localhost",50000);
+            kvClient.put(key,value);
+            kvClient.put(key,"null");
+            response = kvClient.get(key);
+
+        } catch (Exception e) {
+            ex = e;
+        }
+
+        assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.GET_ERROR);
+    }
+*/
+
+	/**
+	 * check latency of different combination of cache size, cacheing strategy
+     * and put/get operations
+	 *
+	 */
+	@Test
+	public void testPerformace() throws Exception {
+
+
+        System.out.println("Performance test 40 puts, 10 gets, FIFO, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "FIFO",40,10) + " milliseconds");
+
+        System.out.println("Performance test 40 puts, 10 gets, LRU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LRU",40,10) + " milliseconds");
+
+        System.out.println("Performance test 40 puts +  10 gets, LFU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LFU",40,10) + " milliseconds");
+
+        System.out.println("Performance test 25 puts, 25 gets, FIFO, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "FIFO",25,25) + " milliseconds");
+
+        System.out.println("Performance test 25 puts, 25 gets, LRU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LRU",25,25) + " milliseconds");
+
+        System.out.println("Performance test 25 puts +  25 gets, LFU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LFU",25,25) + " milliseconds");
+
+        System.out.println("Performance test 10 puts, 40 gets, FIFO, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "FIFO",10,40) + " milliseconds");
+
+        System.out.println("Performance test 10 puts, 40 gets, LRU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LRU",10,40) + " milliseconds");
+
+        System.out.println("Performance test 10 puts +  40 gets, LFU, 100");
+        System.out.println("elapsedTime: " + evalLatency(100, "LFU",10,40) + " milliseconds");
+
+
+
+        System.out.println("Performance test 40 puts, 10 gets, FIFO, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "FIFO",40,10) + " milliseconds");
+
+        System.out.println("Performance test 40 puts, 10 gets, LRU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LFU",40,10) + " milliseconds");
+
+        System.out.println("Performance test 40 puts +  10 gets, LFU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LFU",40,10) + " milliseconds");
+
+        System.out.println("Performance test 25 puts, 25 gets, FIFO, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "FIFO",25,25) + " milliseconds");
+
+        System.out.println("Performance test 25 puts, 25 gets, LRU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LRU",25,25) + " milliseconds");
+
+        System.out.println("Performance test 25 puts +  25 gets, LFU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LFU",25,25) + " milliseconds");
+
+        System.out.println("Performance test 10 puts, 40 gets, FIFO, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "FIFO",10,40) + " milliseconds");
+
+        System.out.println("Performance test 10 puts, 40 gets, LRU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LRU",10,40) + " milliseconds");
+
+        System.out.println("Performance test 10 puts +  40 gets, LFU, 25");
+        System.out.println("elapsedTime: " + evalLatency(25, "LFU",10,40) + " milliseconds");
+
+	}
+
+	public long evalLatency(int cacheSize, String Strat, int numPut, int numGet){
+        clearFile();
+
+        KVServer kvServer = new KVServer(PORT, cacheSize,Strat);
+
+        KVMessage putMessage = null;
+        KVMessage getMessage = null;
+        long elapsedTime = 0;
+        long startTime = System.currentTimeMillis();
+        try {
+            int i;
+            for (i = 0; i < numPut; i++){
+                putMessage = kvServer.put(Integer.toString(i), Integer.toString(i));
+                assertTrue(putMessage.getStatus() == KVMessage.StatusType.PUT_SUCCESS);
+            }
+            for(i = 0; i < numGet; i++){
+                getMessage = kvServer.get(Integer.toString(new Random().nextInt(numPut)));
+                assertTrue(getMessage.getStatus() == KVMessage.StatusType.GET_SUCCESS);
+            }
+            long stopTime = System.currentTimeMillis();
+            elapsedTime = stopTime - startTime;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return elapsedTime;
+    }
+
+
 	public static void clearFile(){
 	PrintWriter pw = null;
 		try {

@@ -156,17 +156,17 @@ public class storageServer {
                         	}
                         	
                         	//This will tell us which one got removed
-                        	System.out.println(keyCache.toString());
-                            System.out.println(valueCache.toString());
+                        	logger.info(keyCache.toString());
+                            logger.info(valueCache.toString());
                         	
                         	//remove the found index containing the key value pair with the lowest frequency count
-                        	keyCache.remove(removeIndex);
-                        	valueCache.remove(removeIndex);
-                        	
-                        	System.out.println(keyCache.toString());
-                            System.out.println(valueCache.toString());
+                        	//keyCache.remove(removeIndex);
+                        	//valueCache.remove(removeIndex);
+
+                            logger.info(keyCache.toString());
+                            logger.info(valueCache.toString());
                         }
-                        System.out.println("Key: " + key + " Value: " + value + " ADDED TO CACHE WITH COUNT 1");
+                        //System.out.println("Key: " + key + " Value: " + value + " ADDED TO CACHE WITH COUNT 1");
                         keyCache.add(key);
                         valueCache.add(value + " " + "1");
                     } else {
@@ -179,9 +179,8 @@ public class storageServer {
                     	//get the current frequency count
                     	String[] tempVal = valueCache.get(keyCache.indexOf(key)).split(" ");
                     	int freqCount = Integer.parseInt(tempVal[tempVal.length - 1]);
-                    	
                     	//remove from cache
-                    	System.out.println("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
+                        logger.info("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
                         valueCache.remove(keyCache.indexOf(key));
                         keyCache.remove(keyCache.indexOf(key));
 
@@ -190,9 +189,9 @@ public class storageServer {
                         keyCache.add(key);
                         valueCache.add(value + " " + String.valueOf(freqCount));
 
-                        System.out.println(key + " " + value + " added to list with incremented frequency counter");
-                        System.out.println(keyCache.toString());
-                        System.out.println(valueCache.toString());
+                        logger.info(key + " " + value + " added to list with incremented frequency counter");
+                        logger.info(keyCache.toString());
+                        logger.info(valueCache.toString());
                     }
                     //---------------------------------------------------------------------------------------
                 }
@@ -312,7 +311,7 @@ public class storageServer {
             	//LFU---------------------------------------------------------------------
                 //First check if it is in the cache
                 if(keyCache.contains(key)){
-                    System.out.println("KEY FOUND IN CACHE");
+                  //  System.out.println("KEY FOUND IN CACHE");
                     String value = valueCache.get(keyCache.indexOf(key));
                     
                     //separate the value from the frequency counter for this key value pair
@@ -321,7 +320,7 @@ public class storageServer {
                     value = value.substring(0, value.length() - 1).trim();
                     
                     //remove from cache
-                	System.out.println("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
+                //	System.out.println("Removing " + keyCache.get(keyCache.indexOf(key)) + " and " + valueCache.get(keyCache.indexOf(key)));
                     valueCache.remove(keyCache.indexOf(key));
                     keyCache.remove(keyCache.indexOf(key));
 
@@ -330,9 +329,9 @@ public class storageServer {
                     keyCache.add(key);
                     valueCache.add(value + " " + String.valueOf(freqCount));
 
-                    System.out.println(key + " " + value + " added to list with incremented frequency counter");
-                    System.out.println(keyCache.toString());
-                    System.out.println(valueCache.toString());
+                   // System.out.println(key + " " + value + " added to list with incremented frequency counter");
+                   // System.out.println(keyCache.toString());
+                   // System.out.println(valueCache.toString());
 
                     br.close();
                     status = KVMessage.StatusType.GET_SUCCESS;

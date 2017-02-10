@@ -36,8 +36,6 @@ public class Client extends Thread{
 
 		try {
 			kvStore.connect();
-		//	output = kvStore.getSocket().getOutputStream();
-		//	input = kvStore.getSocket().getInputStream();
 /*
 			while(isRunning()) {
 				try {
@@ -66,9 +64,11 @@ public class Client extends Thread{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//if(isRunning()) {
-			//	closeConnection();
-			//}
+			/*if(isRunning()) try {
+				disconnect();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}*/
 		}
 	}
 
@@ -89,13 +89,10 @@ public class Client extends Thread{
 	public void putMessage(String key, String value) throws Exception {
 		KVMessage kvm = kvStore.put(key,value);
 
-		System.out.println(kvm.getStatus().toString());
-
 	}
 
 	public void getMessage(String key) throws Exception {
 		KVMessage kvm = kvStore.get(key);
-			System.out.println(kvm.getStatus().toString());
 	}
 
 	public void disconnect() throws IOException {

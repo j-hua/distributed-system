@@ -51,7 +51,7 @@ public class KVStore implements KVCommInterface {
 	@Override
 	public void disconnect() {
 		// TODO Auto-generated method stub
-	//	logger.info("tearing down the connection ...");
+		logger.info("disconnect ...");
 		if (clientSocket != null) {
 
 			try {
@@ -62,7 +62,7 @@ public class KVStore implements KVCommInterface {
 				e.printStackTrace();
 			}
 			clientSocket = null;
-		//	logger.info("connection closed!");
+			logger.info("connection closed!");
 		}
 		
 	}
@@ -78,14 +78,17 @@ public class KVStore implements KVCommInterface {
 		if(key.getBytes().length <= 20){
 			sb.append(key);
 		}else{
+			logger.info("key exceeds max length 20 Bytes");
+			System.out.println("key exceeds max length 20 bytes");
 			kvms = new KVMessageStorage(null, null, StatusTypeLookup("PUT_ERROR"));
 			return kvms;
 		}
 		
 		if(value.equals("null")){
+			logger.info("trying to delete key " + key);
+			System.out.println("Deleting key " + key.trim());
 			msg = new TextMessage(sb.toString());
 			sendMessage(new TextMessage(sb.toString()));
-				logger.info("Send message:\t '" + msg.getMsg() + "'");
 			TextMessage res = receiveMessage();
 			String[] tokens = res.getMsg().split("\\s+",2);
 			kvms = new KVMessageStorage(tokens[1], null, StatusTypeLookup(tokens[0]));
@@ -94,12 +97,15 @@ public class KVStore implements KVCommInterface {
 				sb.append(" ");
 				sb.append(value);
 			}else{
+				logger.info("value exceeds max length 120kBytes");
+				System.out.println("value exceeds max length 120 kbytes");
 				kvms = new KVMessageStorage(null,null, StatusTypeLookup("PUT_ERROR"));
 				return kvms;
 			}
+			System.out.println("KEY: " + key.trim());
+			System.out.println("VALUE: " + value.trim());
 			msg = new TextMessage(sb.toString());
 			sendMessage(new TextMessage(sb.toString()));
-				logger.info("Send message:\t '" + msg.getMsg() + "'");
 			TextMessage res = receiveMessage();
 			String[] tokens = res.getMsg().split("\\s+",3);
 			kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
@@ -117,7 +123,7 @@ public class KVStore implements KVCommInterface {
 		byte[] msgBytes = msg.getMsgBytes();
 		output.write(msgBytes, 0, msgBytes.length);
 		output.flush();
-	//	logger.info("Send message:\t '" + msg.getMsg() + "'");
+		logger.info("Send message:\t '" + msg.getMsg() + "'");
 	}
 
 
@@ -127,10 +133,11 @@ public class KVStore implements KVCommInterface {
 		KVMessageStorage kvms = null;
 		StringBuilder sb = new StringBuilder();
 		sb.append("get ");
-		System.out.println("length " + key.getBytes().length);
 		if(key.getBytes().length <= 20){
 			sb.append(key);
 		}else{
+			logger.info("key exceeds max length 20 bytes");
+			System.out.println("key exceeds max length 20 bytes");
 			kvms = new KVMessageStorage(null, null, StatusTypeLookup("GET_ERROR"));
 			return kvms;
 		}
@@ -142,7 +149,8 @@ public class KVStore implements KVCommInterface {
 		String[] tokens = res.getMsg().split("\\s+",3);
 
 		kvms = new KVMessageStorage(tokens[1],tokens[2], StatusTypeLookup(tokens[0]));
-
+		System.out.println("KEY: " + tokens[1]);
+		System.out.println("VALUE: " + tokens[2]);
 		return kvms;
 	}
 
@@ -203,8 +211,8 @@ public class KVStore implements KVCommInterface {
 
 		/* build final String */
 		TextMessage msg = new TextMessage(msgBytes);
-		//logger.info("Receive message:\t '" + msg.getMsg() + "'");
-		System.out.println("Receive message:\t '" + msg.getMsg() + "'");
+		logger.info("Receive message:\t '" + msg.getMsg() + "'");
+
 		return msg;
 	}
 
