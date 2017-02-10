@@ -112,7 +112,7 @@ public class Client extends Thread {
 		listeners.add(listener);
 	}
 	
-v
+
 	
 	
 	private TextMessage receiveMessage() throws IOException {

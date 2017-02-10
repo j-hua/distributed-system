@@ -4008,3 +4008,179 @@
 2017-01-29 23:20:03,553 INFO  [Thread-9] root: SEND 	<127.0.0.1:52471>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
 '
 2017-01-29 23:20:03,555 ERROR [Thread-9] root: Error! Connection lost!
+2017-02-10 15:21:50,764 ERROR [main] root: LENGTH 3
+2017-02-10 15:21:50,766 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:21:50,786 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:25:47,236 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-02-10 15:25:47,241 INFO  [Thread-0] root: Connected to localhost on port 55596
+2017-02-10 15:25:52,882 INFO  [Thread-1] root: ACTION: get
+2017-02-10 15:25:52,882 INFO  [Thread-1] root: Getting key: somekey
+
+2017-02-10 15:25:52,882 INFO  [Thread-1] root: Getting key: somekey
+2017-02-10 15:25:52,886 ERROR [Thread-1] root: GET_ERROR
+2017-02-10 15:25:52,888 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:55596>: 'get somekey'
+2017-02-10 15:25:52,890 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'GET_ERROR somekey null
+'
+2017-02-10 15:25:57,185 INFO  [Thread-1] root: ACTION: put
+2017-02-10 15:25:57,185 INFO  [Thread-1] root: Putting   key: somekey value: value
+2017-02-10 15:25:57,185 INFO  [Thread-1] root: Putting   key: somekey value: value
+2017-02-10 15:25:57,187 INFO  [Thread-1] root: Temp Deletion: true
+2017-02-10 15:25:57,187 INFO  [Thread-1] root: Key: somekey Value: value ADDED TO CACHE
+2017-02-10 15:25:57,188 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:55596>: 'put somekey value'
+2017-02-10 15:25:57,188 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'PUT_SUCCESS somekey value
+'
+2017-02-10 15:25:59,105 INFO  [Thread-1] root: ACTION: get
+2017-02-10 15:25:59,105 INFO  [Thread-1] root: Getting key: somekey
+
+2017-02-10 15:25:59,106 INFO  [Thread-1] root: Getting key: somekey
+2017-02-10 15:25:59,106 INFO  [Thread-1] root: KEY FOUND IN CACHE
+2017-02-10 15:25:59,106 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:55596>: 'get somekey'
+2017-02-10 15:25:59,106 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'GET_SUCCESS somekey value
+'
+2017-02-10 15:26:07,883 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 15:26:07,883 INFO  [Thread-1] root: SEND 	<127.0.0.1:55596>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 15:26:07,883 ERROR [Thread-1] root: Error! Connection lost!
+2017-02-10 15:28:06,174 ERROR [main] root: LENGTH 3
+2017-02-10 15:28:06,176 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:28:06,190 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:31:32,429 INFO  [Thread-1] root: SEND 	<127.0.0.1:56682>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-02-10 15:31:32,435 INFO  [Thread-0] root: Connected to localhost on port 56682
+2017-02-10 15:35:07,608 INFO  [Thread-1] root: SEND 	<127.0.0.1:56682>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 15:35:07,609 ERROR [Thread-1] root: Error! Connection lost!
+2017-02-10 15:35:26,294 ERROR [main] root: LENGTH 3
+2017-02-10 15:35:26,296 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:35:26,309 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:53:36,625 ERROR [main] root: LENGTH 3
+2017-02-10 15:53:36,627 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:53:36,641 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:54:05,282 ERROR [main] root: LENGTH 3
+2017-02-10 15:54:05,283 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:54:05,296 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:57:48,567 ERROR [main] root: LENGTH 3
+2017-02-10 15:57:48,569 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:57:48,582 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 15:59:36,476 ERROR [main] root: LENGTH 3
+2017-02-10 15:59:36,478 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 15:59:36,494 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:02:23,235 ERROR [main] root: LENGTH 3
+2017-02-10 16:02:23,237 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 16:02:23,250 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:05:56,997 ERROR [main] root: LENGTH 3
+2017-02-10 16:05:56,999 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 16:05:57,013 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:07:55,824 ERROR [main] root: LENGTH 3
+2017-02-10 16:07:55,826 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 16:07:55,839 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:08:46,009 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-02-10 16:08:46,017 INFO  [Thread-0] root: Connected to localhost on port 61561
+2017-02-10 16:08:48,866 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:08:48,866 INFO  [Thread-1] root: Getting key: somekey
+
+2017-02-10 16:08:48,866 INFO  [Thread-1] root: Getting key: somekey
+2017-02-10 16:08:48,867 INFO  [Thread-1] root: Entered
+2017-02-10 16:08:48,868 INFO  [Thread-1] root: Key: somekey Value: value ADDED TO CACHE
+2017-02-10 16:08:48,874 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:61561>: 'get somekey'
+2017-02-10 16:08:48,874 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'GET_SUCCESS somekey value
+'
+2017-02-10 16:08:57,732 INFO  [Thread-1] root: ACTION: put
+2017-02-10 16:08:57,733 INFO  [Thread-1] root: Putting   key: somekey value: 400
+2017-02-10 16:08:57,733 INFO  [Thread-1] root: Putting   key: somekey value: 400
+2017-02-10 16:08:57,735 INFO  [Thread-1] root: Original Deletion: true
+2017-02-10 16:08:57,735 INFO  [Thread-1] root: Renaming of Temp: true
+2017-02-10 16:08:57,735 INFO  [Thread-1] root: PUT UPDATE OCCURRED, MODIFYING CACHE WITH NEW VALUE
+2017-02-10 16:08:57,736 INFO  [Thread-1] root: [somekey]
+2017-02-10 16:08:57,736 INFO  [Thread-1] root: [400]
+2017-02-10 16:08:57,736 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:61561>: 'put somekey 400'
+2017-02-10 16:08:57,737 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'PUT_UPDATE somekey 400
+'
+2017-02-10 16:08:59,586 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:08:59,586 INFO  [Thread-1] root: Getting key: somekey
+
+2017-02-10 16:08:59,586 INFO  [Thread-1] root: Getting key: somekey
+2017-02-10 16:08:59,586 INFO  [Thread-1] root: KEY FOUND IN CACHE
+2017-02-10 16:08:59,586 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:61561>: 'get somekey'
+2017-02-10 16:08:59,587 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'GET_SUCCESS somekey 400
+'
+2017-02-10 16:09:04,139 INFO  [Thread-1] root: ACTION: put
+2017-02-10 16:09:04,139 INFO  [Thread-1] root: Putting   key: somekey
+ value: null
+2017-02-10 16:09:04,139 INFO  [Thread-1] root: Putting   key: somekey value: null
+2017-02-10 16:09:04,140 INFO  [Thread-1] root: Original Deletion: true
+2017-02-10 16:09:04,141 INFO  [Thread-1] root: Renaming of Temp: true
+2017-02-10 16:09:04,141 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:61561>: 'put somekey'
+2017-02-10 16:09:04,142 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'DELETE_SUCCESS somekey
+'
+2017-02-10 16:09:08,345 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:09:08,345 INFO  [Thread-1] root: Getting key: somekey
+
+2017-02-10 16:09:08,345 INFO  [Thread-1] root: Getting key: somekey
+2017-02-10 16:09:08,346 ERROR [Thread-1] root: GET_ERROR
+2017-02-10 16:09:08,346 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:61561>: 'get somekey'
+2017-02-10 16:09:08,346 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'GET_ERROR somekey null
+'
+2017-02-10 16:13:04,315 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:04,316 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:04,316 INFO  [Thread-1] root: SEND 	<127.0.0.1:61561>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:04,317 ERROR [Thread-1] root: Error! Connection lost!
+2017-02-10 16:13:10,169 ERROR [main] root: LENGTH 3
+2017-02-10 16:13:10,171 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 16:13:10,184 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:13:19,318 ERROR [main] root: LENGTH 3
+2017-02-10 16:13:19,320 INFO  [Thread-0] root: Initialize server ...
+2017-02-10 16:13:19,334 INFO  [Thread-0] root: Server listening on port: 3000
+2017-02-10 16:13:31,469 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
+2017-02-10 16:13:31,475 INFO  [Thread-0] root: Connected to localhost on port 62098
+2017-02-10 16:13:34,443 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:13:34,443 INFO  [Thread-1] root: Getting key: s
+
+2017-02-10 16:13:34,443 INFO  [Thread-1] root: Getting key: s
+2017-02-10 16:13:34,445 ERROR [Thread-1] root: GET_ERROR
+2017-02-10 16:13:34,445 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:62098>: 'get s'
+2017-02-10 16:13:34,446 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'GET_ERROR s null
+'
+2017-02-10 16:13:42,138 INFO  [Thread-1] root: ACTION: put
+2017-02-10 16:13:42,139 INFO  [Thread-1] root: Putting   key: s value: NULL
+2017-02-10 16:13:42,139 INFO  [Thread-1] root: Putting   key: s value: NULL
+2017-02-10 16:13:42,141 INFO  [Thread-1] root: Temp Deletion: true
+2017-02-10 16:13:42,141 INFO  [Thread-1] root: Key: s Value: NULL ADDED TO CACHE
+2017-02-10 16:13:42,141 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:62098>: 'put s NULL'
+2017-02-10 16:13:42,141 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'PUT_SUCCESS s NULL
+'
+2017-02-10 16:13:44,633 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:13:44,634 INFO  [Thread-1] root: Getting key: s
+
+2017-02-10 16:13:44,634 INFO  [Thread-1] root: Getting key: s
+2017-02-10 16:13:44,634 INFO  [Thread-1] root: KEY FOUND IN CACHE
+2017-02-10 16:13:44,634 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:62098>: 'get s'
+2017-02-10 16:13:44,634 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'GET_SUCCESS s NULL
+'
+2017-02-10 16:13:49,662 INFO  [Thread-1] root: ACTION: put
+2017-02-10 16:13:49,662 INFO  [Thread-1] root: Putting   key: s
+ value: null
+2017-02-10 16:13:49,662 INFO  [Thread-1] root: Putting   key: s value: null
+2017-02-10 16:13:49,663 INFO  [Thread-1] root: Original Deletion: true
+2017-02-10 16:13:49,663 INFO  [Thread-1] root: Renaming of Temp: true
+2017-02-10 16:13:49,664 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:62098>: 'put s'
+2017-02-10 16:13:49,664 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'DELETE_SUCCESS s
+'
+2017-02-10 16:13:50,814 INFO  [Thread-1] root: ACTION: get
+2017-02-10 16:13:50,814 INFO  [Thread-1] root: Getting key: s
+
+2017-02-10 16:13:50,814 INFO  [Thread-1] root: Getting key: s
+2017-02-10 16:13:50,815 ERROR [Thread-1] root: GET_ERROR
+2017-02-10 16:13:50,815 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:62098>: 'get s'
+2017-02-10 16:13:50,815 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'GET_ERROR s null
+'
+2017-02-10 16:13:59,307 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:59,308 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:59,308 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
+'
+2017-02-10 16:13:59,309 ERROR [Thread-1] root: Error! Connection lost!

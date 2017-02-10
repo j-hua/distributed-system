@@ -53,8 +53,8 @@ public class KVClient implements ClientSocketListener{
 				try{
 					serverAddress = tokens[1];
 					serverPort = Integer.parseInt(tokens[2]);
+					System.out.println("connecting to " + serverAddress + " " + serverPort );
 					connect(serverAddress, serverPort);
-                    System.out.println("connect " + serverAddress + " " + serverPort );
 				} catch(NumberFormatException nfe) {
 					printError("No valid address. Port must be a number!");
 					logger.info("Unable to parse argument <port>", nfe);
