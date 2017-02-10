@@ -4,6 +4,8 @@
       <root url="jar://$PROJECT_DIR$/echoClient/echoClient.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/BasicStorageServer-stub/src" />
+    </SOURCES>
   </library>
 </component>

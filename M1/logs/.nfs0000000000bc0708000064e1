@@ -1,7 +1,6 @@
 2017-01-29 00:20:38,286 ERROR [main] root: LENGTH 0
 2017-01-29 00:37:07,193 ERROR [main] root: LENGTH 0
 2017-01-29 03:41:40,151 ERROR [main] root: LENGTH 0
-<<<<<<< HEAD
 2017-02-10 16:07:45,813 ERROR [main] root: LENGTH 0
 2017-02-10 16:09:34,054 ERROR [main] root: LENGTH 3
 2017-02-10 16:09:34,055 INFO  [Thread-0] root: Initialize server ...
@@ -107,7 +106,3 @@
 2017-02-10 16:20:16,384 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
 '
 2017-02-10 16:20:16,384 ERROR [Thread-1] root: Error! Connection lost!
-=======
-2017-02-10 11:11:48,640 ERROR [main] root: LENGTH 0
-2017-02-10 11:17:47,730 ERROR [main] root: LENGTH 0
->>>>>>> d1faf78ef9681d23bdd4f9c7fc919958bcf32ff6

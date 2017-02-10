@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.net.InetSocketAddress;
 
 import app_kvServer.KVMessageStorage;
 import common.messages.KVMessage;
@@ -36,18 +37,31 @@ public class KVStore implements KVCommInterface {
 		this.clientSocket = null;
 		input = null;
 		output = null;
+		connected = false;
 	}
 	
 	@Override
 	public void connect() throws Exception {
 		// TODO Auto-generated method stub
-		this.clientSocket = new Socket(kvAddress,kvPort);
-		input = clientSocket.getInputStream();
-		output = clientSocket.getOutputStream();
-		connected = true;
-		TextMessage res = receiveMessage();
+		try{
+			this.clientSocket = new Socket();
+			this.clientSocket.connect(new InetSocketAddress(kvAddress,kvPort),100);
+			input = clientSocket.getInputStream();
+			output = clientSocket.getOutputStream();
+			connected = true;
+			TextMessage res = receiveMessage();
+		}catch (Exception e){
+			System.out.println("connection failed, please try again");
+			connected = false;
+		}
+
 	}
 
+
+
+	public boolean getConnected() {
+		return connected;
+	}
 	@Override
 	public void disconnect() {
 		// TODO Auto-generated method stub
