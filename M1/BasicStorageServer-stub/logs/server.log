@@ -4184,3 +4184,6 @@
 2017-02-10 16:13:59,308 INFO  [Thread-1] root: SEND 	<127.0.0.1:62098>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
 '
 2017-02-10 16:13:59,309 ERROR [Thread-1] root: Error! Connection lost!
+2017-02-15 16:19:10,644 ERROR [main] root: LENGTH 3
+2017-02-15 16:19:10,647 INFO  [Thread-0] root: Initialize server ...
+2017-02-15 16:19:10,662 INFO  [Thread-0] root: Server listening on port: 3000

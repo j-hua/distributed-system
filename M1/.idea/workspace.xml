@@ -2,43 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef646c54-0a9b-4bfc-b3a9-39edc1658384" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/ms1-client.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/echoClient/client/Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/echoClient/client/ClientSocketListener$SocketStatus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/echoClient/client/ClientSocketListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/echoClient/logging/LogSetup.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/echoClient/ui/Application.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/bin/app_kvClient/KVClient.class" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/bin/app_kvClient/KVClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/bin/client/Client.class" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/bin/client/Client.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/bin/client/KVStore.class" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/bin/client/KVStore.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/ms1-client.jar" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/ms1-client.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/ms1-server.jar" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/ms1-server.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvClient/KVClient.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvClient/KVClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/ClientConnectionKVServer.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/ClientConnectionKVServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/KVServer.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/KVServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/KVServerListener.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/app_kvServer/KVServerListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/Client.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/KVCommInterface.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/KVCommInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/KVStore.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/client/KVStore.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/AdditionalTest.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/AdditionalTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/AllTests.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/AllTests.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/ConnectionTest.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/ConnectionTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/InteractionTest.class" afterPath="$PROJECT_DIR$/out/production/BasicStorageServer-stub/testing/InteractionTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/echoClient.xml" afterPath="$PROJECT_DIR$/.idea/libraries/echoClient.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/CLIENT_MANIFEST.MF" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/CLIENT_MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/SERVER_MANIFEST.MF" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/SERVER_MANIFEST.MF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/logs/server.log" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/logs/server.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/src/app_kvClient/KVClient.java" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/src/app_kvClient/KVClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/src/client/Client.java" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/src/client/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/logs/testing/test.log" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/logs/testing/test.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/src/client/KVStore.java" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/src/client/KVStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/echoClient/echoClient/src/client/Client.java" afterPath="$PROJECT_DIR$/echoClient/echoClient/src/client/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BasicStorageServer-stub/storage.txt" afterPath="$PROJECT_DIR$/BasicStorageServer-stub/storage.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/server.log" afterPath="$PROJECT_DIR$/logs/server.log" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -146,8 +117,8 @@
       <file leaf-file-name="KVStore.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BasicStorageServer-stub/src/client/KVStore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="167" column="98" lean-forward="false" selection-start-line="167" selection-start-column="98" selection-end-line="167" selection-end-column="98" />
+            <state relative-caret-position="-1312">
+              <caret line="166" column="43" lean-forward="false" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,8 +166,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1270" />
-    <option name="height" value="753" />
+    <option name="width" value="1280" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -587,8 +558,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1270" height="753" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1280" height="772" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -597,15 +568,15 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45760235" sideWeight="0.5377953" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38549075" sideWeight="0.5375" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45760235" sideWeight="0.46220472" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38549075" sideWeight="0.4625" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2480315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -800,8 +771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BasicStorageServer-stub/src/client/KVStore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="167" column="98" lean-forward="false" selection-start-line="167" selection-start-column="98" selection-end-line="167" selection-end-column="98" />
+        <state relative-caret-position="-1312">
+          <caret line="166" column="43" lean-forward="false" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
