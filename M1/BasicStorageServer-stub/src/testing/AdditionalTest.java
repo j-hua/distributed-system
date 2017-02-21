@@ -4,18 +4,15 @@ import app_kvServer.KVServer;
 import app_kvServer.storageServer;
 import client.KVStore;
 import common.messages.KVMessage;
-import logger.LogSetup;
-import org.apache.log4j.Level;
+import junit.framework.TestCase;
 import org.junit.Test;
 
-import junit.framework.TestCase;
-//import KVServer.*;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
+
+//import KVServer.*;
 
 public class AdditionalTest extends TestCase {
 	

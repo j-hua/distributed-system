@@ -111,7 +111,10 @@ public class Client extends Thread {
 	public void addListener(ClientSocketListener listener){
 		listeners.add(listener);
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> d1faf78ef9681d23bdd4f9c7fc919958bcf32ff6
 
 	
 	

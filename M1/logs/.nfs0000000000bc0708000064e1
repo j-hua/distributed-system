@@ -1,7 +1,6 @@
 2017-01-29 00:20:38,286 ERROR [main] root: LENGTH 0
 2017-01-29 00:37:07,193 ERROR [main] root: LENGTH 0
 2017-01-29 03:41:40,151 ERROR [main] root: LENGTH 0
-<<<<<<< HEAD
 2017-02-10 16:07:45,813 ERROR [main] root: LENGTH 0
 2017-02-10 16:09:34,054 ERROR [main] root: LENGTH 3
 2017-02-10 16:09:34,055 INFO  [Thread-0] root: Initialize server ...
@@ -107,15 +106,3 @@
 2017-02-10 16:20:16,384 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
 '
 2017-02-10 16:20:16,384 ERROR [Thread-1] root: Error! Connection lost!
-=======
-2017-02-10 11:11:48,640 ERROR [main] root: LENGTH 0
-2017-02-10 11:17:47,730 ERROR [main] root: LENGTH 0
-<<<<<<< HEAD
-2017-02-10 18:08:07,851 ERROR [main] root: LENGTH 3
-2017-02-10 18:08:07,855 INFO  [Thread-0] root: Initialize server ...
-2017-02-10 18:08:07,868 INFO  [Thread-0] root: Server listening on port: 3000
-2017-02-10 18:14:47,959 INFO  [Thread-1] root: SEND 	<127.0.0.1:64197>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
-2017-02-10 18:14:47,969 INFO  [Thread-0] root: Connected to localhost on port 64197
-=======
->>>>>>> d1faf78ef9681d23bdd4f9c7fc919958bcf32ff6
->>>>>>> e04c2bcd4089b15467e60b9902da84b6d4a7a24c
