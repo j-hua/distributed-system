@@ -1,108 +1,0 @@
-2017-01-29 00:20:38,286 ERROR [main] root: LENGTH 0
-2017-01-29 00:37:07,193 ERROR [main] root: LENGTH 0
-2017-01-29 03:41:40,151 ERROR [main] root: LENGTH 0
-2017-02-10 16:07:45,813 ERROR [main] root: LENGTH 0
-2017-02-10 16:09:34,054 ERROR [main] root: LENGTH 3
-2017-02-10 16:09:34,055 INFO  [Thread-0] root: Initialize server ...
-2017-02-10 16:09:34,058 INFO  [Thread-0] root: Server listening on port: 3000
-2017-02-10 16:09:55,467 INFO  [Thread-1] root: SEND 	<127.0.0.1:56679>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
-2017-02-10 16:09:55,469 INFO  [Thread-0] root: Connected to localhost on port 56679
-2017-02-10 16:10:08,999 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:10:09,000 INFO  [Thread-1] root: Putting   key: one value: 52
-2017-02-10 16:10:09,000 INFO  [Thread-1] root: Putting   key: one value: 52
-2017-02-10 16:10:09,045 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56679>: 'put one 52'
-2017-02-10 16:10:09,045 INFO  [Thread-1] root: SEND 	<127.0.0.1:56679>: 'PUT_SUCCESS one 52
-'
-2017-02-10 16:14:24,199 INFO  [Thread-1] root: SEND 	<127.0.0.1:56679>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-02-10 16:14:24,199 ERROR [Thread-1] root: Error! Connection lost!
-2017-02-10 16:14:44,019 ERROR [main] root: LENGTH 0
-2017-02-10 16:14:54,073 ERROR [main] root: LENGTH 3
-2017-02-10 16:14:54,074 INFO  [Thread-0] root: Initialize server ...
-2017-02-10 16:14:54,076 INFO  [Thread-0] root: Server listening on port: 3000
-2017-02-10 16:15:01,678 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
-2017-02-10 16:15:01,680 INFO  [Thread-0] root: Connected to localhost on port 56683
-2017-02-10 16:15:07,714 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:15:07,714 INFO  [Thread-1] root: Putting   key: key value: value
-2017-02-10 16:15:07,715 INFO  [Thread-1] root: Putting   key: key value: value
-2017-02-10 16:15:07,759 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'put key value'
-2017-02-10 16:15:07,759 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'PUT_SUCCESS key value
-'
-2017-02-10 16:15:18,153 INFO  [Thread-1] root: ACTION: get
-2017-02-10 16:15:18,154 INFO  [Thread-1] root: Getting key: key
-
-2017-02-10 16:15:18,154 INFO  [Thread-1] root: Getting key: key
-2017-02-10 16:15:18,154 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'get key'
-2017-02-10 16:15:18,155 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'GET_SUCCESS key value
-'
-2017-02-10 16:15:36,896 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:15:36,897 INFO  [Thread-1] root: Putting   key: key
- value: null
-2017-02-10 16:15:36,897 INFO  [Thread-1] root: Putting   key: key value: null
-2017-02-10 16:15:36,927 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'put key'
-2017-02-10 16:15:36,928 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'DELETE_SUCCESS key
-'
-2017-02-10 16:16:01,607 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:16:01,608 INFO  [Thread-1] root: Putting   key: key value: u
-2017-02-10 16:16:01,608 INFO  [Thread-1] root: Putting   key: key value: u
-2017-02-10 16:16:01,650 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'put key u'
-2017-02-10 16:16:01,650 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'PUT_SUCCESS key u
-'
-2017-02-10 16:16:14,599 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:16:14,599 INFO  [Thread-1] root: Putting   key: random
- value: null
-2017-02-10 16:16:14,599 INFO  [Thread-1] root: Putting   key: random value: null
-2017-02-10 16:16:14,617 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'put random'
-2017-02-10 16:16:14,617 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'DELETE_ERROR random
-'
-2017-02-10 16:16:27,390 INFO  [Thread-1] root: ACTION: get
-2017-02-10 16:16:27,391 INFO  [Thread-1] root: Getting key: random
-
-2017-02-10 16:16:27,391 INFO  [Thread-1] root: Getting key: random
-2017-02-10 16:16:27,391 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'get random'
-2017-02-10 16:16:27,391 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'GET_ERROR random null
-'
-2017-02-10 16:16:38,230 INFO  [Thread-1] root: ACTION: get
-2017-02-10 16:16:38,230 INFO  [Thread-1] root: Getting key: key
-
-2017-02-10 16:16:38,230 INFO  [Thread-1] root: Getting key: key
-2017-02-10 16:16:38,231 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56683>: 'get key'
-2017-02-10 16:16:38,231 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'GET_SUCCESS key u
-'
-2017-02-10 16:17:51,606 INFO  [Thread-1] root: SEND 	<127.0.0.1:56683>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-02-10 16:17:51,607 ERROR [Thread-1] root: Error! Connection lost!
-2017-02-10 16:18:05,793 ERROR [main] root: LENGTH 3
-2017-02-10 16:18:05,794 INFO  [Thread-0] root: Initialize server ...
-2017-02-10 16:18:05,797 INFO  [Thread-0] root: Server listening on port: 3000
-2017-02-10 16:18:38,654 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'Connection to MSRG Echo server established: /127.0.0.1 / 3000'
-2017-02-10 16:18:38,655 INFO  [Thread-0] root: Connected to localhost on port 56685
-2017-02-10 16:18:45,825 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:18:45,826 INFO  [Thread-1] root: Putting   key: one value: 52
-2017-02-10 16:18:45,826 INFO  [Thread-1] root: Putting   key: one value: 52
-2017-02-10 16:18:45,870 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56685>: 'put one 52'
-2017-02-10 16:18:45,870 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'PUT_UPDATE one 52
-'
-2017-02-10 16:19:05,807 INFO  [Thread-1] root: ACTION: put
-2017-02-10 16:19:05,808 INFO  [Thread-1] root: Putting   key: two value: 55
-2017-02-10 16:19:05,808 INFO  [Thread-1] root: Putting   key: two value: 55
-2017-02-10 16:19:05,843 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56685>: 'put two 55'
-2017-02-10 16:19:05,843 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'PUT_SUCCESS two 55
-'
-2017-02-10 16:19:13,519 INFO  [Thread-1] root: ACTION: get
-2017-02-10 16:19:13,519 INFO  [Thread-1] root: Getting key: two
-
-2017-02-10 16:19:13,519 INFO  [Thread-1] root: Getting key: two
-2017-02-10 16:19:13,520 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56685>: 'get two'
-2017-02-10 16:19:13,520 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'GET_SUCCESS two 55
-'
-2017-02-10 16:19:19,807 INFO  [Thread-1] root: ACTION: get
-2017-02-10 16:19:19,807 INFO  [Thread-1] root: Getting key: ali
-
-2017-02-10 16:19:19,807 INFO  [Thread-1] root: Getting key: ali
-2017-02-10 16:19:19,808 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:56685>: 'get ali'
-2017-02-10 16:19:19,808 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'GET_ERROR ali null
-'
-2017-02-10 16:20:16,384 INFO  [Thread-1] root: SEND 	<127.0.0.1:56685>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-02-10 16:20:16,384 ERROR [Thread-1] root: Error! Connection lost!
