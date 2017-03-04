@@ -1,6 +1,8 @@
 package app_kvServer;
 
 
+
+import app_ECS.Ecs;
 import common.messages.KVMessage;
 import logger.LogSetup;
 import org.apache.log4j.Level;
@@ -10,9 +12,6 @@ import java.io.IOException;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-
 public class KVServer extends Thread implements KVServerListener {
 
     public static final String FIFO = "fifo";
@@ -129,6 +128,8 @@ public class KVServer extends Thread implements KVServerListener {
 	 * @param args contains the port number at args[0].
 	 */
 	public static void main(String[] args) {
+		Ecs ecs = new Ecs();
+		ecs.initService();
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
 			logger.error("LENGTH "+ args.length);
