@@ -1,1 +1,6 @@
-one 52
+one 45
+two 46
+three 47
+four 48
+five 49
+six 1000000

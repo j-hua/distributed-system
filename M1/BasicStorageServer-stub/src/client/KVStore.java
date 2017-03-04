@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.net.InetSocketAddress;
+import java.net.SocketTimeoutException;
 
 import app_kvServer.KVMessageStorage;
 import common.messages.KVMessage;
@@ -50,13 +51,12 @@ public class KVStore implements KVCommInterface {
 			output = clientSocket.getOutputStream();
 			connected = true;
 			TextMessage res = receiveMessage();
-		}catch (Exception e){
+		}catch (SocketTimeoutException e){
 			System.out.println("connection failed, please try again");
 			connected = false;
 		}
 
 	}
-
 
 
 	public boolean getConnected() {
