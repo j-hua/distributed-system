@@ -1,6 +1,7 @@
 package app_ECS;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,9 +38,21 @@ public class Ecs {
 
         ConsistentHashing.HashedServer hashedServer = consistentHashing.get("one");
         ConsistentHashing.HashedServer hashedServer1 = consistentHashing.get("two");
+        ConsistentHashing.HashedServer hashedServer2 = consistentHashing.get("three");
+        ConsistentHashing.HashedServer hashedServer3 = consistentHashing.get("four");
+        ConsistentHashing.HashedServer hashedServer4 = consistentHashing.get("five");
 
-        System.out.println(hashedServer.mHashedKeys.toString() +" "+hashedServer.mIpAndPort);
-        System.out.println(hashedServer1.mHashedKeys.toString() +" "+hashedServer1.mIpAndPort);
+
+
+
+        System.out.println(Arrays.toString(hashedServer.mHashedKeys) +" "+hashedServer.mIpAndPort);
+        System.out.println(Arrays.toString(hashedServer1.mHashedKeys) +" "+hashedServer1.mIpAndPort);
+        System.out.println(Arrays.toString(hashedServer2.mHashedKeys) +" "+hashedServer2.mIpAndPort);
+        System.out.println(Arrays.toString(hashedServer3.mHashedKeys) +" "+hashedServer3.mIpAndPort);
+        System.out.println(Arrays.toString(hashedServer4.mHashedKeys) +" "+hashedServer4.mIpAndPort);
+
+        System.out.println(consistentHashing.circle.keySet().toString());
+
 
     }
 

@@ -2,6 +2,7 @@ package app_ECS;
 
 import org.omg.PortableInterceptor.INACTIVE;
 
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,18 +22,38 @@ public class ConsistentHashing {
         for (String node : nodes) {
             add(node);
         }
+
     }
 
 
     /**
      * Add a server to the circle
-     * @param node IP + Port No.
+     * @param ipAndPort IP + Port No.
      */
-    public void add(String node) {
+    public void add(String ipAndPort) {
         for (int i = 0; i < numberOfReplicas; i++) {
-            String hashString = node.replaceAll("\\s","");
-            circle.put(hashFunction(hashString + i), new HashedServer(node));
+            String hashString = ipAndPort.replaceAll("\\s","");
+            int hash = hashFunction(hashString + i);
+            circle.put(hash, new HashedServer(ipAndPort));
         }
+
+        for (int keys: circle.keySet()){
+            storeRanges(keys);
+        }
+    }
+
+    public void storeRanges(int hash){
+        SortedMap<Integer,HashedServer> headMap = circle.headMap(hash);
+
+        //if the head map is empty your range is from the last existing key to the first
+
+       int startHash = headMap.isEmpty() ? circle.lastKey() : headMap.lastKey();
+
+        // endHash is it self
+
+        HashedServer currentServer = circle.get(hash);
+        currentServer.mHashedKeys[0] = startHash;
+        currentServer.mHashedKeys[1] = hash;
     }
 
     /**
@@ -57,17 +78,15 @@ public class ConsistentHashing {
             return null;
         }
         int hash = hashFunction(key);
-        int serverhash = 0;
         if (!circle.containsKey(hash)) {
 
             SortedMap<Integer, HashedServer> tailMap = circle.tailMap(hash);
 
-            serverhash = tailMap.isEmpty() ? circle.firstKey() : tailMap.firstKey();
-
-            //store the list of hashed key values the server is responsible for
-            circle.get(serverhash).addHash(hash);
+            hash = tailMap.isEmpty() ? circle.firstKey() : tailMap.firstKey();
         }
-        return circle.get(serverhash);
+
+        return circle.get(hash);
+
     }
 
 
@@ -100,22 +119,22 @@ public class ConsistentHashing {
     }
 
     class HashedServer {
-        List<Integer> mHashedKeys;
+        int[] mHashedKeys;
         String mIpAndPort;
 
         HashedServer(String ipAndPort){
-            mHashedKeys = new ArrayList<>();
+            mHashedKeys = new int[2];
             mIpAndPort = ipAndPort;
         }
 
-        boolean addHash (Integer hashValue){
-            if (!mHashedKeys.contains(hashValue)){
-                mHashedKeys.add(hashValue);
-                return true;
-            }else{
-                return false;
-            }
-        }
+//        boolean addHash (Integer hashValue){
+//            if (!mHashedKeys.contains(hashValue)){
+//                mHashedKeys.add(hashValue);
+//                return true;
+//            }else{
+//                return false;
+//            }
+//        }
 
     }
 }
