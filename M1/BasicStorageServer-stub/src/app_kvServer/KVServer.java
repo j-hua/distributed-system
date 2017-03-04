@@ -45,7 +45,6 @@ public class KVServer extends Thread implements KVServerListener {
         this.port = port;
        	mStorage = new storageServer(strategy.toUpperCase(), cacheSize);
 	}
-
     /**
      * Initializes and starts the server.
      * Loops until the the server should be closed.

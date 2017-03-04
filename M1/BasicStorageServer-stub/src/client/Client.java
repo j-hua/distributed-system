@@ -13,17 +13,25 @@ import org.apache.log4j.Logger;
 
 import client.ClientSocketListener.SocketStatus;
 
+
 public class Client extends Thread{
 
 	private Set<ClientSocketListener> listeners;
 	private boolean running;
 	private KVStore kvStore;
+	private static Logger logger = Logger.getRootLogger();
 
 	public Client(String address, int port) throws UnknownHostException, IOException {
 		
 		kvStore = new KVStore(address, port);
-		System.out.println("Client created");
-		setRunning(false);
+		try{
+			kvStore.connect();
+			setRunning(kvStore.getConnected());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		logger.info("Connection established");
 	}
 
 	/**
@@ -31,13 +39,11 @@ public class Client extends Thread{
 	 * Loops until the connection is closed or aborted by the client.
 	 */
 	public void run() {
-		System.out.println("Client thread starts running");
-		setRunning(true);
+		logger.info("Client thread starts running");
+
 
 		try {
-			kvStore.connect();
-		//	output = kvStore.getSocket().getOutputStream();
-		//	input = kvStore.getSocket().getInputStream();
+
 /*
 			while(isRunning()) {
 				try {
@@ -60,15 +66,14 @@ public class Client extends Thread{
 					}
 				}				
 			}*/
-		} catch (IOException ioe) {
-		//	logger.error("Connection could not be established!");
-			
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//if(isRunning()) {
-			//	closeConnection();
-			//}
+			/*if(isRunning()) try {
+				disconnect();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}*/
 		}
 	}
 
@@ -83,19 +88,15 @@ public class Client extends Thread{
 	
 	/**
 	 * Method sends a TextMessage using this socket.
-	 * @param msg the message that is to be sent.
 	 * @throws IOException some I/O error regarding the output stream
 	 */
 	public void putMessage(String key, String value) throws Exception {
 		KVMessage kvm = kvStore.put(key,value);
 
-		System.out.println(kvm.getStatus().toString());
-
 	}
 
 	public void getMessage(String key) throws Exception {
 		KVMessage kvm = kvStore.get(key);
-			System.out.println(kvm.getStatus().toString());
 	}
 
 	public void disconnect() throws IOException {

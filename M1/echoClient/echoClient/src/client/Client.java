@@ -111,8 +111,11 @@ public class Client extends Thread {
 	public void addListener(ClientSocketListener listener){
 		listeners.add(listener);
 	}
+<<<<<<< HEAD
+=======
 	
-v
+>>>>>>> d1faf78ef9681d23bdd4f9c7fc919958bcf32ff6
+
 	
 	
 	private TextMessage receiveMessage() throws IOException {
