@@ -65,19 +65,18 @@ public class Client extends Thread{
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
 
+            //update metadata
+            mData.updateMetadata(kvm.getValue());
+
+            //lookup
+            Address address = mData.lookup(key);
+
             //close the wrong server
             kvStore.disconnect();
 
-            //update metadata
-
-            //lookup
-            String newAddr;
-            int newPort;
-
-          //  kvStore = new KVStore(newAddr,newPort);
+            //retry
             kvm = kvStore.put(key,value);
         }
-
     }
 
     public void getMessage(String key) throws Exception {
@@ -85,16 +84,16 @@ public class Client extends Thread{
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
 
+            //update metadata
+            mData.updateMetadata(kvm.getValue());
+
+            //lookup
+            Address address = mData.lookup(key);
+
             //close the wrong server
             kvStore.disconnect();
 
-            //update metadata
-
-            //lookup
-            String newAddr;
-            int newPort;
-
-        //    kvStore = new KVStore(newAddr,newPort);
+            //retry
             kvm = kvStore.get(key);
         }
     }

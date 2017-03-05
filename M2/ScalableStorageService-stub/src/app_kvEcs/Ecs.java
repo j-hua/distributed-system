@@ -1,6 +1,5 @@
-package app_ECS;
+package app_kvEcs;
 
-import com.jcraft.jsch.*;
 import com.sun.org.apache.bcel.internal.generic.LUSHR;
 
 import java.awt.*;
@@ -21,7 +20,6 @@ public class Ecs {
     private BufferedReader stdin;
     private boolean stop = false;
     String privateKey = "/homes/h/haquewar/.ssh/id_rsa";
-    String command = "set|grep ssh";
 
 
     public void run() {
@@ -69,42 +67,90 @@ public class Ecs {
         }
     }
     public void initService(int numberOfNodes){
-
-        int port = 22;
-        String user = "haquewar";
-        String host = "127.0.0.1";
-
-        ssh();
+        readFile();
+        if (numberOfNodes<mIpAndPorts.size()){
+            for (int i=0; i<numberOfNodes; i++) {
+                String[] elements= mIpAndPorts.get(i).split(" ");
+                String ip = elements[0];
+                String port =elements[1];
+                System.out.println("ip passed in: "+ip+ " port: "+port);
+                ssh(ip,port);
+            }
+        }else{
+            System.out.println("Number of nodes entered is larger that ones available");
+        }
 
     }
 
-    public void ssh(){
-        String knownHosts = "/etc/ssh/ssh_known_hosts";
-        Process proc;
+    public void ssh(String ipAddress, String port){
+
+        Process proc = null;
         String script = "src/app_ECS/script.sh";
-        String[] cmd = {"sh", script};
+        String[] cmd = {"sh", script, port,ipAddress,"40000"};
 
         Runtime run = 	Runtime.getRuntime();
         try {
-            proc = run.exec(script);
+            proc = run.exec(cmd);
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if (proc!=null){
+                System.out.println("killing process!");
+                proc.destroy();
+            }
         }
-
-
     }
     private void printError(String error){
         System.out.println(PROMPT + "Error! " +  error);
     }
 
-    /**
-     * Entry point
-     * @param args
-     */
-    public static void main (String[] args){
-        Ecs ecs= new Ecs();
-        ecs.run();
+    void readFile() {
+
+        BufferedReader br = null;
+        FileReader fr = null;
+        String FILENAME = "src/app_kvEcs/ecs.conf";
+        mIpAndPorts = new ArrayList<>();
+
+        try {
+
+            fr = new FileReader(FILENAME);
+            br = new BufferedReader(fr);
+
+            String sCurrentLine;
+
+            br = new BufferedReader(new FileReader(FILENAME));
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
+                String[] splitString = sCurrentLine.split(" ");
+                String ipAddress = splitString[1].trim();
+                String port = splitString[2].trim();
+                mIpAndPorts.add(ipAddress+" "+port);
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (br != null)
+                    br.close();
+
+                if (fr != null)
+                    fr.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+
+        }
     }
+
 
     //test the consistent hashing;
     public void tester(){
@@ -115,7 +161,7 @@ public class Ecs {
         String node5 =	"127.0.0.1 	50004";
         String node6 =	"127.0.0.1 	50005";
         String node7 =	"127.0.0.1 	50006";
-                List<String> initiation = new ArrayList<>();
+        List<String> initiation = new ArrayList<>();
         initiation.add(node1);
         initiation.add(node2);
         initiation.add(node3);
@@ -170,5 +216,8 @@ public class Ecs {
         System.out.println(consistentHashing.circle.keySet().toString());
     }
 
+
+
 }
+
 
