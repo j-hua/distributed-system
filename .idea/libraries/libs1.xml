@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/M1/echoClient/echoClient/libs/log4j-1.2.17.jar!/" />
       <root url="jar://$PROJECT_DIR$/M1/echoClient/echoClient/libs/junit-4.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/M1/BasicStorageServer-stub/libs/jsch-0.1.50.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
