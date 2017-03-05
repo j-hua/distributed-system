@@ -15,6 +15,7 @@ import java.util.List;
 
 import app_kvServer.storageServer;
 
+
 public class InteractionTest extends TestCase {
 
 	private KVStore kvClient;
@@ -106,20 +107,19 @@ public class InteractionTest extends TestCase {
 	
 	@Test
 	public void testGet() {
+		String key = "foo";
+		String value = "bar";
+		KVMessage response = null;
+		Exception ex = null;
 
-		 String key = "foo";
-		 String value = "bar";
-		 KVMessage response = null;
-		 Exception ex = null;
-
-		 	try {
-		 		kvClient.put(key, value);
-		 		response = kvClient.get(key);
-		 	} catch (Exception e) {
-		 		ex = e;
-		 	}
+			try {
+				kvClient.put(key, value);
+				response = kvClient.get(key);
+			} catch (Exception e) {
+				ex = e;
+			}
 		
-		 assertTrue(ex == null && response.getValue().equals("bar"));
+		assertTrue(ex == null && response.getValue().equals("bar"));
 	}
 
 	@Test

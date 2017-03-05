@@ -260,15 +260,17 @@ public class KVClient implements ClientSocketListener{
      * @param args contains the port number at args[0].
      */
     public static void main(String[] args) {
-    	try {
-			new LogSetup("logs/client.log", Level.OFF);
-			KVClient app = new KVClient();
-			app.run();
-		} catch (IOException e) {
-			System.out.println("Error! Unable to initialize logger!");
-			e.printStackTrace();
-			System.exit(1);
-		}
+//    	try {
+//			new LogSetup("logs/client.log", Level.OFF);
+//			KVClient app = new KVClient();
+//			app.run();
+//		} catch (IOException e) {
+//			System.out.println("Error! Unable to initialize logger!");
+//			e.printStackTrace();
+//			System.exit(1);
+//		}
+
+		System.out.println("SSH WORKED!!");
     }
 
 

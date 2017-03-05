@@ -14,7 +14,6 @@ import logger.LogSetup;
 import client.*;
 //import client.ClientSocketListener;
 
-
 public class KVClient implements ClientSocketListener{
     private static Logger logger = Logger.getRootLogger();
 	private static final String PROMPT = "KVClient> ";
@@ -271,5 +270,3 @@ public class KVClient implements ClientSocketListener{
 		}
     }
 
-
-}

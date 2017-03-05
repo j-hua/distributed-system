@@ -1,6 +1,7 @@
 package app_kvServer;
 
 
+<<<<<<< HEAD
 import common.messages.KVMessage;
 import common.messages.KVAdminMessage;
 import logger.LogSetup;
@@ -42,8 +43,9 @@ public class KVServer extends Thread {
 	private storageServer mStorage = null;
 	private List<String> metadata = new ArrayList<String>();
 
-	/**
-	 * Start KV Server at given port
+	
+public class KVServer  {
+	 /* Start KV Server at given port
 	 * @param port given port for storage server to operate
 	 * @param cacheSize specifies how many key-value pairs the server is allowed 
 	 *           to keep in-memory
@@ -181,5 +183,4 @@ public class KVServer extends Thread {
 	public storageServer getStorageServer(){
 		return mStorage;
 	}
-
 }
