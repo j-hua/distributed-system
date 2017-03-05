@@ -1,8 +1,5 @@
 package client;
-
-import com.sun.xml.internal.ws.api.message.Packet;
 import common.messages.KVMessage;
-import javafx.stage.StageStyle;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

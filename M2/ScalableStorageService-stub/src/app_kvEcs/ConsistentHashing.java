@@ -121,9 +121,9 @@ public class ConsistentHashing {
 
     }
 
-    class HashedServer {
-        int[] mHashedKeys;
-        String mIpAndPort;
+    public class HashedServer {
+        public int[] mHashedKeys;
+        public String mIpAndPort;
 
         HashedServer(String ipAndPort){
             mHashedKeys = new int[2];

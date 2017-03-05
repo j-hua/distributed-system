@@ -14,11 +14,14 @@ public class storageServer {
 
     private  String replacementPolicy = null;
     private int limit = 0;
+    private int serverPort = -1;
+
     private static Logger logger = Logger.getRootLogger();
 
-    storageServer(String replacementPolicy, int limit){
+    storageServer(String replacementPolicy, int limit, int serverPort){
         this.replacementPolicy = replacementPolicy;
         this.limit = limit;
+        this.serverPort = serverPort;
     }
 
     public synchronized KVMessage put(String key, String value) throws Exception {
@@ -26,17 +29,17 @@ public class storageServer {
 
         try {
             //writer for the original file
-            FileWriter write = new FileWriter("./storage.txt", true);
+            FileWriter write = new FileWriter("./data/storage"+serverPort+".txt", true);
             PrintWriter printWrite = new PrintWriter(write);
             //writer for a temp file that could replace the original file
-            FileWriter writeTemp = new FileWriter("./temp.txt", true);
+            FileWriter writeTemp = new FileWriter("./data/temp"+serverPort+".txt", true);
             PrintWriter printTemp = new PrintWriter(writeTemp);
 
             KVMessage.StatusType status = null;
 
             if(value != null){
                 //read file for this key, maybe its an update
-                File inputFile = new File("./storage.txt");
+                File inputFile = new File("./data/storage"+serverPort+".txt");
                 BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
                 String line;
@@ -56,7 +59,7 @@ public class storageServer {
                 }
 
                 printTemp.close();
-                File temp = new File("./temp.txt");
+                File temp = new File("./data/temp"+serverPort+".txt");
 
                 if(!replaced){
                     //delete temp file
@@ -199,7 +202,7 @@ public class storageServer {
 
             } else {
                 //delete the corresponding key value pair in the file
-                File inputFile = new File("./storage.txt");
+                File inputFile = new File("./data/storage"+serverPort+".txt");
                 BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
                 String line;
@@ -217,7 +220,7 @@ public class storageServer {
                     }
                 }
 
-                File temp = new File("./temp.txt");
+                File temp = new File("./data/temp"+serverPort+".txt");
 
                 if(!deleted){
                     //delete temp file
@@ -264,7 +267,7 @@ public class storageServer {
 
         //get the value for the corresponding key if the key exists in file
         try {
-            File inputFile = new File("./storage.txt");
+            File inputFile = new File("./data/storage"+serverPort+".txt");
             BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
             String line;
