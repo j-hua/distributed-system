@@ -1,0 +1,134 @@
+package app_ECS;
+
+import org.omg.PortableInterceptor.INACTIVE;
+
+import java.lang.reflect.Array;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+
+/**
+ * Created by warefhaque on 3/3/17.
+ */
+public class ConsistentHashing {
+    private int numberOfReplicas;
+    public SortedMap<String, HashedServer> circle = new TreeMap<Integer, HashedServer>();
+
+    ConsistentHashing(int numberOfReplicas, List<String> nodes) {
+
+        this.numberOfReplicas = numberOfReplicas;
+
+        for (String node : nodes) {
+            add(node);
+        }
+
+    }
+
+
+    /**
+     * Add a server to the circle
+     * @param ipAndPort IP + Port No.
+     */
+    public void add(String ipAndPort) {
+        for (int i = 0; i < numberOfReplicas; i++) {
+            String hashString = ipAndPort.replaceAll("\\s","");
+            int hash = hashFunction(hashString + i);
+            circle.put(hash, new HashedServer(ipAndPort));
+        }
+
+        for (int keys: circle.keySet()){
+            storeRanges(keys);
+        }
+    }
+
+    public void storeRanges(int hash){
+        SortedMap<Integer,HashedServer> headMap = circle.headMap(hash);
+
+        //if the head map is empty your range is from the last existing key to the first
+
+       int startHash = headMap.isEmpty() ? circle.lastKey() : headMap.lastKey();
+
+        // endHash is it self
+
+        HashedServer currentServer = circle.get(hash);
+        currentServer.mHashedKeys[0] = startHash;
+        currentServer.mHashedKeys[1] = hash;
+    }
+
+    /**
+     * Removes a node from the cirlce
+     * @param node IP + Port
+     */
+    public void remove(String node) {
+        for (int i = 0; i < numberOfReplicas; i++) {
+            String hashString = node.replaceAll("\\s","");
+            circle.remove(hashFunction(hashString + i));
+        }
+        for (int keys: circle.keySet()){
+            storeRanges(keys);
+        }
+    }
+
+    /**
+     * Gets a string for the IP ADDRESS + PORT of the server
+     * associated with the KEY provided
+     * @param key
+     * @return
+     */
+    public HashedServer get(String key) {
+        if (circle.isEmpty()) {
+            return null;
+        }
+        int hash = hashFunction(key);
+        if (!circle.containsKey(hash)) {
+
+            SortedMap<Integer, HashedServer> tailMap = circle.tailMap(hash);
+
+            hash = tailMap.isEmpty() ? circle.firstKey() : tailMap.firstKey();
+        }
+
+        return circle.get(hash);
+
+    }
+
+
+    /**
+     * Hashes a string value and returns an integer
+     * to be put on the circle
+     * @param ipAndPort IP + Port number of a server
+     * @return Hashed Value
+     */
+    public int hashFunction(String ipAndPort){
+
+        try {
+            MessageDigest md = null;
+            md = MessageDigest.getInstance("MD5");
+            md.update(ipAndPort.getBytes());
+            byte[] digest = md.digest();
+            int integer = new BigInteger(1, digest).intValue();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            System.out.println("original:" + ipAndPort);
+            System.out.println("digested(hex):" + Integer.toString(integer));
+            return integer;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+    class HashedServer {
+        int[] mHashedKeys;
+        String mIpAndPort;
+
+        HashedServer(String ipAndPort){
+            mHashedKeys = new int[2];
+            mIpAndPort = ipAndPort;
+        }
+
+    }
+}

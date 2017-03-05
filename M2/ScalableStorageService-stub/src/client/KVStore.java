@@ -1,16 +1,17 @@
 package client;
 
-
-import com.sun.xml.internal.ws.client.ClientSchemaValidationTube;
-import common.messages.KVMessage;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.net.InetSocketAddress;
 import java.net.SocketTimeoutException;
 
+import app_kvServer.KVMessageStorage;
+import common.messages.KVMessage;
+
+import javax.xml.soap.Text;
 import org.apache.log4j.Logger;
 
 public class KVStore implements KVCommInterface {
@@ -24,7 +25,7 @@ public class KVStore implements KVCommInterface {
 	private static final int BUFFER_SIZE = 1024;
 	private static final int DROP_SIZE = 1024*BUFFER_SIZE;
 	private boolean connected;
-	
+
 	/**
 	 * Initialize KVStore with address and port of KVServer
 	 * @param address the address of the KVServer
@@ -45,6 +46,10 @@ public class KVStore implements KVCommInterface {
 
 	public void setConnected(boolean c){
 		connected = c;
+		this.clientSocket = null;
+		input = null;
+		output = null;
+		connected = false;
 	}
 	
 	@Override
@@ -64,6 +69,8 @@ public class KVStore implements KVCommInterface {
 			System.out.println("Connection failed, please try again");
 			logger.info("time out when establishing socket " + kvAddress + ":" + kvPort);
 			setConnected(false);
+			connected = true;
+			TextMessage res = receiveMessage();
 		}
 	}
 
@@ -87,7 +94,6 @@ public class KVStore implements KVCommInterface {
 
 	@Override
 	public KVMessage put(String key, String value) throws Exception {
-		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		TextMessage msg = null;
 		KVMessageStorage kvms = null;
@@ -145,16 +151,22 @@ public class KVStore implements KVCommInterface {
 				System.out.println("STATUS: " + tokens[0].trim());
 				kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
 			}
+			String[] tokens = res.getMsg().split("\\s+",3);
+			System.out.println("KEY: " + key.trim());
+			System.out.println("VALUE: " + value.trim());
+			System.out.println("STATUS: " + tokens[0].trim());
+			kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
+
 		}
 
 
 		return kvms;
-
 	}
 
 	@Override
 	public KVMessage get(String key) throws Exception {
 		// TODO Auto-generated method stub
+
 
 		KVMessageStorage kvms = null;
 		StringBuilder sb = new StringBuilder();
@@ -178,6 +190,7 @@ public class KVStore implements KVCommInterface {
 		System.out.println("VALUE: " + tokens[2]);
 		System.out.println("STATUS: " +  tokens[0]);
 		return kvms;
+
 	}
 
 	/**

@@ -129,7 +129,7 @@ public class KVServer extends Thread implements KVServerListener {
 	 */
 	public static void main(String[] args) {
 		Ecs ecs = new Ecs();
-		ecs.initService();
+		ecs.initService(3);
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
 			logger.error("LENGTH "+ args.length);

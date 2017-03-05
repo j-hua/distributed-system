@@ -70,7 +70,7 @@ public class Client extends Thread{
             String newAddr;
             int newPort;
 
-            kvStore = new KVStore(newAddr,newPort);
+          //  kvStore = new KVStore(newAddr,newPort);
             kvm = kvStore.put(key,value);
         }
 
@@ -86,7 +86,7 @@ public class Client extends Thread{
             String newAddr;
             int newPort;
 
-            kvStore = new KVStore(newAddr,newPort);
+        //    kvStore = new KVStore(newAddr,newPort);
             kvm = kvStore.get(key);
         }
     }
@@ -95,6 +95,4 @@ public class Client extends Thread{
         kvStore.disconnect();
         setRunning(false);
     }
-
-
 }

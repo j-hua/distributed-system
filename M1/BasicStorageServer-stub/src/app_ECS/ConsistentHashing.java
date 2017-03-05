@@ -65,6 +65,9 @@ public class ConsistentHashing {
             String hashString = node.replaceAll("\\s","");
             circle.remove(hashFunction(hashString + i));
         }
+        for (int keys: circle.keySet()){
+            storeRanges(keys);
+        }
     }
 
     /**
@@ -126,15 +129,6 @@ public class ConsistentHashing {
             mHashedKeys = new int[2];
             mIpAndPort = ipAndPort;
         }
-
-//        boolean addHash (Integer hashValue){
-//            if (!mHashedKeys.contains(hashValue)){
-//                mHashedKeys.add(hashValue);
-//                return true;
-//            }else{
-//                return false;
-//            }
-//        }
 
     }
 }

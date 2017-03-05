@@ -11,3 +11,4 @@ public interface ClientSocketListener {
 
     public void handleStatus(SocketStatus status);
 }
+
