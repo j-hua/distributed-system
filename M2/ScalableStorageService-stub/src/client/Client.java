@@ -1,6 +1,5 @@
 package client;
 
-
 import common.messages.KVMessage;
 import org.apache.log4j.Logger;
 

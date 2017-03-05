@@ -122,7 +122,7 @@ public class ConsistentHashing {
     }
 
     public class HashedServer {
-        int[] mHashedKeys;
+        public int[] mHashedKeys;
         public String mIpAndPort;
 
         HashedServer(String ipAndPort){

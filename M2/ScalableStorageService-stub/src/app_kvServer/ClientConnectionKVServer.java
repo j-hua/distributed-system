@@ -189,22 +189,45 @@ public class ClientConnectionKVServer implements Runnable {
 		String[] messageArray = message.split(" ");
 		String status = "";
 
-		String incomingAddr = clientSocket.getInetAddress().getHostAddress();
-		int incomingPort = clientSocket.getPort();
-
 		String action = messageArray[0].trim();
 		logger.info("ACTION: " + action);
 
 		//Check if it is the ECS Server, or a client
-		if(incomingAddr.equals(kvServerListener.ecsAddr) && incomingPort == kvServerListener.ecsPort){
+		if(action.equals("ecs")){
 			//the request came from the ECS server
 			//check which method is being invoked by the ECS
+			action = messageArray[1].trim();
 			if(action.equals(KVServer.INIT)){
-				String[] mParams = message.split(" ", 3);
-				KVAdminMessage kvAM = kvServerListener.initKVServer(mParams[2].split(" "), Integer.parseInt(mParams[0].trim()), mParams[1].trim());
+				String[] mParams = message.split(" ", 4);
+				KVAdminMessage kvAM = kvServerListener.initKVServer(mParams[3].split(" "), Integer.parseInt(mParams[1].trim()), mParams[2].trim());
 				status = String.valueOf(kvAM.getStatus());
 			} else if(action.equals(KVServer.START)){
-
+				//start() method being invoked in the KVServer
+				KVAdminMessage kvAM = kvServerListener.start();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.STOP)){
+				//stop() method being invoked in the KVServer
+				KVAdminMessage kvAM = kvServerListener.stop();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.SHUTDOWN)){
+				//shutting down the server, this connection will be broken
+				kvServerListener.shutDown();
+				isOpen = false;
+				status = String.valueOf(KVAdminMessage.StatusType.SERVER_SHUTDOWN);
+			} else if(action.equals(KVServer.LOCKWRITE)){
+				//setting banWrite global variable to lock put operations
+				KVAdminMessage kvAM = kvServerListener.lockWrite();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.UNLOCKWRITE)){
+				//set the banWrite global variable to allow put operations
+				KVAdminMessage kvAM = kvServerListener.unLockWrite();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.MOVEDATA)){
+				//move the data from this server to the provided server
+				KVAdminMessage kvAM = kvServerListener.moveData();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.UPDATE)){
+				return null;
 			}
 
 			return status;
@@ -218,14 +241,18 @@ public class ClientConnectionKVServer implements Runnable {
 					if (messageArray.length>2 && action.equals(KVServer.PUT)){
 
 						if(kvServerListener.state == KVServer.SERVER_READY){
-							StringBuilder sb = new StringBuilder("");
-							for (int i = 2; i< messageArray.length; i++) {
+							if(kvServerListener.banWrite == KVServer.ALLOW_WRITE){
+								StringBuilder sb = new StringBuilder("");
+								for (int i = 2; i< messageArray.length; i++) {
 
-								sb.append(messageArray[i]).append(" ");
+									sb.append(messageArray[i]).append(" ");
+								}
+
+								KVMessage kvMessage = kvServerListener.put(key, sb.toString().trim() );
+								status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
+							} else {
+								status = String.valueOf(KVMessage.StatusType.SERVER_WRITE_LOCK)+" null null";
 							}
-
-							KVMessage kvMessage = kvServerListener.put(key, sb.toString().trim() );
-							status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
 						} else {
 							status = String.valueOf(KVMessage.StatusType.SERVER_STOPPED)+" null null";
 						}
@@ -239,10 +266,12 @@ public class ClientConnectionKVServer implements Runnable {
 								status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
 
 							} else if(action.equals(KVServer.PUT)){
-								//
-								KVMessage kvMessage = kvServerListener.put(key, null);
-								status = String.valueOf(kvMessage.getStatus() + " " + kvMessage.getKey());
-
+								if(kvServerListener.banWrite == KVServer.ALLOW_WRITE){
+									KVMessage kvMessage = kvServerListener.put(key, null);
+									status = String.valueOf(kvMessage.getStatus() + " " + kvMessage.getKey());
+								} else {
+									status = String.valueOf(KVMessage.StatusType.SERVER_WRITE_LOCK)+" null null";
+								}
 							}
 						}
 						else{
@@ -251,7 +280,7 @@ public class ClientConnectionKVServer implements Runnable {
 							
 					}else{
 	//					logger.error("message array length not greater than or equal to 2.");
-						return FORMAT_ERROR;
+						return action;
 					}
 
 

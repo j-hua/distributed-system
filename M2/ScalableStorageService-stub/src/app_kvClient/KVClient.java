@@ -5,18 +5,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 
-import client.*;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import logger.LogSetup;
 
+
+import client.*;
+//import client.ClientSocketListener;
+
 public class KVClient implements ClientSocketListener {
     private static Logger logger = Logger.getRootLogger();
     private static final String PROMPT = "KVClient> ";
     private BufferedReader stdin;
+    private Client client = null;
     private boolean stop = false;
-    private Client client;
+
     private String serverAddress;
     private int serverPort;
 
@@ -269,6 +273,7 @@ public class KVClient implements ClientSocketListener {
             System.exit(1);
         }
     }
+
 
     /**
      * customized exception for request after disconnected
