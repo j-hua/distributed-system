@@ -15,7 +15,7 @@ public class ConsistentHashing {
     private int numberOfReplicas;
     public SortedMap<Integer, HashedServer> circle = new TreeMap<Integer, HashedServer>();
 
-    ConsistentHashing(int numberOfReplicas, List<String> nodes) {
+    public ConsistentHashing(int numberOfReplicas, List<String> nodes) {
 
         this.numberOfReplicas = numberOfReplicas;
 
@@ -121,9 +121,9 @@ public class ConsistentHashing {
 
     }
 
-    class HashedServer {
+    public class HashedServer {
         int[] mHashedKeys;
-        String mIpAndPort;
+        public String mIpAndPort;
 
         HashedServer(String ipAndPort){
             mHashedKeys = new int[2];
