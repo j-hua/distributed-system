@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/libs/junit-4.10.jar!/" />
       <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/libs/log4j-1.2.17.jar!/" />
+=======
+      <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/libs/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/libs/junit-4.10.jar!/" />
+>>>>>>> b92b31307675475ed7213792e37d8e7be94db7dc
     </CLASSES>
     <JAVADOC />
     <SOURCES />

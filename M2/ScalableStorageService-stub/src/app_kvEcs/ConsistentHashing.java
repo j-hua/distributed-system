@@ -1,6 +1,7 @@
 package app_ECS;
 
 import org.omg.PortableInterceptor.INACTIVE;
+import testing.InteractionTest;
 
 import java.lang.reflect.Array;
 import java.math.BigInteger;
@@ -13,7 +14,7 @@ import java.util.*;
  */
 public class ConsistentHashing {
     private int numberOfReplicas;
-    public SortedMap<String, HashedServer> circle = new TreeMap<Integer, HashedServer>();
+    public SortedMap<Integer, HashedServer> circle = new TreeMap<Integer, HashedServer>();
 
     ConsistentHashing(int numberOfReplicas, List<String> nodes) {
 

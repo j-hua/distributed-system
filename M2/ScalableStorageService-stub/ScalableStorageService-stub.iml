@@ -7,7 +7,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="library" name="ScalableStorageService-stub" level="project" />
+=======
+    <orderEntry type="library" name="ScalableStorageService-stub" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
+>>>>>>> b92b31307675475ed7213792e37d8e7be94db7dc
   </component>
 </module>
