@@ -61,9 +61,6 @@ public class KVStore implements KVCommInterface {
 			input = clientSocket.getInputStream();
 			output = clientSocket.getOutputStream();
 			setConnected(true);
-
-			//receive KVMessage from Server and update meatadata
-
 			logger.info("socket established " + kvAddress + ":" + kvPort);
 		}catch (SocketTimeoutException e){
 			System.out.println("Connection failed, please try again");
@@ -130,6 +127,7 @@ public class KVStore implements KVCommInterface {
 				kvms = new KVMessageStorage(null,null, StatusTypeLookup("PUT_ERROR"));
 				return kvms;
 			}
+
 			msg = new TextMessage(sb.toString());
 			sendMessage(new TextMessage(sb.toString()));
 			TextMessage res = receiveMessage();
@@ -138,8 +136,6 @@ public class KVStore implements KVCommInterface {
 
 			if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
 				kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
-				//update Metadata
-				//retry
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
 				kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
@@ -151,12 +147,6 @@ public class KVStore implements KVCommInterface {
 				System.out.println("STATUS: " + tokens[0].trim());
 				kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
 			}
-			String[] tokens = res.getMsg().split("\\s+",3);
-			System.out.println("KEY: " + key.trim());
-			System.out.println("VALUE: " + value.trim());
-			System.out.println("STATUS: " + tokens[0].trim());
-			kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
-
 		}
 
 
@@ -181,14 +171,24 @@ public class KVStore implements KVCommInterface {
 		}
 
 		sendMessage(new TextMessage(sb.toString()));
-
 		TextMessage res = receiveMessage();
 
-		String[] tokens = res.getMsg().split("\\s+",3);
-		kvms = new KVMessageStorage(tokens[1],tokens[2], StatusTypeLookup(tokens[0]));
-		System.out.println("KEY: " + tokens[1]);
-		System.out.println("VALUE: " + tokens[2]);
-		System.out.println("STATUS: " +  tokens[0]);
+		String[] arr = res.getMsg().split("\\s+",2);
+
+		if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+			kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+		}else{
+			String[] tokens = res.getMsg().split("\\s+",3);
+			kvms = new KVMessageStorage(tokens[1],tokens[2], StatusTypeLookup(tokens[0]));
+			System.out.println("KEY: " + tokens[1]);
+			System.out.println("VALUE: " + tokens[2]);
+			System.out.println("STATUS: " +  tokens[0]);
+		}
+
 		return kvms;
 
 	}

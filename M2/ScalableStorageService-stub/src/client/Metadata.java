@@ -1,41 +1,42 @@
 package client;
 
+import app_kvEcs.ConsistentHashing;
+
+
 import java.util.*;
 
 /**
  * Created by JHUA on 2017-03-04.
  */
+
 public class Metadata {
-    NavigableMap<String, MapValue> mList = new TreeMap<>();
+    List<String> list = new ArrayList<>();
+    ConsistentHashing consistentHashing = new ConsistentHashing(1, list);
+
+
+    //NavigableMap<Integer, MapValue> mList = new TreeMap<>();
 
     public Metadata(){}
 
-    public void add(String k, MapValue v){
-        mList.put(k,v);
+    public void add(String entry){
+        consistentHashing.add(entry);
     }
 
     /**
      * lookup function for metadata
      * if entry does not exist, returns null
      * otherwise return object that contains hashEnd, ip address and port number
-     * @param hashedKey
+     * @param key
      * @return
      */
-    public MapValue lookup(String hashedKey){
+    public Address lookup(String key){
 
-        /**
-         * floorEntry(K key):
-         * returns a key-value mapping entry which is associated with the greatest key less than or equal to the given key.
-         */
-         Map.Entry<String,MapValue> floorEntry = mList.floorEntry(hashedKey);
-         String floorKey = mList.floorKey(hashedKey);
+        ConsistentHashing.HashedServer result = consistentHashing.get(key);
 
-         if(floorEntry.getValue().getHashEnd().compareTo(hashedKey) >= 0 ){
-            return floorEntry.getValue();
-         }else{
-            //Entry not found
-            return null;
-         }
+        String[] arr = result.mIpAndPort.split("\\s+");
+        Address address = new Address(arr[0],Integer.parseInt(arr[1]));
+
+        return  address;
     }
 
 
@@ -45,20 +46,15 @@ public class Metadata {
      * @param md
      */
     public void updateMetadata(String md){
+
+        consistentHashing.circle.clear();
+
         String[] entry = md.split("\\s+");
 
         int i;
         for(i=0;i<entry.length;i++){
             String[] element = entry[i].split(",");
-
-            //if hashStart > hashEnd
-            if(element[0].compareTo(element[1]) > 0) {
-                add(element[0], new MapValue("ffffffffffffffff", element[2], Integer.parseInt(element[3])));
-                add("0000000000000000", new MapValue(element[1], element[2], Integer.parseInt(element[3])));
-            }else{
-                add(element[0],new MapValue(element[1],element[2],Integer.parseInt(element[3])));
-            }
-
+            add(element[2] + " " + element[3]);
         }
 
     }
