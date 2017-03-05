@@ -1,13 +1,10 @@
 package client;
-
-import javafx.scene.control.cell.MapValueFactory;
-import org.omg.PortableInterceptor.ServerRequestInfo;
-
 import java.util.*;
 
 /**
  * Created by JHUA on 2017-03-04.
  */
+
 public class Metadata {
     NavigableMap<String, MapValue> mList = new TreeMap<>();
 

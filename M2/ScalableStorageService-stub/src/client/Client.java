@@ -64,6 +64,10 @@ public class Client extends Thread{
         KVMessage kvm = kvStore.put(key,value);
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+
+            //close the wrong server
+            kvStore.disconnect();
+
             //update metadata
 
             //lookup
@@ -80,6 +84,10 @@ public class Client extends Thread{
         KVMessage kvm = kvStore.get(key);
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+
+            //close the wrong server
+            kvStore.disconnect();
+
             //update metadata
 
             //lookup
