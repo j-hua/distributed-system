@@ -1,15 +1,9 @@
 <component name="libraryTable">
   <library name="ScalableStorageService-stub">
     <CLASSES>
-<<<<<<< HEAD
       <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-client.jar!/" />
       <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-server.jar!/" />
       <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-ecs.jar!/" />
-=======
-      <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-server.jar!/" />
-      <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-ecs.jar!/" />
-      <root url="jar://$PROJECT_DIR$/ScalableStorageService-stub/ms3-client.jar!/" />
->>>>>>> b92b31307675475ed7213792e37d8e7be94db7dc
     </CLASSES>
     <JAVADOC />
     <SOURCES />

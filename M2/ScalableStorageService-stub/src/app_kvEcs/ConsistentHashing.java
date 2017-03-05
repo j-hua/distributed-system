@@ -1,7 +1,6 @@
-package app_ECS;
+package app_kvEcs;
 
 import org.omg.PortableInterceptor.INACTIVE;
-import testing.InteractionTest;
 
 import java.lang.reflect.Array;
 import java.math.BigInteger;
