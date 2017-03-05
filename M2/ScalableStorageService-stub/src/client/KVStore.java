@@ -3,10 +3,7 @@ package client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.net.InetSocketAddress;
-import java.net.SocketTimeoutException;
+import java.net.*;
 
 import app_kvServer.KVMessageStorage;
 import common.messages.KVMessage;
@@ -46,10 +43,6 @@ public class KVStore implements KVCommInterface {
 
 	public void setConnected(boolean c){
 		connected = c;
-		this.clientSocket = null;
-		input = null;
-		output = null;
-		connected = false;
 	}
 	
 	@Override
@@ -57,17 +50,22 @@ public class KVStore implements KVCommInterface {
 		// TODO Auto-generated method stub
 		try{
 			this.clientSocket = new Socket();
-			this.clientSocket.connect(new InetSocketAddress(kvAddress,kvPort),100);
+			this.clientSocket.connect(new InetSocketAddress(kvAddress,kvPort),1000);
 			input = clientSocket.getInputStream();
 			output = clientSocket.getOutputStream();
 			setConnected(true);
 			logger.info("socket established " + kvAddress + ":" + kvPort);
+			TextMessage res = receiveMessage();
 		}catch (SocketTimeoutException e){
 			System.out.println("Connection failed, please try again");
 			logger.info("time out when establishing socket " + kvAddress + ":" + kvPort);
 			setConnected(false);
-			connected = true;
-			TextMessage res = receiveMessage();
+
+		}catch (ConnectException e){
+			System.out.println("Connection failed, please try again");
+			logger.info("connection is refused when establishing socket " + kvAddress + ":" + kvPort);
+			setConnected(false);
+
 		}
 	}
 
@@ -77,9 +75,9 @@ public class KVStore implements KVCommInterface {
 		logger.info("disconnecting " + kvAddress + ":" + kvPort);
 		if(clientSocket != null){
 			try{
+				setConnected(false);
 				clientSocket.close();
-				input.close();
-				output.close();
+
 			}catch (IOException e){
 				e.printStackTrace();
 			}
@@ -133,7 +131,7 @@ public class KVStore implements KVCommInterface {
 			TextMessage res = receiveMessage();
 
 			String[] arr = res.getMsg().split("\\s+",2);
-
+			logger.info("Received: " + res.getMsg());
 			if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
 				kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
@@ -157,7 +155,6 @@ public class KVStore implements KVCommInterface {
 	public KVMessage get(String key) throws Exception {
 		// TODO Auto-generated method stub
 
-
 		KVMessageStorage kvms = null;
 		StringBuilder sb = new StringBuilder();
 		sb.append("get ");
@@ -179,8 +176,10 @@ public class KVStore implements KVCommInterface {
 			kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
 		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
 			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+			System.out.println("STATUS: " +  arr[0]);
 		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
 			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+			System.out.println("STATUS: " +  arr[0]);
 		}else{
 			String[] tokens = res.getMsg().split("\\s+",3);
 			kvms = new KVMessageStorage(tokens[1],tokens[2], StatusTypeLookup(tokens[0]));

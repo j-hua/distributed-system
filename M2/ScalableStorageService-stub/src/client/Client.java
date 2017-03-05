@@ -1,13 +1,11 @@
 package client;
 
-import com.sun.xml.internal.ws.api.message.Packet;
+
 import common.messages.KVMessage;
-import javafx.stage.StageStyle;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 /**
  * Created by JHUA on 2017-03-04.
