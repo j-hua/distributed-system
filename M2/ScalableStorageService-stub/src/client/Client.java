@@ -1,5 +1,8 @@
 package client;
 
+import com.sun.xml.internal.ws.api.message.Packet;
+import common.messages.KVMessage;
+import javafx.stage.StageStyle;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ public class Client extends Thread{
     private boolean running;
     private KVStore kvStore;
     private static Logger logger = Logger.getRootLogger();
-
+    private Metadata mData;
     /**
      *  Client constructor
      */
@@ -60,10 +63,32 @@ public class Client extends Thread{
     public void putMessage(String key, String value) throws Exception {
         KVMessage kvm = kvStore.put(key,value);
 
+        while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+            //update metadata
+
+            //lookup
+            String newAddr;
+            int newPort;
+
+            kvStore = new KVStore(newAddr,newPort);
+            kvm = kvStore.put(key,value);
+        }
+
     }
 
     public void getMessage(String key) throws Exception {
         KVMessage kvm = kvStore.get(key);
+
+        while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+            //update metadata
+
+            //lookup
+            String newAddr;
+            int newPort;
+
+            kvStore = new KVStore(newAddr,newPort);
+            kvm = kvStore.get(key);
+        }
     }
 
     public void disconnect() throws IOException {
