@@ -1,11 +1,15 @@
 package testing;
 
+import app_kvEcs.Ecs;
+import app_kvServer.KVServer;
 import org.junit.Test;
 
 import client.KVStore;
 import junit.framework.TestCase;
 import common.messages.KVMessage;
-import common.messages.KVMessage.StatusType;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 public class AdditionalTest extends TestCase {
@@ -28,7 +32,35 @@ public class AdditionalTest extends TestCase {
 
 	@Test
 	public void testPutGet(){
+		clearFile(50000);
 
+		KVServer kvs = new KVServer(50000);
+		new Thread(kvs).start();
+		kvs.state = KVServer.SERVER_READY;
+		kvs.initKVServer(new String[4], 128, "fifo");
+
+		Exception putEx = null;
+		Exception getEX = null;
+		KVMessage kvMessage = null;
+		KVMessage getMessage = null;
+
+		try{
+			kvMessage = kvs.put("one","52");
+		}catch(Exception e){
+			e.printStackTrace();
+			putEx = e;
+		}
+
+		assertTrue(putEx == null && kvMessage.getStatus()==KVMessage.StatusType.PUT_SUCCESS);
+
+		try{
+			getMessage = kvs.get("one");
+		}catch (Exception e){
+			e.printStackTrace();
+			getEX = e;
+		}
+
+		assertTrue(getEX == null && getMessage.getStatus() == KVMessage.StatusType.GET_SUCCESS);
 	}
 
 
@@ -79,5 +111,27 @@ public class AdditionalTest extends TestCase {
 		}
 
 		assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.GET_ERROR);
+	}
+
+	// @Test
+	// public void testConsistentHashing(){
+	// 	//Ecs.tester();
+
+	// 	assertTrue(true);
+	// }
+
+
+	public static void clearFile(int port){
+
+		PrintWriter pw = null;
+		try {
+			String fileName = "./data/storage" + Integer.toString(port) + ".txt";
+			pw = new PrintWriter(fileName);
+			pw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

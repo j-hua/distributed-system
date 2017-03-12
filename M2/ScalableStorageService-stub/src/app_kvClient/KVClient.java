@@ -15,7 +15,7 @@ import client.*;
 //import client.ClientSocketListener;
 
 public class KVClient implements ClientSocketListener {
-    private static Logger logger = Logger.getRootLogger();
+    private static Logger logger;
     private static final String PROMPT = "KVClient> ";
     private BufferedReader stdin;
     private Client client = null;
@@ -264,7 +264,8 @@ public class KVClient implements ClientSocketListener {
      */
     public static void main(String[] args) {
         try {
-            new LogSetup("logs/client.log", Level.OFF);
+            new LogSetup("./logs/client/client.log", Level.ALL);
+            logger = Logger.getRootLogger();
             KVClient app = new KVClient();
             app.run();
         } catch (IOException e) {

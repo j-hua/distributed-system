@@ -1,16 +1,13 @@
 package app_kvEcs;
 
 import client.TextMessage;
-import com.sun.org.apache.bcel.internal.generic.LUSHR;
 import org.apache.log4j.Logger;
 
-import java.awt.*;
 import java.io.*;
-import java.lang.reflect.Array;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,14 +19,14 @@ public class Ecs {
 
     List<String> mIpAndPorts;
     private static final String PROMPT = "ECS> ";
+    private static final int ecsPort = 40000;
+    
     private BufferedReader stdin;
     private boolean stop = false;
     private static final int BUFFER_SIZE = 1024;
     private static final int DROP_SIZE = 1024*BUFFER_SIZE;
     private static Logger logger = Logger.getRootLogger();
-
-
-
+    List<String> participatingServers;
 
     public void run() {
         while(!stop) {
@@ -69,61 +66,99 @@ public class Ecs {
                 printError("Invalid number of parameters!");
             }
 
-        }else if (tokens[0].equals("remove")){
-            if (tokens.length == 3){
-
+        }else if (tokens[0].equals("start")){
+            if (tokens.length == 1){
+                start();
             }
         }
     }
+
+    public void start(){
+        System.out.println("Participating servers are: "+participatingServers.size());
+
+        for (int i =0; i<participatingServers.size();i++){
+            String[] elements= mIpAndPorts.get(i).split(" ");
+            String ip = elements[0];
+            String port =elements[1];
+            try {
+                connect(ip,Integer.valueOf(port),"ecs start");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     public void initService(int numberOfNodes){
         readFile();
+        ConsistentHashing consistentHashing = new ConsistentHashing(1,mIpAndPorts);
+        StringBuilder sb = new StringBuilder("");
+        participatingServers = new ArrayList<>();
         if (numberOfNodes<mIpAndPorts.size()){
             for (int i=0; i<numberOfNodes; i++) {
+
+                participatingServers.add(mIpAndPorts.get(i));
                 String[] elements= mIpAndPorts.get(i).split(" ");
                 String ip = elements[0];
                 String port =elements[1];
                 System.out.println("ip passed in: "+ip+ " port: "+port);
-                ssh(ip,port,"ecs initkvserver 0 fifo metadata");
+
+                ConsistentHashing.HashedServer hashedServer= consistentHashing.get(mIpAndPorts.get(i));
+                String start = Integer.toString(hashedServer.mHashedKeys[0]).trim();
+                String end = Integer.toString(hashedServer.mHashedKeys[1]).trim();
+
+				try {
+					sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+					ssh(ip,port,"ecs initkvserver 0 fifo " + sb);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
             }
         }else{
-            System.out.println("Number of nodes entered is larger that ones available");
+            System.out.println("Number of nodes entered is larger than ones available");
         }
-
     }
 
 
 
     public void connect(String kvAddress, int kvPort, String metadata) throws Exception {
-        // TODO Auto-generated method stub
-        try{
-            OutputStream output;
-            InputStream input;
-            Socket clientSocket = new Socket();
-            System.out.println("KVADDRESS: "+kvAddress+" PORT: "+kvPort);
-            clientSocket.connect(new InetSocketAddress(kvAddress,kvPort),100);
-            input = clientSocket.getInputStream();
-            output = clientSocket.getOutputStream();
-
-            TextMessage response = receiveMessage(input);
-
-            TextMessage textMessage = new TextMessage(metadata);
-
-
-            sendMessage(textMessage, output);
-            response = receiveMessage(input);
-
-            disconnect(clientSocket,input,output,kvAddress,Integer.toString(kvPort));
-
-
-        }catch (SocketTimeoutException e){
-            System.out.println("Connection failed, please try again");
+        boolean connected = false;
+        
+        while(!connected){
+	    	try{
+	            OutputStream output;
+	            InputStream input;
+	            //System.out.println("KVADDRESS: "+kvAddress+" PORT: "+kvPort);
+	            Socket clientSocket = new Socket();
+	            clientSocket.connect(new InetSocketAddress(kvAddress, kvPort));
+	            
+	            System.out.println("CONNECTED TO SERVER");
+	            
+	            connected = true;
+	            
+	            output = clientSocket.getOutputStream();
+	            input = clientSocket.getInputStream();
+            	
+	            //send message to server
+	            sendMessage(new TextMessage(metadata), output);
+	            
+	            String result = receiveMessage(input).getMsg();
+	            
+	            System.out.println("The result is : " + result);
+	
+	            disconnect(clientSocket,input,output,kvAddress,Integer.toString(kvPort));
+	
+	        }catch (Exception e){
+	            //System.out.println(e.getMessage());
+	        }
         }
     }
 
 
     public void disconnect(Socket clientSocket, InputStream input, OutputStream output, String kvAddress, String kvPort) {
-        // TODO Auto-generated method stub
-        logger.info("disconnecting " + kvAddress + ":" + kvPort);
+        
+    	System.out.println("Disconnecting " + kvAddress + ":" + kvPort);
         if(clientSocket != null){
             try{
                 clientSocket.close();
@@ -134,7 +169,7 @@ public class Ecs {
             }
 
             clientSocket = null;
-            logger.info("connection to " + kvAddress + ":" + kvPort + " closed");
+            System.out.println("Connection to " + kvAddress + ":" + kvPort + " closed");
         }
     }
 
@@ -206,7 +241,7 @@ public class Ecs {
 
 		/* build final String */
         TextMessage msg = new TextMessage(msgBytes);
-        System.out.print("Receive message:\t '" + msg.getMsg() + "'");
+//        System.out.print("Receive message:\t '" + msg.getMsg() + "'");
 
         return msg;
     }
@@ -215,26 +250,32 @@ public class Ecs {
     public void ssh(String ip, String port, String metadata){
 
         Process proc = null;
-        String script = "src/app_ECS/script.sh";
-        String[] cmd = {"sh", script, port};
+        String script = "src/app_kvEcs/script.sh";
+        String[] cmd = {"sh", script, ip, port};
 
         Runtime run = 	Runtime.getRuntime();
         try {
             proc = run.exec(cmd);
-
+            
+            //wait till the server notifies that it is about to listen for connections, then proceed
+            ServerSocket ss = new ServerSocket(ecsPort);
+            ss.accept();
+            
+            ss.close();
+            
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }finally {
             if (proc!=null){
                 System.out.println("killing process!");
                 proc.destroy();
 
                 try {
-                    System.out.print("SSH: "+ip+" PORT: "+ port);
+                    System.out.println("SSH: "+ip+" PORT: "+ port);
                     connect(ip, Integer.parseInt(port), metadata);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                	System.out.println(e.getMessage());
                 }
             }
         }

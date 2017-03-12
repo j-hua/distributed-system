@@ -37,7 +37,7 @@ public class InteractionTest extends TestCase {
 		} catch (Exception e) {
 			ex = e;
 		}
-
+		System.out.print("+++++++++++++++++" + response.getStatus());
 		assertTrue(ex == null && response.getStatus() == StatusType.PUT_SUCCESS);
 	}
 	
@@ -116,7 +116,7 @@ public class InteractionTest extends TestCase {
 
 	@Test
 	public void testGetUnsetValue() {
-		String key = "an unset value";
+		String key = "anunsetvalue";
 		KVMessage response = null;
 		Exception ex = null;
 

@@ -255,9 +255,6 @@ public class storageServer {
         } catch (IOException e) {
             logger.error(e.getMessage());
             throw new Exception("PUT_ERROR");
-//            KVMessage.StatusType status = KVMessage.StatusType.PUT_ERROR;
-//            KVMessageStorage kvms = new KVMessageStorage(key, value, status);
-//            return kvms;
         }
 
     }

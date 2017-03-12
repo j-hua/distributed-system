@@ -61,10 +61,9 @@ public class ClientConnectionKVServer implements Runnable {
 			output = clientSocket.getOutputStream();
 			input = clientSocket.getInputStream();
 		
-			sendMessage(new TextMessageKVServer(
-					"Connection to MSRG Echo server established: " 
+			logger.info("Connection to KV Server established: " 
 					+ clientSocket.getLocalAddress() + " / "
-					+ clientSocket.getLocalPort()));
+					+ clientSocket.getLocalPort());
 			
 			while(isOpen) {
 				try {
@@ -198,8 +197,8 @@ public class ClientConnectionKVServer implements Runnable {
 			//check which method is being invoked by the ECS
 			action = messageArray[1].trim();
 			if(action.equals(KVServer.INIT)){
-				String[] mParams = message.split(" ", 4);
-				KVAdminMessage kvAM = kvServerListener.initKVServer(mParams[3].split(" "), Integer.parseInt(mParams[1].trim()), mParams[2].trim());
+				String[] mParams = message.split(" ", 5);
+				KVAdminMessage kvAM = kvServerListener.initKVServer(mParams[4].trim().split(" "), Integer.parseInt(mParams[2].trim()), mParams[3].trim());
 				status = String.valueOf(kvAM.getStatus());
 			} else if(action.equals(KVServer.START)){
 				//start() method being invoked in the KVServer
@@ -223,14 +222,28 @@ public class ClientConnectionKVServer implements Runnable {
 				KVAdminMessage kvAM = kvServerListener.unLockWrite();
 				status = String.valueOf(kvAM.getStatus());
 			} else if(action.equals(KVServer.MOVEDATA)){
-				//move the data from this server to the provided server
-				KVAdminMessage kvAM = kvServerListener.moveData();
-				status = String.valueOf(kvAM.getStatus());
+				// move the data from this server to the provided server
+				KVAdminMessage kvAM = kvServerListener.moveData(messageArray[2], messageArray[3]);
+				status = String.valueOf(kvAM.getStatus()) + " " + kvAM.getData();
 			} else if(action.equals(KVServer.UPDATE)){
-				return null;
+				//update the metadata
+
+				String[] mParams = message.split(" ", 3);
+
+				KVAdminMessage kvAM = kvServerListener.update(mParams[2].split(" "));
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.DELETEPAIRS)){
+				//delete the key-value pairs the ECF has sent
+				String[] kvList = message.split(" ", 3)[2].split(" ");
+				
+				KVAdminMessage kvAM = kvServerListener.deletePairs(kvList);
+				status = String.valueOf(kvAM.getStatus());
 			}
 
 			return status;
+		} else if(action.equals("server")){
+			//send the data to the KVServer method
+			return kvServerListener.addKVPairs(message.split(" ", 2)[1].split(" "));
 		} else {
 			if (messageArray.length>=2){
 				try {
@@ -249,7 +262,12 @@ public class ClientConnectionKVServer implements Runnable {
 								}
 
 								KVMessage kvMessage = kvServerListener.put(key, sb.toString().trim() );
-								status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
+								if(String.valueOf(kvMessage.getStatus()).trim().equals("SERVER_NOT_RESPONSIBLE")){
+									status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey();
+								} else{
+									status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
+								} 
+								
 							} else {
 								status = String.valueOf(KVMessage.StatusType.SERVER_WRITE_LOCK)+" null null";
 							}
@@ -263,7 +281,12 @@ public class ClientConnectionKVServer implements Runnable {
 							//must be a get
 							if (action.equals(KVServer.GET)){
 								KVMessage kvMessage = kvServerListener.get(key);
-								status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();
+
+								if(String.valueOf(kvMessage.getStatus()).trim().equals("SERVER_NOT_RESPONSIBLE")){
+									status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey();
+								} else {
+									status = String.valueOf(kvMessage.getStatus())+" "+kvMessage.getKey() + " "+ kvMessage.getValue();	
+								}
 
 							} else if(action.equals(KVServer.PUT)){
 								if(kvServerListener.banWrite == KVServer.ALLOW_WRITE){
@@ -280,7 +303,7 @@ public class ClientConnectionKVServer implements Runnable {
 							
 					}else{
 	//					logger.error("message array length not greater than or equal to 2.");
-						return action;
+						return FORMAT_ERROR;
 					}
 
 

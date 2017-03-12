@@ -13,7 +13,7 @@ public interface KVMessage {
     	DELETE_SUCCESS,  		/* Delete - request successful */
     	DELETE_ERROR,     		/* Delete - request successful */
     	SERVER_STOPPED,         /* Server is stopped, no requests are processed */
-    	SERVER_WRITE_LOCK,      /* Server locked for out, only get possible */
+    	SERVER_WRITE_LOCK,      /* Server locked for put, only get possible */
     	SERVER_NOT_RESPONSIBLE  /* Request not successful, server not responsible for key */
 }
 

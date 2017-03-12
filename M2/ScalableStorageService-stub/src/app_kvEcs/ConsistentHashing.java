@@ -1,8 +1,5 @@
 package app_kvEcs;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -57,7 +54,7 @@ public class ConsistentHashing {
     }
 
     /**
-     * Removes a node from the cirlce
+     * Removes a node from the circle
      * @param node IP + Port
      */
     public void remove(String node) {

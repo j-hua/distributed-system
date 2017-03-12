@@ -17,8 +17,10 @@ public class AllTests {
 			new LogSetup("logs/testing/test.log", Level.ERROR);
 			//use a default of 128 keys, FIFO replacement
             KVServer kvs = new KVServer(50000);
+            AdditionalTest.clearFile(50000);
+            new Thread(kvs).start();
             kvs.state = KVServer.SERVER_READY;
-            kvs.initKVServer(new String[4], 128, "fifo");
+            kvs.initKVServer(new String[]{"-8000000000,80000000000,127.0.0.1,50000"}, 128, "fifo");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
