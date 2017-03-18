@@ -34,7 +34,7 @@ public class AdditionalTest extends TestCase {
 	public void testPutGet(){
 		clearFile(50000);
 
-		KVServer kvs = new KVServer(50000);
+		KVServer kvs = new KVServer(50000, "null", -1);
 		new Thread(kvs).start();
 		kvs.state = KVServer.SERVER_READY;
 		kvs.initKVServer(new String[4], 128, "fifo");

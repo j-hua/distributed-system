@@ -1,89 +1,0 @@
-2017-03-04 19:34:27,356 ERROR [main] root: LENGTH 3
-2017-03-04 19:34:27,357 INFO  [Thread-0] root: Initialize server ...
-2017-03-04 19:34:27,360 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-04 19:35:01,737 INFO  [Thread-1] root: SEND 	<127.0.0.1:46260>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 19:35:01,739 INFO  [Thread-0] root: Connected to localhost on port 46260
-2017-03-04 19:35:42,814 INFO  [Thread-1] root: ACTION: get
-2017-03-04 19:35:42,817 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46260>: 'get lel'
-2017-03-04 19:35:42,817 INFO  [Thread-1] root: SEND 	<127.0.0.1:46260>: 'SERVER_STOPPED null null
-'
-2017-03-04 19:35:50,166 INFO  [Thread-1] root: ACTION: put
-2017-03-04 19:35:50,167 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46260>: 'put so in'
-2017-03-04 19:35:50,167 INFO  [Thread-1] root: SEND 	<127.0.0.1:46260>: 'SERVER_STOPPED null null
-'
-2017-03-04 19:36:29,241 INFO  [Thread-1] root: ACTION: put
-2017-03-04 19:36:29,242 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46260>: 'put key'
-2017-03-04 19:36:29,242 INFO  [Thread-1] root: SEND 	<127.0.0.1:46260>: 'SERVER_STOPPED null null
-'
-2017-03-04 19:37:29,696 INFO  [Thread-1] root: SEND 	<127.0.0.1:46260>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-03-04 19:37:29,697 ERROR [Thread-1] root: Error! Connection lost!
-2017-03-04 21:01:18,829 ERROR [main] root: LENGTH 3
-2017-03-04 21:01:18,830 INFO  [Thread-0] root: Initialize server ...
-2017-03-04 21:01:18,832 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-04 21:01:41,191 INFO  [Thread-1] root: SEND 	<127.0.0.1:46394>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 21:01:41,193 INFO  [Thread-0] root: Connected to localhost on port 46394
-2017-03-04 21:01:45,787 INFO  [Thread-1] root: ACTION: get
-2017-03-04 21:01:45,789 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46394>: 'get lel'
-2017-03-04 21:01:45,789 INFO  [Thread-1] root: SEND 	<127.0.0.1:46394>: 'SERVER_STOPPED null null
-'
-2017-03-04 21:01:51,248 INFO  [Thread-1] root: ACTION: put
-2017-03-04 21:01:51,248 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46394>: 'put lel lol'
-2017-03-04 21:01:51,249 INFO  [Thread-1] root: SEND 	<127.0.0.1:46394>: 'SERVER_STOPPED null null
-'
-2017-03-04 21:01:56,869 INFO  [Thread-1] root: ACTION: put
-2017-03-04 21:01:56,870 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46394>: 'put kay'
-2017-03-04 21:01:56,871 INFO  [Thread-1] root: SEND 	<127.0.0.1:46394>: 'SERVER_STOPPED null null
-'
-2017-03-04 21:02:06,513 INFO  [Thread-1] root: SEND 	<127.0.0.1:46394>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-03-04 21:02:06,514 ERROR [Thread-1] root: Error! Connection lost!
-2017-03-04 21:23:08,896 ERROR [main] root: LENGTH 3
-2017-03-04 21:23:08,897 INFO  [Thread-0] root: Initialize server ...
-2017-03-04 21:23:08,900 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-04 21:23:58,930 INFO  [Thread-1] root: SEND 	<127.0.0.1:46407>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 21:23:58,932 INFO  [Thread-0] root: Connected to localhost on port 46407
-2017-03-04 21:24:02,471 INFO  [Thread-1] root: ACTION: get
-2017-03-04 21:24:02,473 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46407>: 'get ke'
-2017-03-04 21:24:02,473 INFO  [Thread-1] root: SEND 	<127.0.0.1:46407>: 'SERVER_STOPPED null null
-'
-2017-03-04 21:24:05,844 INFO  [Thread-1] root: ACTION: get
-2017-03-04 21:24:05,844 INFO  [Thread-1] root: RECEIVE 	<127.0.0.1:46407>: 'get lel'
-2017-03-04 21:24:05,844 INFO  [Thread-1] root: SEND 	<127.0.0.1:46407>: 'SERVER_STOPPED null null
-'
-2017-03-04 21:24:15,117 INFO  [Thread-1] root: SEND 	<127.0.0.1:46407>: 'Error: The format you entered is incorrect. Type 'help' to see possible options
-'
-2017-03-04 21:24:15,118 ERROR [Thread-1] root: Error! Connection lost!
-2017-03-04 21:25:42,502 INFO  [Thread-2] root: SEND 	<127.0.0.1:46408>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 21:25:42,504 INFO  [Thread-0] root: Connected to localhost on port 46408
-2017-03-04 21:26:23,909 ERROR [main] root: LENGTH 3
-2017-03-04 21:26:23,909 INFO  [Thread-0] root: Initialize server ...
-2017-03-04 21:26:23,912 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-04 21:27:33,050 INFO  [Thread-1] root: SEND 	<127.0.0.1:46410>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 21:27:33,052 INFO  [Thread-0] root: Connected to localhost on port 46410
-2017-03-04 21:28:53,424 ERROR [main] root: LENGTH 3
-2017-03-04 21:28:53,425 INFO  [Thread-0] root: Initialize server ...
-2017-03-04 21:28:53,428 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-04 21:29:08,278 INFO  [Thread-1] root: SEND 	<127.0.0.1:46414>: 'Connection to MSRG Echo server established: /127.0.0.1 / 50000'
-2017-03-04 21:29:08,280 INFO  [Thread-0] root: Connected to localhost on port 46414
-2017-03-05 17:11:43,357 ERROR [main] root: LENGTH 0
-2017-03-05 17:12:25,406 ERROR [main] root: LENGTH 3
-2017-03-05 17:12:25,407 INFO  [Thread-0] root: Initialize server ...
-2017-03-05 17:12:25,410 INFO  [Thread-0] root: Server listening on port: 50000
-2017-03-05 17:23:54,483 ERROR [main] root: LENGTH 0
-2017-03-05 17:38:54,607 ERROR [main] root: LENGTH 3
-2017-03-05 17:38:54,607 INFO  [Thread-0] root: Initialize server ...
-2017-03-05 17:38:54,610 ERROR [Thread-0] root: Error! Cannot open server socket:
-2017-03-05 17:38:54,610 ERROR [Thread-0] root: Port 50000 is already bound!
-2017-03-05 17:38:54,610 INFO  [Thread-0] root: Server stopped.
-2017-03-05 17:39:19,272 ERROR [main] root: LENGTH 3
-2017-03-05 17:39:19,273 INFO  [Thread-0] root: Initialize server ...
-2017-03-05 17:39:19,275 ERROR [Thread-0] root: Error! Cannot open server socket:
-2017-03-05 17:39:19,276 ERROR [Thread-0] root: Port 50000 is already bound!
-2017-03-05 17:39:19,276 INFO  [Thread-0] root: Server stopped.
-2017-03-05 17:39:59,641 ERROR [main] root: LENGTH 3
-2017-03-05 17:39:59,642 INFO  [Thread-0] root: Initialize server ...
-2017-03-05 17:39:59,645 INFO  [Thread-0] root: Server listening on port: 50001
-2017-03-05 18:05:48,910 ERROR [main] root: LENGTH 3
-2017-03-05 18:05:48,910 INFO  [Thread-0] root: Initialize server ...
-2017-03-05 18:05:48,913 INFO  [Thread-0] root: Server listening on port: 50000

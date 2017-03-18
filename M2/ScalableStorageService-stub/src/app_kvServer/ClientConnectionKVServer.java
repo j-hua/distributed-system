@@ -34,7 +34,9 @@ public class ClientConnectionKVServer implements Runnable {
 	private OutputStream output;
 	public KVServer kvServerListener;
 	public static final String FORMAT_ERROR = "Error: The format you entered is incorrect. Type 'help' to see possible options";
-
+	
+	private boolean shutdown;
+	
 	/**
 	 * Constructs a new CientConnection object for a given TCP socket.
 	 * @param clientSocket the Socket object for the client connection.
@@ -42,6 +44,7 @@ public class ClientConnectionKVServer implements Runnable {
 	public ClientConnectionKVServer(Socket clientSocket) {
 		this.clientSocket = clientSocket;
 		this.isOpen = true;
+		shutdown = false;
 	}
 
 	/**
@@ -95,6 +98,9 @@ public class ClientConnectionKVServer implements Runnable {
 				input.close();
 				output.close();
 				clientSocket.close();
+			}
+			if(shutdown){
+				System.exit(1);
 			}
 		} catch (IOException ioe) {
 			logger.error("Error! Unable to tear down connection!", ioe);
@@ -186,7 +192,7 @@ public class ClientConnectionKVServer implements Runnable {
 
     public String processMessage(String message){
 		String[] messageArray = message.split(" ");
-		String status = "";
+		String status = FORMAT_ERROR;
 
 		String action = messageArray[0].trim();
 		logger.info("ACTION: " + action);
@@ -210,9 +216,10 @@ public class ClientConnectionKVServer implements Runnable {
 				status = String.valueOf(kvAM.getStatus());
 			} else if(action.equals(KVServer.SHUTDOWN)){
 				//shutting down the server, this connection will be broken
-				kvServerListener.shutDown();
+				KVAdminMessage kvAM = kvServerListener.shutDown();
 				isOpen = false;
-				status = String.valueOf(KVAdminMessage.StatusType.SERVER_SHUTDOWN);
+				shutdown = true;
+				status = String.valueOf(kvAM.getStatus()) + " " + kvAM.getData();
 			} else if(action.equals(KVServer.LOCKWRITE)){
 				//setting banWrite global variable to lock put operations
 				KVAdminMessage kvAM = kvServerListener.lockWrite();
@@ -238,6 +245,9 @@ public class ClientConnectionKVServer implements Runnable {
 				
 				KVAdminMessage kvAM = kvServerListener.deletePairs(kvList);
 				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.ADDKV)){
+				//send the data to the KVServer method
+				status = kvServerListener.addKVPairs(message.split(" ", 3)[2].trim().split(" "));
 			}
 
 			return status;
@@ -320,7 +330,7 @@ public class ClientConnectionKVServer implements Runnable {
 				}
 
 			}else{
-				return  FORMAT_ERROR;
+				return FORMAT_ERROR;
 			}
 		}
 	}

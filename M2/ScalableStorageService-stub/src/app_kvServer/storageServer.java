@@ -40,6 +40,11 @@ public class storageServer {
             if(value != null){
                 //read file for this key, maybe its an update
                 File inputFile = new File("./data/storage"+serverPort+".txt");
+                
+                if(!inputFile.exists()){
+    				inputFile.createNewFile();
+    			}
+                
                 BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
                 String line;
@@ -203,6 +208,11 @@ public class storageServer {
             } else {
                 //delete the corresponding key value pair in the file
                 File inputFile = new File("./data/storage"+serverPort+".txt");
+                
+                if(!inputFile.exists()){
+    				inputFile.createNewFile();
+    			}
+                
                 BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
                 String line;
@@ -265,6 +275,11 @@ public class storageServer {
         //get the value for the corresponding key if the key exists in file
         try {
             File inputFile = new File("./data/storage"+serverPort+".txt");
+            
+            if(!inputFile.exists()){
+				inputFile.createNewFile();
+			}
+            
             BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
             String line;

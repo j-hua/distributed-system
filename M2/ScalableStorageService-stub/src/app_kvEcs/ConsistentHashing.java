@@ -5,12 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-/**
- * Created by warefhaque on 3/3/17.
- */
+import org.apache.log4j.Logger;
+
 public class ConsistentHashing {
     private int numberOfReplicas;
-    public SortedMap<Integer, HashedServer> circle = new TreeMap<Integer, HashedServer>();
+    public SortedMap<String, HashedServer> circle = new TreeMap<String, HashedServer>();
+    
+    private static Logger logger = Logger.getRootLogger();
 
     public ConsistentHashing(int numberOfReplicas, List<String> nodes) {
 
@@ -29,22 +30,22 @@ public class ConsistentHashing {
      */
     public void add(String ipAndPort) {
         for (int i = 0; i < numberOfReplicas; i++) {
-            String hashString = ipAndPort.replaceAll("\\s","");
-            int hash = hashFunction(hashString + i);
+            String hashString = ipAndPort.trim().replaceAll("\\s",":");
+            String hash = hashFunction(hashString);
             circle.put(hash, new HashedServer(ipAndPort));
         }
 
-        for (int keys: circle.keySet()){
+        for (String keys: circle.keySet()){
             storeRanges(keys);
         }
     }
 
-    public void storeRanges(int hash){
-        SortedMap<Integer,HashedServer> headMap = circle.headMap(hash);
+    public void storeRanges(String hash){
+        SortedMap<String,HashedServer> headMap = circle.headMap(hash);
 
         //if the head map is empty your range is from the last existing key to the first
 
-       int startHash = headMap.isEmpty() ? circle.lastKey() : headMap.lastKey();
+        String startHash = headMap.isEmpty() ? circle.lastKey() : headMap.lastKey();
 
         // endHash is it self
 
@@ -59,10 +60,11 @@ public class ConsistentHashing {
      */
     public void remove(String node) {
         for (int i = 0; i < numberOfReplicas; i++) {
-            String hashString = node.replaceAll("\\s","");
-            circle.remove(hashFunction(hashString + i));
+            String hashString = node.trim().replaceAll("\\s",":");
+            circle.remove(hashFunction(hashString));
         }
-        for (int keys: circle.keySet()){
+        
+        for (String keys: circle.keySet()){
             storeRanges(keys);
         }
     }
@@ -74,13 +76,17 @@ public class ConsistentHashing {
      * @return
      */
     public HashedServer get(String key) {
-        if (circle.isEmpty()) {
+        
+    	if (circle.isEmpty()) {
             return null;
         }
-        int hash = hashFunction(key);
+        
+        String hashString = key.trim().replaceAll("\\s",":");
+        String hash = hashFunction(hashString);
+        
         if (!circle.containsKey(hash)) {
 
-            SortedMap<Integer, HashedServer> tailMap = circle.tailMap(hash);
+            SortedMap<String, HashedServer> tailMap = circle.tailMap(hash);
 
             hash = tailMap.isEmpty() ? circle.firstKey() : tailMap.firstKey();
         }
@@ -96,34 +102,36 @@ public class ConsistentHashing {
      * @param ipAndPort IP + Port number of a server
      * @return Hashed Value
      */
-    public int hashFunction(String ipAndPort){
+    public String hashFunction(String ipAndPort){
 
         try {
             MessageDigest md = null;
             md = MessageDigest.getInstance("MD5");
             md.update(ipAndPort.getBytes());
             byte[] digest = md.digest();
-            int integer = new BigInteger(1, digest).intValue();
-            StringBuffer sb = new StringBuffer();
-            for (byte b : digest) {
-                sb.append(String.format("%02x", b & 0xff));
-            }
-            System.out.println("original:" + ipAndPort);
-            System.out.println("digested(hex):" + Integer.toString(integer));
-            return integer;
+            String hash = toHex(digest);
+            
+            logger.info("original: " + ipAndPort);
+            logger.info("digested(hex): " + hash);
+            return hash;
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return -1;
+            logger.error(e.getMessage());
+            return null;
         }
 
     }
+    
+    public String toHex(byte[] bytes) {
+        BigInteger bi = new BigInteger(1, bytes);
+        return String.format("%0" + (bytes.length << 1) + "x", bi);
+    }
 
     public class HashedServer {
-        public int[] mHashedKeys;
+        public String[] mHashedKeys;
         public String mIpAndPort;
 
         HashedServer(String ipAndPort){
-            mHashedKeys = new int[2];
+            mHashedKeys = new String[2];
             mIpAndPort = ipAndPort;
         }
 

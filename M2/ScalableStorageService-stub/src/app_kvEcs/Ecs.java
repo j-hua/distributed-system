@@ -11,13 +11,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-/**
- * Created by warefhaque on 3/3/17.
- */
 public class Ecs {
 
-    List<String> mIpAndPorts;
+    public List<String> mIpAndPorts;
     private static final String PROMPT = "ECS> ";
     private static final int ecsPort = 40000;
     
@@ -26,20 +24,58 @@ public class Ecs {
     private static final int BUFFER_SIZE = 1024;
     private static final int DROP_SIZE = 1024*BUFFER_SIZE;
     private static Logger logger = Logger.getRootLogger();
-    List<String> participatingServers;
+    
+    public List<String> participatingServers;
+    public List<String> notParticipating;
+    public List<String> kvList;
+    ConsistentHashing cs = null;
+    String metadata = null;
 
     public void run() {
+    	//get all servers within the config file into a accessible data structure
+    	readFile();
+    	
+    	try{
+    		//get all values from persisted storage file
+        	File outputFile = new File("./data/storage.txt");
+    		
+    		if(!outputFile.exists()){
+    			outputFile.getParentFile().mkdirs();
+    			outputFile.createNewFile();
+    		}
+    		
+    		BufferedReader br = new BufferedReader(new FileReader(outputFile));
+    		
+    		kvList = new ArrayList<String>();
+    		
+			String line;
+
+			//read every line of the file for each key value pair
+			while ((line = br.readLine()) != null) {
+				if (line.length() != 0) {
+					String[] kv = line.split(" ", 2);
+					kvList.add(kv[0] + "," + kv[1]);
+				}
+			}
+			
+			br.close();
+    		
+    	} catch(IOException e){
+    		logger.error(e.getMessage());
+    	}
+    	
         while(!stop) {
             stdin = new BufferedReader(new InputStreamReader(System.in));
             System.out.print(PROMPT);
+            
             try {
                 String cmdLine = stdin.readLine();
                 this.handleCommand(cmdLine);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 stop = true;
-                System.out.println("CLI does not respond - Application terminated ");
+                System.out.println("CLI does not respond - Application terminated");
             }
-        }
+    	}
     }
 
     private void handleCommand(String cmdline){
@@ -50,80 +86,530 @@ public class Ecs {
             stop = true;
             //	disconnect();
             System.out.println(PROMPT + "Application exit!");
-
-        } else if (tokens[0].equals("connect")){
-            if(tokens.length == 2) {
-                int numberOfNodes = Integer.valueOf(tokens[1]);
-                initService(numberOfNodes);
+        } else if (tokens[0].equals("initservice")){
+            if(tokens.length == 4) {
+            	try {
+	                int numberOfNodes = Integer.parseInt(tokens[1]);
+	                int cacheSize = Integer.parseInt(tokens[2]);
+	                String replacementStrategy = tokens[3];
+	                
+	                initService(numberOfNodes, cacheSize, replacementStrategy);
+                } catch (NumberFormatException e){
+                	printError(e.getMessage());
+                	System.out.println("Usage: initservice <numberOfNodes> <cacheSize> <replacementStrategy>");
+                }
             }else{
-                printError("Invalid number of parameters!");
+            	printError("Invalid number of parameters!");
+            	System.out.println("Usage: initservice <numberOfNodes> <cacheSize> <replacementStrategy>");
             }
-        } else  if (tokens[0].equals("add")) {
-            if(tokens.length == 3) {
-                int ipAddress = Integer.valueOf(tokens[1]);
-                int port = Integer.valueOf(tokens[2]);
-            } else {
-                printError("Invalid number of parameters!");
-            }
-
-        }else if (tokens[0].equals("start")){
+        } else if (tokens[0].equals("start")){
             if (tokens.length == 1){
                 start();
+            } else {
+            	printError("Invalid number of parameters!");
+            	System.out.println("Usage: start");
             }
+        } else if (tokens[0].equals("stop")){
+            if (tokens.length == 1){
+                stop();
+            } else {
+            	printError("Invalid number of parameters!");
+            	System.out.println("Usage: stop");
+            }
+        } else if (tokens[0].equals("shutdown")){
+            if (tokens.length == 1){
+                shutdown();
+            } else {
+            	printError("Invalid number of parameters!");
+            	System.out.println("Usage: shutdown");
+            }
+        } else if (tokens[0].equals("addnode")){
+            if (tokens.length == 3){
+            	int cacheSize = Integer.valueOf(tokens[1]);
+            	String replacementStrategy = tokens[2];
+            	
+                addNode(cacheSize, replacementStrategy);
+            } else {
+            	printError("Invalid number of parameters!");
+            	System.out.println("Usage: addnode <cacheSize> <replacementStrategy>");
+            }
+        } else if (tokens[0].equals("deletenode")) {
+        	if (tokens.length == 2){
+        		int servNum = Integer.valueOf(tokens[1]);
+        		deleteNode(servNum);
+        	} else {
+        		printError("Invalid number of parameters!");
+            	System.out.println("Usage: addnode <serverNumber>");
+        	}
+        } else {
+        	printError("Command not valid!");
         }
     }
 
     public void start(){
-        System.out.println("Participating servers are: "+participatingServers.size());
+        logger.info("Number of participating servers: " + participatingServers.size());
+        logger.info("Servers will be started");
 
-        for (int i =0; i<participatingServers.size();i++){
-            String[] elements= mIpAndPorts.get(i).split(" ");
+        for (String server : participatingServers){
+            String[] elements = server.split(" ");
             String ip = elements[0];
-            String port =elements[1];
+            String port = elements[1];
             try {
                 connect(ip,Integer.valueOf(port),"ecs start");
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
 
     }
+    
+    public void stop(){
+        logger.info("Number of participating servers: " + participatingServers.size());
+        logger.info("Servers will be stopped");
 
-    public void initService(int numberOfNodes){
-        readFile();
-        ConsistentHashing consistentHashing = new ConsistentHashing(1,mIpAndPorts);
-        StringBuilder sb = new StringBuilder("");
-        participatingServers = new ArrayList<>();
-        if (numberOfNodes<mIpAndPorts.size()){
-            for (int i=0; i<numberOfNodes; i++) {
+        for (String server : participatingServers){
+            String[] elements = server.split(" ");
+            String ip = elements[0];
+            String port = elements[1];
+            try {
+                connect(ip,Integer.valueOf(port),"ecs stop");
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+        }
 
-                participatingServers.add(mIpAndPorts.get(i));
-                String[] elements= mIpAndPorts.get(i).split(" ");
-                String ip = elements[0];
-                String port =elements[1];
-                System.out.println("ip passed in: "+ip+ " port: "+port);
+    }
+    
+    public void shutdown(){
+    	//remove each node, get data from node to store into storage.txt
+    	logger.info("Number of participating servers: " + participatingServers.size());
+        logger.info("Servers will be shutdown, all data will be stored by the ECS");
+        
+        try {
+        	//empty the storage.txt file as it is receiving new data
+        	File emptyFile = new File("./data/storage.txt");
+			new PrintWriter(emptyFile).close();
+			
+			//empty kvList, as it will receive fresh new data
+			kvList.clear();
+			
+			for (String server : participatingServers){
+	            String[] elements = server.split(" ");
+	            String ip = elements[0];
+	            String port = elements[1];
+	            try {
+	            	String result = connect(ip, Integer.valueOf(port), "ecs shutdown");
+	            	
+					if(!result.equals("")){
+		            	String[] kvData = result.split(" ");
+		            	
+		            	File outputFile = new File("./data/storage.txt");
+		    			FileWriter write = new FileWriter(outputFile, true);
+		    			PrintWriter printWrite = new PrintWriter(write);
+		
+		    			//take each key-value pair and add it to the server's database file
+		    			for(String kvPair : kvData){
+		    				String key = kvPair.split(",")[0];
+		    				String value = kvPair.split(",")[1].replaceAll("-", " ");
+		
+		    				printWrite.println(key + " " + value);
+		    				kvList.add(key + "," + value);
+		    			}
+		
+		    			printWrite.close();
+		    			write.close();            		
+	            	}						
+	            } catch (Exception e) {
+	                logger.error(e.getMessage());
+	            }
+	        }
+		} catch (FileNotFoundException e1) {
+			logger.error(e1.getMessage());
+		}
+        
+        //reset cs, and participating/notParticipating global variables
+        cs = null;
+        metadata = null;
+        participatingServers.clear();
+        notParticipating.clear();
+    }
+    
+    public void addNode(int cacheSize, String replacementStrategy){
+    	logger.info("Number of participating servers: " + participatingServers.size());
+    	if(participatingServers.size() != mIpAndPorts.size()){
+    		Random rand = new Random();
+    		int index = rand.nextInt(notParticipating.size());
+    		
+    		//add the server at index to the hashCircle
+    		logger.info("Adding new server to hashCircle and participatingServers list");
+    		cs.add(notParticipating.get(index));
+    		participatingServers.add(notParticipating.get(index));
+    		
+    		//get required information to move data allocated to the new server
+    		String[] ipAndport = notParticipating.get(index).split(" ");
+            String ipAddr = ipAndport[0];
+            String portNum = ipAndport[1];
 
-                ConsistentHashing.HashedServer hashedServer= consistentHashing.get(mIpAndPorts.get(i));
-                String start = Integer.toString(hashedServer.mHashedKeys[0]).trim();
-                String end = Integer.toString(hashedServer.mHashedKeys[1]).trim();
+            ConsistentHashing.HashedServer hS = cs.get(notParticipating.get(index));
+            String startHash = hS.mHashedKeys[0].trim();
+            String endHash = hS.mHashedKeys[1].trim();
+            
+            //we will send the moveData request to this IP and Port server
+            String targetIp = null;
+            String targetPort = null;
+            
+            //update metadata and find previous server to the new server on circle
+    		logger.info("Updating metadata with new server");
+    		StringBuilder sb = new StringBuilder("");
+    		
+    		for (String ipAndPort: participatingServers){
+                
+        		try{
+        			String[] elements= ipAndPort.split(" ");
+	                String ip = elements[0];
+	                String port =elements[1];
+	
+	                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
+	                String start = hashedServer.mHashedKeys[0].trim();
+	                String end = hashedServer.mHashedKeys[1].trim();
+	                
+	                if(end.equals(startHash)){
+	                	targetIp = ip;
+	                	targetPort = port;
+	                }
+	                
+	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+        		} catch(Exception e){
+        			logger.error(e.getMessage());
+        		}	
+        	}
+    		
+    		metadata = sb.toString().trim();
+        	logger.info("The metadata: " + metadata);
+            
+            //initiate the server
+            logger.info("ip passed in: "+ipAddr+ " port: "+portNum);
+			
+			ssh(ipAddr,portNum,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
+			
+			try {
+				//writeLock the new server
+				connect(ipAddr, Integer.valueOf(portNum), "ecs lockwrite");
+				
+				//writeLock target server
+				connect(targetIp, Integer.valueOf(targetPort), "ecs lockwrite");
+				
+				logger.info("Both servers locked");
+				
+				//send moveData command to target server
+				logger.info("Moving data from target server to new server");
+				String command = "ecs movedata " + startHash + "-" + endHash + " " + ipAddr + "-" + portNum;
+				String deleteData = connect(targetIp, Integer.valueOf(targetPort), command);
+				
+				//update metadata of all servers
+				updateAllServers(metadata);
+				logger.info("Metadata updated for all servers");
+				
+				//unlock write permission for the new server
+				connect(ipAddr, Integer.valueOf(portNum), "ecs unlockwrite");
+				
+				//unlock write permission for the target server
+				connect(targetIp, Integer.valueOf(targetPort), "ecs unlockwrite");
+				
+				logger.info("Write permission given");
+				
+				if(!deleteData.trim().equals("")){
+					//delete remaining key-value pairs from target server that dont matter
+					connect(targetIp, Integer.valueOf(targetPort), "ecs deletepairs " + deleteData);
+					
+					logger.info("KV pairs deleted from target server");
+				} else {
+					logger.info("No KV pairs to delete");
+				}
+				
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+            
+            notParticipating.remove(index);
+            logger.info("Number of participating servers after addition: " + participatingServers.size());
+    	} else {
+    		printError("All available servers have been added!");
+    	}
+    }
+    
+    public void updateAllServers(String metadata){
+    	for(String ipAndPort : participatingServers){
+    		String[] elements= ipAndPort.split(" ");
+            String ip = elements[0];
+            String port =elements[1];
+            
+            try {
+				connect(ip, Integer.valueOf(port), "ecs update " + metadata);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+    	}
+    }
+    
+    public void deleteNode(int servNum){
+    	logger.info("Number of participating servers: " + participatingServers.size());
+    	if(participatingServers.contains(mIpAndPorts.get(servNum - 1))){
+    		if(participatingServers.size() > 1){
+    			//get required information to move data allocated to an existing server
+        		String[] ipAndport = mIpAndPorts.get(servNum - 1).split(" ");
+                String ipAddr = ipAndport[0];
+                String portNum = ipAndport[1];
 
+                ConsistentHashing.HashedServer hS = cs.get(mIpAndPorts.get(servNum - 1));
+                String startHash = hS.mHashedKeys[0].trim();
+                String endHash = hS.mHashedKeys[1].trim();
+                
+                //we will send the moveData request to this IP and Port server
+                String targetIp = null;
+                String targetPort = null;
+                
+                //remove the server from participatingServers and the HashCircle
+                int remIndex = participatingServers.indexOf(ipAddr + " " + portNum);
+                participatingServers.remove(remIndex);
+                cs.remove(ipAddr + " " + portNum);
+                
+                //update metadata and find previous server to the new server on circle
+        		logger.info("Updating metadata without the deleted server");
+        		StringBuilder sb = new StringBuilder("");
+        		
+        		for (String ipAndPort: participatingServers){
+                    
+            		try{
+            			String[] elements= ipAndPort.split(" ");
+    	                String ip = elements[0];
+    	                String port =elements[1];
+    	
+    	                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
+    	                String start = hashedServer.mHashedKeys[0].trim();
+    	                String end = hashedServer.mHashedKeys[1].trim();
+    	                
+    	                if(start.equals(startHash)){
+    	                	targetIp = ip;
+    	                	targetPort = port;
+    	                	logger.info("Found target server");
+    	                }
+    	                
+    	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+            		} catch(Exception e){
+            			logger.error(e.getMessage());
+            		}	
+            	}
+        		
+        		metadata = sb.toString().trim();
+            	logger.info("The metadata: " + metadata);
+            	
+    			try {
+    				//writeLock the deleted server
+    				connect(ipAddr, Integer.valueOf(portNum), "ecs lockwrite");
+    				//writeLock target server
+    				connect(targetIp, Integer.valueOf(targetPort), "ecs lockwrite");
+    				
+    				logger.info("Both servers locked");
+    				
+    				//send all data from the server to be deleted to the target server
+    				logger.info("Moving data from deleted server to target server");
+    				String command = "ecs movedata " + startHash + "-" + endHash + " " + targetIp + "-" + targetPort;
+    				connect(ipAddr, Integer.valueOf(portNum), command);
+    				
+    				//update metadata of all servers
+    				updateAllServers(metadata);
+    				logger.info("Metadata updated for all servers");
+    				
+    				//unlock write permission for the deleted server
+    				connect(ipAddr, Integer.valueOf(portNum), "ecs unlockwrite");
+    				
+    				//unlock write permission for the target server
+    				connect(targetIp, Integer.valueOf(targetPort), "ecs unlockwrite");
+    				
+    				logger.info("Write permission given");
+    				
+    				//add server to non participating list, and shut it down
+    				notParticipating.add(ipAddr + " " + portNum);
+    				connect(ipAddr, Integer.valueOf(portNum), "ecs shutdown");
+    				
+    				logger.info("Number of participating servers after deletion: " + participatingServers.size());
+    			} catch (Exception e) {
+    				logger.error(e.getMessage());
+    			}
+    		} else {
+    			//there is only one remaining server that will be deleted, persist the data to the ECS storage
+    			//and shut down the server
+    			
+    			//get required information to move data allocated to an existing server
+        		String[] ipAndport = mIpAndPorts.get(servNum - 1).split(" ");
+                String ipAddr = ipAndport[0];
+                String portNum = ipAndport[1];
+                
+                //remove the server from participatingServers and the HashCircle
+                int remIndex = participatingServers.indexOf(ipAddr + " " + portNum);
+                participatingServers.remove(remIndex);
+                cs.remove(ipAddr + " " + portNum);
+                
+                //add server to non participating list, and shut it down
+				notParticipating.add(ipAddr + " " + portNum);
 				try {
-					sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
-					ssh(ip,port,"ecs initkvserver 0 fifo " + sb);
+					String storeData = connect(ipAddr, Integer.valueOf(portNum), "ecs shutdown");
+					
+					//empty the storage.txt file as it is receiving new data
+		        	File emptyFile = new File("./data/storage.txt");
+					new PrintWriter(emptyFile).close();
+					
+					//empty kvList, as it will receive fresh new data
+					kvList.clear();
+					
+					//add data from deleted server to ECS storage file
+					if(!storeData.equals("")){
+		            	String[] kvData = storeData.split(" ");
+		            	
+		            	File outputFile = new File("./data/storage.txt");
+		    			FileWriter write = new FileWriter(outputFile, true);
+		    			PrintWriter printWrite = new PrintWriter(write);
+		
+		    			//take each key-value pair and add it to the server's database file
+		    			for(String kvPair : kvData){
+		    				String key = kvPair.split(",")[0];
+		    				String value = kvPair.split(",")[1].replaceAll("-", " ");
+		
+		    				printWrite.println(key + " " + value);
+		    				kvList.add(key + "," + value);
+		    			}
+		
+		    			printWrite.close();
+		    			write.close();            		
+	            	}
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
+				}
+    		}
+    	} else {
+    		printError("The server requested is not running");
+    	}
+    }
+
+    public void initService(int numberOfNodes, int cacheSize, String replacementStrategy){
+        
+    	if (numberOfNodes <= mIpAndPorts.size()){
+	    	//randomly pick a group of nodes
+	    	List<String> temp = new ArrayList<String>(mIpAndPorts);
+	    	List<String> param = new ArrayList<String>();
+	    	
+	    	while(numberOfNodes != 0){
+	    		Random rand = new Random();
+	    		int index = rand.nextInt(temp.size());
+	    		
+	    		param.add(temp.get(index));
+	    		temp.remove(index);
+	    		numberOfNodes--;
+	    	}
+	    	
+	    	notParticipating = temp;
+	    	
+	    	logger.info("Setting up Hasher");
+	        cs = new ConsistentHashing(1,param);
+	        
+	        StringBuilder sb = new StringBuilder("");
+	        participatingServers = new ArrayList<String>();
+	        
+	        numberOfNodes = param.size();
+        
+        	logger.info("Adding the particapating servers and setting up the metadata to be sent");
+        	
+        	for (int i=0; i<numberOfNodes; i++){
+        		participatingServers.add(param.get(i));
+                
+        		try{
+        			String[] elements= param.get(i).split(" ");
+	                String ip = elements[0];
+	                String port =elements[1];
+	
+	                ConsistentHashing.HashedServer hashedServer= cs.get(param.get(i));
+	                String start = hashedServer.mHashedKeys[0].trim();
+	                String end = hashedServer.mHashedKeys[1].trim();
+	                
+	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+        		} catch(Exception e){
+        			logger.error(e.getMessage());
+        		}
+        		
+        	}
+        	
+        	metadata = sb.toString().trim();
+        	logger.info("The metadata: " + metadata);
+        	logger.info("Sending metadata and initializing all servers");
+        	
+            for (int i=0; i<numberOfNodes; i++) {
+				try {
+					String[] elements= param.get(i).split(" ");
+	                String ip = elements[0];
+	                String port =elements[1];
+	                logger.info("ip passed in: "+ip+ " port: "+port);
+					
+					ssh(ip,port,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
+					//connect(ip,50028,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
+					
+					ConsistentHashing.HashedServer hashedServer= cs.get(param.get(i));
+	                String start = hashedServer.mHashedKeys[0].trim();
+	                String end = hashedServer.mHashedKeys[1].trim();
+					
+					//send persisted data to server that should have it
+	                String kvData = "";
+	                
+	                for(String kvPair : kvList){
+	                	//check if within hashRange
+	                	if(checkIfInRange(kvPair.split(",")[0], start, end)){
+	                		String key = kvPair.split(",", 2)[0];
+	                		String value = kvPair.split(",", 2)[1].replaceAll(" ", "-");;
+	                		kvData = kvData + key + "," + value + " ";
+	                	}
+	                }
+	                
+	                if(!kvData.equals("")){
+	                	logger.info("Sending persisted data");
+	                	logger.info(kvData.trim());
+						connect(ip,Integer.parseInt(port),"ecs addkvpairs " + kvData.trim());
+	                } else {
+	                	logger.info("No persistent data to send");
+	                }
+	                
+				} catch (Exception e) {
+					logger.error(e.getMessage());
 				}
 				
             }
         }else{
-            System.out.println("Number of nodes entered is larger than ones available");
+            printError("Number of nodes entered is larger than ones available can only enter at most " + mIpAndPorts.size());
         }
     }
+    
+    public boolean checkIfInRange(String key, String start, String end) {
+		String keyHash = cs.hashFunction(key);
+		
+		int biggerThan = keyHash.compareTo(start);
+		int lessThan = keyHash.compareTo(end);
+		int condition = start.compareTo(end);
 
+		if (biggerThan > 0 && lessThan <= 0 && condition < 0) { //-------------------CHECK THIS--------------//
+			return true;
+		} else if (biggerThan > 0 && condition > 0) {
+			return true;
+		} else if (lessThan <= 0 && condition > 0) {
+			return true;
+		} else if (condition == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-
-    public void connect(String kvAddress, int kvPort, String metadata) throws Exception {
+    public String connect(String kvAddress, int kvPort, String metadata) throws Exception {
         boolean connected = false;
+        String result = null;
         
         while(!connected){
 	    	try{
@@ -133,7 +619,7 @@ public class Ecs {
 	            Socket clientSocket = new Socket();
 	            clientSocket.connect(new InetSocketAddress(kvAddress, kvPort));
 	            
-	            System.out.println("CONNECTED TO SERVER");
+	            logger.info("CONNECTED TO SERVER");
 	            
 	            connected = true;
 	            
@@ -143,9 +629,15 @@ public class Ecs {
 	            //send message to server
 	            sendMessage(new TextMessage(metadata), output);
 	            
-	            String result = receiveMessage(input).getMsg();
+	            result = receiveMessage(input).getMsg();
 	            
-	            System.out.println("The result is : " + result);
+	            if(result.split(" ").length > 1){
+	            	System.out.println("Server with IP " + kvAddress + " and PORT " + kvPort + " replies: " + result.split(" ", 2)[0]);
+	            	result = result.split(" ", 2)[1];
+	            } else {
+	            	System.out.println("Server with IP " + kvAddress + " and PORT " + kvPort + " replies: " + result);
+	            	result = "";
+	            }
 	
 	            disconnect(clientSocket,input,output,kvAddress,Integer.toString(kvPort));
 	
@@ -153,23 +645,24 @@ public class Ecs {
 	            //System.out.println(e.getMessage());
 	        }
         }
+        
+        return result;
     }
-
 
     public void disconnect(Socket clientSocket, InputStream input, OutputStream output, String kvAddress, String kvPort) {
         
-    	System.out.println("Disconnecting " + kvAddress + ":" + kvPort);
+    	logger.info("Disconnecting " + kvAddress + ":" + kvPort);
         if(clientSocket != null){
             try{
                 clientSocket.close();
                 input.close();
                 output.close();
             }catch (IOException e){
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
 
             clientSocket = null;
-            System.out.println("Connection to " + kvAddress + ":" + kvPort + " closed");
+            logger.info("Connection to " + kvAddress + ":" + kvPort + " closed");
         }
     }
 
@@ -264,27 +757,27 @@ public class Ecs {
             ss.close();
             
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }finally {
             if (proc!=null){
-                System.out.println("killing process!");
+                logger.info("killing process!");
                 proc.destroy();
 
                 try {
-                    System.out.println("SSH: "+ip+" PORT: "+ port);
+                    logger.info("SSH: "+ip+" PORT: "+ port);
                     connect(ip, Integer.parseInt(port), metadata);
 
                 } catch (Exception e) {
-                	System.out.println(e.getMessage());
+                	logger.error(e.getMessage());
                 }
             }
         }
     }
     private void printError(String error){
-        System.out.println(PROMPT + "Error! " +  error);
+        System.out.println("ERROR! " +  error);
     }
 
-    void readFile() {
+    public void readFile() {
 
         BufferedReader br = null;
         FileReader fr = null;
@@ -301,7 +794,7 @@ public class Ecs {
             br = new BufferedReader(new FileReader(FILENAME));
 
             while ((sCurrentLine = br.readLine()) != null) {
-                System.out.println(sCurrentLine);
+                logger.info(sCurrentLine);
                 String[] splitString = sCurrentLine.split(" ");
                 String ipAddress = splitString[1].trim();
                 String port = splitString[2].trim();
@@ -310,7 +803,7 @@ public class Ecs {
 
         } catch (IOException e) {
 
-            e.printStackTrace();
+            logger.error(e.getMessage());
 
         } finally {
 
@@ -324,7 +817,7 @@ public class Ecs {
 
             } catch (IOException ex) {
 
-                ex.printStackTrace();
+            	logger.error(ex.getMessage());
 
             }
 
@@ -343,12 +836,12 @@ public class Ecs {
         String node7 =	"127.0.0.1 	50006";
         List<String> initiation = new ArrayList<>();
         initiation.add(node1);
-        initiation.add(node2);
-        initiation.add(node3);
-        initiation.add(node4);
-        initiation.add(node5);
-        initiation.add(node6);
-        initiation.add(node7);
+        //initiation.add(node2);
+        //initiation.add(node3);
+        //initiation.add(node4);
+        //initiation.add(node5);
+        //initiation.add(node6);
+        //initiation.add(node7);
 
         ConsistentHashing consistentHashing = new ConsistentHashing(1, initiation);
 
@@ -376,8 +869,8 @@ public class Ecs {
         System.out.println("----------------NOW GONNA TEST THE REMOVE------------------\n");
 
         consistentHashing.remove(node1);
-        consistentHashing.remove(node5);
-        consistentHashing.remove(node7);
+        //consistentHashing.remove(node5);
+        //consistentHashing.remove(node7);
 
         ConsistentHashing.HashedServer hs = consistentHashing.get("one");
         ConsistentHashing.HashedServer hs2 = consistentHashing.get("two");

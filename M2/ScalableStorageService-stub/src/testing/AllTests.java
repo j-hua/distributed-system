@@ -16,7 +16,7 @@ public class AllTests {
 		try {
 			new LogSetup("logs/testing/test.log", Level.ERROR);
 			//use a default of 128 keys, FIFO replacement
-            KVServer kvs = new KVServer(50000);
+            KVServer kvs = new KVServer(50000, "null", -1);
             AdditionalTest.clearFile(50000);
             new Thread(kvs).start();
             kvs.state = KVServer.SERVER_READY;

@@ -6,8 +6,9 @@ public interface KVAdminMessage {
     	INITIALIZATION_SUCCESS,         /* Initialization was successful*/
     	SERVER_STARTED,         /* Starting server was successful*/
     	SERVER_STOPPED,         /* Stopping server was successful*/
-    	SERVER_SHUTDOWN,         /* Shutting down server was successful*/
-    	LOCK_WRITE_SUCCESS,         /* Locking the write operation was successful*/
+    	SERVER_SHUTDOWN_COMPLETE,         /* Shutting down server was successful*/
+    	LOCK_WRITE_SUCCESSFUL,         /* Locking the write operation was successful*/
+    	UNLOCK_WRITE_SUCCESSFUL,		/* Unlocking the write operation was successful*/
     	METADATA_UPDATE_SUCCESSFUL,         /* Updating the metadata on the server was successful*/
     	DATA_TRANSFER_SUCCESSFUL,         /* Data arrived at the target server successfully*/
     	DATA_TRANSFER_FAILED,         /* Data did not arrive at the server, try again*/
