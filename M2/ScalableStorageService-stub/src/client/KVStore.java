@@ -60,12 +60,10 @@ public class KVStore implements KVCommInterface {
 			System.out.println("Connection failed, please try again");
 			logger.info("time out when establishing socket " + kvAddress + ":" + kvPort);
 			setConnected(false);
-
 		}catch (ConnectException e){
 			System.out.println("Connection failed, please try again");
 			logger.info("connection is refused when establishing socket " + kvAddress + ":" + kvPort);
 			setConnected(false);
-
 		}
 	}
 
