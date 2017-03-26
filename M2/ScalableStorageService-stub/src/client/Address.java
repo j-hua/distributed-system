@@ -9,7 +9,7 @@ public class Address {
 
     public Address(String iAddr, int p){
         ipAddr = iAddr;
-        port = port;
+        port = p;
     }
 
     public String getIpAddr(){return ipAddr;}

@@ -1,0 +1,1109 @@
+2017-03-23 13:24:23,881 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-23 13:24:23,881 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-23 13:24:23,881 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-23 13:24:23,881 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-23 13:24:23,882 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-23 13:24:23,882 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-23 13:24:23,882 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-23 13:24:23,882 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-23 13:55:37,001 INFO  [main] root: Setting up Hasher
+2017-03-23 13:55:37,015 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-23 13:55:37,015 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-23 13:55:37,017 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-23 13:55:37,017 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-23 13:55:37,017 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-23 13:55:37,017 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-23 13:55:37,017 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-23 13:55:37,023 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-23 13:55:37,023 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-23 13:55:37,024 INFO  [main] root: The metadata: c98f070ad535b44eb9ff4469c98a00f3,68400e786fac12b87965d436018373d0,localhost,50016 68400e786fac12b87965d436018373d0,c98f070ad535b44eb9ff4469c98a00f3,localhost,50014
+2017-03-23 13:55:37,024 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-23 13:55:37,024 INFO  [main] root: ip passed in: 127.0.0.1 port: 50016
+2017-03-24 15:31:11,065 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:31:11,065 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:31:11,065 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:31:11,065 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:31:11,065 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:31:11,065 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:31:11,065 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:31:11,065 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:31:18,700 INFO  [main] root: Setting up Hasher
+2017-03-24 15:31:18,738 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 15:31:18,738 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 15:31:18,741 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 15:31:18,742 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 15:31:18,742 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 15:31:18,750 INFO  [main] root: The metadata: 97afa5de704f8bf6297962a5f800476d,97afa5de704f8bf6297962a5f800476d,localhost,50015
+2017-03-24 15:31:18,750 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 15:31:18,750 INFO  [main] root: ip passed in: 127.0.0.1 port: 50015
+2017-03-24 15:32:46,461 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:32:46,461 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:32:46,461 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:32:46,461 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:32:46,462 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:32:46,462 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:32:46,462 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:32:46,462 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:32:55,223 INFO  [main] root: Setting up Hasher
+2017-03-24 15:32:55,266 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 15:32:55,266 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 15:32:55,269 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 15:32:55,270 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 15:32:55,270 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 15:32:55,280 INFO  [main] root: The metadata: 97afa5de704f8bf6297962a5f800476d,97afa5de704f8bf6297962a5f800476d,localhost,50015
+2017-03-24 15:32:55,280 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 15:32:55,280 INFO  [main] root: ip passed in: 127.0.0.1 port: 50015
+2017-03-24 15:35:45,792 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:35:45,792 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:35:45,792 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:35:45,793 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:35:45,793 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:35:45,793 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:35:45,793 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:35:45,793 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:36:03,328 INFO  [main] root: Setting up Hasher
+2017-03-24 15:36:03,383 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-24 15:36:03,383 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-24 15:36:03,388 INFO  [main] root: original: 127.0.0.1:50012
+2017-03-24 15:36:03,388 INFO  [main] root: digested(hex): a6dc40fc074b383f29d1c75aaac1b6c4
+2017-03-24 15:36:03,389 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 15:36:03,390 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-24 15:36:03,390 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-24 15:36:03,401 INFO  [main] root: original: 127.0.0.1:50012
+2017-03-24 15:36:03,401 INFO  [main] root: digested(hex): a6dc40fc074b383f29d1c75aaac1b6c4
+2017-03-24 15:36:03,402 INFO  [main] root: The metadata: a6dc40fc074b383f29d1c75aaac1b6c4,c98f070ad535b44eb9ff4469c98a00f3,localhost,50014 c98f070ad535b44eb9ff4469c98a00f3,a6dc40fc074b383f29d1c75aaac1b6c4,localhost,50012
+2017-03-24 15:36:03,402 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 15:36:03,402 INFO  [main] root: ip passed in: 127.0.0.1 port: 50014
+2017-03-24 15:43:04,634 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:43:04,634 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:43:04,634 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:43:04,634 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:43:04,634 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:43:04,634 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:43:04,634 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:43:04,635 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:43:16,345 INFO  [main] root: Setting up Hasher
+2017-03-24 15:43:16,386 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 15:43:16,386 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 15:43:16,389 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 15:43:16,390 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 15:43:16,390 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 15:43:16,402 INFO  [main] root: The metadata: 3ebf39bfa08189651d170e593782fea4,3ebf39bfa08189651d170e593782fea4,localhost,50011
+2017-03-24 15:43:16,402 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 15:43:16,402 INFO  [main] root: ip passed in: 127.0.0.1 port: 50011
+2017-03-24 15:45:09,096 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:45:09,097 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:45:09,097 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:45:09,097 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:45:09,097 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:45:09,097 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:45:09,097 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:45:09,097 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:45:25,755 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 15:45:25,755 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 15:45:25,755 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 15:45:25,755 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 15:45:25,755 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 15:45:25,755 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 15:45:25,755 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 15:45:25,755 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 15:45:35,845 INFO  [main] root: Setting up Hasher
+2017-03-24 15:45:35,883 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 15:45:35,883 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 15:45:35,885 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 15:45:35,886 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 15:45:35,886 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 15:45:35,893 INFO  [main] root: The metadata: 3ebf39bfa08189651d170e593782fea4,3ebf39bfa08189651d170e593782fea4,localhost,50011
+2017-03-24 15:45:35,894 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 15:45:35,894 INFO  [main] root: ip passed in: 127.0.0.1 port: 50011
+2017-03-24 16:07:35,321 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 16:07:35,322 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 16:07:35,322 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 16:07:35,322 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 16:07:35,322 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 16:07:35,322 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 16:07:35,322 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 16:07:35,322 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 16:07:42,211 INFO  [main] root: Setting up Hasher
+2017-03-24 16:07:42,222 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 16:07:42,222 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 16:07:42,224 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 16:07:42,224 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-24 16:07:42,224 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-24 16:07:42,229 INFO  [main] root: The metadata: 97afa5de704f8bf6297962a5f800476d,97afa5de704f8bf6297962a5f800476d,localhost,50015
+2017-03-24 16:07:42,229 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 16:07:42,229 INFO  [main] root: ip passed in: 127.0.0.1 port: 50015
+2017-03-24 16:13:07,832 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-24 16:13:07,832 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-24 16:13:07,832 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-24 16:13:07,832 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-24 16:13:07,833 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-24 16:13:07,833 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-24 16:13:07,833 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-24 16:13:07,833 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-24 16:13:15,152 INFO  [main] root: Setting up Hasher
+2017-03-24 16:13:15,172 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 16:13:15,172 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 16:13:15,174 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-24 16:13:15,174 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 16:13:15,174 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 16:13:15,179 INFO  [main] root: The metadata: 3ebf39bfa08189651d170e593782fea4,3ebf39bfa08189651d170e593782fea4,localhost,50011
+2017-03-24 16:13:15,179 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-24 16:13:15,179 INFO  [main] root: ip passed in: 127.0.0.1 port: 50011
+2017-03-24 16:13:17,649 INFO  [main] root: killing process!
+2017-03-24 16:13:17,649 INFO  [main] root: SSH: 127.0.0.1 PORT: 50011
+2017-03-24 16:13:17,651 INFO  [main] root: CONNECTED TO SERVER
+2017-03-24 16:13:17,687 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-24 16:13:17,687 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-24 16:13:17,688 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-24 16:13:17,688 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-24 16:13:17,688 INFO  [main] root: No persistent data to send
+2017-03-24 16:13:39,697 INFO  [main] root: Number of participating servers: 1
+2017-03-24 16:13:39,698 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-24 16:13:39,706 INFO  [main] root: CONNECTED TO SERVER
+2017-03-24 16:13:39,717 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-24 16:13:39,717 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-25 15:23:17,176 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 15:23:17,177 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 15:23:17,177 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 15:23:17,177 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 15:23:17,177 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 15:23:17,177 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 15:23:17,177 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 15:23:17,177 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 15:23:27,955 INFO  [main] root: Setting up Hasher
+2017-03-25 15:23:27,966 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 15:23:27,966 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 15:23:27,967 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 15:23:27,967 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 15:23:27,968 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 15:23:27,972 INFO  [main] root: The metadata: 68400e786fac12b87965d436018373d0,68400e786fac12b87965d436018373d0,localhost,50016
+2017-03-25 15:23:27,972 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 15:23:27,972 INFO  [main] root: ip passed in: 127.0.0.1 port: 50016
+2017-03-25 15:23:28,341 INFO  [main] root: killing process!
+2017-03-25 15:23:28,341 INFO  [main] root: SSH: 127.0.0.1 PORT: 50016
+2017-03-25 15:23:28,343 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 15:23:28,370 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 15:23:28,370 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 15:23:28,370 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 15:23:28,370 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 15:23:28,371 INFO  [main] root: original: key
+2017-03-25 15:23:28,371 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 15:23:28,371 INFO  [main] root: original: two
+2017-03-25 15:23:28,371 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 15:23:28,371 INFO  [main] root: Sending persisted data
+2017-03-25 15:23:28,371 INFO  [main] root: key,value two,ali
+2017-03-25 15:23:28,371 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 15:23:28,381 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 15:23:28,381 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 15:25:00,770 INFO  [main] root: Number of participating servers: 1
+2017-03-25 15:25:00,771 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-25 15:25:00,780 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 15:25:00,789 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 15:25:00,789 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 18:45:22,055 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 18:45:22,055 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 18:45:22,055 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 18:45:22,055 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 18:45:22,055 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 18:45:22,056 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 18:45:22,056 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 18:45:22,056 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 18:45:44,370 INFO  [main] root: Setting up Hasher
+2017-03-25 18:45:44,405 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 18:45:44,405 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 18:45:44,406 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 18:45:44,406 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 18:45:44,407 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 18:45:44,407 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 18:45:44,407 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 18:45:44,412 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 18:45:44,412 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 18:45:44,413 INFO  [main] root: The metadata: c98f070ad535b44eb9ff4469c98a00f3,b7b2df4f3ec9d6dfccfa64a0e0993b0e,localhost,50013 b7b2df4f3ec9d6dfccfa64a0e0993b0e,c98f070ad535b44eb9ff4469c98a00f3,localhost,50014
+2017-03-25 18:45:44,413 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 18:45:44,413 INFO  [main] root: ip passed in: 127.0.0.1 port: 50013
+2017-03-25 18:45:44,856 INFO  [main] root: killing process!
+2017-03-25 18:45:44,857 INFO  [main] root: SSH: 127.0.0.1 PORT: 50013
+2017-03-25 18:45:44,858 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 18:45:44,904 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-25 18:45:44,904 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-25 18:45:44,904 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 18:45:44,904 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 18:45:44,904 INFO  [main] root: original: key
+2017-03-25 18:45:44,904 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 18:45:44,905 INFO  [main] root: original: two
+2017-03-25 18:45:44,905 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 18:45:44,905 INFO  [main] root: Sending persisted data
+2017-03-25 18:45:44,905 INFO  [main] root: key,value
+2017-03-25 18:45:44,905 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 18:45:44,915 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-25 18:45:44,915 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-25 18:45:44,915 INFO  [main] root: ip passed in: 127.0.0.1 port: 50014
+2017-03-25 18:45:45,262 INFO  [main] root: killing process!
+2017-03-25 18:45:45,263 INFO  [main] root: SSH: 127.0.0.1 PORT: 50014
+2017-03-25 18:45:45,263 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 18:45:45,285 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 18:45:45,285 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 18:45:45,285 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 18:45:45,285 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 18:45:45,285 INFO  [main] root: original: key
+2017-03-25 18:45:45,285 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 18:45:45,286 INFO  [main] root: original: two
+2017-03-25 18:45:45,286 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 18:45:45,286 INFO  [main] root: Sending persisted data
+2017-03-25 18:45:45,286 INFO  [main] root: two,ali
+2017-03-25 18:45:45,286 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 18:45:45,294 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 18:45:45,294 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 18:45:45,294 INFO  [main] root: Starting failure detection thread...
+2017-03-25 18:45:45,295 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50013
+2017-03-25 18:45:45,295 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50014
+2017-03-25 18:45:45,295 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50013
+2017-03-25 18:45:45,295 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50014
+2017-03-25 18:45:45,295 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 18:45:45,296 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 18:45:45,296 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 18:45:45,296 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 18:45:45,296 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:45,296 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:47,344 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:47,350 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:49,344 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:49,354 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:51,357 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:51,366 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:53,362 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:53,379 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:55,362 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:55,389 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:57,369 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:57,399 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:59,380 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:45:59,402 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:01,380 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:01,406 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:03,387 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:03,411 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:05,401 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:05,423 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:07,402 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:07,508 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:09,408 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:09,537 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:11,415 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:11,542 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:13,416 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:13,552 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:15,423 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:15,574 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:17,429 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:17,584 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:19,430 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:19,588 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:21,438 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:21,591 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:23,454 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:23,600 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:25,454 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:25,605 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:27,465 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:27,612 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:29,471 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:29,639 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:31,472 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:31,647 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:33,483 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:33,657 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:35,491 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:35,663 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:37,491 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:37,670 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:39,495 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:39,678 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:41,503 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:41,689 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:43,511 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:43,697 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:45,514 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:45,705 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:47,516 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:47,708 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:49,523 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:49,714 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:51,538 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:51,722 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:53,540 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:53,737 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:55,556 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:55,747 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:57,567 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:57,755 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:59,568 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:46:59,762 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:01,576 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:01,774 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:03,582 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:03,781 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:05,582 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:05,788 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:07,590 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:07,795 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:09,603 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:09,801 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:11,603 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:11,803 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:13,613 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:13,815 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:15,619 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:15,826 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:17,620 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:17,833 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:19,631 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:19,840 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:21,643 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:21,850 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:23,644 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:23,857 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:25,657 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:25,869 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:27,662 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:27,877 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:29,663 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:29,882 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:31,669 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:31,890 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:33,677 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:33,892 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:35,689 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:35,899 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:37,702 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:37,910 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:39,712 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:39,923 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:41,718 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:41,929 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:43,724 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:43,935 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:45,729 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:45,947 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:47,736 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:47,953 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:49,737 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:49,961 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:51,750 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:51,974 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:53,754 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:53,987 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:55,756 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:56,006 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:57,762 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:58,014 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:47:59,770 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:00,026 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:01,771 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:02,033 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:03,781 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:04,038 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:05,791 INFO  [Thread-0] root: hbConnect ---- Watching out for failures...
+2017-03-25 18:48:06,049 INFO  [Thread-1] root: hbConnect ---- Watching out for failures...
+2017-03-25 19:05:45,363 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 19:05:45,364 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 19:05:45,364 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 19:05:45,364 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 19:05:45,364 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 19:05:45,364 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 19:05:45,364 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 19:05:45,364 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 19:06:04,617 INFO  [main] root: Setting up Hasher
+2017-03-25 19:06:04,634 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-25 19:06:04,634 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-25 19:06:04,635 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:06:04,635 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:06:04,635 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 19:06:04,636 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-25 19:06:04,636 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-25 19:06:04,640 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:06:04,640 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:06:04,641 INFO  [main] root: The metadata: 68400e786fac12b87965d436018373d0,3ebf39bfa08189651d170e593782fea4,localhost,50011 3ebf39bfa08189651d170e593782fea4,68400e786fac12b87965d436018373d0,localhost,50016
+2017-03-25 19:06:04,641 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 19:06:04,641 INFO  [main] root: ip passed in: 127.0.0.1 port: 50011
+2017-03-25 19:06:05,077 INFO  [main] root: killing process!
+2017-03-25 19:06:05,078 INFO  [main] root: SSH: 127.0.0.1 PORT: 50011
+2017-03-25 19:06:05,079 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:06:05,108 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-25 19:06:05,108 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-25 19:06:05,108 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-25 19:06:05,108 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-25 19:06:05,108 INFO  [main] root: original: key
+2017-03-25 19:06:05,108 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 19:06:05,109 INFO  [main] root: original: two
+2017-03-25 19:06:05,109 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 19:06:05,109 INFO  [main] root: Sending persisted data
+2017-03-25 19:06:05,109 INFO  [main] root: key,value two,ali
+2017-03-25 19:06:05,109 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:06:05,116 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-25 19:06:05,116 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-25 19:06:05,116 INFO  [main] root: ip passed in: 127.0.0.1 port: 50016
+2017-03-25 19:06:05,542 INFO  [main] root: killing process!
+2017-03-25 19:06:05,543 INFO  [main] root: SSH: 127.0.0.1 PORT: 50016
+2017-03-25 19:06:05,543 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:06:05,562 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 19:06:05,562 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 19:06:05,563 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:06:05,563 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:06:05,563 INFO  [main] root: original: key
+2017-03-25 19:06:05,563 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 19:06:05,563 INFO  [main] root: original: two
+2017-03-25 19:06:05,563 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 19:06:05,563 INFO  [main] root: No persistent data to send
+2017-03-25 19:06:05,563 INFO  [main] root: Starting failure detection thread...
+2017-03-25 19:06:05,563 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50011
+2017-03-25 19:06:05,564 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50016
+2017-03-25 19:06:05,564 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50011
+2017-03-25 19:06:05,564 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 19:06:05,564 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50016
+2017-03-25 19:06:05,565 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 19:06:05,565 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 19:06:05,565 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 19:06:56,818 INFO  [main] root: Number of participating servers: 2
+2017-03-25 19:06:56,818 INFO  [main] root: Servers will be started
+2017-03-25 19:06:56,818 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:06:56,825 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-25 19:06:56,825 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-25 19:06:56,826 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:06:56,834 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 19:06:56,834 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 19:07:56,643 INFO  [main] root: Number of participating servers: 2
+2017-03-25 19:07:56,644 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-25 19:07:56,651 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:07:56,667 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-25 19:07:56,667 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-25 19:07:56,672 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:07:56,688 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 19:07:56,688 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 19:14:55,811 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 19:14:55,812 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 19:14:55,812 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 19:14:55,812 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 19:14:55,812 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 19:14:55,812 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 19:14:55,812 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 19:14:55,812 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 19:15:13,583 INFO  [main] root: Setting up Hasher
+2017-03-25 19:15:13,624 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 19:15:13,625 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 19:15:13,628 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:15:13,628 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:15:13,629 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 19:15:13,629 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 19:15:13,630 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 19:15:13,639 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:15:13,639 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:15:13,640 INFO  [main] root: The metadata: 68400e786fac12b87965d436018373d0,51feb15dc634eb38a2be7d96b6cf6fa5,localhost,50010 51feb15dc634eb38a2be7d96b6cf6fa5,68400e786fac12b87965d436018373d0,localhost,50016
+2017-03-25 19:15:13,640 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 19:15:13,641 INFO  [main] root: ip passed in: 127.0.0.1 port: 50010
+2017-03-25 19:15:31,944 INFO  [main] root: killing process!
+2017-03-25 19:15:31,945 INFO  [main] root: SSH: 127.0.0.1 PORT: 50010
+2017-03-25 19:15:31,947 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:15:31,979 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 19:15:31,979 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-25 19:15:31,980 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 19:15:31,980 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 19:15:31,980 INFO  [main] root: original: key
+2017-03-25 19:15:31,980 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 19:15:31,981 INFO  [main] root: original: two
+2017-03-25 19:15:31,981 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 19:15:31,981 INFO  [main] root: Sending persisted data
+2017-03-25 19:15:31,981 INFO  [main] root: key,value two,ali
+2017-03-25 19:15:31,981 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:15:31,988 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 19:15:31,989 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-25 19:15:31,989 INFO  [main] root: ip passed in: 127.0.0.1 port: 50016
+2017-03-25 19:15:32,290 INFO  [main] root: killing process!
+2017-03-25 19:15:32,290 INFO  [main] root: SSH: 127.0.0.1 PORT: 50016
+2017-03-25 19:15:32,290 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:15:32,320 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 19:15:32,320 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 19:15:32,321 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-25 19:15:32,321 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-25 19:15:32,321 INFO  [main] root: original: key
+2017-03-25 19:15:32,321 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 19:15:32,321 INFO  [main] root: original: two
+2017-03-25 19:15:32,321 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 19:15:32,321 INFO  [main] root: No persistent data to send
+2017-03-25 19:15:32,321 INFO  [main] root: Starting failure detection thread...
+2017-03-25 19:15:32,321 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50010
+2017-03-25 19:15:32,322 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50016
+2017-03-25 19:15:32,322 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50010
+2017-03-25 19:15:32,322 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 19:15:32,322 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50016
+2017-03-25 19:15:32,322 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 19:15:32,323 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 19:15:32,323 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 19:16:26,657 INFO  [main] root: Number of participating servers: 2
+2017-03-25 19:16:26,657 INFO  [main] root: Servers will be started
+2017-03-25 19:16:26,658 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:16:26,667 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 19:16:26,667 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-25 19:16:26,668 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 19:16:26,673 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 19:16:26,673 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 20:56:26,792 INFO  [main] root: Number of participating servers: 2
+2017-03-25 20:56:26,793 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-25 20:56:26,801 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:56:26,814 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 20:56:26,814 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-25 20:56:26,821 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:56:26,834 INFO  [main] root: Disconnecting 127.0.0.1:50016
+2017-03-25 20:56:26,835 INFO  [main] root: Connection to 127.0.0.1:50016 closed
+2017-03-25 20:57:35,057 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 20:57:35,058 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 20:57:35,058 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 20:57:35,058 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 20:57:35,058 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 20:57:35,058 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 20:57:35,058 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 20:57:35,058 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 20:57:42,083 INFO  [main] root: Setting up Hasher
+2017-03-25 20:57:42,124 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 20:57:42,125 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 20:57:42,128 INFO  [main] root: original: 127.0.0.1:50012
+2017-03-25 20:57:42,128 INFO  [main] root: digested(hex): a6dc40fc074b383f29d1c75aaac1b6c4
+2017-03-25 20:57:42,128 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 20:57:42,129 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 20:57:42,129 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 20:57:42,138 INFO  [main] root: original: 127.0.0.1:50012
+2017-03-25 20:57:42,139 INFO  [main] root: digested(hex): a6dc40fc074b383f29d1c75aaac1b6c4
+2017-03-25 20:57:42,140 INFO  [main] root: The metadata: a6dc40fc074b383f29d1c75aaac1b6c4,856cb2d0c1483bcefbcebf14b586d682,localhost,50017 856cb2d0c1483bcefbcebf14b586d682,a6dc40fc074b383f29d1c75aaac1b6c4,localhost,50012
+2017-03-25 20:57:42,140 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 20:57:42,140 INFO  [main] root: ip passed in: 127.0.0.1 port: 50017
+2017-03-25 20:57:42,497 INFO  [main] root: killing process!
+2017-03-25 20:57:42,497 INFO  [main] root: SSH: 127.0.0.1 PORT: 50017
+2017-03-25 20:57:42,499 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:57:42,523 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 20:57:42,523 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 20:57:42,524 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 20:57:42,524 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 20:57:42,524 INFO  [main] root: original: key
+2017-03-25 20:57:42,524 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 20:57:42,524 INFO  [main] root: original: two
+2017-03-25 20:57:42,524 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 20:57:42,524 INFO  [main] root: Sending persisted data
+2017-03-25 20:57:42,524 INFO  [main] root: key,value two,ali
+2017-03-25 20:57:42,525 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:57:42,530 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 20:57:42,530 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 20:57:42,530 INFO  [main] root: ip passed in: 127.0.0.1 port: 50012
+2017-03-25 20:57:42,832 INFO  [main] root: killing process!
+2017-03-25 20:57:42,832 INFO  [main] root: SSH: 127.0.0.1 PORT: 50012
+2017-03-25 20:57:42,833 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:57:42,860 INFO  [main] root: Disconnecting 127.0.0.1:50012
+2017-03-25 20:57:42,860 INFO  [main] root: Connection to 127.0.0.1:50012 closed
+2017-03-25 20:57:42,860 INFO  [main] root: original: 127.0.0.1:50012
+2017-03-25 20:57:42,860 INFO  [main] root: digested(hex): a6dc40fc074b383f29d1c75aaac1b6c4
+2017-03-25 20:57:42,860 INFO  [main] root: original: key
+2017-03-25 20:57:42,861 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 20:57:42,861 INFO  [main] root: original: two
+2017-03-25 20:57:42,861 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 20:57:42,861 INFO  [main] root: No persistent data to send
+2017-03-25 20:57:42,861 INFO  [main] root: Starting failure detection thread...
+2017-03-25 20:57:42,861 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50017
+2017-03-25 20:57:42,862 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50012
+2017-03-25 20:57:42,862 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50017
+2017-03-25 20:57:42,862 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 20:57:42,862 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50012
+2017-03-25 20:57:42,862 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 20:57:42,863 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 20:57:42,863 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 20:57:52,354 INFO  [main] root: Number of participating servers: 2
+2017-03-25 20:57:52,355 INFO  [main] root: Servers will be started
+2017-03-25 20:57:52,355 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:57:52,357 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 20:57:52,357 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 20:57:52,358 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:57:52,371 INFO  [main] root: Disconnecting 127.0.0.1:50012
+2017-03-25 20:57:52,371 INFO  [main] root: Connection to 127.0.0.1:50012 closed
+2017-03-25 20:58:56,524 INFO  [main] root: Number of participating servers: 2
+2017-03-25 20:58:56,525 INFO  [main] root: Servers will be started
+2017-03-25 20:58:56,526 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:58:56,537 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 20:58:56,538 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 20:58:56,538 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 20:58:56,543 INFO  [main] root: Disconnecting 127.0.0.1:50012
+2017-03-25 20:58:56,543 INFO  [main] root: Connection to 127.0.0.1:50012 closed
+2017-03-25 21:49:34,041 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 21:49:34,041 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 21:49:34,041 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 21:49:34,041 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 21:49:34,041 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 21:49:34,041 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 21:49:34,041 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 21:49:34,041 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 21:49:45,184 INFO  [main] root: Setting up Hasher
+2017-03-25 21:49:45,198 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 21:49:45,198 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 21:49:45,199 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 21:49:45,200 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 21:49:45,200 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 21:49:45,200 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 21:49:45,200 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 21:49:45,205 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 21:49:45,205 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 21:49:45,206 INFO  [main] root: The metadata: 856cb2d0c1483bcefbcebf14b586d682,b7b2df4f3ec9d6dfccfa64a0e0993b0e,localhost,50013 b7b2df4f3ec9d6dfccfa64a0e0993b0e,856cb2d0c1483bcefbcebf14b586d682,localhost,50017
+2017-03-25 21:49:45,206 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 21:49:45,206 INFO  [main] root: ip passed in: 127.0.0.1 port: 50013
+2017-03-25 21:49:45,534 INFO  [main] root: killing process!
+2017-03-25 21:49:45,534 INFO  [main] root: SSH: 127.0.0.1 PORT: 50013
+2017-03-25 21:49:45,536 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 21:49:45,548 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-25 21:49:45,548 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-25 21:49:45,548 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-25 21:49:45,548 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-25 21:49:45,548 INFO  [main] root: original: key
+2017-03-25 21:49:45,548 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 21:49:45,548 INFO  [main] root: original: two
+2017-03-25 21:49:45,548 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 21:49:45,549 INFO  [main] root: No persistent data to send
+2017-03-25 21:49:45,549 INFO  [main] root: ip passed in: 127.0.0.1 port: 50017
+2017-03-25 21:49:45,851 INFO  [main] root: killing process!
+2017-03-25 21:49:45,852 INFO  [main] root: SSH: 127.0.0.1 PORT: 50017
+2017-03-25 21:49:45,852 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 21:49:45,862 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 21:49:45,863 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 21:49:45,863 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 21:49:45,863 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 21:49:45,863 INFO  [main] root: original: key
+2017-03-25 21:49:45,863 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 21:49:45,863 INFO  [main] root: original: two
+2017-03-25 21:49:45,863 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 21:49:45,863 INFO  [main] root: Sending persisted data
+2017-03-25 21:49:45,863 INFO  [main] root: key,value two,ali
+2017-03-25 21:49:45,864 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 21:49:45,869 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 21:49:45,869 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 21:49:45,869 INFO  [main] root: Starting failure detection thread...
+2017-03-25 21:49:45,869 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50013
+2017-03-25 21:49:45,869 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50017
+2017-03-25 21:49:45,870 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50013
+2017-03-25 21:49:45,870 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 21:49:45,870 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50017
+2017-03-25 21:49:45,870 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 21:49:45,870 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 21:49:45,870 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 21:49:50,393 INFO  [main] root: Number of participating servers: 2
+2017-03-25 21:49:50,393 INFO  [main] root: Servers will be started
+2017-03-25 21:49:50,394 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 21:49:50,401 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-25 21:49:50,401 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-25 21:49:50,402 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 21:49:50,405 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 21:49:50,406 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 22:02:32,955 INFO  [main] root: Number of participating servers: 2
+2017-03-25 22:02:32,956 INFO  [main] root: Servers will be started
+2017-03-25 22:02:33,337 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:02:33,337 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-25 22:02:33,337 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-25 22:02:33,338 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:02:33,338 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 22:02:33,338 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 22:06:59,744 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 22:06:59,745 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 22:06:59,745 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 22:06:59,745 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 22:06:59,745 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 22:06:59,745 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 22:06:59,745 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 22:06:59,745 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 22:07:57,737 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 22:07:57,737 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 22:07:57,737 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 22:07:57,737 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 22:07:57,737 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 22:07:57,737 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 22:07:57,737 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 22:07:57,738 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 22:08:05,741 INFO  [main] root: Setting up Hasher
+2017-03-25 22:08:05,778 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:08:05,778 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:08:05,781 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-25 22:08:05,781 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-25 22:08:05,782 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 22:08:05,782 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 22:08:05,782 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 22:08:05,782 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:08:05,782 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:08:05,791 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-25 22:08:05,791 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-25 22:08:05,792 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 22:08:05,792 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 22:08:05,793 INFO  [main] root: The metadata: 97afa5de704f8bf6297962a5f800476d,c98f070ad535b44eb9ff4469c98a00f3,localhost,50014 856cb2d0c1483bcefbcebf14b586d682,97afa5de704f8bf6297962a5f800476d,localhost,50015 c98f070ad535b44eb9ff4469c98a00f3,856cb2d0c1483bcefbcebf14b586d682,localhost,50017
+2017-03-25 22:08:05,793 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 22:08:05,793 INFO  [main] root: ip passed in: 127.0.0.1 port: 50014
+2017-03-25 22:08:06,111 INFO  [main] root: killing process!
+2017-03-25 22:08:06,112 INFO  [main] root: SSH: 127.0.0.1 PORT: 50014
+2017-03-25 22:08:06,113 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:06,127 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 22:08:06,127 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 22:08:06,127 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:08:06,127 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:08:06,127 INFO  [main] root: original: key
+2017-03-25 22:08:06,127 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 22:08:06,128 INFO  [main] root: original: two
+2017-03-25 22:08:06,128 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 22:08:06,128 INFO  [main] root: Sending persisted data
+2017-03-25 22:08:06,128 INFO  [main] root: two,ali
+2017-03-25 22:08:06,128 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:06,139 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 22:08:06,139 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 22:08:06,139 INFO  [main] root: ip passed in: 127.0.0.1 port: 50015
+2017-03-25 22:08:06,429 INFO  [main] root: killing process!
+2017-03-25 22:08:06,429 INFO  [main] root: SSH: 127.0.0.1 PORT: 50015
+2017-03-25 22:08:06,429 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:06,455 INFO  [main] root: Disconnecting 127.0.0.1:50015
+2017-03-25 22:08:06,455 INFO  [main] root: Connection to 127.0.0.1:50015 closed
+2017-03-25 22:08:06,456 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-25 22:08:06,456 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-25 22:08:06,456 INFO  [main] root: original: key
+2017-03-25 22:08:06,456 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 22:08:06,456 INFO  [main] root: original: two
+2017-03-25 22:08:06,456 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 22:08:06,456 INFO  [main] root: No persistent data to send
+2017-03-25 22:08:06,456 INFO  [main] root: ip passed in: 127.0.0.1 port: 50017
+2017-03-25 22:08:06,774 INFO  [main] root: killing process!
+2017-03-25 22:08:06,774 INFO  [main] root: SSH: 127.0.0.1 PORT: 50017
+2017-03-25 22:08:06,775 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:06,787 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 22:08:06,787 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 22:08:06,787 INFO  [main] root: original: 127.0.0.1:50017
+2017-03-25 22:08:06,787 INFO  [main] root: digested(hex): 856cb2d0c1483bcefbcebf14b586d682
+2017-03-25 22:08:06,787 INFO  [main] root: original: key
+2017-03-25 22:08:06,787 INFO  [main] root: digested(hex): 3c6e0b8a9c15224a8228b9a98ca1531d
+2017-03-25 22:08:06,788 INFO  [main] root: original: two
+2017-03-25 22:08:06,788 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-25 22:08:06,788 INFO  [main] root: Sending persisted data
+2017-03-25 22:08:06,788 INFO  [main] root: key,value
+2017-03-25 22:08:06,788 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:06,794 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 22:08:06,794 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 22:08:06,794 INFO  [main] root: Starting failure detection thread...
+2017-03-25 22:08:06,794 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50014
+2017-03-25 22:08:06,794 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50015
+2017-03-25 22:08:06,794 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50017
+2017-03-25 22:08:06,795 INFO  [Thread-2] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50017
+2017-03-25 22:08:06,795 INFO  [Thread-2] root: trying to connect the heartbeat socket...
+2017-03-25 22:08:06,795 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50015
+2017-03-25 22:08:06,795 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 22:08:06,795 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50014
+2017-03-25 22:08:06,795 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 22:08:06,795 INFO  [Thread-2] root: hbConnect ---- socket connected!
+2017-03-25 22:08:06,795 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 22:08:06,795 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 22:08:10,092 INFO  [main] root: Number of participating servers: 3
+2017-03-25 22:08:10,093 INFO  [main] root: Servers will be started
+2017-03-25 22:08:10,093 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:10,095 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 22:08:10,096 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 22:08:10,096 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:10,101 INFO  [main] root: Disconnecting 127.0.0.1:50015
+2017-03-25 22:08:10,102 INFO  [main] root: Connection to 127.0.0.1:50015 closed
+2017-03-25 22:08:10,102 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:08:10,119 INFO  [main] root: Disconnecting 127.0.0.1:50017
+2017-03-25 22:08:10,119 INFO  [main] root: Connection to 127.0.0.1:50017 closed
+2017-03-25 22:57:20,921 INFO  [main] root: Number of participating servers: 1
+2017-03-25 22:57:20,933 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-25 22:57:20,939 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:57:36,988 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-25 22:57:36,989 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-25 22:57:36,989 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-25 22:57:36,989 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-25 22:57:36,989 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-25 22:57:36,989 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-25 22:57:36,989 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-25 22:57:36,989 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-25 22:57:47,154 INFO  [main] root: Setting up Hasher
+2017-03-25 22:57:47,197 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:57:47,197 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:57:47,200 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 22:57:47,201 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 22:57:47,201 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-25 22:57:47,201 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:57:47,202 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:57:47,212 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 22:57:47,212 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 22:57:47,213 INFO  [main] root: The metadata: 51feb15dc634eb38a2be7d96b6cf6fa5,c98f070ad535b44eb9ff4469c98a00f3,localhost,50014 c98f070ad535b44eb9ff4469c98a00f3,51feb15dc634eb38a2be7d96b6cf6fa5,localhost,50010
+2017-03-25 22:57:47,213 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-25 22:57:47,213 INFO  [main] root: ip passed in: 127.0.0.1 port: 50014
+2017-03-25 22:57:47,557 INFO  [main] root: killing process!
+2017-03-25 22:57:47,557 INFO  [main] root: SSH: 127.0.0.1 PORT: 50014
+2017-03-25 22:57:47,559 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:57:47,594 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 22:57:47,594 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 22:57:47,594 INFO  [main] root: original: 127.0.0.1:50014
+2017-03-25 22:57:47,594 INFO  [main] root: digested(hex): c98f070ad535b44eb9ff4469c98a00f3
+2017-03-25 22:57:47,594 INFO  [main] root: No persistent data to send
+2017-03-25 22:57:47,594 INFO  [main] root: ip passed in: 127.0.0.1 port: 50010
+2017-03-25 22:57:47,889 INFO  [main] root: killing process!
+2017-03-25 22:57:47,889 INFO  [main] root: SSH: 127.0.0.1 PORT: 50010
+2017-03-25 22:57:47,890 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:57:47,912 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 22:57:47,912 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-25 22:57:47,912 INFO  [main] root: original: 127.0.0.1:50010
+2017-03-25 22:57:47,912 INFO  [main] root: digested(hex): 51feb15dc634eb38a2be7d96b6cf6fa5
+2017-03-25 22:57:47,912 INFO  [main] root: No persistent data to send
+2017-03-25 22:57:47,912 INFO  [main] root: Starting failure detection thread...
+2017-03-25 22:57:47,913 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50014
+2017-03-25 22:57:47,913 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50010
+2017-03-25 22:57:47,913 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50014
+2017-03-25 22:57:47,914 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-25 22:57:47,913 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50010
+2017-03-25 22:57:47,914 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-25 22:57:47,914 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-25 22:57:47,914 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-25 22:57:49,281 INFO  [main] root: Number of participating servers: 2
+2017-03-25 22:57:49,281 INFO  [main] root: Servers will be started
+2017-03-25 22:57:49,282 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:57:49,288 INFO  [main] root: Disconnecting 127.0.0.1:50014
+2017-03-25 22:57:49,288 INFO  [main] root: Connection to 127.0.0.1:50014 closed
+2017-03-25 22:57:49,288 INFO  [main] root: CONNECTED TO SERVER
+2017-03-25 22:57:49,302 INFO  [main] root: Disconnecting 127.0.0.1:50010
+2017-03-25 22:57:49,302 INFO  [main] root: Connection to 127.0.0.1:50010 closed
+2017-03-26 12:52:27,562 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-26 12:52:27,562 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-26 12:52:27,562 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-26 12:52:27,563 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-26 12:52:27,563 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-26 12:52:27,563 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-26 12:52:27,563 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-26 12:52:27,563 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-26 12:52:42,941 INFO  [main] root: Setting up Hasher
+2017-03-26 12:52:42,953 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-26 12:52:42,953 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-26 12:52:42,955 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-26 12:52:42,955 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-26 12:52:42,955 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-26 12:52:42,955 INFO  [main] root: original: 127.0.0.1:50016
+2017-03-26 12:52:42,955 INFO  [main] root: digested(hex): 68400e786fac12b87965d436018373d0
+2017-03-26 12:52:42,959 INFO  [main] root: original: 127.0.0.1:50015
+2017-03-26 12:52:42,960 INFO  [main] root: digested(hex): 97afa5de704f8bf6297962a5f800476d
+2017-03-26 12:52:42,960 INFO  [main] root: The metadata: 97afa5de704f8bf6297962a5f800476d,68400e786fac12b87965d436018373d0,localhost,50016 68400e786fac12b87965d436018373d0,97afa5de704f8bf6297962a5f800476d,localhost,50015
+2017-03-26 12:52:42,960 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-26 12:52:42,960 INFO  [main] root: ip passed in: 127.0.0.1 port: 50016
+2017-03-26 12:55:50,735 INFO  [main] root: node1 127.0.0.1 50010
+2017-03-26 12:55:50,735 INFO  [main] root: node2 127.0.0.1 50011
+2017-03-26 12:55:50,735 INFO  [main] root: node3 127.0.0.1 50012
+2017-03-26 12:55:50,735 INFO  [main] root: node4 127.0.0.1 50013
+2017-03-26 12:55:50,735 INFO  [main] root: node5 127.0.0.1 50014
+2017-03-26 12:55:50,735 INFO  [main] root: node6 127.0.0.1 50015
+2017-03-26 12:55:50,735 INFO  [main] root: node7 127.0.0.1 50016
+2017-03-26 12:55:50,735 INFO  [main] root: node8 127.0.0.1 50017
+2017-03-26 12:55:56,896 INFO  [main] root: Setting up Hasher
+2017-03-26 12:55:56,910 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-26 12:55:56,911 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-26 12:55:56,912 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-26 12:55:56,912 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-26 12:55:56,912 INFO  [main] root: Adding the particapating servers and setting up the metadata to be sent
+2017-03-26 12:55:56,913 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-26 12:55:56,913 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-26 12:55:56,918 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-26 12:55:56,918 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-26 12:55:56,919 INFO  [main] root: The metadata: 3ebf39bfa08189651d170e593782fea4,b7b2df4f3ec9d6dfccfa64a0e0993b0e,localhost,50013 b7b2df4f3ec9d6dfccfa64a0e0993b0e,3ebf39bfa08189651d170e593782fea4,localhost,50011
+2017-03-26 12:55:56,919 INFO  [main] root: Sending metadata and initializing all servers
+2017-03-26 12:55:56,919 INFO  [main] root: ip passed in: 127.0.0.1 port: 50013
+2017-03-26 12:55:57,324 INFO  [main] root: killing process!
+2017-03-26 12:55:57,324 INFO  [main] root: SSH: 127.0.0.1 PORT: 50013
+2017-03-26 12:55:57,326 INFO  [main] root: CONNECTED TO SERVER
+2017-03-26 12:55:57,362 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-26 12:55:57,362 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-26 12:55:57,363 INFO  [main] root: original: 127.0.0.1:50013
+2017-03-26 12:55:57,363 INFO  [main] root: digested(hex): b7b2df4f3ec9d6dfccfa64a0e0993b0e
+2017-03-26 12:55:57,363 INFO  [main] root: No persistent data to send
+2017-03-26 12:55:57,363 INFO  [main] root: ip passed in: 127.0.0.1 port: 50011
+2017-03-26 12:55:57,758 INFO  [main] root: killing process!
+2017-03-26 12:55:57,758 INFO  [main] root: SSH: 127.0.0.1 PORT: 50011
+2017-03-26 12:55:57,759 INFO  [main] root: CONNECTED TO SERVER
+2017-03-26 12:55:57,777 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-26 12:55:57,777 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-26 12:55:57,778 INFO  [main] root: original: 127.0.0.1:50011
+2017-03-26 12:55:57,778 INFO  [main] root: digested(hex): 3ebf39bfa08189651d170e593782fea4
+2017-03-26 12:55:57,778 INFO  [main] root: No persistent data to send
+2017-03-26 12:55:57,778 INFO  [main] root: Starting failure detection thread...
+2017-03-26 12:55:57,778 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50013
+2017-03-26 12:55:57,779 INFO  [main] root: initService ---- starting HeartBeat thread 127.0.0.1 50011
+2017-03-26 12:55:57,779 INFO  [Thread-1] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50011
+2017-03-26 12:55:57,779 INFO  [Thread-0] root: HearBeat thread ---- Calling hbConnect ---- 127.0.0.1 50013
+2017-03-26 12:55:57,779 INFO  [Thread-1] root: trying to connect the heartbeat socket...
+2017-03-26 12:55:57,779 INFO  [Thread-0] root: trying to connect the heartbeat socket...
+2017-03-26 12:55:57,780 INFO  [Thread-0] root: hbConnect ---- socket connected!
+2017-03-26 12:55:57,780 INFO  [Thread-1] root: hbConnect ---- socket connected!
+2017-03-26 12:55:57,795 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:55:57,825 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:02,795 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:02,831 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:07,800 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:07,841 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:12,806 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:12,849 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:17,817 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:17,858 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:22,822 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:22,859 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:27,832 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:27,867 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:32,845 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:32,877 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:37,851 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:37,883 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:42,859 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:42,895 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:47,866 INFO  [Thread-1] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:47,906 INFO  [Thread-0] root: Result returned --- Error: The format you entered is incorrect. Type 'help' to see possible options
+2017-03-26 12:56:51,617 INFO  [main] root: Number of participating servers: 2
+2017-03-26 12:56:51,617 INFO  [main] root: Servers will be shutdown, all data will be stored by the ECS
+2017-03-26 12:56:51,626 INFO  [main] root: CONNECTED TO SERVER
+2017-03-26 12:56:51,634 INFO  [main] root: Disconnecting 127.0.0.1:50013
+2017-03-26 12:56:51,634 INFO  [main] root: Connection to 127.0.0.1:50013 closed
+2017-03-26 12:56:51,634 INFO  [main] root: CONNECTED TO SERVER
+2017-03-26 12:56:51,650 INFO  [main] root: Disconnecting 127.0.0.1:50011
+2017-03-26 12:56:51,650 INFO  [main] root: Connection to 127.0.0.1:50011 closed
+2017-03-26 13:43:16,506 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 13:43:16,506 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 13:43:16,508 INFO  [main] root: original: 127.0.0.1::50001
+2017-03-26 13:43:16,508 INFO  [main] root: digested(hex): 48c86a63ff2b9130d072ce7d981e5fef
+2017-03-26 13:43:16,508 INFO  [main] root: original: one
+2017-03-26 13:43:16,508 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 13:43:16,508 INFO  [main] root: original: two
+2017-03-26 13:43:16,508 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 13:43:16,508 INFO  [main] root: original: three
+2017-03-26 13:43:16,508 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 13:43:16,509 INFO  [main] root: original: four
+2017-03-26 13:43:16,509 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 13:43:16,509 INFO  [main] root: original: five
+2017-03-26 13:43:16,509 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 13:43:16,509 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 13:43:16,509 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 13:43:16,509 INFO  [main] root: original: one
+2017-03-26 13:43:16,510 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 13:43:16,510 INFO  [main] root: original: two
+2017-03-26 13:43:16,510 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 13:43:16,510 INFO  [main] root: original: three
+2017-03-26 13:43:16,510 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 13:43:16,510 INFO  [main] root: original: four
+2017-03-26 13:43:16,510 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 13:43:16,510 INFO  [main] root: original: five
+2017-03-26 13:43:16,510 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 13:48:52,446 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 13:48:52,447 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 13:48:52,448 INFO  [main] root: original: 127.0.0.1::50001
+2017-03-26 13:48:52,448 INFO  [main] root: digested(hex): 48c86a63ff2b9130d072ce7d981e5fef
+2017-03-26 13:48:52,448 INFO  [main] root: original: one
+2017-03-26 13:48:52,448 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 13:48:52,449 INFO  [main] root: original: two
+2017-03-26 13:48:52,449 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 13:48:52,449 INFO  [main] root: original: three
+2017-03-26 13:48:52,449 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 13:48:52,449 INFO  [main] root: original: four
+2017-03-26 13:48:52,449 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 13:48:52,449 INFO  [main] root: original: five
+2017-03-26 13:48:52,449 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 13:48:52,450 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 13:48:52,450 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 13:48:52,450 INFO  [main] root: original: one
+2017-03-26 13:48:52,450 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 13:48:52,450 INFO  [main] root: original: two
+2017-03-26 13:48:52,450 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 13:48:52,450 INFO  [main] root: original: three
+2017-03-26 13:48:52,451 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 13:48:52,451 INFO  [main] root: original: four
+2017-03-26 13:48:52,451 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 13:48:52,451 INFO  [main] root: original: five
+2017-03-26 13:48:52,451 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 13:53:56,774 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 13:53:56,774 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 13:53:56,775 INFO  [main] root: original: 127.0.0.1::50001
+2017-03-26 13:53:56,775 INFO  [main] root: digested(hex): 48c86a63ff2b9130d072ce7d981e5fef
+2017-03-26 13:53:56,775 INFO  [main] root: original: 127.0.0.1::50002
+2017-03-26 13:53:56,776 INFO  [main] root: digested(hex): 1fd30b31f4d26a85d980191d6f0dcfd4
+2017-03-26 13:53:56,776 INFO  [main] root: original: 127.0.0.1::50003
+2017-03-26 13:53:56,776 INFO  [main] root: digested(hex): cc3c3c727b15e531e79cdec0d210b503
+2017-03-26 13:53:56,776 INFO  [main] root: original: 127.0.0.1::50004
+2017-03-26 13:53:56,776 INFO  [main] root: digested(hex): a8f0a01967fac0acc54b95ba84c1b5af
+2017-03-26 13:53:56,776 INFO  [main] root: original: 127.0.0.1::50005
+2017-03-26 13:53:56,776 INFO  [main] root: digested(hex): 03e5ded9143cbd0d35b3b1e5cdb3df7b
+2017-03-26 13:53:56,777 INFO  [main] root: original: 127.0.0.1::50006
+2017-03-26 13:53:56,777 INFO  [main] root: digested(hex): 593e95348d3a7a3de0b71c9f78292db5
+2017-03-26 13:53:56,777 INFO  [main] root: original: one
+2017-03-26 13:53:56,777 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 13:53:56,777 INFO  [main] root: original: two
+2017-03-26 13:53:56,777 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 13:53:56,777 INFO  [main] root: original: three
+2017-03-26 13:53:56,777 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 13:53:56,778 INFO  [main] root: original: four
+2017-03-26 13:53:56,778 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 13:53:56,778 INFO  [main] root: original: five
+2017-03-26 13:53:56,778 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 13:53:56,778 INFO  [main] root: original: zero
+2017-03-26 13:53:56,778 INFO  [main] root: digested(hex): d02c4c4cde7ae76252540d116a40f23a
+2017-03-26 13:53:56,778 INFO  [main] root: original: jeffrey
+2017-03-26 13:53:56,778 INFO  [main] root: digested(hex): 6a27f10aef159701c7a5ff07f0fb0a78
+2017-03-26 13:53:56,778 INFO  [main] root: original: waref
+2017-03-26 13:53:56,778 INFO  [main] root: digested(hex): 021362766c632a4be66d63fbbd0d3281
+2017-03-26 14:02:10,181 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 14:02:10,182 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 14:02:10,183 INFO  [main] root: original: 127.0.0.1::50001
+2017-03-26 14:02:10,183 INFO  [main] root: digested(hex): 48c86a63ff2b9130d072ce7d981e5fef
+2017-03-26 14:02:10,183 INFO  [main] root: original: 127.0.0.1::50002
+2017-03-26 14:02:10,183 INFO  [main] root: digested(hex): 1fd30b31f4d26a85d980191d6f0dcfd4
+2017-03-26 14:02:10,183 INFO  [main] root: original: 127.0.0.1::50003
+2017-03-26 14:02:10,184 INFO  [main] root: digested(hex): cc3c3c727b15e531e79cdec0d210b503
+2017-03-26 14:02:10,184 INFO  [main] root: original: 127.0.0.1::50004
+2017-03-26 14:02:10,184 INFO  [main] root: digested(hex): a8f0a01967fac0acc54b95ba84c1b5af
+2017-03-26 14:02:10,184 INFO  [main] root: original: 127.0.0.1::50005
+2017-03-26 14:02:10,184 INFO  [main] root: digested(hex): 03e5ded9143cbd0d35b3b1e5cdb3df7b
+2017-03-26 14:02:10,184 INFO  [main] root: original: 127.0.0.1::50006
+2017-03-26 14:02:10,184 INFO  [main] root: digested(hex): 593e95348d3a7a3de0b71c9f78292db5
+2017-03-26 14:02:10,185 INFO  [main] root: original: one
+2017-03-26 14:02:10,185 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 14:02:10,185 INFO  [main] root: original: two
+2017-03-26 14:02:10,185 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 14:02:10,185 INFO  [main] root: original: three
+2017-03-26 14:02:10,185 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 14:02:10,185 INFO  [main] root: original: four
+2017-03-26 14:02:10,185 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 14:02:10,185 INFO  [main] root: original: five
+2017-03-26 14:02:10,186 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 14:02:10,186 INFO  [main] root: original: zero
+2017-03-26 14:02:10,186 INFO  [main] root: digested(hex): d02c4c4cde7ae76252540d116a40f23a
+2017-03-26 14:02:10,186 INFO  [main] root: original: jeffrey
+2017-03-26 14:02:10,186 INFO  [main] root: digested(hex): 6a27f10aef159701c7a5ff07f0fb0a78
+2017-03-26 14:02:10,186 INFO  [main] root: original: waref
+2017-03-26 14:02:10,186 INFO  [main] root: digested(hex): 021362766c632a4be66d63fbbd0d3281
+2017-03-26 14:02:20,455 INFO  [main] root: original: 127.0.0.1::50000
+2017-03-26 14:02:20,456 INFO  [main] root: digested(hex): 39a56585221c232f68d9786f3b33ec7d
+2017-03-26 14:02:20,457 INFO  [main] root: original: 127.0.0.1::50001
+2017-03-26 14:02:20,457 INFO  [main] root: digested(hex): 48c86a63ff2b9130d072ce7d981e5fef
+2017-03-26 14:02:20,457 INFO  [main] root: original: 127.0.0.1::50002
+2017-03-26 14:02:20,457 INFO  [main] root: digested(hex): 1fd30b31f4d26a85d980191d6f0dcfd4
+2017-03-26 14:02:20,458 INFO  [main] root: original: 127.0.0.1::50003
+2017-03-26 14:02:20,458 INFO  [main] root: digested(hex): cc3c3c727b15e531e79cdec0d210b503
+2017-03-26 14:02:20,458 INFO  [main] root: original: 127.0.0.1::50004
+2017-03-26 14:02:20,458 INFO  [main] root: digested(hex): a8f0a01967fac0acc54b95ba84c1b5af
+2017-03-26 14:02:20,458 INFO  [main] root: original: 127.0.0.1::50005
+2017-03-26 14:02:20,458 INFO  [main] root: digested(hex): 03e5ded9143cbd0d35b3b1e5cdb3df7b
+2017-03-26 14:02:20,458 INFO  [main] root: original: 127.0.0.1::50006
+2017-03-26 14:02:20,458 INFO  [main] root: digested(hex): 593e95348d3a7a3de0b71c9f78292db5
+2017-03-26 14:02:20,459 INFO  [main] root: original: one
+2017-03-26 14:02:20,459 INFO  [main] root: digested(hex): f97c5d29941bfb1b2fdab0874906ab82
+2017-03-26 14:02:20,459 INFO  [main] root: original: two
+2017-03-26 14:02:20,459 INFO  [main] root: digested(hex): b8a9f715dbb64fd5c56e7783c6820a61
+2017-03-26 14:02:20,459 INFO  [main] root: original: three
+2017-03-26 14:02:20,459 INFO  [main] root: digested(hex): 35d6d33467aae9a2e3dccb4b6b027878
+2017-03-26 14:02:20,459 INFO  [main] root: original: four
+2017-03-26 14:02:20,459 INFO  [main] root: digested(hex): 8cbad96aced40b3838dd9f07f6ef5772
+2017-03-26 14:02:20,460 INFO  [main] root: original: five
+2017-03-26 14:02:20,460 INFO  [main] root: digested(hex): 30056e1cab7a61d256fc8edd970d14f5
+2017-03-26 14:02:20,460 INFO  [main] root: original: zero
+2017-03-26 14:02:20,460 INFO  [main] root: digested(hex): d02c4c4cde7ae76252540d116a40f23a
+2017-03-26 14:02:20,460 INFO  [main] root: original: jeffrey
+2017-03-26 14:02:20,460 INFO  [main] root: digested(hex): 6a27f10aef159701c7a5ff07f0fb0a78
+2017-03-26 14:02:20,460 INFO  [main] root: original: waref
+2017-03-26 14:02:20,460 INFO  [main] root: digested(hex): 021362766c632a4be66d63fbbd0d3281

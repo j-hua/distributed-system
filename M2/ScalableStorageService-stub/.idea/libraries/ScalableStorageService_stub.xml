@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ScalableStorageService-stub">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ms3-client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ms3-server.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ms3-ecs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
