@@ -14,7 +14,7 @@ public class Client extends Thread{
     private boolean running;
     private KVStore kvStore;
     private static Logger logger = Logger.getRootLogger();
-    private Metadata mData;
+    private Metadata mData = new Metadata();
     /**
      *  Client constructor
      */
@@ -72,6 +72,8 @@ public class Client extends Thread{
             kvStore.disconnect();
 
             //retry
+            kvStore = new KVStore(address.getIpAddr(),address.getPort());
+            kvStore.connect();
             kvm = kvStore.put(key,value);
         }
     }
@@ -91,6 +93,8 @@ public class Client extends Thread{
             kvStore.disconnect();
 
             //retry
+            kvStore = new KVStore(address.getIpAddr(),address.getPort());
+            kvStore.connect();
             kvm = kvStore.get(key);
         }
     }

@@ -176,7 +176,7 @@ public class KVServer implements Runnable {
 					skipFirst = true;
 				}
 			}
-			kvm = new KVMessageStorage(key, value, KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
+			kvm = new KVMessageStorage(bigData, value, KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
 		}
 
 		return kvm;

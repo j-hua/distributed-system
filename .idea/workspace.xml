@@ -2,32 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baf5a496-85b4-45c1-b341-15f61df30e54" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/script.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/ConsistentHashing$HashedServer.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/ConsistentHashing$HashedServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/ConsistentHashing.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/ConsistentHashing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/Ecs.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_ECS/Ecs.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvClient/KVClient.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvClient/KVClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/ClientConnectionKVServer.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/ClientConnectionKVServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/KVServer.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/KVServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/TextMessageKVServer.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/TextMessageKVServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/storageServer.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/app_kvServer/storageServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/Client.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/ClientSocketListener$SocketStatus.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/ClientSocketListener$SocketStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/KVStore.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/KVStore.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/TextMessage.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/client/TextMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/common/messages/KVMessage$StatusType.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/common/messages/KVMessage$StatusType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/testing/AllTests.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/testing/AllTests.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/testing/InteractionTest.class" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/bin/testing/InteractionTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/ms1-client.jar" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/ms1-client.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/ms1-server.jar" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/ms1-server.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/app_kvEcs/Ecs.class" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/app_kvEcs/Ecs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/client/TextMessage.class" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/client/TextMessage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-client.jar" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-client.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-ecs.jar" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-ecs.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-server.jar" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ms3-server.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/CLIENT_MANIFEST.MF" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/CLIENT_MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/SERVER_MANIFEST.MF" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/SERVER_MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/logs/server.log" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/logs/server.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/Ecs.java" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/Ecs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvClient/KVClient.java" afterPath="$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvClient/KVClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/M2/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/CLIENT_MANIFEST.MF" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/CLIENT_MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ECS_MANIFEST.MF" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/ECS_MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/SERVER_MANIFEST.MF" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/SERVER_MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/app_kvEcs/script.sh" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/bin/app_kvEcs/script.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/src/app_kvEcs/Ecs.java" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/src/app_kvEcs/Ecs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/M2/ScalableStorageService-stub/src/app_kvEcs/script.sh" afterPath="$PROJECT_DIR$/M2/ScalableStorageService-stub/src/app_kvEcs/script.sh" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,11 +30,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="KVServer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KVServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2250">
-              <caret line="136" column="64" lean-forward="false" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
+            <state relative-caret-position="104">
+              <caret line="95" column="56" lean-forward="false" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -56,8 +43,8 @@
       <file leaf-file-name="Ecs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/Ecs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+            <state relative-caret-position="450">
+              <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConsistentHashing.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConsistentHashing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/ConsistentHashing.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -160,7 +147,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="24" />
     <option name="width" value="1920" />
-    <option name="height" value="1152" />
+    <option name="height" value="1148" />
   </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
@@ -177,42 +164,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="BasicStorageServer-stub">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="M1/BasicStorageServer-stub">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="BasicStorageServer-stub">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="M1/BasicStorageServer-stub">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -307,10 +258,24 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="BasicStorageServer-stub">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/M1/BasicStorageServer-stub/libs/jsch-0.1.50.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/M2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -699,7 +664,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1152" extended-state="0" />
+    <frame x="0" y="24" width="1920" height="1148" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -716,9 +681,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4455253" sideWeight="0.48294243" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19402985" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19829424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17004265" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17004265" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38969874" sideWeight="0.49009386" order="3" side_tool="false" content_ui="tabs" />
@@ -1074,14 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2250">
-          <caret line="136" column="64" lean-forward="false" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvClient/KVClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
@@ -1099,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_ECS/Ecs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        <state relative-caret-position="450">
+          <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1111,6 +1068,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/M1/BasicStorageServer-stub/src/app_kvServer/KVServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="95" column="56" lean-forward="false" selection-start-line="95" selection-start-column="56" selection-end-line="95" selection-end-column="56" />
           <folding />
         </state>
       </provider>

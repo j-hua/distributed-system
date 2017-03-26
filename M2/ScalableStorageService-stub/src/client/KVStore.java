@@ -31,7 +31,7 @@ public class KVStore implements KVCommInterface {
 	public KVStore(String address, int port) {
 		this.kvAddress = address;
 		this.kvPort = port;
-		this.clientSocket =null;
+		this.clientSocket = null;
 		input = null;
 		output = null;
 		connected = false;
@@ -50,12 +50,12 @@ public class KVStore implements KVCommInterface {
 		// TODO Auto-generated method stub
 		try{
 			this.clientSocket = new Socket();
-			this.clientSocket.connect(new InetSocketAddress(kvAddress,kvPort),1000);
+			this.clientSocket.connect(new InetSocketAddress(this.kvAddress,this.kvPort),1000);
 			input = clientSocket.getInputStream();
 			output = clientSocket.getOutputStream();
 			setConnected(true);
 			logger.info("socket established " + kvAddress + ":" + kvPort);
-			TextMessage res = receiveMessage();
+		//	TextMessage res = receiveMessage();
 		}catch (SocketTimeoutException e){
 			System.out.println("Connection failed, please try again");
 			logger.info("time out when establishing socket " + kvAddress + ":" + kvPort);
