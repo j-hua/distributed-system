@@ -67,6 +67,9 @@ public class Client extends Thread{
 
             //lookup
             Address address = mData.lookup(key);
+            System.out.println(address.getIpAddr() + address.getPort());
+            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[0]);
+            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[1]);
 
             //close the wrong server
             kvStore.disconnect();
@@ -88,7 +91,9 @@ public class Client extends Thread{
 
             //lookup
             Address address = mData.lookup(key);
-
+            System.out.println(address.getIpAddr() + address.getPort());
+            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[0]);
+            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[1]);
             //close the wrong server
             kvStore.disconnect();
 
