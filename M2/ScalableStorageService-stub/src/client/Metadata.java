@@ -20,6 +20,9 @@ public class Metadata {
 
     public void add(String entry){
         consistentHashing.add(entry);
+        //System.out.println(entry);
+        //System.out.println(consistentHashing.get(entry).mHashedKeys[0]);
+        //System.out.println(consistentHashing.get(entry).mHashedKeys[0]);
     }
 
     /**
@@ -54,7 +57,8 @@ public class Metadata {
         int i;
         for(i=0;i<entry.length;i++){
             String[] element = entry[i].split(",");
-            add(element[2] + " " + element[3]);
+            String  el2 = element[2].replaceAll("localhost","127.0.0.1");
+            add(el2.trim() + " " + element[3].trim());
         }
 
     }
