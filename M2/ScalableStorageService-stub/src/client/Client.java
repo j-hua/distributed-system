@@ -94,13 +94,15 @@ public class Client extends Thread{
             System.out.println(address.getIpAddr() + address.getPort());
             System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[0]);
             System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[1]);
-            //close the wrong server
+            System.out.println(mData.consistentHashing.hashFunction("z "));            //close the wrong server
             kvStore.disconnect();
 
             //retry
             kvStore = new KVStore(address.getIpAddr(),address.getPort());
             kvStore.connect();
             kvm = kvStore.get(key);
+
+            break;
         }
     }
 

@@ -134,8 +134,10 @@ public class KVStore implements KVCommInterface {
 				kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
 				kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+				System.out.println("Operation is not successful, please try again later.");
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
 				kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+				System.out.println("Operation is not successful. Only get is available, please try again later.");
 			}else{
 				String[] tokens = res.getMsg().split("\\s+",3);
 				System.out.println("KEY: " + key.trim());
