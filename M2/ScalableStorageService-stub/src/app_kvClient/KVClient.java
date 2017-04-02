@@ -85,7 +85,7 @@ public class KVClient implements ClientSocketListener {
 
                     } else {
                         printError("Not connected!");
-                        throw new DisconnectedException("client not running or already disconneted");
+                        throw new DisconnectedException("client not running or already disconnected");
                     }
                 } else {
                     printError("Invalid number of parameters!");

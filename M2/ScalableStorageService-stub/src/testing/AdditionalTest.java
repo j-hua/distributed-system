@@ -20,6 +20,9 @@ public class AdditionalTest extends TestCase {
 	int PORT = 3000;
 	int ptLimit = 100;
 
+	/**
+	 * The best test we got
+	 */
 	@Test
 	public void testStub() {
 		assertTrue(true);
@@ -29,7 +32,6 @@ public class AdditionalTest extends TestCase {
 	 * Test whether you can retrieve a value from
 	 * persistent storage after inserting it
 	 */
-
 	@Test
 	public void testPutGet(){
 		clearFile(50000);
@@ -113,19 +115,11 @@ public class AdditionalTest extends TestCase {
 		assertTrue(ex == null && response.getStatus() == KVMessage.StatusType.GET_ERROR);
 	}
 
-	// @Test
-	// public void testConsistentHashing(){
-	// 	//Ecs.tester();
-
-	// 	assertTrue(true);
-	// }
-
-
 	public static void clearFile(int port){
 
 		PrintWriter pw = null;
 		try {
-			String fileName = "./data/storage" + Integer.toString(port) + ".txt";
+			String fileName = "./data/storage" + port + ".txt";
 			pw = new PrintWriter(fileName);
 			pw.close();
 

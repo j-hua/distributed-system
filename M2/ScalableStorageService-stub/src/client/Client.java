@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 /**
  * Created by JHUA on 2017-03-04.
@@ -67,9 +68,6 @@ public class Client extends Thread{
 
             //lookup
             Address address = mData.lookup(key);
-            System.out.println(address.getIpAddr() + address.getPort());
-            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[0]);
-            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[1]);
 
             //close the wrong server
             kvStore.disconnect();
@@ -85,24 +83,27 @@ public class Client extends Thread{
         KVMessage kvm = kvStore.get(key);
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
-
             //update metadata
             mData.updateMetadata(kvm.getValue());
 
             //lookup
             Address address = mData.lookup(key);
-            System.out.println(address.getIpAddr() + address.getPort());
-            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[0]);
-            System.out.println(mData.consistentHashing.get("127.0.0.1 " + address.getPort()).mHashedKeys[1]);
-            System.out.println(mData.consistentHashing.hashFunction("z "));            //close the wrong server
+            Address[] replicas = mData.getReplicas(address.getIpAddr() + ":" + address.getPort());
+            
+            //pick either the primary or one of the replicas
+            Random rand = new Random();
+    		int index = rand.nextInt(3);
+    		
+    		if(index != 0){
+    			address = replicas[index-1];
+    		}
+    		
             kvStore.disconnect();
 
             //retry
             kvStore = new KVStore(address.getIpAddr(),address.getPort());
             kvStore.connect();
             kvm = kvStore.get(key);
-
-            break;
         }
     }
 

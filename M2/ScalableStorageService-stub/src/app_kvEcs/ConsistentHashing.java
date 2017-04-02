@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 
 public class ConsistentHashing {
     private int numberOfReplicas;
-    public SortedMap<String, HashedServer> circle = new TreeMap<String, HashedServer>();
+    public TreeMap<String, HashedServer> circle = new TreeMap<String, HashedServer>();
     
     private static Logger logger = Logger.getRootLogger();
 
@@ -93,6 +93,29 @@ public class ConsistentHashing {
 
         return circle.get(hash);
 
+    }
+    
+    public String[] getReplicas(String hash){
+    	//get the next hashValue stored after hash
+    	String[] replicaAddr = new String[2];
+    	
+    	String firstHash = circle.higherKey(hash);
+    	if (firstHash == null){
+    		//no key higher, need to loop to the start in the circle
+    		firstHash = circle.firstKey();
+    	}
+    	
+    	//get the second hash value stored after hash
+    	String secondHash = circle.higherKey(firstHash);
+    	if (secondHash == null){
+    		//no key higher, need to loop to the start in the circle
+    		secondHash = circle.firstKey();
+    	}
+    	
+    	replicaAddr[0] = circle.get(firstHash).mIpAndPort;
+    	replicaAddr[1] = circle.get(secondHash).mIpAndPort;
+    	
+    	return replicaAddr;
     }
 
 

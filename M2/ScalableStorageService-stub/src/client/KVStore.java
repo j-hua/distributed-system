@@ -112,7 +112,18 @@ public class KVStore implements KVCommInterface {
 			System.out.println("KEY: " + key.trim());
 			System.out.println("VALUE: " + value.trim());
 			System.out.println("STATUS: " + tokens[0].trim());
-			kvms = new KVMessageStorage(tokens[1], null, StatusTypeLookup(tokens[0]));
+			
+			if(StatusTypeLookup(tokens[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+				kvms = new KVMessageStorage(null,tokens[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
+			}else if (StatusTypeLookup(tokens[0]) == KVMessage.StatusType.SERVER_STOPPED){
+				kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+				System.out.println("Operation is not successful, please try again later.");
+			}else if (StatusTypeLookup(tokens[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
+				kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+				System.out.println("Operation is not successful. Only get is available, please try again later.");
+			}else{
+				kvms = new KVMessageStorage(tokens[1], null, StatusTypeLookup(tokens[0]));
+			}
 		}else{
 			if(value.getBytes().length <= 120000){
 				sb.append(" ");
@@ -129,7 +140,6 @@ public class KVStore implements KVCommInterface {
 			TextMessage res = receiveMessage();
 
 			String[] arr = res.getMsg().split("\\s+",2);
-			logger.info("Received: " + res.getMsg());
 			if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
 				kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
 			}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
@@ -146,7 +156,6 @@ public class KVStore implements KVCommInterface {
 				kvms = new KVMessageStorage(tokens[1], tokens[2], StatusTypeLookup(tokens[0]));
 			}
 		}
-
 
 		return kvms;
 	}
