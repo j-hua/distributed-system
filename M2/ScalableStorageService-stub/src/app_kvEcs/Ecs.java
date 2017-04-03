@@ -73,8 +73,6 @@ public class Ecs {
                 System.out.println("CLI does not respond - Application terminated");
             }
     	}
-//
-//		tester();
     }
 
     private void handleCommand(String cmdline){
@@ -584,12 +582,12 @@ public class Ecs {
 				
             }
 
-            logger.info("Starting failure detection thread...");
-			for (int i =0; i<participatingServers.size();i++){
-				logger.info("initService ---- starting HeartBeat thread "+ participatingServers.get(i));
-				HeartBeatThread hbThread= new HeartBeatThread(participatingServers.get(i));
-				hbThread.start();
-			}
+//            logger.info("Starting failure detection thread...");
+//			for (int i =0; i<participatingServers.size();i++){
+//				logger.info("initService ---- starting HeartBeat thread "+ participatingServers.get(i));
+//				HeartBeatThread hbThread= new HeartBeatThread(participatingServers.get(i));
+//				hbThread.start();
+//			}
 
 
         }else{
@@ -663,7 +661,7 @@ public class Ecs {
 		boolean connected = false;
 
 		while(!connected){
-			logger.info("trying to connect the heartbeat socket...");
+		//	logger.info("trying to connect the heartbeat socket...");
 			try{
 				final OutputStream output;
 				final InputStream input;
@@ -685,7 +683,7 @@ public class Ecs {
 						String result = null;
 						sendMessage(new TextMessage("ecs hb"), output);
 						result = receiveMessage(input).getMsg();
-						logger.info("Result returned --- "+ result);
+//						logger.info("Result returned --- "+ result);
 						if (result==null){
 							logger.error("hbConnect ---- Detected failure - Message null from server ----- initializing the recovery...");
 							failureDetected=true;

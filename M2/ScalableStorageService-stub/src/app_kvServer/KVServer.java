@@ -227,7 +227,7 @@ public class KVServer implements Runnable {
 	}
 
 	public boolean checkIfInRange(String key, String start, String end) {
-		String keyHash = hashFunction(key);
+		String keyHash = hashFunction(key.trim());
 		
 		int biggerThan = keyHash.compareTo(start);
 		int lessThan = keyHash.compareTo(end);
@@ -514,11 +514,11 @@ public class KVServer implements Runnable {
         try {
             MessageDigest md = null;
             md = MessageDigest.getInstance("MD5");
-            md.update(ipAndPort.getBytes());
+            md.update(ipAndPort.replaceAll("\\s","").getBytes());
             byte[] digest = md.digest();
             String hash = toHex(digest);
             
-            logger.info("original: " + ipAndPort);
+            logger.info("original: " + ipAndPort.replaceAll("\\s",""));
             logger.info("digested(hex): " + hash);
             return hash;
         } catch (NoSuchAlgorithmException e) {
