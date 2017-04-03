@@ -14,6 +14,8 @@ public interface KVAdminMessage {
     	DATA_TRANSFER_FAILED,         /* Data did not arrive at the server, try again*/
     	DELETING_KVPAIRS_FAILED,	/* The key-value pairs could not be all deleted*/
     	DELETING_KVPAIRS_SUCCESSFUL,	/* The key-value pairs were all deleted*/
+    	REPLICATION_SUCCESSFUL, /* Data was replicated to both replicas successfully*/
+    	REPLICATION_FAILED, /* Data was not replicated to both replicas properly*/
 	}
 
 	/**

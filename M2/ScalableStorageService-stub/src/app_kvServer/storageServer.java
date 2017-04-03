@@ -24,22 +24,22 @@ public class storageServer {
         this.serverPort = serverPort;
     }
 
-    public synchronized KVMessage put(String key, String value) throws Exception {
-        logger.info("Putting  "+ " "+ "key: " + key + " "+"value: " + value);
+    public synchronized KVMessage put(String key, String value, String output, String tempFile) throws Exception {
+        logger.info("Putting"+ " " + "key: " + key + " "+"value: " + value);
 
         try {
             //writer for the original file
-            FileWriter write = new FileWriter("./data/storage"+serverPort+".txt", true);
+            FileWriter write = new FileWriter(output, true);
             PrintWriter printWrite = new PrintWriter(write);
             //writer for a temp file that could replace the original file
-            FileWriter writeTemp = new FileWriter("./data/temp"+serverPort+".txt", true);
+            FileWriter writeTemp = new FileWriter(tempFile, true);
             PrintWriter printTemp = new PrintWriter(writeTemp);
 
             KVMessage.StatusType status = null;
 
             if(value != null){
                 //read file for this key, maybe its an update
-                File inputFile = new File("./data/storage"+serverPort+".txt");
+                File inputFile = new File(output);
                 
                 if(!inputFile.exists()){
     				inputFile.createNewFile();
@@ -64,7 +64,7 @@ public class storageServer {
                 }
 
                 printTemp.close();
-                File temp = new File("./data/temp"+serverPort+".txt");
+                File temp = new File(tempFile);
 
                 if(!replaced){
                     //delete temp file
@@ -168,8 +168,8 @@ public class storageServer {
                             logger.info(valueCache.toString());
                         	
                         	//remove the found index containing the key value pair with the lowest frequency count
-                        	//keyCache.remove(removeIndex);
-                        	//valueCache.remove(removeIndex);
+                        	keyCache.remove(removeIndex);
+                        	valueCache.remove(removeIndex);
 
                             logger.info(keyCache.toString());
                             logger.info(valueCache.toString());
@@ -207,7 +207,7 @@ public class storageServer {
 
             } else {
                 //delete the corresponding key value pair in the file
-                File inputFile = new File("./data/storage"+serverPort+".txt");
+                File inputFile = new File(output);
                 
                 if(!inputFile.exists()){
     				inputFile.createNewFile();
@@ -230,7 +230,7 @@ public class storageServer {
                     }
                 }
 
-                File temp = new File("./data/temp"+serverPort+".txt");
+                File temp = new File(tempFile);
 
                 if(!deleted){
                     //delete temp file
@@ -269,12 +269,12 @@ public class storageServer {
 
     }
 
-    public synchronized KVMessage get(String key) throws Exception {
+    public synchronized KVMessage get(String key, String targetFile) throws Exception {
         logger.info("Getting "+"key: " +key);
 
         //get the value for the corresponding key if the key exists in file
         try {
-            File inputFile = new File("./data/storage"+serverPort+".txt");
+            File inputFile = new File(targetFile);
             
             if(!inputFile.exists()){
 				inputFile.createNewFile();

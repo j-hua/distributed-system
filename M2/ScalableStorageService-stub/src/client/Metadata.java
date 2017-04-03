@@ -57,9 +57,21 @@ public class Metadata {
         int i;
         for(i=0;i<entry.length;i++){
             String[] element = entry[i].split(",");
-            String  el2 = element[2].replaceAll("localhost","127.0.0.1");
-            add(el2.trim() + " " + element[3].trim());
+            add(element[2].trim() + " " + element[3].trim());
         }
 
+    }
+    
+    public Address[] getReplicas(String ipPort){
+    	String hash = consistentHashing.hashFunction(ipPort);
+    	
+    	String[] replicas = consistentHashing.getReplicas(hash);
+    	String[] firstIpPort = replicas[0].split(" ");
+    	String[] secondIpPort = replicas[1].split(" ");
+    	
+    	Address[] replicaDuo = {new Address(firstIpPort[0], Integer.parseInt(firstIpPort[1])), 
+        		new Address(secondIpPort[0], Integer.parseInt(secondIpPort[1]))};
+    	
+    	return replicaDuo;
     }
 }

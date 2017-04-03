@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ScalableStorageService-stub.iml" filepath="$PROJECT_DIR$/ScalableStorageService-stub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ScalableStorageService-stub.iml" filepath="$PROJECT_DIR$/.idea/ScalableStorageService-stub.iml" />
     </modules>
   </component>
 </project>

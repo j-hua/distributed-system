@@ -248,12 +248,37 @@ public class ClientConnectionKVServer implements Runnable {
 			} else if(action.equals(KVServer.ADDKV)){
 				//send the data to the KVServer method
 				status = kvServerListener.addKVPairs(message.split(" ", 3)[2].trim().split(" "));
+			} else if(action.equals(KVServer.REPLICATE)){
+				//run the replicate command
+				KVAdminMessage kvAM = kvServerListener.replicate();
+				status = String.valueOf(kvAM.getStatus());
 			}
 
 			return status;
 		} else if(action.equals("server")){
-			//send the data to the KVServer method
-			return kvServerListener.addKVPairs(message.split(" ", 2)[1].split(" "));
+			//the request came from a data server
+			//check which method is being invoked by that server
+			action = messageArray[1].trim();
+			
+			if(action.equals("addkvpairs")){
+				//send the data to the KVServer method
+				status = kvServerListener.addKVPairs(message.split(" ", 3)[2].split(" "));
+			} else if(action.equals("addreplicadata")){
+				String[] splitMsg = message.trim().split(" ", 4);
+				
+				if(splitMsg.length == 3){
+					String[] temp = {""};
+					status = kvServerListener.addReplicaData(Integer.parseInt(splitMsg[2].trim()), temp);
+				} else{
+					status = kvServerListener.addReplicaData(Integer.parseInt(splitMsg[2].trim()), splitMsg[3].split(" "));
+				}
+			} else if(action.equals("putreplica")){
+				String[] splitMsg = message.trim().split(" ", 5);
+				
+				status = kvServerListener.putReplica(Integer.parseInt(splitMsg[2]), splitMsg[3].trim(), splitMsg[4].trim());
+			}
+			
+			return status;
 		} else {
 			if (messageArray.length>=2){
 				try {

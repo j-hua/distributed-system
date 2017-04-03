@@ -8,7 +8,10 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Ecs {
 
@@ -31,20 +34,20 @@ public class Ecs {
     public void run() {
     	//get all servers within the config file into a accessible data structure
     	readFile();
-
+    	
     	try{
     		//get all values from persisted storage file
         	File outputFile = new File("./data/storage.txt");
-
+    		
     		if(!outputFile.exists()){
     			outputFile.getParentFile().mkdirs();
     			outputFile.createNewFile();
     		}
-
+    		
     		BufferedReader br = new BufferedReader(new FileReader(outputFile));
-
+    		
     		kvList = new ArrayList<String>();
-
+    		
 			String line;
 
 			//read every line of the file for each key value pair
@@ -54,17 +57,17 @@ public class Ecs {
 					kvList.add(kv[0] + "," + kv[1]);
 				}
 			}
-
+			
 			br.close();
-
+    		
     	} catch(IOException e){
     		logger.error(e.getMessage());
     	}
-
+    	
         while(!stop) {
             stdin = new BufferedReader(new InputStreamReader(System.in));
             System.out.print(PROMPT);
-
+            
             try {
                 String cmdLine = stdin.readLine();
                 this.handleCommand(cmdLine);
@@ -76,8 +79,6 @@ public class Ecs {
     }
 
     private void handleCommand(String cmdline){
-
-
 
         String[] tokens = cmdline.split("\\s+");
 
@@ -261,7 +262,7 @@ public class Ecs {
     		logger.info("Updating metadata with new server");
     		StringBuilder sb = new StringBuilder("");
     		
-    		for (String ipAndPort: participatingServers){
+    		for (String ipAndPort : participatingServers){
                 
         		try{
         			String[] elements= ipAndPort.split(" ");
@@ -271,13 +272,26 @@ public class Ecs {
 	                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
 	                String start = hashedServer.mHashedKeys[0].trim();
 	                String end = hashedServer.mHashedKeys[1].trim();
+	                String[] replicaAddr = cs.getReplicas(end);
 	                
-	                if(end.equals(startHash)){
+	                String[] firstIpPort = replicaAddr[0].split(" ");
+	                String firstIP = firstIpPort[0];
+	                String firstPort = firstIpPort[1];
+	                
+	                String[] secondIpPort = replicaAddr[1].split(" ");
+	                String secondIP = secondIpPort[0];
+	                String secondPort = secondIpPort[1];
+	                
+	                if(start.equals(endHash)){
 	                	targetIp = ip;
 	                	targetPort = port;
 	                }
 	                
-	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+	                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+	                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+	                .append(ip.trim()).append(",").append(port.trim())
+	                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+	                .append(secondIP).append(",").append(secondPort).append(" ");    
         		} catch(Exception e){
         			logger.error(e.getMessage());
         		}	
@@ -326,6 +340,18 @@ public class Ecs {
 					logger.info("No KV pairs to delete");
 				}
 				
+				//write lock all servers
+				logger.info("All servers being write locked to initiate replication");
+				writeLockAll();
+				
+				//initiate replication in all servers
+				logger.info("Replicate all data in every server due to new added node");
+				initiateReplication();
+				
+				//allowing writing of data in all servers
+				logger.info("All servers are being given write permission - replication complete");
+				writeUnlockAll();
+				
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
@@ -334,6 +360,34 @@ public class Ecs {
             logger.info("Number of participating servers after addition: " + participatingServers.size());
     	} else {
     		printError("All available servers have been added!");
+    	}
+    }
+    
+    public void writeLockAll(){
+    	for (String ipAndPort : participatingServers){
+    		String[] elements= ipAndPort.split(" ");
+            String ip = elements[0];
+            String port =elements[1];
+            
+            try {
+				connect(ip, Integer.parseInt(port), "ecs lockwrite");
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+    	}
+    }
+    
+    public void writeUnlockAll(){
+    	for (String ipAndPort : participatingServers){
+    		String[] elements= ipAndPort.split(" ");
+            String ip = elements[0];
+            String port =elements[1];
+            
+            try {
+				connect(ip, Integer.parseInt(port), "ecs unlockwrite");
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
     	}
     }
     
@@ -354,7 +408,7 @@ public class Ecs {
     public void deleteNode(int servNum){
     	logger.info("Number of participating servers: " + participatingServers.size());
     	if(participatingServers.contains(mIpAndPorts.get(servNum - 1))){
-    		if(participatingServers.size() > 1){
+    		if(participatingServers.size() > 3){
     			//get required information to move data allocated to an existing server
         		String[] ipAndport = mIpAndPorts.get(servNum - 1).split(" ");
                 String ipAddr = ipAndport[0];
@@ -373,7 +427,7 @@ public class Ecs {
                 participatingServers.remove(remIndex);
                 cs.remove(ipAddr + " " + portNum);
                 
-                //update metadata and find previous server to the new server on circle
+                //update metadata and find server that is right after deleted server on circle
         		logger.info("Updating metadata without the deleted server");
         		StringBuilder sb = new StringBuilder("");
         		
@@ -387,6 +441,15 @@ public class Ecs {
     	                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
     	                String start = hashedServer.mHashedKeys[0].trim();
     	                String end = hashedServer.mHashedKeys[1].trim();
+    	                String[] replicaAddr = cs.getReplicas(end);
+    	                
+    	                String[] firstIpPort = replicaAddr[0].split(" ");
+    	                String firstIP = firstIpPort[0];
+    	                String firstPort = firstIpPort[1];
+    	                
+    	                String[] secondIpPort = replicaAddr[1].split(" ");
+    	                String secondIP = secondIpPort[0];
+    	                String secondPort = secondIpPort[1];
     	                
     	                if(start.equals(startHash)){
     	                	targetIp = ip;
@@ -394,7 +457,11 @@ public class Ecs {
     	                	logger.info("Found target server");
     	                }
     	                
-    	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+    	                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+    	                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+    	                .append(ip.trim()).append(",").append(port.trim())
+    	                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+    	                .append(secondIP).append(",").append(secondPort).append(" ");
             		} catch(Exception e){
             			logger.error(e.getMessage());
             		}	
@@ -432,59 +499,26 @@ public class Ecs {
     				notParticipating.add(ipAddr + " " + portNum);
     				connect(ipAddr, Integer.valueOf(portNum), "ecs shutdown");
     				
+    				//write lock all servers
+    				logger.info("All servers being write locked to initiate replication");
+    				writeLockAll();
+    				
+    				//initiate replication in all servers
+    				logger.info("Replicate all data in every server due to new added node");
+    				initiateReplication();
+    				
+    				//allow writing of data again in all servers
+    				logger.info("All servers are being given write permission - replication complete");
+    				writeUnlockAll();
+    				
     				logger.info("Number of participating servers after deletion: " + participatingServers.size());
     			} catch (Exception e) {
     				logger.error(e.getMessage());
     			}
     		} else {
-    			//there is only one remaining server that will be deleted, persist the data to the ECS storage
-    			//and shut down the server
-    			
-    			//get required information to move data allocated to an existing server
-        		String[] ipAndport = mIpAndPorts.get(servNum - 1).split(" ");
-                String ipAddr = ipAndport[0];
-                String portNum = ipAndport[1];
-                
-                //remove the server from participatingServers and the HashCircle
-                int remIndex = participatingServers.indexOf(ipAddr + " " + portNum);
-                participatingServers.remove(remIndex);
-                cs.remove(ipAddr + " " + portNum);
-                
-                //add server to non participating list, and shut it down
-				notParticipating.add(ipAddr + " " + portNum);
-				try {
-					String storeData = connect(ipAddr, Integer.valueOf(portNum), "ecs shutdown");
-					
-					//empty the storage.txt file as it is receiving new data
-		        	File emptyFile = new File("./data/storage.txt");
-					new PrintWriter(emptyFile).close();
-					
-					//empty kvList, as it will receive fresh new data
-					kvList.clear();
-					
-					//add data from deleted server to ECS storage file
-					if(!storeData.equals("")){
-		            	String[] kvData = storeData.split(" ");
-		            	
-		            	File outputFile = new File("./data/storage.txt");
-		    			FileWriter write = new FileWriter(outputFile, true);
-		    			PrintWriter printWrite = new PrintWriter(write);
-		
-		    			//take each key-value pair and add it to the server's database file
-		    			for(String kvPair : kvData){
-		    				String key = kvPair.split(",")[0];
-		    				String value = kvPair.split(",")[1].replaceAll("-", " ");
-		
-		    				printWrite.println(key + " " + value);
-		    				kvList.add(key + "," + value);
-		    			}
-		
-		    			printWrite.close();
-		    			write.close();            		
-	            	}
-				} catch (Exception e) {
-					logger.error(e.getMessage());
-				}
+    			//there are only three servers left, tell user to use shutdown instead
+    			printError("A minimum of three servers must" +
+    					" run at a time, use \"shutdown\" instead to perform a complete shutdown");
     		}
     	} else {
     		printError("The server requested is not running");
@@ -493,7 +527,7 @@ public class Ecs {
 
     public void initService(int numberOfNodes, int cacheSize, String replacementStrategy){
         
-    	if (numberOfNodes <= mIpAndPorts.size()){
+    	if (numberOfNodes <= mIpAndPorts.size() && numberOfNodes >= 3){
 	    	//randomly pick a group of nodes
 	    	List<String> temp = new ArrayList<String>(mIpAndPorts);
 	    	List<String> param = new ArrayList<String>();
@@ -530,8 +564,21 @@ public class Ecs {
 	                ConsistentHashing.HashedServer hashedServer= cs.get(param.get(i));
 	                String start = hashedServer.mHashedKeys[0].trim();
 	                String end = hashedServer.mHashedKeys[1].trim();
+	                String[] replicaAddr = cs.getReplicas(end);
 	                
-	                sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+	                String[] firstIpPort = replicaAddr[0].split(" ");
+	                String firstIP = firstIpPort[0];
+	                String firstPort = firstIpPort[1];
+	                
+	                String[] secondIpPort = replicaAddr[1].split(" ");
+	                String secondIP = secondIpPort[0];
+	                String secondPort = secondIpPort[1];
+	                
+	                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+	                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+	                .append(ip.trim()).append(",").append(port.trim())
+	                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+	                .append(secondIP).append(",").append(secondPort).append(" ");
         		} catch(Exception e){
         			logger.error(e.getMessage());
         		}
@@ -582,16 +629,29 @@ public class Ecs {
 				
             }
 
-//            logger.info("Starting failure detection thread...");
-//			for (int i =0; i<participatingServers.size();i++){
-//				logger.info("initService ---- starting HeartBeat thread "+ participatingServers.get(i));
-//				HeartBeatThread hbThread= new HeartBeatThread(participatingServers.get(i));
-//				hbThread.start();
-//			}
-
+            
+            initiateReplication();
 
         }else{
-            printError("Number of nodes entered is larger than ones available can only enter at most " + mIpAndPorts.size());
+        	if(numberOfNodes >= 3){
+        		printError("Number of nodes entered is larger than ones available can only enter at most " + mIpAndPorts.size());
+        	} else {
+        		printError("Number of nodes entered is less than 3, at least 3 servers are required at startup");
+        	}  
+        }
+    }
+    
+    public void initiateReplication(){
+    	//initiate replication in each server (sending of data to replicas)
+        logger.info("Sending replication command to each server");
+        for(String server : participatingServers){
+        	String[] ipPort = server.split(" ");
+        	
+        	try{
+        		connect(ipPort[0], Integer.parseInt(ipPort[1]), "ecs replicate");
+        	} catch (Exception e){
+        		logger.error(e.getMessage());
+        	}
         }
     }
     
@@ -657,59 +717,6 @@ public class Ecs {
         return result;
     }
 
-    public void hbConnect(String kvAddress, int kvPort){
-		boolean connected = false;
-
-		while(!connected){
-		//	logger.info("trying to connect the heartbeat socket...");
-			try{
-				final OutputStream output;
-				final InputStream input;
-				//System.out.println("KVADDRESS: "+kvAddress+" PORT: "+kvPort);
-				Socket clientSocket = new Socket();
-				clientSocket.connect(new InetSocketAddress(kvAddress, kvPort));
-
-				connected = true;
-
-				logger.info("hbConnect ---- socket connected!");
-
-				output = clientSocket.getOutputStream();
-				input = clientSocket.getInputStream();
-
-				boolean failureDetected = false;
-				while (!failureDetected){
-//					logger.info("hbConnect ---- Watching out for failures...");
-					try {
-						String result = null;
-						sendMessage(new TextMessage("ecs hb"), output);
-						result = receiveMessage(input).getMsg();
-//						logger.info("Result returned --- "+ result);
-						if (result==null){
-							logger.error("hbConnect ---- Detected failure - Message null from server ----- initializing the recovery...");
-							failureDetected=true;
-						}
-
-						//else just wait for 1 second and send the message again
-						Thread.sleep(5000);
-					} catch (IOException e) {
-						e.printStackTrace();
-						logger.error("hbConnect ---- Detected failure - I/O exception ---- initializing the recovery...");
-						failureDetected=true;
-						//call the recovery
-					}
-				}
-
-			}catch (Exception e){
-				//System.out.println(e.getMessage());
-				logger.error("hbConnect ---- I/O Exception --- Hearbeat could not make a socket connection");
-
-			}
-		}
-	}
-
-	public void failureRecovery(String serverHash){
-
-	}
 
     public void disconnect(Socket clientSocket, InputStream input, OutputStream output, String kvAddress, String kvPort) {
         
@@ -805,36 +812,36 @@ public class Ecs {
     public void ssh(String ip, String port, String metadata){
 
         Process proc = null;
-	String script = "src/app_kvEcs/script.sh";
-	String[] cmd = {"sh", script, ip, port};
+        String script = "src/app_kvEcs/script.sh";
+        String[] cmd = {"sh", script, ip, port};
 
-	Runtime run = 	Runtime.getRuntime();
-	try {
-		proc = run.exec(cmd);
+        Runtime run = 	Runtime.getRuntime();
+        try {
+            proc = run.exec(cmd);
+            
+            //wait till the server notifies that it is about to listen for connections, then proceed
+            ServerSocket ss = new ServerSocket(ecsPort);
+            ss.accept();
+            
+            ss.close();
+            
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }finally {
+            if (proc!=null){
+                logger.info("killing process!");
+                proc.destroy();
 
-		//wait till the server notifies that it is about to listen for connections, then proceed
-		ServerSocket ss = new ServerSocket(ecsPort);
-		ss.accept();
+                try {
+                    logger.info("SSH: "+ip+" PORT: "+ port);
+                    connect(ip, Integer.parseInt(port), metadata);
 
-		ss.close();
-
-	} catch (IOException e) {
-		logger.error(e.getMessage());
-	}finally {
-		if (proc!=null){
-			logger.info("killing process!");
-			proc.destroy();
-
-			try {
-				logger.info("SSH: "+ip+" PORT: "+ port);
-				connect(ip, Integer.parseInt(port), metadata);
-
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
-		}
-	}
-}
+                } catch (Exception e) {
+                	logger.error(e.getMessage());
+                }
+            }
+        }
+    }
     private void printError(String error){
         System.out.println("ERROR! " +  error);
     }
@@ -898,27 +905,22 @@ public class Ecs {
         String node7 =	"127.0.0.1 	50006";
         List<String> initiation = new ArrayList<>();
         initiation.add(node1);
-        initiation.add(node2);
-        initiation.add(node3);
-        initiation.add(node4);
-        initiation.add(node5);
-        initiation.add(node6);
-        initiation.add(node7);
+        //initiation.add(node2);
+        //initiation.add(node3);
+        //initiation.add(node4);
+        //initiation.add(node5);
+        //initiation.add(node6);
+        //initiation.add(node7);
 
         ConsistentHashing consistentHashing = new ConsistentHashing(1, initiation);
 
         //test
-		System.out.print("FIRST KEY "+consistentHashing.circle.firstKey());
-		System.out.print("SECOND KEY "+consistentHashing.circle.lastKey());
 
-		ConsistentHashing.HashedServer hashedServer = consistentHashing.get("one");
+        ConsistentHashing.HashedServer hashedServer = consistentHashing.get("one");
         ConsistentHashing.HashedServer hashedServer1 = consistentHashing.get("two");
         ConsistentHashing.HashedServer hashedServer2 = consistentHashing.get("three");
         ConsistentHashing.HashedServer hashedServer3 = consistentHashing.get("four");
         ConsistentHashing.HashedServer hashedServer4 = consistentHashing.get("five");
-		ConsistentHashing.HashedServer hashedServer6 = consistentHashing.get("zero");
-		ConsistentHashing.HashedServer hashedServer7 = consistentHashing.get("jeffrey");
-		ConsistentHashing.HashedServer hashedServer8 = consistentHashing.get("waref");
 
 
 
@@ -928,61 +930,36 @@ public class Ecs {
         System.out.println(Arrays.toString(hashedServer2.mHashedKeys) +" "+hashedServer2.mIpAndPort);
         System.out.println(Arrays.toString(hashedServer3.mHashedKeys) +" "+hashedServer3.mIpAndPort);
         System.out.println(Arrays.toString(hashedServer4.mHashedKeys) +" "+hashedServer4.mIpAndPort+"\n");
-		System.out.println(Arrays.toString(hashedServer6.mHashedKeys) +" "+hashedServer6.mIpAndPort);
-		System.out.println(Arrays.toString(hashedServer7.mHashedKeys) +" "+hashedServer7.mIpAndPort);
-		System.out.println(Arrays.toString(hashedServer8.mHashedKeys) +" "+hashedServer8.mIpAndPort);
-
 
 
 
         System.out.println(consistentHashing.circle.keySet().toString());
-//
-//        System.out.println("----------------NOW GONNA TEST THE REMOVE------------------\n");
-//
-//        consistentHashing.remove(node1);
-//        //consistentHashing.remove(node5);
-//        //consistentHashing.remove(node7);
-//
-//        ConsistentHashing.HashedServer hs = consistentHashing.get("one");
-//        ConsistentHashing.HashedServer hs2 = consistentHashing.get("two");
-//        ConsistentHashing.HashedServer hs3 = consistentHashing.get("three");
-//        ConsistentHashing.HashedServer hs4 = consistentHashing.get("four");
-//        ConsistentHashing.HashedServer hs5 = consistentHashing.get("five");
-//
-//
-//        System.out.println(Arrays.toString(hs.mHashedKeys) +" "+hs.mIpAndPort);
-//        System.out.println(Arrays.toString(hs2.mHashedKeys) +" "+hs2.mIpAndPort);
-//        System.out.println(Arrays.toString(hs3.mHashedKeys) +" "+hs3.mIpAndPort);
-//        System.out.println(Arrays.toString(hs4.mHashedKeys) +" "+hs4.mIpAndPort);
-//        System.out.println(Arrays.toString(hs5.mHashedKeys) +" "+hs5.mIpAndPort+"\n");
-//
-//
-//        System.out.println(consistentHashing.circle.keySet().toString());
+
+        System.out.println("----------------NOW GONNA TEST THE REMOVE------------------\n");
+
+        consistentHashing.remove(node1);
+        //consistentHashing.remove(node5);
+        //consistentHashing.remove(node7);
+
+        ConsistentHashing.HashedServer hs = consistentHashing.get("one");
+        ConsistentHashing.HashedServer hs2 = consistentHashing.get("two");
+        ConsistentHashing.HashedServer hs3 = consistentHashing.get("three");
+        ConsistentHashing.HashedServer hs4 = consistentHashing.get("four");
+        ConsistentHashing.HashedServer hs5 = consistentHashing.get("five");
+
+
+        System.out.println(Arrays.toString(hs.mHashedKeys) +" "+hs.mIpAndPort);
+        System.out.println(Arrays.toString(hs2.mHashedKeys) +" "+hs2.mIpAndPort);
+        System.out.println(Arrays.toString(hs3.mHashedKeys) +" "+hs3.mIpAndPort);
+        System.out.println(Arrays.toString(hs4.mHashedKeys) +" "+hs4.mIpAndPort);
+        System.out.println(Arrays.toString(hs5.mHashedKeys) +" "+hs5.mIpAndPort+"\n");
+
+
+        System.out.println(consistentHashing.circle.keySet().toString());
     }
 
 
-	class HeartBeatThread extends Thread{
 
-    	String mServerInfo; // store for which server you are running the heartbeat
-    	public HeartBeatThread(String serverInfo){
-    		mServerInfo = serverInfo;
-		}
-
-		@Override
-		public void run() {
-			super.run();
-			//run a version of connect
-			//send message and then recieve message in a loop
-			//catch the exception and add timeout
-			//when error caught call the recovery function
-			String[] infoArray = mServerInfo.split(" ");
-			String ipAddress = infoArray[0];
-			String portNumber = infoArray[1];
-			int port = Integer.valueOf(portNumber);
-			logger.info("HearBeat thread ---- Calling hbConnect ---- " + ipAddress + " "+ portNumber);
-			hbConnect(ipAddress, port);
-		}
-	}
 }
 
 

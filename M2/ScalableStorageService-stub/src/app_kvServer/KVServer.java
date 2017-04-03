@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import java.math.BigInteger;
@@ -34,6 +35,7 @@ public class KVServer implements Runnable {
 	public static final String UPDATE = "update";
 	public static final String DELETEPAIRS = "deletepairs";
 	public static final String ADDKV = "addkvpairs";
+	public static final String REPLICATE = "replicate";
 
 	public static final int SERVER_STOPPED = 0;
 	public static final int SERVER_READY = 1;
@@ -50,9 +52,15 @@ public class KVServer implements Runnable {
 	//lock for metadata
 	private final Object metaLock = new Object();
 	private List<String> metadata = new ArrayList<String>();
+	
+	//lock for replica data files 
+	//first indicates the files to access if the server is the first replica, second if it is second replica
+	private final Object replicaLockFirst = new Object();
+	private final Object replicaLockSecond = new Object();
 
 	private static Logger logger;
 
+	private String ip;
 	private int port;
 	private String ecsAddr;
 	private int ecsPort;
@@ -64,6 +72,8 @@ public class KVServer implements Runnable {
 
 	private String serverHashStart;
 	private String serverHashEnd;
+	private String firstReplica;
+	private String secondReplica;
 
 	private storageServer mStorage = null;
 
@@ -155,7 +165,7 @@ public class KVServer implements Runnable {
 				writeRequests.add(0);
 			}
 
-			kvm = mStorage.put(key.trim(), value);
+			kvm = mStorage.put(key.trim(), value, "./data/storage"+port+".txt", "./data/temp"+port+".txt");
 
 			//once done remove client's request from request list
 			synchronized (lock) {
@@ -164,22 +174,115 @@ public class KVServer implements Runnable {
 			synchronized (writeLock) {
 				writeRequests.remove(0);
 			}
+			
+			if(kvm.getStatus() == KVMessage.StatusType.DELETE_SUCCESS || 
+					kvm.getStatus() == KVMessage.StatusType.PUT_SUCCESS ||
+					kvm.getStatus() == KVMessage.StatusType.PUT_UPDATE){
+				try{
+					//send write updates to replicas
+					
+					String valClean = (value == null) ? "null" : value;
+					
+					//first replica
+					String[] ipAndPort = firstReplica.split(" ");
+					String result = sendKvReplicaData(ipAndPort[0], Integer.parseInt(ipAndPort[1]), "server putreplica " + 1 + " " + key.trim() + " " + valClean);
+					if(! result.equals("PUT_REPLICATION_COMPLETE")){
+						throw new IOException("Replication of put to first replica failed!");
+					}
+					
+					logger.info("Put replicated into first replica");
+					
+					ipAndPort = secondReplica.split(" ");
+					result = sendKvReplicaData(ipAndPort[0], Integer.parseInt(ipAndPort[1]), "server putreplica " + 2 + " " + key.trim() + " " + valClean);
+					if(! result.equals("PUT_REPLICATION_COMPLETE")){
+						throw new IOException("Replication of put to second replica failed!");
+					}
+					
+					logger.info("Put replicated into second replica");
+				} catch(Exception e){
+					logger.error(e.getMessage());
+				}
+			}	
 		} else {
 			//need to send updated metadata to client
-			String bigData = metadata.get(0);
-			boolean skipFirst = false;
+			synchronized(metaLock){
+				String bigData = metadata.get(0);
+				boolean skipFirst = false;
 
-			for (String server : metadata) {
-				if (skipFirst) {
-					bigData = bigData + " " + server;
-				} else {
-					skipFirst = true;
+				for (String server : metadata) {
+					if (skipFirst) {
+						bigData = bigData + " " + server;
+					} else {
+						skipFirst = true;
+					}
 				}
+				kvm = new KVMessageStorage(bigData, value, KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
 			}
-			kvm = new KVMessageStorage(bigData, value, KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
 		}
 
 		return kvm;
+	}
+	
+	private String sendKvReplicaData(String ip, int port, String command){
+		//open a socket to the first replica, and send a putreplica command with the kv data
+		String reply = "";
+		Socket servToServ;
+		try {
+			servToServ = new Socket(ip, port);
+			
+			//get input/output stream
+			PrintStream out = new PrintStream(servToServ.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(servToServ.getInputStream()));
+
+			//send the command + data to the server
+			logger.info("Command to be sent: " + command);
+			
+			out.println(command);
+
+			reply = in.readLine();
+			
+			servToServ.close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} 
+		
+		return reply;
+	}
+	
+	public String putReplica(int indicator, String key, String value){
+		String result = "PUT_REPLICATION_FAILED";
+		
+		String filePath = ((indicator == 1) ? "./data/storage"+port+"FR.txt" : "./data/storage"+port+"SR.txt");
+		String tempPath = ((indicator == 1) ? "./data/temp"+port+"FR.txt" : "./data/temp"+port+"SR.txt");
+		Object replicaLock = ((indicator == 1) ? replicaLockFirst : replicaLockSecond);
+		
+		synchronized(replicaLock){
+			if(value.equals("null")){
+				//a delete request!
+				try {
+					KVMessage kvm = mStorage.put(key, null, filePath, tempPath);
+					if(kvm.getStatus() != KVMessage.StatusType.DELETE_SUCCESS){
+						throw new Exception("DELETE_NOT_SUCCESSFUL");
+					}
+					result = "PUT_REPLICATION_COMPLETE";
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+			} else {
+				//a put update or a simple put
+				try {
+					KVMessage kvm = mStorage.put(key, value, filePath, tempPath);
+					if(kvm.getStatus() == KVMessage.StatusType.PUT_ERROR){
+						throw new Exception("PUT_NOT_SUCCESSFUL");
+					}
+					result = "PUT_REPLICATION_COMPLETE";
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+			}
+		}
+		
+		return result;
 	}
 
 	/**
@@ -190,37 +293,84 @@ public class KVServer implements Runnable {
 	 * @throws Exception if put command cannot be executed
 	 *                   (e.g. not connected to any KV server).
 	 */
-
 	public KVMessage get(String key) throws Exception {
 		KVMessage kvm;
 
 		if (checkIfInRange(key, serverHashStart, serverHashEnd)) {
-			logger.info("Getting " + "key: " + key);
+			logger.info("Getting from Main File the key: " + key);
 
 			//add this request to the number of clients requesting list
 			synchronized (lock) {
 				clientsInRequest.add(0);
 			}
 
-			kvm = mStorage.get(key.trim());
+			kvm = mStorage.get(key.trim(), "./data/storage"+port+".txt");
 
 			//once done remove client's request from request list
 			synchronized (lock) {
 				clientsInRequest.remove(0);
 			}
 		} else {
-			//need to send updated metadata to client
-			String bigData = metadata.get(0);
-			boolean skipFirst = false;
+			//check whether the server is the first or second replica, or not at all
+			int index = metadata.indexOf(serverHashStart+","+serverHashEnd+","+ip+","+port+","+
+			firstReplica.replaceAll(" ", ",")+","+secondReplica.replaceAll(" ", ","));
+			
+			int indexFR = (index - 1) < 0 ? (metadata.size() - 1) : (index-1);
+			String[] fReplica = metadata.get(indexFR).split(",");
+			
+			int indexSR = (index - 2) < 0 ? (metadata.size() + (index-2)) : (index-2);
+			String[] sReplica = metadata.get(indexSR).split(",");
+			
+			if(checkIfInRange(key, fReplica[0], fReplica[1])){
+				//it is in the first replica file!
+				logger.info("Getting from First Replica the key: " + key);
 
-			for (String server : metadata) {
-				if (skipFirst) {
-					bigData = bigData + " " + server;
-				} else {
-					skipFirst = true;
+				//add this request to the number of clients requesting list
+				synchronized (lock) {
+					clientsInRequest.add(0);
+				}
+
+				synchronized(replicaLockFirst){
+					kvm = mStorage.get(key.trim(), "./data/storage"+port+"FR.txt");
+				}
+
+				//once done remove client's request from request list
+				synchronized (lock) {
+					clientsInRequest.remove(0);
+				}
+			} else if(checkIfInRange(key, sReplica[0], sReplica[1])){
+				//second replica file!
+				logger.info("Getting from Second Replica the key: " + key);
+
+				//add this request to the number of clients requesting list
+				synchronized (lock) {
+					clientsInRequest.add(0);
+				}
+
+				synchronized(replicaLockSecond){
+					kvm = mStorage.get(key.trim(), "./data/storage"+port+"SR.txt");					
+				}
+
+				//once done remove client's request from request list
+				synchronized (lock) {
+					clientsInRequest.remove(0);
+				}
+			} else{
+				//need to send updated metadata to client
+				synchronized(metaLock){
+					String bigData = metadata.get(0);
+					boolean skipFirst = false;
+
+					for (String server : metadata) {
+						if (skipFirst) {
+							bigData = bigData + " " + server;
+						} else {
+							skipFirst = true;
+						}
+					}
+					kvm = new KVMessageStorage(bigData, "", KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
 				}
 			}
-			kvm = new KVMessageStorage(bigData, "", KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
 		}
 
 		return kvm;
@@ -253,18 +403,27 @@ public class KVServer implements Runnable {
 		logger.info("Initializing Server: No Client Requests Allowed");
 		
 		try {
+			String serverAddr = InetAddress.getLocalHost().getHostAddress();
+			logger.info("Server is bound to IP: " + serverAddr);
+			
 			for (String server : metadata) {
 				this.metadata.add(server);
 
 				//set the server's hash range
 				String[] serverSplit = server.split(",");
-				if ((serverSplit[2].equals(InetAddress.getLocalHost().getHostName()) || serverSplit[2].equals("localhost")) && Integer.parseInt(serverSplit[3]) == port) {
+				if ((serverSplit[2].equals(serverAddr) || serverSplit[2].equals("127.0.0.1")) && Integer.parseInt(serverSplit[3]) == port) {
 					logger.info("MATCH FOUND");
 
 					serverHashStart = serverSplit[0];
 					serverHashEnd = serverSplit[1];
+					ip = serverSplit[2];
+					firstReplica = serverSplit[4] + " " + serverSplit[5];
+					secondReplica = serverSplit[6] + " " + serverSplit[7];
 				}
 			}
+			
+			//sort the metadata list lexicographically in order to find first and second replicas easily
+			Collections.sort(this.metadata);
 			
 			//initialize the storage system
 			mStorage = new storageServer(replacementStrategy.toUpperCase(), cacheSize, port);
@@ -274,6 +433,20 @@ public class KVServer implements Runnable {
 			
 			if(!outputFile.exists()){
 				outputFile.getParentFile().mkdirs();
+				outputFile.createNewFile();
+			}
+			
+			//create the file that will store data for the first replica
+			outputFile = new File("./data/storage"+port+"FR.txt");
+			
+			if(!outputFile.exists()){
+				outputFile.createNewFile();
+			}
+			
+			//create the file that will store data for the second replica
+			outputFile = new File("./data/storage"+port+"SR.txt");
+			
+			if(!outputFile.exists()){
 				outputFile.createNewFile();
 			}
 			
@@ -329,24 +502,35 @@ public class KVServer implements Runnable {
 		try{
 			File inputFile = new File("./data/storage" + port + ".txt");
 			
-			if(!inputFile.exists()){
-				inputFile.createNewFile();
-			}
-			
-			BufferedReader br = new BufferedReader(new FileReader(inputFile));
+			if(inputFile.exists()){
+				BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
-			String line;
+				String line;
 
-			//read every line of the file for each key value pair
-			while ((line = br.readLine()) != null) {
-				if (line.length() != 0) {
-					String[] kv = line.split(" ", 2);
-					data = data + kv[0] + "," + kv[1].replaceAll(" ", "-") + " ";
+				//read every line of the file for each key value pair
+				while ((line = br.readLine()) != null) {
+					if (line.length() != 0) {
+						String[] kv = line.split(" ", 2);
+						data = data + kv[0] + "," + kv[1].replaceAll(" ", "-") + " ";
+					}
 				}
+				
+				br.close();
+				inputFile.delete();
 			}
 			
-			br.close();
-			inputFile.delete();
+			//delete firstReplica storage file
+			inputFile = new File("./data/storage" + port + "FR.txt");
+			if(inputFile.exists()){
+				inputFile.delete();
+			}
+			
+			//delete secondReplica storage file
+			inputFile = new File("./data/storage" + port + "SR.txt");
+			if(inputFile.exists()){
+				inputFile.delete();
+			}
+			
 		} catch(FileNotFoundException e){
 			logger.error(e.getMessage());
 		} catch(IOException e){
@@ -434,7 +618,7 @@ public class KVServer implements Runnable {
 	
 				//send the data to the server
 				logger.info("Data to be sent: " + kvData);
-				out.println("server " + kvData);
+				out.println("server addkvpairs " + kvData);
 	
 				String reply = in.readLine();
 				if(reply.equals("DATA_TRANSFER_COMPLETE")){
@@ -467,7 +651,7 @@ public class KVServer implements Runnable {
 			String key = kvPair.split(",")[0];
 
 			try {
-				KVMessage kvM = mStorage.put(key, null);
+				KVMessage kvM = mStorage.put(key, null, "./data/storage"+port+".txt", "./data/temp"+port+".txt");
 				logger.info(String.valueOf(kvM.getStatus()));
 			} catch (Exception e) {
 				logger.error(e.getMessage());
@@ -488,8 +672,8 @@ public class KVServer implements Runnable {
 
 			//take each key-value pair and add it to the server's database file
 			for(String kvPair : kvList){
-				String key = kvPair.split(",")[0];
-				String value = kvPair.split(",")[1].replaceAll("-", " ");
+				String key = kvPair.split(",", 2)[0];
+				String value = kvPair.split(",", 2)[1].replaceAll("-", " ");
 
 				printWrite.println(key + " " + value);
 			}
@@ -501,6 +685,132 @@ public class KVServer implements Runnable {
 		}
 
 		return "DATA_TRANSFER_COMPLETE";
+	}
+	
+	public KVAdminMessage replicate(){
+		KVAdminMessage kvAM = new KVAdminMessageStorage(KVAdminMessage.StatusType.REPLICATION_FAILED, "");
+				
+		try{
+			//store data in a string to send to replica servers
+			File inputFile = new File("./data/storage" + port + ".txt");
+			
+			if(!inputFile.exists()){
+				inputFile.createNewFile();
+			}
+			
+			BufferedReader br = new BufferedReader(new FileReader(inputFile));
+
+			String line;
+			String kvData = "";
+
+			//read every line of the file for each key value pair
+			while ((line = br.readLine()) != null) {
+				if (line.length() != 0) {
+					String[] kv = line.split(" ", 2);
+					kvData = kvData + kv[0] + "," + kv[1].trim().replaceAll(" ", "-") + " ";
+				}
+			}
+			
+			//send all key value pairs to replicas
+			String result;
+			
+			//first replica
+			String[] fIpPort = firstReplica.split(" ");
+			result = sendReplicaData(fIpPort[0], Integer.parseInt(fIpPort[1]), kvData.trim(), 1);
+			if(! result.equals("REPLICATION_COMPLETE")){
+				br.close();
+				throw new IOException("Replication of data to first replica failed!");
+			}
+			
+			logger.info("Data replicated into first replica");
+			
+			//second replica
+			String[] sIpPort = secondReplica.split(" ");
+			result = sendReplicaData(sIpPort[0], Integer.parseInt(sIpPort[1].trim()), kvData.trim(), 2);
+			if(! result.equals("REPLICATION_COMPLETE")){
+				br.close();
+				throw new IOException("Replication of data to second replica failed!");
+			}
+
+			logger.info("Data replicated into second replica");
+							
+			
+			kvAM = new KVAdminMessageStorage(KVAdminMessage.StatusType.REPLICATION_SUCCESSFUL, "");
+			br.close();
+		} catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		
+		return kvAM;
+	}
+	
+	private String sendReplicaData(String ip, int port, String kvData, int indicator){
+		//open a socket to the first replica, and send a addReplicaData command with the data
+		String reply = "";
+		Socket servToServ;
+		try {
+			servToServ = new Socket(ip, port);
+			
+			//get input/output stream
+			PrintStream out = new PrintStream(servToServ.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(servToServ.getInputStream()));
+
+			//send the data to the server
+			logger.info("Data to be sent: " + kvData);
+			
+			//indicator used to identify whether request is sent by replica one or two
+			out.println("server addreplicadata " + indicator + " " + kvData);
+
+			reply = in.readLine();
+			
+			servToServ.close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} 
+		
+		return reply;
+	}
+	
+	public String addReplicaData(int indicator, String[] kvData){
+		String result = "REPLICATION_FAILED";
+		
+		String filePath = ((indicator == 1) ? "./data/storage"+port+"FR.txt" : "./data/storage"+port+"SR.txt");
+		Object replicaLock = ((indicator == 1) ? replicaLockFirst : replicaLockSecond);
+		
+		try{
+			//copy data to the appropriate replica indicated by the indicator (if indicator is wrong, don't do anything)
+			if(indicator < 3){
+				if(!kvData[0].equals("")){
+					synchronized(replicaLock){
+						File outputFile = new File(filePath);
+						FileWriter write = new FileWriter(outputFile);
+						PrintWriter printWrite = new PrintWriter(write);
+						
+						for (String keyValue : kvData){
+							String[] kv = keyValue.split(",", 2);
+							printWrite.println(kv[0] + " " + kv[1].replaceAll("-", " ").trim());
+						}
+						
+						result = "REPLICATION_COMPLETE";
+						printWrite.close();
+					}
+				} else{
+					logger.info("No data to replicate, just empty file");
+					
+					File outputFile = new File(filePath);
+					FileWriter write = new FileWriter(outputFile);
+					PrintWriter printWrite = new PrintWriter(write);
+					
+					printWrite.close();
+					
+					result = "REPLICATION_COMPLETE";
+				}
+			}
+		} catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		
+		return result;
 	}
 
 	/**
@@ -540,18 +850,28 @@ public class KVServer implements Runnable {
 			//clear metadata and update metadata
 			synchronized (metaLock) {
 				this.metadata.clear();
+				
+				//get IP address of server
+				String serverAddr = InetAddress.getLocalHost().getHostAddress();
+				
 				for (String server : metadata) {
 					this.metadata.add(server);
 
 					//set the server's hash range
 					String[] serverSplit = server.split(",");
-					if ((serverSplit[2].equals(InetAddress.getLocalHost().getHostName()) || serverSplit[2].equals("localhost")) && Integer.parseInt(serverSplit[3]) == port) {
+					if ((serverSplit[2].equals(serverAddr) || serverSplit[2].equals("127.0.0.1")) && Integer.parseInt(serverSplit[3]) == port) {
 						logger.info("MATCH FOUND");
 
 						serverHashStart = serverSplit[0];
 						serverHashEnd = serverSplit[1];
+						ip = serverSplit[2];
+						firstReplica = serverSplit[4] + " " + serverSplit[5];
+						secondReplica = serverSplit[6] + " " + serverSplit[7];
 					}
 				}
+				
+				//sort the metadata list lexicographically in order to find first and second replicas easily
+				Collections.sort(this.metadata);
 			}
 		} catch (UnknownHostException e) {
 			logger.error(e.getMessage());
