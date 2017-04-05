@@ -90,7 +90,10 @@ public class KVServer implements Runnable {
 		this.port = port;
 		this.ecsAddr = ecsAddr;
 		this.ecsPort = ecsPort;
-		
+		/*
+		ALI! keep this when you merge!
+		 */
+		this.logger = Logger.getRootLogger();
 		state = SERVER_STOPPED;
 		banWrite = ALLOW_WRITE;
 	}
@@ -907,7 +910,7 @@ public class KVServer implements Runnable {
 	public static void main(String[] args) {
 		try {
 			new LogSetup("./logs/server/server.log", Level.ALL);
-			logger = Logger.getRootLogger();
+
 			logger.info("NUMBER OF ARGS " + args.length);
 			if (args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");
