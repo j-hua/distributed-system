@@ -8,19 +8,49 @@ import app_kvServer.KVServer;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import logger.LogSetup;
-
+import org.apache.log4j.Logger;
 
 public class AllTests {
+
+
 
 	static {
 		try {
 			new LogSetup("logs/testing/test.log", Level.ERROR);
+
 			//use a default of 128 keys, FIFO replacement
-            KVServer kvs = new KVServer(50000, "null", -1);
-            AdditionalTest.clearFile(50000);
-            new Thread(kvs).start();
-            kvs.state = KVServer.SERVER_READY;
-            kvs.initKVServer(new String[]{"-8000000000,80000000000,127.0.0.1,50000"}, 128, "fifo");
+            KVServer kvs1 = new KVServer(50010, "null", -1);
+			KVServer kvs2 = new KVServer(50014, "null", -1);
+			KVServer kvs3 = new KVServer(50011, "null", -1);
+            testing.AdditionalTest.clearFile(50010);
+			testing.AdditionalTest.clearFile(50014);
+			testing.AdditionalTest.clearFile(50011);
+            //new Thread(kvs1).start();
+            kvs1.state = KVServer.SERVER_READY;
+			kvs2.state = KVServer.SERVER_READY;
+			kvs3.state = KVServer.SERVER_READY;
+            kvs1.initKVServer(new String[]{"3ebf39bfa08189651d170e593782fea4,51feb15dc634eb38a2be7d96b6cf6fa5," +
+					"127.0.0.1,50010,127.0.0.1,50014,127.0.0.1,50011 " +
+					"51feb15dc634eb38a2be7d96b6cf6fa5,c98f070ad535b44eb9ff4469c98a00f3," +
+					"127.0.0.1,50014,127.0.0.1,50011,127.0.0.1,50010 " +
+					"c98f070ad535b44eb9ff4469c98a00f3,3ebf39bfa08189651d170e593782fea4," +
+					"127.0.0.1,50011,127.0.0.1,50010,127.0.0.1,50014"}, 128, "fifo");
+			kvs1.initKVServer(new String[]{"3ebf39bfa08189651d170e593782fea4,51feb15dc634eb38a2be7d96b6cf6fa5," +
+					"127.0.0.1,50010,127.0.0.1,50014,127.0.0.1,50011 " +
+					"51feb15dc634eb38a2be7d96b6cf6fa5,c98f070ad535b44eb9ff4469c98a00f3," +
+					"127.0.0.1,50014,127.0.0.1,50011,127.0.0.1,50010 " +
+					"c98f070ad535b44eb9ff4469c98a00f3,3ebf39bfa08189651d170e593782fea4," +
+					"127.0.0.1,50011,127.0.0.1,50010,127.0.0.1,50014"}, 128, "fifo");
+			kvs1.initKVServer(new String[]{"3ebf39bfa08189651d170e593782fea4,51feb15dc634eb38a2be7d96b6cf6fa5," +
+					"127.0.0.1,50010,127.0.0.1,50014,127.0.0.1,50011 " +
+					"51feb15dc634eb38a2be7d96b6cf6fa5,c98f070ad535b44eb9ff4469c98a00f3," +
+					"127.0.0.1,50014,127.0.0.1,50011,127.0.0.1,50010 " +
+					"c98f070ad535b44eb9ff4469c98a00f3,3ebf39bfa08189651d170e593782fea4," +
+					"127.0.0.1,50011,127.0.0.1,50010,127.0.0.1,50014"}, 128, "fifo");
+			kvs1.start();
+			kvs2.start();
+			kvs3.start();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
