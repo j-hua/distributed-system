@@ -58,7 +58,7 @@ public class Client extends Thread{
     }
 
 
-    public void putMessage(String key, String value) throws Exception {
+    public KVMessage putMessage(String key, String value) throws Exception {
         KVMessage kvm = kvStore.put(key,value);
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
@@ -77,9 +77,10 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.put(key,value);
         }
+        return kvm;
     }
 
-    public void getMessage(String key) throws Exception {
+    public KVMessage getMessage(String key) throws Exception {
         KVMessage kvm = kvStore.get(key);
 
         while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
@@ -105,6 +106,7 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.get(key);
         }
+        return kvm;
     }
 
     public void disconnect() throws IOException {

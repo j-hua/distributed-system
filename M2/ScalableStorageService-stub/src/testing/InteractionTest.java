@@ -6,16 +6,22 @@ import client.KVStore;
 import junit.framework.TestCase;
 import common.messages.KVMessage;
 import common.messages.KVMessage.StatusType;
+import client.Client;
+
+import java.io.IOException;
 
 
 public class InteractionTest extends TestCase {
 
 	private KVStore kvClient;
+	private Client client;
 	
 	public void setUp() {
 		kvClient = new KVStore("localhost", 50010);
+
 		try {
-			kvClient.connect();
+			//kvClient.connect();
+            client = new Client("localhost",50014);
 		} catch (Exception e) {
 		}
 	}
@@ -33,7 +39,8 @@ public class InteractionTest extends TestCase {
 		Exception ex = null;
 
 		try {
-			response = kvClient.put(key, value);
+			//response = kvClient.put(key, value);
+            response = client.putMessage(key,value);
 		} catch (Exception e) {
 			ex = e;
 		}
@@ -42,14 +49,16 @@ public class InteractionTest extends TestCase {
 	}
 	
 	@Test
-	public void testPutDisconnected() {
-		kvClient.disconnect();
+	public void testPutDisconnected() throws IOException {
+		//kvClient.disconnect();
+        client.disconnect();
 		String key = "foo";
 		String value = "bar";
 		Exception ex = null;
 
 		try {
-			kvClient.put(key, value);
+			//kvClient.put(key, value);
+            client.putMessage(key,value);
 		} catch (Exception e) {
 			ex = e;
 		}
@@ -67,9 +76,10 @@ public class InteractionTest extends TestCase {
 		Exception ex = null;
 
 		try {
-			kvClient.put(key, initialValue);
-			response = kvClient.put(key, updatedValue);
-			
+			//kvClient.put(key, initialValue);
+			//response = kvClient.put(key, updatedValue);
+			client.putMessage(key,initialValue);
+			response = client.putMessage(key,updatedValue);
 		} catch (Exception e) {
 			ex = e;
 		}
@@ -87,9 +97,10 @@ public class InteractionTest extends TestCase {
 		Exception ex = null;
 
 		try {
-			kvClient.put(key, value);
-			response = kvClient.put(key, "null");
-			
+			//kvClient.put(key, value);
+			//response = kvClient.put(key, "null");
+			client.putMessage(key,value);
+			response = client.putMessage(key,"null");
 		} catch (Exception e) {
 			ex = e;
 		}
@@ -105,8 +116,10 @@ public class InteractionTest extends TestCase {
 		Exception ex = null;
 
 			try {
-				kvClient.put(key, value);
-				response = kvClient.get(key);
+				//kvClient.put(key, value);
+				//response = kvClient.get(key);
+                client.putMessage(key,value);
+                response = client.getMessage(key);
 			} catch (Exception e) {
 				ex = e;
 			}
@@ -121,7 +134,8 @@ public class InteractionTest extends TestCase {
 		Exception ex = null;
 
 		try {
-			response = kvClient.get(key);
+			//response = kvClient.get(key);
+            response = client.getMessage(key);
 		} catch (Exception e) {
 			ex = e;
 		}
