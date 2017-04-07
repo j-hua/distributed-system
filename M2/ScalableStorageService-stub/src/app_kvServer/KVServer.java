@@ -910,7 +910,7 @@ public class KVServer implements Runnable {
 	public static void main(String[] args) {
 		try {
 			new LogSetup("./logs/server/server.log", Level.ALL);
-
+			logger = Logger.getRootLogger();
 			logger.info("NUMBER OF ARGS " + args.length);
 			if (args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");

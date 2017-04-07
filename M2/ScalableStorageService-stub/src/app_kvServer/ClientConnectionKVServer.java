@@ -252,6 +252,9 @@ public class ClientConnectionKVServer implements Runnable {
 				//run the replicate command
 				KVAdminMessage kvAM = kvServerListener.replicate();
 				status = String.valueOf(kvAM.getStatus());
+			}else if (action.equals("fail")){
+				System.exit(1);
+				status = "alirulzzzz";
 			}
 
 			return status;

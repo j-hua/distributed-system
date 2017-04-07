@@ -719,27 +719,30 @@ public class AdditionalTest extends TestCase {
 	@Test
 	public void testPerformance() throws IOException {
 
-		System.out.println("1 server, 1 client, cache size 128, fifo ---- ");
-		startServerClient(1,1,128,"fifo");
+		System.out.println("1 server, 1 client, cache size 128, fifo ------------- "
+				+ startServerClient(1,1,128,"fifo"));
 
-		System.out.println("1 server, 5 clients, cache size 128, fifo ---- ");
-		startServerClient(1,5,128,"fifo");
 
-		System.out.println("3 servers, 1 client, cache size 128, fifo ---- ");
-		startServerClient(3,1,128,"fifo");
+		System.out.println("1 server, 5 clients, cache size 128, fifo -------------"
+				+ startServerClient(1,5,128,"fifo"));
 
-		System.out.println("3 servers, 5 client, cache size 128, fifo ---- ");
+
+		System.out.println("3 servers, 1 client, cache size 128, fifo ------------- "
+				+ startServerClient(3,1,128,"fifo"));
+
+
+		System.out.println("3 servers, 5 client, cache size 128, fifo ------------- " + );
 		startServerClient(3,5,128,"fifo");
 
-		System.out.println("5 servers, 1 client, cache size 128, fifo ---- ");
+		System.out.println("5 servers, 1 client, cache size 128, fifo ------------- ");
 		startServerClient(5,1,128,"fifo");
 
-		System.out.println("5 servers, 5 client, cache size 128, fifo ---- ");
+		System.out.println("5 servers, 5 client, cache size 128, fifo ------------- ");
 		startServerClient(5,5,128,"fifo");
 
 	}
 
-	public void startServerClient(int s, int c, int cacheSize, String strategy){
+	public long startServerClient(int s, int c, int cacheSize, String strategy){
 		long elapsedTime = 0;
 		long startTime = System.currentTimeMillis();
 		Ecs ecs = new Ecs();
@@ -765,7 +768,7 @@ public class AdditionalTest extends TestCase {
 			e.printStackTrace();
 		}
 		long endTime = System.currentTimeMillis();
-		System.out.print(endTime - startTime);
+		return  endTime - startTime;
 	}
 
 	public void uploadFile(String path, Client client) throws Exception {
@@ -774,11 +777,11 @@ public class AdditionalTest extends TestCase {
 		if (directoryListing != null) {
 			for (File child : directoryListing) {
 				String content = readFile(child.toString(), Charset.defaultCharset());
-				client.putMessage(child.getName(),content);
+				//client.putMessage(child.getName(),content);
 			}
 		}
 	}
-	
+
 	static String readFile(String path, Charset encoding)
 			throws IOException
 	{

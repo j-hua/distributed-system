@@ -4,10 +4,7 @@ import client.TextMessage;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,8 +25,8 @@ public class Ecs {
     public List<String> participatingServers;
     public List<String> notParticipating;
     public List<String> kvList;
-    ConsistentHashing cs = null;
-    String metadata = null;
+    public ConsistentHashing cs = null;
+    public String metadata = null;
 
     public void run() {
     	//get all servers within the config file into a accessible data structure
@@ -957,8 +954,39 @@ public class Ecs {
 
         System.out.println(consistentHashing.circle.keySet().toString());
     }
+    public void testerShutdown(String kvAddress, String port){
+
+		try {
+			connect(kvAddress.trim(), Integer.valueOf(port), "ecs fail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public String computeMetadata(List<String> param) {
+		StringBuilder sb = new StringBuilder("");
+
+		try {
+			for (int i = 0; i < param.size(); i++) {
+
+				String[] elements = param.get(i).split(" ");
+				String ip = elements[0];
+				String port = elements[1];
+
+				ConsistentHashing.HashedServer hashedServer = cs.get(param.get(i));
+				String start = hashedServer.mHashedKeys[0].trim();
+				String end = hashedServer.mHashedKeys[1].trim();
 
 
+				sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		return sb.toString();
+	}
 
 }
 
