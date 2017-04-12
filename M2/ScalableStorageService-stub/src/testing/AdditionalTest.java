@@ -206,7 +206,7 @@ public class AdditionalTest extends TestCase {
 		ecs.kvList = new ArrayList<>();
 		ecs.notParticipating = new ArrayList<>();
 		KVMessage kvMessage = null;
-		ecs.initService(3, 10 ,"fifo");
+		ecs.initServiceTest(3, 10 ,"fifo");
 		ecs.start();
 		Exception putEx = null;
 		try{
@@ -250,7 +250,7 @@ public class AdditionalTest extends TestCase {
 		ecs.kvList = new ArrayList<>();
 		ecs.notParticipating = new ArrayList<>();
 		KVMessage kvMessage = null;
-		ecs.initService(3, 10 ,"fifo");
+		ecs.initServiceTest(3, 10 ,"fifo");
 		ecs.start();
 		Exception putEx = null;
 		try{
@@ -470,7 +470,7 @@ public class AdditionalTest extends TestCase {
 	public void testInitService(){
 		Ecs ecs = new Ecs();
 		ecs.readFile();
-		ecs.initService(3,10,"fifo");
+		ecs.initServiceTest(3,10,"fifo");
 		Exception exception = null;
 		ecs.kvList = new ArrayList<>();
 		List<String> participatingServers = ecs.participatingServers;
@@ -532,7 +532,7 @@ public class AdditionalTest extends TestCase {
 		ecs.notParticipating = new ArrayList<>();
 
 		System.out.println("calling initServTest");
-		ecs.initService(3,10,"fifo");
+		ecs.initServiceTest(3,10,"fifo");
 
 		String metadata = ecs.computeMetadata(ecs.participatingServers);
 		String[] mdParts = metadata.split(" ");
@@ -596,49 +596,52 @@ public class AdditionalTest extends TestCase {
 	@Test
 	public void testFailureDetection(){
 		List<Thread> hbThreads = new ArrayList<>();
-		Ecs ecs = new Ecs();
+		final Ecs ecs = new Ecs();
 		ecs.readFile();
 		ecs.participatingServers = new ArrayList<>();
 		ecs.kvList = new ArrayList<>();
 		ecs.notParticipating = new ArrayList<>();
 		final Exception[] exception = {null};
 
-		ecs.initService(3,10,"fifo");
+		ecs.initServiceTest(3,10,"fifo");
 
 		for ( int i =0; i < ecs.participatingServers.size(); i++){
 
-			int finalI = i;
-			Thread thread = new Thread(() -> {
-                boolean failureDetected = false;
-                while (!failureDetected){
-                    try {
-                       ecs.connect(ecs.participatingServers.get(finalI).split(" ")[0], Integer.valueOf(ecs.participatingServers.get(finalI).split(" ")[1]), "ecs hb");
-                    }
-                    catch (Exception e) {
-                        failureDetected = true;
-                        exception[0] = e;
-                    }
+			final int finalI = i;
+			Thread thread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					boolean failureDetected = false;
+					while (!failureDetected){
+						try {
+							ecs.connectHeartBeat(ecs.participatingServers.get(finalI).split(" ")[0], Integer.valueOf(ecs.participatingServers.get(finalI).split(" ")[1]), "ecs heartbeat");
+						}
+						catch (Exception e) {
+							failureDetected = true;
+							exception[0] = e;
+						}
 
-                    if (Thread.currentThread().isInterrupted()){
-                        break;
-                    }
-                }
-            });
+						if (Thread.currentThread().isInterrupted()){
+							break;
+						}
+					}
+				}
+			});
 
 			hbThreads.add(thread);
 			thread.start();
 
 		}
 
-		//causes a server to system.exit on that server and the listening threads above would catch this exception.
-		ecs.testerShutdown(ecs.participatingServers.get(0).split(" ")[0],ecs.participatingServers.get(0).split(" ")[1]);
-
-		for (int i = 0; i < hbThreads.size(); i ++ ){
-
-			Thread th = hbThreads.get(i);
-			if (th!=null) th.interrupt();
-
-		}
+//		//causes a server to system.exit on that server and the listening threads above would catch this exception.
+//		ecs.testerShutdown(ecs.participatingServers.get(0).split(" ")[0],ecs.participatingServers.get(0).split(" ")[1]);
+//
+//		for (int i = 0; i < hbThreads.size(); i ++ ){
+//
+//			Thread th = hbThreads.get(i);
+//			if (th!=null) th.interrupt();
+//
+//		}
 
 		ecs.shutdown();
 		//exception is only thrown when the error is detected
@@ -650,97 +653,103 @@ public class AdditionalTest extends TestCase {
 	public void testRecovery(){
 
 		List<Thread> hbThreads = new ArrayList<>();
-		Ecs ecs = new Ecs();
+		final Ecs ecs = new Ecs();
 		ecs.readFile();
 		ecs.participatingServers = new ArrayList<>();
 		ecs.kvList = new ArrayList<>();
 		ecs.notParticipating = new ArrayList<>();
 		final Exception[] exception = {null};
 
-		ecs.initService(3,10,"fifo");
+		ecs.initServiceTest(3,10,"fifo");
 		ecs.cs = new ConsistentHashing(1, ecs.participatingServers);
 		for ( int i =0; i < ecs.participatingServers.size(); i++){
 
-			int finalI = i;
-			Thread thread = new Thread(() -> {
-				boolean failureDetected = false;
-				while (!failureDetected){
-					try {
-						ecs.connect(ecs.participatingServers.get(finalI).split(" ")[0], Integer.valueOf(ecs.participatingServers.get(finalI).split(" ")[1]), "ecs hb");
-					}
-					catch (Exception e) {
-						failureDetected = true;
-						exception[0] = e;
-						String crashed = ecs.participatingServers.get(finalI);
-						ecs.cs.remove(ecs.participatingServers.get(finalI));
-						ecs.participatingServers.remove(ecs.participatingServers.get(finalI).split(" ")[0] + " "+ecs.participatingServers.get(finalI).split(" ")[1]);
-						ecs.mIpAndPorts.remove(ecs.participatingServers.get(finalI).split(" ")[0] + " "+ecs.participatingServers.get(finalI).split(" ")[1])	;
-						Random random = new Random();
-						int radnInt = random.nextInt(ecs.mIpAndPorts.size());
-						ecs.cs.add(ecs.mIpAndPorts.get(radnInt));
-						ecs.participatingServers.add(ecs.mIpAndPorts.get(radnInt));
-						String metaData = ecs.computeMetadata(ecs.participatingServers);
-						assertTrue(!metaData.contains(crashed));
-					}
+			final int finalI = i;
+			Thread thread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					boolean failureDetected = false;
+					while (!failureDetected){
+						try {
+							ecs.connectHeartBeat(ecs.participatingServers.get(finalI).split(" ")[0], Integer.valueOf(ecs.participatingServers.get(finalI).split(" ")[1]), "ecs heartbeat");
+						}
+						catch (Exception e) {
+							failureDetected = true;
+							exception[0] = e;
+							String crashed = ecs.participatingServers.get(finalI);
+							ecs.cs.remove(ecs.participatingServers.get(finalI));
+							ecs.participatingServers.remove(ecs.participatingServers.get(finalI).split(" ")[0] + " "+ecs.participatingServers.get(finalI).split(" ")[1]);
+							ecs.mIpAndPorts.remove(ecs.participatingServers.get(finalI).split(" ")[0] + " "+ecs.participatingServers.get(finalI).split(" ")[1])	;
+							Random random = new Random();
+							int radnInt = random.nextInt(ecs.mIpAndPorts.size());
+							ecs.cs.add(ecs.mIpAndPorts.get(radnInt));
+							ecs.participatingServers.add(ecs.mIpAndPorts.get(radnInt));
+							String metaData = ecs.computeMetadata(ecs.participatingServers);
+							assertTrue(!metaData.contains(crashed));
+						}
 
-					if (Thread.currentThread().isInterrupted()){
-						break;
+						if (Thread.currentThread().isInterrupted()){
+							break;
+						}
 					}
 				}
 			});
-
 			hbThreads.add(thread);
-			thread.start();
+			
 
 		}
 
-		//causes a server to system.exit on that server and the listening threads above would catch this exception.
-		ecs.testerShutdown(ecs.participatingServers.get(0).split(" ")[0],ecs.participatingServers.get(0).split(" ")[1]);
-
-		for (int i = 0; i < hbThreads.size(); i ++ ){
-
-			Thread th = hbThreads.get(i);
-			if (th!=null) th.interrupt();
-
-		}
-
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		ecs.shutdown();
 		//exception is only thrown when the error is detected
 		assertTrue(exception!=null);
+		ecs.shutdown();
 
 	}
 
-	@Test
-	public void testPerformance() throws IOException {
-
-		System.out.println("1 server, 1 client, cache size 128, fifo ------------- "
-				+ startServerClient(1,1,128,"fifo"));
-
-
-		System.out.println("1 server, 5 clients, cache size 128, fifo -------------"
-				+ startServerClient(1,5,128,"fifo"));
-
-
-		System.out.println("3 servers, 1 client, cache size 128, fifo ------------- "
-				+ startServerClient(3,1,128,"fifo"));
-
-
-		System.out.println("3 servers, 5 client, cache size 128, fifo ------------- " + );
-		startServerClient(3,5,128,"fifo");
-
-		System.out.println("5 servers, 1 client, cache size 128, fifo ------------- ");
-		startServerClient(5,1,128,"fifo");
-
-		System.out.println("5 servers, 5 client, cache size 128, fifo ------------- ");
-		startServerClient(5,5,128,"fifo");
-
-	}
+//	@Test
+//	public void testPerformance() throws IOException {
+//		File file = new File("./performanceTest/result.txt");
+//		PrintWriter pw = new PrintWriter(file);
+//
+//		pw.println("3 servers, 1 client, cache size 128, fifo ------------- "
+//				+ startServerClient(3,1,128,"fifo"));
+//
+//		pw.println("3 servers, 5 client, cache size 128, fifo ------------- "
+//				+ startServerClient(3,5,128,"fifo"));
+//
+//		pw.println("5 servers, 1 client, cache size 128, fifo ------------- "
+//				+ startServerClient(8,1,128,"fifo"));
+//
+//		pw.println("5 servers, 5 client, cache size 128, fifo ------------- "
+//				+ startServerClient(8,5,128,"fifo"));
+//
+//
+//		pw.println("3 servers, 1 client, cache size 128, lru ------------- "
+//				+ startServerClient(3,1,128,"lru"));
+//
+//		pw.println("3 servers, 5 client, cache size 128, lru ------------- "
+//				+ startServerClient(3,5,128,"lru"));
+//
+//		pw.println("5 servers, 1 client, cache size 128, lru ------------- "
+//				+ startServerClient(8,1,128,"lru"));
+//
+//		pw.println("5 servers, 5 client, cache size 128, lru ------------- "
+//				+ startServerClient(8,5,128,"lru"));
+//
+//
+//		pw.println("3 servers, 1 client, cache size 128, lfu ------------- "
+//				+ startServerClient(3,1,128,"lfu"));
+//
+//		pw.println("3 servers, 5 client, cache size 128, lfu ------------- "
+//				+ startServerClient(3,5,128,"lfu"));
+//
+//		pw.println("5 servers, 1 client, cache size 128, lfu ------------- "
+//				+ startServerClient(8,1,128,"lfu"));
+//
+//		pw.println("5 servers, 5 client, cache size 128, lfu ------------- "
+//				+ startServerClient(8,5,128,"lfu"));
+//
+//		pw.close();
+//	}
 
 	public long startServerClient(int s, int c, int cacheSize, String strategy){
 		long elapsedTime = 0;
@@ -753,7 +762,7 @@ public class AdditionalTest extends TestCase {
 		KVMessage kvMessage = null;
 
 		//create s server with given cacheSize and strategy
-		ecs.initService(s, cacheSize ,strategy);
+		ecs.initServiceTest(s, cacheSize ,strategy);
 		ecs.start();
 		Exception putEx = null;
 
@@ -777,7 +786,7 @@ public class AdditionalTest extends TestCase {
 		if (directoryListing != null) {
 			for (File child : directoryListing) {
 				String content = readFile(child.toString(), Charset.defaultCharset());
-				//client.putMessage(child.getName(),content);
+				client.putMessage(child.getName(),content);
 			}
 		}
 	}

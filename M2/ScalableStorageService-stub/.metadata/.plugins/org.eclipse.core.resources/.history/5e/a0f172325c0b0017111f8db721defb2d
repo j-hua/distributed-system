@@ -1,0 +1,590 @@
+package app_kvServer;
+
+import common.messages.KVMessage;
+import common.messages.KVAdminMessage;
+import logger.LogSetup;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class KVServer implements Runnable {
+
+	public static final String FIFO = "fifo";
+	public static final String LRU = "lru";
+	public static final String LFU = "lfu";
+	public static final String DELETE = "delete";
+	public static final String GET = "get";
+	public static final String PUT = "put";
+
+	public static final String INIT = "initkvserver";
+	public static final String START = "start";
+	public static final String STOP = "stop";
+	public static final String SHUTDOWN = "shutdown";
+	public static final String LOCKWRITE = "lockwrite";
+	public static final String UNLOCKWRITE = "unlockwrite";
+	public static final String MOVEDATA = "movedata";
+	public static final String UPDATE = "update";
+	public static final String DELETEPAIRS = "deletepairs";
+	public static final String ADDKV = "addkvpairs";
+
+	public static final int SERVER_STOPPED = 0;
+	public static final int SERVER_READY = 1;
+
+	public static final int BAN_WRITE = 0;
+	public static final int ALLOW_WRITE = 1;
+
+	//locks for requesting the following arrays
+	private final Object lock = new Object();
+	private final Object writeLock = new Object();
+	private List<Integer> clientsInRequest = new ArrayList<Integer>();
+	private List<Integer> writeRequests = new ArrayList<Integer>();
+
+	//lock for metadata
+	private final Object metaLock = new Object();
+	private List<String> metadata = new ArrayList<String>();
+
+	private static Logger logger;
+
+	private int port;
+	private String ecsAddr;
+	private int ecsPort;
+	
+	private ServerSocket serverSocket;
+	private boolean running;
+	public int state;
+	public int banWrite;
+
+	private String serverHashStart;
+	private String serverHashEnd;
+
+	private storageServer mStorage = null;
+
+	/* Start KV Server at given port
+	 * @param port given port for storage server to operate
+	 * @param cacheSize specifies how many key-value pairs the server is allowed
+	 *           to keep in-memory
+	 * @param strategy specifies the cache replacement strategy in case the cache
+	 *           is full and there is a GET- or PUT-request on a key that is
+	 *           currently not contained in the cache. Options are "FIFO", "LRU",
+	 *           and "LFU".
+	 */
+	public KVServer(int port, String ecsAddr, int ecsPort) {
+		this.port = port;
+		this.ecsAddr = ecsAddr;
+		this.ecsPort = ecsPort;
+		
+		state = SERVER_STOPPED;
+		banWrite = ALLOW_WRITE;
+	}
+
+	/**
+	 * Initializes and starts the server.
+	 * Loops until the the server should be closed.
+	 */
+	public void run() {
+		running = initializeServer();
+		
+		//this connection acts as a ping, to notify the ECS that the server is ready to listen to connections
+		try {
+			if(ecsAddr != null && ecsPort > 0){
+				Socket ecsToServ = new Socket(ecsAddr.trim(), ecsPort);
+				logger.info("CONNECTED TO ECS");
+				ecsToServ.close();
+			}
+		} catch (UnknownHostException e1) {
+			logger.error(e1.getMessage());
+		} catch (IOException e1) {
+			logger.error(e1.getMessage());
+		}
+
+		if (serverSocket != null) {
+			while (isRunning()) {
+				try {
+					Socket client = serverSocket.accept();
+					ClientConnectionKVServer connection = new ClientConnectionKVServer(client);
+					connection.setKVServerListener(this);
+					new Thread(connection).start();
+
+					logger.info("Connected to "
+							+ client.getInetAddress().getHostName()
+							+ " on port " + client.getPort());
+				} catch (IOException e) {
+					logger.error("Error! " +
+							"Unable to establish connection. \n", e);
+				}
+			}
+		}
+		logger.info("Server Shutdown");
+	}
+
+	public boolean isRunning() {
+		return this.running;
+	}
+
+	//****************************CLIENT REQUEST METHODS****************************//
+
+	/**
+	 * Inserts a key-value pair into the KVServer.
+	 *
+	 * @param key   the key that identifies the given value.
+	 * @param value the value that is indexed by the given key.
+	 * @return a message that confirms the insertion of the tuple or an error.
+	 * @throws Exception if put command cannot be executed
+	 *                   (e.g. not connected to any KV server).
+	 */
+
+	public KVMessage put(String key, String value) throws Exception {
+		KVMessage kvm;
+
+		if (checkIfInRange(key, serverHashStart, serverHashEnd)) {
+			logger.info("Putting  " + " " + "key: " + key + " " + "value: " + value);
+
+			//add this request to the number of clients requesting list
+			synchronized (lock) {
+				clientsInRequest.add(0);
+			}
+			synchronized (writeLock) {
+				writeRequests.add(0);
+			}
+
+			kvm = mStorage.put(key.trim(), value);
+
+			//once done remove client's request from request list
+			synchronized (lock) {
+				clientsInRequest.remove(0);
+			}
+			synchronized (writeLock) {
+				writeRequests.remove(0);
+			}
+		} else {
+			//need to send updated metadata to client
+			String bigData = metadata.get(0);
+			boolean skipFirst = false;
+
+			for (String server : metadata) {
+				if (skipFirst) {
+					bigData = bigData + " " + server;
+				} else {
+					skipFirst = true;
+				}
+			}
+			kvm = new KVMessageStorage(key, value, KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
+		}
+
+		return kvm;
+	}
+
+	/**
+	 * Retrieves the value for a given key from the KVServer.
+	 *
+	 * @param key the key that identifies the value.
+	 * @return the value, which is indexed by the given key.
+	 * @throws Exception if put command cannot be executed
+	 *                   (e.g. not connected to any KV server).
+	 */
+
+	public KVMessage get(String key) throws Exception {
+		KVMessage kvm;
+
+		if (checkIfInRange(key, serverHashStart, serverHashEnd)) {
+			logger.info("Getting " + "key: " + key);
+
+			//add this request to the number of clients requesting list
+			synchronized (lock) {
+				clientsInRequest.add(0);
+			}
+
+			kvm = mStorage.get(key.trim());
+
+			//once done remove client's request from request list
+			synchronized (lock) {
+				clientsInRequest.remove(0);
+			}
+		} else {
+			//need to send updated metadata to client
+			String bigData = metadata.get(0);
+			boolean skipFirst = false;
+
+			for (String server : metadata) {
+				if (skipFirst) {
+					bigData = bigData + " " + server;
+				} else {
+					skipFirst = true;
+				}
+			}
+			kvm = new KVMessageStorage(bigData, "", KVMessage.StatusType.SERVER_NOT_RESPONSIBLE);
+		}
+
+		return kvm;
+	}
+
+	public boolean checkIfInRange(String key, String start, String end) {
+		String keyHash = hashFunction(key);
+		
+		int biggerThan = keyHash.compareTo(start);
+		int lessThan = keyHash.compareTo(end);
+		int condition = start.compareTo(end);
+
+		if (biggerThan > 0 && lessThan <= 0 && condition < 0) { //-------------------CHECK THIS--------------//
+			return true;
+		} else if (biggerThan > 0 && condition > 0) {
+			return true;
+		} else if (condition == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//****************************ADMIN ECS REQUEST METHODS****************************//
+
+	public KVAdminMessage initKVServer(String[] metadata, int cacheSize, String replacementStrategy) {
+		//parse metadata and store in
+		logger.info("Initializing Server: No Client Requests Allowed");
+		
+		try {
+			for (String server : metadata) {
+				this.metadata.add(server);
+
+				//set the server's hash range
+				String[] serverSplit = server.split(",");
+				if ((serverSplit[2].equals(InetAddress.getLocalHost().getHostName()) || serverSplit[2].equals("localhost")) /*&& Integer.parseInt(serverSplit[3]) == port*/) {
+					logger.info("MATCH FOUND");
+
+					serverHashStart = serverSplit[0];
+					serverHashEnd = serverSplit[1];
+				}
+			}
+			
+			//initialize the storage system
+			mStorage = new storageServer(replacementStrategy.toUpperCase(), cacheSize, port);
+			
+			//create the file that will store data for this server
+			File outputFile = new File("./data/storage"+port+".txt");
+			
+			if(!outputFile.exists()){
+				outputFile.getParentFile().mkdirs();
+				outputFile.createNewFile();
+			}
+			
+		} catch (IOException e) {
+			logger.error(e.getMessage());			
+		}
+
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.INITIALIZATION_SUCCESS, "");
+	}
+
+	public KVAdminMessage start() {
+		logger.info("Starting Server: Client Requests Allowed");
+		state = SERVER_READY;
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.SERVER_STARTED, "");
+	}
+
+	public KVAdminMessage stop() {
+		logger.info("Stopping Server: No Client Requests Allowed");
+		state = SERVER_STOPPED;
+
+		boolean stopPossible = false;
+
+		while (!stopPossible) {
+			synchronized (lock) {
+				if (clientsInRequest.size() == 0) {
+					stopPossible = true;
+				}
+			}
+		}
+
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.SERVER_STOPPED, "");
+	}
+
+	public KVAdminMessage shutDown() {
+		logger.info("Shutting Down Server: Will Process Current Requests Before Exiting");
+
+		state = SERVER_STOPPED;
+
+		boolean sdPossible = false;
+
+		while (!sdPossible) {
+			synchronized (lock) {
+				if (clientsInRequest.size() == 0) {
+					sdPossible = true;
+				}
+			}
+		}
+
+		logger.info("All Requests Complete, Sending data from file to ECS");
+		
+		//Access file, store data to a string, then send data, delete file
+		
+		
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.SERVER_SHUTDOWN, "");
+	}
+
+	public KVAdminMessage lockWrite() {
+		//cannot notify the ECS Server until every ongoing write request is complete
+		//setting banWrite will prevent other clients from making a PUT Request
+		logger.info("Banning Put Operations: Setting Lock Variable");
+		banWrite = BAN_WRITE;
+		boolean lockPossible = false;
+
+		while (!lockPossible) {
+			synchronized (writeLock) {
+				if (writeRequests.size() == 0) {
+					lockPossible = true;
+				}
+			}
+		}
+
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.LOCK_WRITE_SUCCESS, "");
+	}
+
+	public KVAdminMessage unLockWrite() {
+		logger.info("Allowing Put Operations by Clients");
+		banWrite = ALLOW_WRITE;
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.SERVER_STARTED, "");
+	}
+
+	public KVAdminMessage moveData(String range, String targetServer) { 
+		//if the data transfer is successful the return value result will be modified
+		KVAdminMessage result = new KVAdminMessageStorage(KVAdminMessage.StatusType.DATA_TRANSFER_FAILED, "");
+
+		try {
+			String[] rangeSplit = range.split("-");
+			String[] AddrPortSplit = targetServer.split("-");
+
+			//this list will hold all the key value pairs to be copied over
+			List<String> kvList = new ArrayList<String>();
+
+			//attain the pair of key-value pairs that are within the range
+			File inputFile = new File("./data/storage" + port + ".txt");
+			
+			if(!inputFile.exists()){
+				inputFile.createNewFile();
+			}
+			
+			BufferedReader br = new BufferedReader(new FileReader(inputFile));
+
+			String line;
+
+			//read every line of the file for each key value pair
+			while ((line = br.readLine()) != null) {
+				if (line.length() != 0) {
+					String[] kv = line.split(" ", 2);
+					if (checkIfInRange(kv[0], rangeSplit[0], rangeSplit[1])) {
+						kvList.add(kv[0] + "," + kv[1].trim().replaceAll("\\s","-"));
+					}
+				}
+			}
+
+			//convert to a string so the data can be passed to the appropriate server through a output stream
+			String kvData = "";
+			for(String keyVal : kvList){
+				kvData = kvData + keyVal + " ";
+			}
+			kvData = kvData.trim();
+			
+			if(!kvData.equals("")){
+				//send the data to the server
+				Socket servToServ = new Socket(AddrPortSplit[0], Integer.parseInt(AddrPortSplit[1]));
+	
+				//get input/output stream
+				PrintStream out = new PrintStream(servToServ.getOutputStream());
+				BufferedReader in = new BufferedReader(new InputStreamReader(servToServ.getInputStream()));
+	
+				//send the data to the server
+				out.println("server " + kvData);
+	
+				String reply = in.readLine();
+				if(reply.equals("DATA_TRANSFER_COMPLETE")){
+					result = new KVAdminMessageStorage(KVAdminMessage.StatusType.DATA_TRANSFER_SUCCESSFUL, kvData);
+				}
+	
+				out.close();
+				in.close();
+				servToServ.close();
+			} else {
+				logger.info("No data to transfer!");
+				kvData = "null";
+				result = new KVAdminMessageStorage(KVAdminMessage.StatusType.DATA_TRANSFER_SUCCESSFUL, kvData);
+			}
+				
+			br.close();
+
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public KVAdminMessage deletePairs(String[] kvList){
+		KVAdminMessage result = new KVAdminMessageStorage(KVAdminMessage.StatusType.DELETING_KVPAIRS_SUCCESSFUL, "");
+
+		//for every string that holds a key-value pair in the list of key-value pairs, execute put to perform a delete of the key
+		for(String kvPair : kvList){
+			String key = kvPair.split(",")[0];
+
+			try {
+				KVMessage kvM = mStorage.put(key, null);
+				logger.info(String.valueOf(kvM.getStatus()));
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+				result = new KVAdminMessageStorage(KVAdminMessage.StatusType.DELETING_KVPAIRS_FAILED, "");
+				break;
+			}
+		}
+
+		return result;
+	}
+
+	public String addKVPairs(String[] kvList){
+		//get access to the file, or create it if first time through a writer
+		try {
+			File outputFile = new File("./data/storage"+port+".txt");
+			FileWriter write = new FileWriter(outputFile);
+			PrintWriter printWrite = new PrintWriter(write);
+
+			//take each key-value pair and add it to the server's database file
+			for(String kvPair : kvList){
+				String key = kvPair.split(",")[0];
+				String value = kvPair.split(",")[1].replaceAll("-", " ");
+
+				printWrite.println(key + " " + value);
+			}
+
+			write.close();
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+
+		return "DATA_TRANSFER_COMPLETE";
+	}
+
+	/**
+     * Hashes a string value and returns an integer
+     * to be put on the circle
+     * @param ipAndPort IP + Port number of a server
+     * @return Hashed Value
+     */
+    public String hashFunction(String ipAndPort){
+
+        try {
+            MessageDigest md = null;
+            md = MessageDigest.getInstance("MD5");
+            md.update(ipAndPort.getBytes());
+            byte[] digest = md.digest();
+            String hash = toHex(digest);
+            
+            logger.info("original: " + ipAndPort);
+            logger.info("digested(hex): " + hash);
+            return hash;
+        } catch (NoSuchAlgorithmException e) {
+            logger.error(e.getMessage());
+            return null;
+        }
+
+    }
+    
+    public String toHex(byte[] bytes) {
+        BigInteger bi = new BigInteger(1, bytes);
+        return String.format("%0" + (bytes.length << 1) + "x", bi);
+    }
+
+	public KVAdminMessage update(String[] metadata) {
+		logger.info("Updating metadata with new metadata from the ECS Server");
+
+		try {
+			//clear metadata and update metadata
+			synchronized (metaLock) {
+				this.metadata.clear();
+				for (String server : metadata) {
+					this.metadata.add(server);
+
+					//set the server's hash range
+					String[] serverSplit = server.split(",");
+					if ((serverSplit[2].equals(InetAddress.getLocalHost().getHostName()) || serverSplit[2].equals("localhost")) && Integer.parseInt(serverSplit[3]) == port) {
+						logger.info("MATCH FOUND");
+
+						serverHashStart = serverSplit[0];
+						serverHashEnd = serverSplit[1];
+					}
+				}
+			}
+		} catch (UnknownHostException e) {
+			logger.error(e.getMessage());
+		}
+
+		return new KVAdminMessageStorage(KVAdminMessage.StatusType.METADATA_UPDATE_SUCCESSFUL, "");
+	}
+
+	//****************************SERVER METHODS****************************//
+
+	private boolean initializeServer() {
+		logger.info("Setting up server socket ...");
+		try {
+			serverSocket = new ServerSocket(port);
+			logger.info("Server listening on port: "
+					+ serverSocket.getLocalPort());
+			return true;
+
+		} catch (IOException e) {
+			logger.error("Error! Cannot open server socket:");
+			if (e instanceof BindException) {
+				logger.error("Port " + port + " is already bound!");
+			}
+			return false;
+		}
+	}
+
+	/**
+	 * Main entry point for the echo server application.
+	 *
+	 * @param args contains the port number at args[0].
+	 */
+	public static void main(String[] args) {
+		try {
+			new LogSetup("./logs/server/server.log", Level.ALL);
+			logger = Logger.getRootLogger();
+			logger.info("NUMBER OF ARGS " + args.length);
+			if (args.length != 3) {
+				System.out.println("Error! Invalid number of arguments!");
+				System.out.println("Usage: Server <port> <ecsAddr> <ecsPort>");
+			} else {
+
+				int port = Integer.parseInt(args[0]);
+				String ecsAddr = args[1];
+				int ecsPort = Integer.parseInt(args[2]);
+
+				if(ecsAddr.equals("null") && ecsPort < 1){
+					KVServer kvs = new KVServer(port, null, -1);
+					new Thread(kvs).start();
+				} else {
+					KVServer kvs = new KVServer(port, ecsAddr, ecsPort);
+					new Thread(kvs).start();
+				}
+
+			}
+		} catch (IOException e) {
+			System.out.println("Error! Unable to initialize logger!");
+			e.printStackTrace();
+			System.exit(1);
+		} catch (NumberFormatException nfe) {
+			System.out.println("Error! Please check whether the <port> and <ecsPort> is a number");
+			System.out.println("Usage: Server <port> <ecsAddr> <ecsPort>");
+			System.exit(1);
+		}
+	}
+
+	public storageServer getStorageServer() {
+		return mStorage;
+	}
+	
+}

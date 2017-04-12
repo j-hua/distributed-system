@@ -4,7 +4,10 @@ import client.TextMessage;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +28,13 @@ public class Ecs {
     public List<String> participatingServers;
     public List<String> notParticipating;
     public List<String> kvList;
+    public List<HeartBeatThread> hbThreadList;
     public ConsistentHashing cs = null;
     public String metadata = null;
+    
+    public static final String FAIL_COMMAND = "ecs fail";
+    
+    public boolean pauseOnFailure = false;
 
     public void run() {
     	//get all servers within the config file into a accessible data structure
@@ -67,6 +75,10 @@ public class Ecs {
             
             try {
                 String cmdLine = stdin.readLine();
+                
+                //dont handle the command until pauseOnFailure is set to false, indicates failure has occurred.
+                while(pauseOnFailure){}
+                
                 this.handleCommand(cmdLine);
             } catch (Exception e) {
                 stop = true;
@@ -138,7 +150,10 @@ public class Ecs {
         		printError("Invalid number of parameters!");
             	System.out.println("Usage: addnode <serverNumber>");
         	}
-        } else {
+        } else if (tokens[0].equals("fail")) {
+			System.out.println("SHUTDOWN --- calling tester Shutdown to stop a server "+ "127.0.0.1" + tokens[2]);
+			testerShutdown("127.0.0.1",tokens[2]);
+		} else {
         	printError("Command not valid!");
         }
     }
@@ -220,6 +235,14 @@ public class Ecs {
 	                logger.error(e.getMessage());
 	            }
 	        }
+			
+			if(hbThreadList != null){
+				int size = hbThreadList.size();
+				for(int i = 0; i < size; i++){
+					HeartBeatThread hb = hbThreadList.get(i);
+	                hb.failureDetected = true;
+				}
+			}
 		} catch (FileNotFoundException e1) {
 			logger.error(e1.getMessage());
 		}
@@ -229,7 +252,25 @@ public class Ecs {
         metadata = null;
         participatingServers.clear();
         notParticipating.clear();
+        
+        if(hbThreadList != null){
+        	hbThreadList.clear();
+        }
+        
     }
+    
+    /**
+	 * Shutdown one server for testing failures
+	 * @param ipAddress
+	 * @param port
+	 */
+	public void testerShutdown(String ipAddress, String port){
+		try {
+			connect(ipAddress.trim(), Integer.valueOf(port), FAIL_COMMAND);
+		} catch (Exception e) {
+			logger.error("testerShutdown FAILED!");
+		}
+	}
     
     public void addNode(int cacheSize, String replacementStrategy){
     	logger.info("Number of participating servers: " + participatingServers.size());
@@ -303,6 +344,9 @@ public class Ecs {
 			ssh(ipAddr,portNum,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
 			
 			try {
+				//start the new server
+				connect(ipAddr, Integer.valueOf(portNum), "ecs start");
+				
 				//writeLock the new server
 				connect(ipAddr, Integer.valueOf(portNum), "ecs lockwrite");
 				
@@ -336,6 +380,11 @@ public class Ecs {
 				} else {
 					logger.info("No KV pairs to delete");
 				}
+				
+				logger.info("Starting HeartBeat thread for: " + ipAddr + " " + portNum);
+				HeartBeatThread hbThread = new HeartBeatThread(ipAddr + " " + portNum);
+				hbThreadList.add(hbThread);
+				hbThread.start();
 				
 				//write lock all servers
 				logger.info("All servers being write locked to initiate replication");
@@ -419,9 +468,14 @@ public class Ecs {
                 String targetIp = null;
                 String targetPort = null;
                 
-                //remove the server from participatingServers and the HashCircle
+                //remove the server from participatingServers and the HashCircle and close its heartbeat thread
                 int remIndex = participatingServers.indexOf(ipAddr + " " + portNum);
                 participatingServers.remove(remIndex);
+                
+                HeartBeatThread hb = hbThreadList.get(remIndex);
+                hb.failureDetected = true;
+                hbThreadList.remove(remIndex);
+                
                 cs.remove(ipAddr + " " + portNum);
                 
                 //update metadata and find server that is right after deleted server on circle
@@ -625,10 +679,18 @@ public class Ecs {
 				}
 				
             }
-
+            
+            hbThreadList = new ArrayList<HeartBeatThread>();
+            
+            logger.info("Starting failure detection threads");
+			for (int i = 0; i < participatingServers.size(); i++) {
+				logger.info("Starting HeartBeat thread for: " + participatingServers.get(i));
+				HeartBeatThread hbThread = new HeartBeatThread(participatingServers.get(i));
+				hbThreadList.add(hbThread);
+				hbThread.start();
+			}
             
             initiateReplication();
-
         }else{
         	if(numberOfNodes >= 3){
         		printError("Number of nodes entered is larger than ones available can only enter at most " + mIpAndPorts.size());
@@ -707,13 +769,12 @@ public class Ecs {
 	            disconnect(clientSocket,input,output,kvAddress,Integer.toString(kvPort));
 	
 	        }catch (Exception e){
-	            //System.out.println(e.getMessage());
+	        	result = null;
 	        }
         }
         
         return result;
     }
-
 
     public void disconnect(Socket clientSocket, InputStream input, OutputStream output, String kvAddress, String kvPort) {
         
@@ -860,7 +921,7 @@ public class Ecs {
             br = new BufferedReader(new FileReader(FILENAME));
 
             while ((sCurrentLine = br.readLine()) != null) {
-                logger.info(sCurrentLine);
+                System.out.println(sCurrentLine);
                 String[] splitString = sCurrentLine.split(" ");
                 String ipAddress = splitString[1].trim();
                 String port = splitString[2].trim();
@@ -890,104 +951,395 @@ public class Ecs {
         }
     }
 
+    //--------------------------------------------------------------------------------HEARTBEAT THREAD CODE STARTS----------------------------------------------//
+    private class HeartBeatThread extends Thread {
 
-    //test the consistent hashing;
-    public void tester(){
-        String node1 =	"127.0.0.1 	50000";
-        String node2 =	"127.0.0.1 	50001";
-        String node3 =	"127.0.0.1 	50002";
-        String node4 =	"127.0.0.1 	50003";
-        String node5 =	"127.0.0.1 	50004";
-        String node6 =	"127.0.0.1 	50005";
-        String node7 =	"127.0.0.1 	50006";
-        List<String> initiation = new ArrayList<>();
-        initiation.add(node1);
-        //initiation.add(node2);
-        //initiation.add(node3);
-        //initiation.add(node4);
-        //initiation.add(node5);
-        //initiation.add(node6);
-        //initiation.add(node7);
-
-        ConsistentHashing consistentHashing = new ConsistentHashing(1, initiation);
-
-        //test
-
-        ConsistentHashing.HashedServer hashedServer = consistentHashing.get("one");
-        ConsistentHashing.HashedServer hashedServer1 = consistentHashing.get("two");
-        ConsistentHashing.HashedServer hashedServer2 = consistentHashing.get("three");
-        ConsistentHashing.HashedServer hashedServer3 = consistentHashing.get("four");
-        ConsistentHashing.HashedServer hashedServer4 = consistentHashing.get("five");
-
-
-
-
-        System.out.println(Arrays.toString(hashedServer.mHashedKeys) +" "+hashedServer.mIpAndPort);
-        System.out.println(Arrays.toString(hashedServer1.mHashedKeys) +" "+hashedServer1.mIpAndPort);
-        System.out.println(Arrays.toString(hashedServer2.mHashedKeys) +" "+hashedServer2.mIpAndPort);
-        System.out.println(Arrays.toString(hashedServer3.mHashedKeys) +" "+hashedServer3.mIpAndPort);
-        System.out.println(Arrays.toString(hashedServer4.mHashedKeys) +" "+hashedServer4.mIpAndPort+"\n");
-
-
-
-        System.out.println(consistentHashing.circle.keySet().toString());
-
-        System.out.println("----------------NOW GONNA TEST THE REMOVE------------------\n");
-
-        consistentHashing.remove(node1);
-        //consistentHashing.remove(node5);
-        //consistentHashing.remove(node7);
-
-        ConsistentHashing.HashedServer hs = consistentHashing.get("one");
-        ConsistentHashing.HashedServer hs2 = consistentHashing.get("two");
-        ConsistentHashing.HashedServer hs3 = consistentHashing.get("three");
-        ConsistentHashing.HashedServer hs4 = consistentHashing.get("four");
-        ConsistentHashing.HashedServer hs5 = consistentHashing.get("five");
-
-
-        System.out.println(Arrays.toString(hs.mHashedKeys) +" "+hs.mIpAndPort);
-        System.out.println(Arrays.toString(hs2.mHashedKeys) +" "+hs2.mIpAndPort);
-        System.out.println(Arrays.toString(hs3.mHashedKeys) +" "+hs3.mIpAndPort);
-        System.out.println(Arrays.toString(hs4.mHashedKeys) +" "+hs4.mIpAndPort);
-        System.out.println(Arrays.toString(hs5.mHashedKeys) +" "+hs5.mIpAndPort+"\n");
-
-
-        System.out.println(consistentHashing.circle.keySet().toString());
-    }
-    public void testerShutdown(String kvAddress, String port){
-
-		try {
-			connect(kvAddress.trim(), Integer.valueOf(port), "ecs fail");
-		} catch (Exception e) {
-			e.printStackTrace();
+    	// store server information for which heartbeat is running
+		String mServerInfo; 
+		boolean failureDetected = false;
+		
+		public HeartBeatThread(String serverInfo) {
+			mServerInfo = serverInfo;
 		}
 
-	}
+		@Override
+		public void run() {
+			super.run();
+			//run a version of connect
+			//send message and then recieve message in a loop
+			//catch the exception and add timeout
+			//when error caught call the recovery function
+			String[] infoArray = mServerInfo.split(" ");
+			String ipAddress = infoArray[0];
+			String portNumber = infoArray[1];
+			int port = Integer.valueOf(portNumber);
+			logger.info("HeartBeat thread ---- Calling hbConnect ---- " + ipAddress + " " + portNumber);
+			hbConnect(ipAddress, port);
+		}
 
-	public String computeMetadata(List<String> param) {
-		StringBuilder sb = new StringBuilder("");
+		private void hbConnect(String kvAddress, int kvPort) {
 
-		try {
-			for (int i = 0; i < param.size(); i++) {
+			while (!failureDetected){
+				try {
+					String result;
+					
+					//check if server is responsive every 5 seconds
+					connectHeartBeat(kvAddress, kvPort, "ecs heartbeat");
+					
+					Thread.sleep(5000);
 
-				String[] elements = param.get(i).split(" ");
-				String ip = elements[0];
-				String port = elements[1];
+				}
+				catch (Exception e) {
 
-				ConsistentHashing.HashedServer hashedServer = cs.get(param.get(i));
-				String start = hashedServer.mHashedKeys[0].trim();
-				String end = hashedServer.mHashedKeys[1].trim();
-
-
-				sb.append(start.trim()).append(",").append(end.trim()).append(",").append(InetAddress.getByName(ip).getHostName().trim()).append(",").append(port.trim()).append(" ");
+					failureDetected = true;
+					failureRecovery(kvAddress + " " + kvPort);
+				}
 			}
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
 		}
 
-		return sb.toString();
-	}
+		/**
+		 * Threads are accessing global variables here:
+		 * 1. participating servers
+		 * 2. the consistent hashing circle
+		 *
+		 * @param serverHash
+		 */
+		private synchronized void failureRecovery(String serverHash) {
+			logger.error("FAILURE HAS OCCURRED OF SERVER: " + serverHash);
+			pauseOnFailure = true;
+			
+			String metadata = computeMetadata(participatingServers);
+			logger.info("Metadata on entering Failure Recovery:  "+ metadata);
 
+			//1.remove the server and move appropriate data
+			int index = mIpAndPorts.indexOf(serverHash);
+			deleteNodeForFailure(index + 1);
+			
+			//2.call addNode -- already sends the most updated metadata to all the servers
+			addNode(10,"fifo");
+
+			String updatedmetadata = computeMetadata(participatingServers);
+			//for debugging purposes only
+			logger.info("METADATA TO SEND  ----------------------------------------------------------------------------  ");
+			logger.info(updatedmetadata);
+
+			logger.error("Failure Recovery now complete --- Resume operation");
+			pauseOnFailure = false;
+		}
+		
+		private void deleteNodeForFailure(int servNum){
+			logger.info("Number of participating servers: " + participatingServers.size());
+	    	if(participatingServers.contains(mIpAndPorts.get(servNum - 1))){
+	    		if(participatingServers.size() > 3){
+	    			//get required information to move data allocated to an existing server
+	        		String[] ipAndport = mIpAndPorts.get(servNum - 1).split(" ");
+	                String ipAddr = ipAndport[0];
+	                String portNum = ipAndport[1];
+
+	                ConsistentHashing.HashedServer hS = cs.get(mIpAndPorts.get(servNum - 1));
+	                String startHash = hS.mHashedKeys[0].trim();
+	                String endHash = hS.mHashedKeys[1].trim();
+	                
+	                //we will send the moveData request to this IP and Port server
+	                String targetIp = null;
+	                String targetPort = null;
+	                
+	                //remove the server from participatingServers and the HashCircle and the heartbeat thread
+	                int remIndex = participatingServers.indexOf(ipAddr + " " + portNum);
+	                participatingServers.remove(remIndex);
+	                
+	                HeartBeatThread hb = hbThreadList.get(remIndex);
+	                hb.failureDetected = true;
+	                hbThreadList.remove(remIndex);
+	                
+	                cs.remove(ipAddr + " " + portNum);
+	                
+	                //update metadata and find server that is right after deleted server on circle
+	        		logger.info("Updating metadata without the deleted server");
+	        		StringBuilder sb = new StringBuilder("");
+	        		
+	        		for (String ipAndPort: participatingServers){
+	                    
+	            		try{
+	            			String[] elements= ipAndPort.split(" ");
+	    	                String ip = elements[0];
+	    	                String port =elements[1];
+	    	
+	    	                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
+	    	                String start = hashedServer.mHashedKeys[0].trim();
+	    	                String end = hashedServer.mHashedKeys[1].trim();
+	    	                String[] replicaAddr = cs.getReplicas(end);
+	    	                
+	    	                String[] firstIpPort = replicaAddr[0].split(" ");
+	    	                String firstIP = firstIpPort[0];
+	    	                String firstPort = firstIpPort[1];
+	    	                
+	    	                String[] secondIpPort = replicaAddr[1].split(" ");
+	    	                String secondIP = secondIpPort[0];
+	    	                String secondPort = secondIpPort[1];
+	    	                
+	    	                if(start.equals(startHash)){
+	    	                	targetIp = ip;
+	    	                	targetPort = port;
+	    	                	logger.info("Found target server");
+	    	                }
+	    	                
+	    	                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+	    	                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+	    	                .append(ip.trim()).append(",").append(port.trim())
+	    	                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+	    	                .append(secondIP).append(",").append(secondPort).append(" ");
+	            		} catch(Exception e){
+	            			logger.error(e.getMessage());
+	            		}	
+	            	}
+	        		
+	        		metadata = sb.toString().trim();
+	            	logger.info("The metadata: " + metadata);
+	            	
+	            	//since deleted server has crashed, just tell target server to move data from firstReplica file to its main storage file
+	    			try {
+	    				//writeLock target server
+	    				connect(targetIp, Integer.valueOf(targetPort), "ecs lockwrite");
+	    				
+	    				logger.info("Target server locked");
+	    				
+	    				//send all data from the server to be deleted to the target server
+	    				logger.info("Moving data from firstReplica file to main storage file");
+	    				String command = "ecs firstreplicadead";
+	    				connect(targetIp, Integer.valueOf(targetPort), command);
+	    				
+	    				//update metadata of all servers
+	    				updateAllServers(metadata);
+	    				logger.info("Metadata updated for all servers");
+	    				
+	    				//unlock write permission for the target server
+	    				connect(targetIp, Integer.valueOf(targetPort), "ecs unlockwrite");
+	    				
+	    				logger.info("Write permission given");
+	    				
+	    				//add server to non participating list
+	    				notParticipating.add(ipAddr + " " + portNum);
+	    				
+	    				//write lock all servers
+	    				logger.info("All servers being write locked to initiate replication");
+	    				writeLockAll();
+	    				
+	    				//initiate replication in all servers
+	    				logger.info("Replicate all data in every server due to new added node");
+	    				initiateReplication();
+	    				
+	    				//allow writing of data again in all servers
+	    				logger.info("All servers are being given write permission - replication complete");
+	    				writeUnlockAll();
+	    				
+	    				logger.info("Number of participating servers after deletion: " + participatingServers.size());
+	    			} catch (Exception e) {
+	    				logger.error(e.getMessage());
+	    			}
+	    		} else {
+	    			//there are only three servers left, tell user to use shutdown instead
+	    			printError("Only three servers left, delete not possible");
+	    		}
+	    	} else {
+	    		printError("The server requested is not running");
+	    	}
+		}
+	}
+    
+    public String connectHeartBeat(String kvAddress, int kvPort, String metadata) throws Exception {
+        String result = null;
+        
+        OutputStream output;
+        InputStream input;
+        //System.out.println("KVADDRESS: "+kvAddress+" PORT: "+kvPort);
+        Socket clientSocket = new Socket();
+        clientSocket.connect(new InetSocketAddress(kvAddress, kvPort));
+        
+        logger.info("CONNECTED TO SERVER");
+        
+        output = clientSocket.getOutputStream();
+        input = clientSocket.getInputStream();
+    	
+        //send message to server
+        sendMessage(new TextMessage(metadata), output);
+        
+        result = receiveMessage(input).getMsg();
+        
+//        if(result.split(" ").length > 1){
+//        	System.out.println("Server with IP " + kvAddress + " and PORT " + kvPort + " replies: " + result.split(" ", 2)[0]);
+//        	result = result.split(" ", 2)[1];
+//        } else {
+//        	System.out.println("Server with IP " + kvAddress + " and PORT " + kvPort + " replies: " + result);
+//        	result = "";
+//        }
+
+        disconnect(clientSocket,input,output,kvAddress,Integer.toString(kvPort));
+        
+        return result;
+    }
+    
+    public String computeMetadata(List<String> param) {
+		String metadata;
+		StringBuilder sb = new StringBuilder("");
+		
+		for (String ipAndPort: participatingServers){
+            
+    		try{
+    			String[] elements= ipAndPort.split(" ");
+                String ip = elements[0];
+                String port =elements[1];
+
+                ConsistentHashing.HashedServer hashedServer= cs.get(ipAndPort);
+                String start = hashedServer.mHashedKeys[0].trim();
+                String end = hashedServer.mHashedKeys[1].trim();
+                String[] replicaAddr = cs.getReplicas(end);
+                
+                String[] firstIpPort = replicaAddr[0].split(" ");
+                String firstIP = firstIpPort[0];
+                String firstPort = firstIpPort[1];
+                
+                String[] secondIpPort = replicaAddr[1].split(" ");
+                String secondIP = secondIpPort[0];
+                String secondPort = secondIpPort[1];
+                
+                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+                .append(ip.trim()).append(",").append(port.trim())
+                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+                .append(secondIP).append(",").append(secondPort).append(" ");
+    		} catch(Exception e){
+    			logger.error(e.getMessage());
+    		}	
+    	}
+		
+		metadata = sb.toString().trim();
+		return metadata;
+	}
+    
+public void initServiceTest(int numberOfNodes, int cacheSize, String replacementStrategy){
+        
+    	if (numberOfNodes <= mIpAndPorts.size() && numberOfNodes >= 3){
+	    	//randomly pick a group of nodes
+	    	List<String> temp = new ArrayList<String>(mIpAndPorts);
+	    	List<String> param = new ArrayList<String>();
+	    	
+	    	while(numberOfNodes != 0){
+	    		Random rand = new Random();
+	    		int index = rand.nextInt(temp.size());
+	    		
+	    		param.add(temp.get(index));
+	    		temp.remove(index);
+	    		numberOfNodes--;
+	    	}
+	    	
+	    	notParticipating = temp;
+	    	
+	    	logger.info("Setting up Hasher");
+	        cs = new ConsistentHashing(1,param);
+	        
+	        StringBuilder sb = new StringBuilder("");
+	        participatingServers = new ArrayList<String>();
+	        
+	        numberOfNodes = param.size();
+        
+        	logger.info("Adding the particapating servers and setting up the metadata to be sent");
+        	
+        	for (int i=0; i<numberOfNodes; i++){
+        		participatingServers.add(param.get(i));
+                
+        		try{
+        			String[] elements= param.get(i).split(" ");
+	                String ip = elements[0];
+	                String port =elements[1];
+	
+	                ConsistentHashing.HashedServer hashedServer= cs.get(param.get(i));
+	                String start = hashedServer.mHashedKeys[0].trim();
+	                String end = hashedServer.mHashedKeys[1].trim();
+	                String[] replicaAddr = cs.getReplicas(end);
+	                
+	                String[] firstIpPort = replicaAddr[0].split(" ");
+	                String firstIP = firstIpPort[0];
+	                String firstPort = firstIpPort[1];
+	                
+	                String[] secondIpPort = replicaAddr[1].split(" ");
+	                String secondIP = secondIpPort[0];
+	                String secondPort = secondIpPort[1];
+	                
+	                //FORMAT: startingHash,endingHash,ip,port,firstIP,firstPort,secondIP,secondPort 
+	                sb.append(start.trim()).append(",").append(end.trim()).append(",")
+	                .append(ip.trim()).append(",").append(port.trim())
+	                .append(",").append(firstIP).append(",").append(firstPort).append(",")
+	                .append(secondIP).append(",").append(secondPort).append(" ");
+        		} catch(Exception e){
+        			logger.error(e.getMessage());
+        		}
+        		
+        	}
+        	
+        	metadata = sb.toString().trim();
+        	logger.info("The metadata: " + metadata);
+        	logger.info("Sending metadata and initializing all servers");
+        	
+            for (int i=0; i<numberOfNodes; i++) {
+				try {
+					String[] elements= param.get(i).split(" ");
+	                String ip = elements[0];
+	                String port =elements[1];
+	                logger.info("ip passed in: "+ip+ " port: "+port);
+					
+					ssh(ip,port,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
+					//connect(ip,50028,"ecs initkvserver " + cacheSize + " " + replacementStrategy + " " + metadata);
+					
+					ConsistentHashing.HashedServer hashedServer= cs.get(param.get(i));
+	                String start = hashedServer.mHashedKeys[0].trim();
+	                String end = hashedServer.mHashedKeys[1].trim();
+					
+					//send persisted data to server that should have it
+	                String kvData = "";
+	                
+	                for(String kvPair : kvList){
+	                	//check if within hashRange
+	                	if(checkIfInRange(kvPair.split(",")[0], start, end)){
+	                		String key = kvPair.split(",", 2)[0];
+	                		String value = kvPair.split(",", 2)[1].replaceAll(" ", "-");;
+	                		kvData = kvData + key + "," + value + " ";
+	                	}
+	                }
+	                
+	                if(!kvData.equals("")){
+	                	logger.info("Sending persisted data");
+	                	logger.info(kvData.trim());
+						connect(ip,Integer.parseInt(port),"ecs addkvpairs " + kvData.trim());
+	                } else {
+	                	logger.info("No persistent data to send");
+	                }
+	                
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+				
+            }
+            
+//            hbThreadList = new ArrayList<HeartBeatThread>();
+//            
+//            logger.info("Starting failure detection threads");
+//			for (int i = 0; i < participatingServers.size(); i++) {
+//				logger.info("Starting HeartBeat thread for: " + participatingServers.get(i));
+//				HeartBeatThread hbThread = new HeartBeatThread(participatingServers.get(i));
+//				hbThreadList.add(hbThread);
+//				hbThread.start();
+//			}
+            
+            initiateReplication();
+        }else{
+        	if(numberOfNodes >= 3){
+        		printError("Number of nodes entered is larger than ones available can only enter at most " + mIpAndPorts.size());
+        	} else {
+        		printError("Number of nodes entered is less than 3, at least 3 servers are required at startup");
+        	}  
+        }
+    }
 }
 
 

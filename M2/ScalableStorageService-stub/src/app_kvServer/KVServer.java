@@ -36,6 +36,9 @@ public class KVServer implements Runnable {
 	public static final String DELETEPAIRS = "deletepairs";
 	public static final String ADDKV = "addkvpairs";
 	public static final String REPLICATE = "replicate";
+	public static final String FIRSTREPLICADEAD = "firstreplicadead";
+	public static final String HEARTBEAT = "heartbeat";
+	public static final String FAIL = "fail";
 
 	public static final int SERVER_STOPPED = 0;
 	public static final int SERVER_READY = 1;
@@ -90,12 +93,18 @@ public class KVServer implements Runnable {
 		this.port = port;
 		this.ecsAddr = ecsAddr;
 		this.ecsPort = ecsPort;
-		/*
-		ALI! keep this when you merge!
-		 */
-		this.logger = Logger.getRootLogger();
+		
 		state = SERVER_STOPPED;
 		banWrite = ALLOW_WRITE;
+		
+		//set up logger
+		try {
+			new LogSetup("./logs/server/server.log", Level.ERROR);
+			logger = Logger.getRootLogger();
+		} catch (IOException e) {
+			System.out.println("Error! Unable to initialize logger!");
+			System.exit(1);
+		}
 	}
 
 	/**
@@ -439,6 +448,8 @@ public class KVServer implements Runnable {
 				outputFile.createNewFile();
 			}
 			
+			new PrintWriter(outputFile).close();
+			
 			//create the file that will store data for the first replica
 			outputFile = new File("./data/storage"+port+"FR.txt");
 			
@@ -446,12 +457,16 @@ public class KVServer implements Runnable {
 				outputFile.createNewFile();
 			}
 			
+			new PrintWriter(outputFile).close();
+			
 			//create the file that will store data for the second replica
 			outputFile = new File("./data/storage"+port+"SR.txt");
 			
 			if(!outputFile.exists()){
 				outputFile.createNewFile();
 			}
+			
+			new PrintWriter(outputFile).close();
 			
 		} catch (IOException e) {
 			logger.error(e.getMessage());			
@@ -815,6 +830,39 @@ public class KVServer implements Runnable {
 		
 		return result;
 	}
+	
+	public KVAdminMessage firstReplicaDead(){
+		//need to move data from the first replica file to the main storage file
+		KVAdminMessage kvAM = new KVAdminMessageStorage(KVAdminMessage.StatusType.MOVING_REPLICA_DATA_TO_MAIN_FILE_FAILED, "");
+		
+		try {
+			//writer for the main file
+			FileWriter write = new FileWriter("./data/storage"+port+".txt", true);
+			PrintWriter printWrite = new PrintWriter(write);
+			
+			//reader for the first replica file
+            File inputFile = new File("./data/storage"+port+"FR.txt");
+            BufferedReader br = new BufferedReader(new FileReader(inputFile));
+
+            String line;
+
+            while((line = br.readLine()) != null){
+                if(line.length() != 0){
+                    String[] kv = line.split(" ");
+                    printWrite.println(kv[0] + " " + kv[1]);
+                }
+            }
+            
+            printWrite.close();
+            br.close();
+            
+            kvAM = new KVAdminMessageStorage(KVAdminMessage.StatusType.MOVING_REPLICA_DATA_TO_MAIN_FILE_SUCCESSFUL, "");
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return kvAM;
+	}
 
 	/**
      * Hashes a string value and returns an integer
@@ -831,7 +879,7 @@ public class KVServer implements Runnable {
             byte[] digest = md.digest();
             String hash = toHex(digest);
             
-            logger.info("original: " + ipAndPort.replaceAll("\\s",""));
+            logger.info("original: " + ipAndPort);
             logger.info("digested(hex): " + hash);
             return hash;
         } catch (NoSuchAlgorithmException e) {
@@ -909,9 +957,6 @@ public class KVServer implements Runnable {
 	 */
 	public static void main(String[] args) {
 		try {
-			new LogSetup("./logs/server/server.log", Level.ALL);
-			logger = Logger.getRootLogger();
-			logger.info("NUMBER OF ARGS " + args.length);
 			if (args.length != 3) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port> <ecsAddr> <ecsPort>");
@@ -930,10 +975,6 @@ public class KVServer implements Runnable {
 				}
 
 			}
-		} catch (IOException e) {
-			System.out.println("Error! Unable to initialize logger!");
-			e.printStackTrace();
-			System.exit(1);
 		} catch (NumberFormatException nfe) {
 			System.out.println("Error! Please check whether the <port> and <ecsPort> is a number");
 			System.out.println("Usage: Server <port> <ecsAddr> <ecsPort>");

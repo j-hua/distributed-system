@@ -1,0 +1,15 @@
+package app_kvEcs;
+
+import logger.LogSetup;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+public class ECSClient {
+    public static void main (String[] args){
+    	new LogSetup("./logs/server/server.log", Level.ALL);
+    	
+        Ecs ecs= new Ecs();
+        ecs.run();
+    }
+}

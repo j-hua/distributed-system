@@ -252,9 +252,17 @@ public class ClientConnectionKVServer implements Runnable {
 				//run the replicate command
 				KVAdminMessage kvAM = kvServerListener.replicate();
 				status = String.valueOf(kvAM.getStatus());
-			}else if (action.equals("fail")){
+			} else if(action.equals(KVServer.FIRSTREPLICADEAD)){
+				//run the firstReplicaDead command
+				KVAdminMessage kvAM = kvServerListener.firstReplicaDead();
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.HEARTBEAT)){
+				//run the firstReplicaDead command
+				KVAdminMessage kvAM = new KVAdminMessageStorage(KVAdminMessage.StatusType.HEARTBEAT_RECEIVED, "");
+				status = String.valueOf(kvAM.getStatus());
+			} else if(action.equals(KVServer.FAIL)){
+				//Shutdown server unexpectedly
 				System.exit(1);
-				status = "alirulzzzz";
 			}
 
 			return status;

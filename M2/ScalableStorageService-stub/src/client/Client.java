@@ -36,7 +36,7 @@ public class Client extends Thread{
      * Loops until the connection is closed or aborted by the client.
      */
     public void run(){
-        logger.info("Client thread starts running");
+        //logger.info("Client thread starts running");
         try{
             //currently it does nothing
 
@@ -77,6 +77,7 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.put(key,value);
         }
+        
         return kvm;
     }
 
@@ -106,6 +107,7 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.get(key);
         }
+        
         return kvm;
     }
 
