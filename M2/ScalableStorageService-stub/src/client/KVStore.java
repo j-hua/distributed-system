@@ -425,6 +425,18 @@ public class KVStore implements KVCommInterface {
 			case "SERVER_NOT_RESPONSIBLE":
 				st = KVMessage.StatusType.SERVER_NOT_RESPONSIBLE;
 				break;
+			case "SUBSCRIBE_SUCCESS":
+				st = KVMessage.StatusType.SUBSCRIBE_SUCCESS;
+				break;
+			case "SUBSCRIBE_ERROR":
+				st = KVMessage.StatusType.SUBSCRIBE_ERROR;
+				break;
+			case "UNSUBSCRIBE_SUCCESS":
+				st = KVMessage.StatusType.UNSUBSCRIBE_SUCCESS;
+				break;
+			case "UNSUBSCRIBE_ERROR":
+				st = KVMessage.StatusType.UNSUBSCRIBE_ERROR;
+				break;
 		}
 		return st;
 	}
