@@ -127,7 +127,7 @@ public class Client extends Thread{
      * each client has one dedicated port for this task
      * port number range: 55000 - 59999
      */
-    public void subMessage(String key) throws Exception {
+    public KVMessage subMessage(String key) throws Exception {
 
 
         KVMessage kvm = kvStore.subscribe(key, subPort);
@@ -160,6 +160,8 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.subscribe(key,subPort);
         }
+
+        return kvm;
     }
 
     /**
@@ -169,8 +171,7 @@ public class Client extends Thread{
      * each client has one dedicated port for this task
      * port number range: 55000 - 59999
      */
-    public void unsubMessage(String key) throws Exception {
-
+    public KVMessage unsubMessage(String key) throws Exception {
 
         KVMessage kvm = kvStore.unsubscribe(key, subPort);
 
@@ -197,6 +198,8 @@ public class Client extends Thread{
             kvStore.connect();
             kvm = kvStore.subscribe(key,subPort);
         }
+
+        return kvm;
     }
 
     public void disconnect() throws IOException {
