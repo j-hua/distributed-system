@@ -12,7 +12,6 @@ import logger.LogSetup;
 
 
 import client.*;
-//import client.ClientSocketListener;
 
 public class KVClient implements ClientSocketListener {
     private static Logger logger;
@@ -127,7 +126,27 @@ public class KVClient implements ClientSocketListener {
             } else {
                 printError("Invalid number of parameters");
             }
-        } else {
+        } else if(tokens[0].equals("subscribe")){
+            if(tokens.length == 2){
+                if (client != null && client.isRunning()) {
+                    subMessage(tokens[1].trim());
+                } else {
+                    printError("Not connected!");
+                }
+            }else{
+                printError("Invalid number of parameters");
+            }
+        }else if(tokens[0].equals("unsubscribe")){
+            if(tokens.length == 2){
+                if (client != null && client.isRunning()) {
+                    unsubMessage(tokens[1].trim());
+                } else {
+                    printError("Not connected!");
+                }
+            }else{
+                printError("Invalid number of parameters");
+            }
+        }else{
             printError("Unknown command");
             printHelp();
         }
@@ -164,6 +183,26 @@ public class KVClient implements ClientSocketListener {
             //client.putMessage(new TextMessage(msg));
         } catch (Exception e) {
             printError("Unable to get message!");
+            e.printStackTrace();
+        }
+    }
+
+    private void subMessage(String key) {
+        try {
+            client.subMessage(key);
+            //client.putMessage(new TextMessage(msg));
+        } catch (Exception e) {
+            printError("Unable to subscribe key!");
+            e.printStackTrace();
+        }
+    }
+
+    private void unsubMessage(String key) {
+        try {
+            client.unsubMessage(key);
+            //client.putMessage(new TextMessage(msg));
+        } catch (Exception e) {
+            printError("Unable to subscribe key!");
             e.printStackTrace();
         }
     }
@@ -259,7 +298,6 @@ public class KVClient implements ClientSocketListener {
 
     /**
      * Main entry point for the echo server application.
-     *
      * @param args contains the port number at args[0].
      */
     public static void main(String[] args) {

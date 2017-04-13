@@ -1,9 +1,12 @@
 package client;
 
+import app_kvServer.ClientConnectionKVServer;
 import common.messages.KVMessage;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Random;
 
@@ -16,11 +19,17 @@ public class Client extends Thread{
     private KVStore kvStore;
     private static Logger logger = Logger.getRootLogger();
     private Metadata mData = new Metadata();
+    private int subPort;
+    private subThread myThread;
+
     /**
      *  Client constructor
      */
     public Client(String address, int port) throws UnknownHostException, IOException{
         kvStore = new KVStore(address, port);
+        Random rand = new Random();
+        subPort = rand.nextInt(5000) + 55000;
+        myThread = null;
         try{
             kvStore.connect();
             setRunning(kvStore.getConnected());
@@ -109,6 +118,85 @@ public class Client extends Thread{
         }
         
         return kvm;
+    }
+
+    /**
+     * method to subscribe a key
+     * @param key
+     * client is listening on a separate thread and prompt output if any update on the server
+     * each client has one dedicated port for this task
+     * port number range: 55000 - 59999
+     */
+    public void subMessage(String key) throws Exception {
+
+
+        KVMessage kvm = kvStore.subscribe(key, subPort);
+
+        if(this.myThread == null){
+            this.myThread = new subThread(subPort);
+            this.myThread.start();
+        }
+
+        while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+            //update metadata
+            mData.updateMetadata(kvm.getValue());
+
+            //lookup
+            Address address = mData.lookup(key);
+            Address[] replicas = mData.getReplicas(address.getIpAddr() + ":" + address.getPort());
+
+            //pick either the primary or one of the replicas
+            Random rand = new Random();
+            int index = rand.nextInt(3);
+
+            if(index != 0){
+                address = replicas[index-1];
+            }
+
+            kvStore.disconnect();
+
+            //retry
+            kvStore = new KVStore(address.getIpAddr(),address.getPort());
+            kvStore.connect();
+            kvm = kvStore.subscribe(key,subPort);
+        }
+    }
+
+    /**
+     * method to unsubscribe a key
+     * @param key
+     * client is listening on a separate thread and prompt output if any update on the server
+     * each client has one dedicated port for this task
+     * port number range: 55000 - 59999
+     */
+    public void unsubMessage(String key) throws Exception {
+
+
+        KVMessage kvm = kvStore.unsubscribe(key, subPort);
+
+        while(kvm.getStatus() == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+            //update metadata
+            mData.updateMetadata(kvm.getValue());
+
+            //lookup
+            Address address = mData.lookup(key);
+            Address[] replicas = mData.getReplicas(address.getIpAddr() + ":" + address.getPort());
+
+            //pick either the primary or one of the replicas
+            Random rand = new Random();
+            int index = rand.nextInt(3);
+
+            if(index != 0){
+                address = replicas[index-1];
+            }
+
+            kvStore.disconnect();
+
+            //retry
+            kvStore = new KVStore(address.getIpAddr(),address.getPort());
+            kvStore.connect();
+            kvm = kvStore.subscribe(key,subPort);
+        }
     }
 
     public void disconnect() throws IOException {

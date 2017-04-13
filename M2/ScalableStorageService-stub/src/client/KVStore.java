@@ -37,6 +37,10 @@ public class KVStore implements KVCommInterface {
 		connected = false;
 	}
 
+	public int getKvPort(){ return kvPort; }
+
+	public String getKvAddress() {return kvAddress;}
+
 	public boolean getConnected(){
 		return connected;
 	}
@@ -200,6 +204,112 @@ public class KVStore implements KVCommInterface {
 		return kvms;
 
 	}
+
+	/**
+	 * method for subscribe command
+	 * command format: subscribe <key> <port>
+	 *     expected output format: <status> <key if successful or reason why it's not successful>
+	 * @param key key the client is subscribing
+	 * @param port localhost will be listening on this port if any update
+	 *             this port number is created once client is init'ed
+	 * @return
+	 * @throws Exception
+	 */
+
+	public KVMessage subscribe(String key, int port) throws Exception {
+
+		KVMessageStorage kvms = null;
+		StringBuilder sb = new StringBuilder();
+		sb.append("subscribe ");
+		if(key.getBytes().length <= 20){
+			sb.append(key);
+			sb.append(" ");
+			sb.append(port);
+		}else{
+			logger.info("key exceeds max length 20 bytes");
+			System.out.println("key exceeds max length 20 bytes");
+			kvms = new KVMessageStorage(null, null, StatusTypeLookup("SUBSCRIBE_ERROR"));
+			return kvms;
+		}
+
+		sendMessage(new TextMessage(sb.toString()));
+		TextMessage res = receiveMessage();
+
+		String[] arr = res.getMsg().split("\\s+",2);
+
+		if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+			kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+			System.out.println("STATUS: " +  arr[0]);
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+			System.out.println("STATUS: " +  arr[0]);
+		}else if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SUBSCRIBE_ERROR){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SUBSCRIBE_ERROR"));
+			System.out.println("STATUS: " +  arr[0]);
+			System.out.println(arr[1]); //reason why subscribe is not successful
+		}else /* if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SUBSCRIBE_SUCCESS)*/ {
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SUBSCRIBE_SUCCESS"));
+			System.out.println("STATUS: " +  arr[0]);
+		}
+
+		return kvms;
+
+	}
+
+	/**
+	 * method to unsubscribe a key
+	 * command format: unsubscribe <key> <port>
+	 *     expected output format: <status> <key if successful or reason why it's not successful>
+	 * @param key
+	 * @param port port number will be the same number client sent in subscribe
+	 * @return
+	 * @throws Exception
+	 */
+	public KVMessage unsubscribe(String key, int port) throws Exception {
+
+		KVMessageStorage kvms = null;
+		StringBuilder sb = new StringBuilder();
+		sb.append("unsubscribe ");
+		if(key.getBytes().length <= 20){
+			sb.append(key);
+			sb.append(" ");
+			sb.append(port);
+		}else{
+			logger.info("key exceeds max length 20 bytes");
+			System.out.println("key exceeds max length 20 bytes");
+			kvms = new KVMessageStorage(null, null, StatusTypeLookup("SUBSCRIBE_ERROR"));
+			return kvms;
+		}
+
+		sendMessage(new TextMessage(sb.toString()));
+		TextMessage res = receiveMessage();
+
+		String[] arr = res.getMsg().split("\\s+",2);
+
+		if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_NOT_RESPONSIBLE){
+			kvms = new KVMessageStorage(null,arr[1],StatusTypeLookup("SERVER_NOT_RESPONSIBLE"));
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_STOPPED){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_STOPPED"));
+			System.out.println("STATUS: " +  arr[0]);
+		}else if (StatusTypeLookup(arr[0]) == KVMessage.StatusType.SERVER_WRITE_LOCK){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("SERVER_WRITE_LOCKED"));
+			System.out.println("STATUS: " +  arr[0]);
+		}else if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SUBSCRIBE_ERROR){
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("UNSUBSCRIBE_ERROR"));
+			System.out.println("STATUS: " +  arr[0]);
+			System.out.println(arr[1]); //reason why subscribe is not successful
+		}else /* if(StatusTypeLookup(arr[0]) == KVMessage.StatusType.SUBSCRIBE_SUCCESS)*/ {
+			kvms = new KVMessageStorage(null,null, StatusTypeLookup("UNSUBSCRIBE_SUCCESS"));
+			System.out.println("STATUS: " +  arr[0]);
+		}
+
+		return kvms;
+
+	}
+
+
 
 	/**
 	 * Method sends a TextMessage using this socket.
