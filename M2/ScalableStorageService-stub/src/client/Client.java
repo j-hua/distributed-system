@@ -205,5 +205,8 @@ public class Client extends Thread{
     public void disconnect() throws IOException {
         kvStore.disconnect();
         setRunning(false);
+        if(myThread != null){
+            myThread.shutdown();
+        }
     }
 }

@@ -52,6 +52,14 @@ public class subThread extends Thread {
         }
     }
 
+    public void shutdown() throws IOException {
+        if(serverSocket != null){
+            input.close();
+            output.close();
+            serverSocket.close();
+        }
+    }
+
     public TextMessage receiveMessage() throws IOException {
 
 

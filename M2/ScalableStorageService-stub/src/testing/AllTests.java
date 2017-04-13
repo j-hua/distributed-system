@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 public class AllTests {
 
 
-
 	static {
 		try {
 		new LogSetup("logs/testing/test.log", Level.ERROR);
