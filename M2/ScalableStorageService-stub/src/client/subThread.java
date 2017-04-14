@@ -26,6 +26,7 @@ public class subThread extends Thread {
     private Logger logger;
     private static final int BUFFER_SIZE = 1024;
     private static final int DROP_SIZE = 128 * BUFFER_SIZE;
+    private boolean isOpen;
 
 
     /**
@@ -35,19 +36,33 @@ public class subThread extends Thread {
         this.subPort = port;
         this.serverSocket = null;
         this.logger = Logger.getRootLogger();
+        isOpen = false;
     }
 
     public void run(){
         try {
             //not bound yet
             if(serverSocket == null){
-                serverSocket = new ServerSocket(this.subPort);
-                Socket subscribeSocket = serverSocket.accept();
-                input = subscribeSocket.getInputStream();
-                output = subscribeSocket.getOutputStream();
 
-                TextMessage tm = receiveMessage();
-                System.out.println("Key updated: " + tm.getMsg());
+                serverSocket = new ServerSocket(this.subPort);
+                isOpen = true;
+
+                while(isOpen) {
+                    try {
+                        Socket subscribeSocket = serverSocket.accept();
+                        input = subscribeSocket.getInputStream();
+                        output = subscribeSocket.getOutputStream();
+                        TextMessage tm = receiveMessage();
+                        System.out.println("Key updated: " + tm.getMsg());
+
+				/* connection either terminated by the client or lost due to
+				 * network problems*/
+                    } catch (IOException ioe) {
+                        logger.error("Error! Connection lost!");
+                        isOpen = false;
+                    }
+                }
+
             }
         } catch (SocketException sce){
             logger.info("serverSocket closed");
@@ -59,6 +74,7 @@ public class subThread extends Thread {
 
     public void shutdown() throws IOException {
         try {
+            isOpen = false;
             if(input!=null)
                 input.close();
             if(output!=null)
