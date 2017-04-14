@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -47,18 +49,29 @@ public class subThread extends Thread {
                 TextMessage tm = receiveMessage();
                 System.out.println("Key updated: " + tm.getMsg());
             }
-        } catch (Exception e) {
+        } catch (SocketException sce){
+            logger.info("serverSocket closed");
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void shutdown() throws IOException {
-        if(serverSocket != null){
-            input.close();
-            output.close();
-            serverSocket.close();
+        try {
+            if(input!=null)
+                input.close();
+            if(output!=null)
+                output.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        if(serverSocket!=null){
+            if(!serverSocket.isClosed())
+                serverSocket.close();
         }
     }
+
 
     public TextMessage receiveMessage() throws IOException {
 
